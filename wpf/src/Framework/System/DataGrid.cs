@@ -348,7 +348,7 @@ namespace System.Windows.Controls
         {
             if (displayIndex < 0 || displayIndex >= Columns.Count)
             {
-                throw new ArgumentOutOfRangeException("displayIndex", displayIndex, "DataGrid_DisplayIndexOutOfRange"); //SR.Get(SRID.DataGrid_DisplayIndexOutOfRange));
+                throw new ArgumentOutOfRangeException("displayIndex", displayIndex, "DataGrid_DisplayIndexOutOfRange"); //SR.Get("SRID.DataGrid_DisplayIndexOutOfRange));
             }
 
             return InternalColumns.ColumnFromDisplayIndex(displayIndex);
@@ -4111,7 +4111,7 @@ namespace System.Windows.Controls
             DataGridSelectionUnit selectionUnit = SelectionUnit;
             if (!IsUpdatingSelectedCells && (selectionUnit == DataGridSelectionUnit.FullRow))
             {
-                throw new InvalidOperationException("DataGrid_CannotSelectCell"); // SR.Get(SRID.DataGrid_CannotSelectCell));
+                throw new InvalidOperationException("DataGrid_CannotSelectCell"); // SR.Get("SRID.DataGrid_CannotSelectCell));
             }
 
             // Update the pending list of changes
@@ -7111,7 +7111,7 @@ namespace System.Windows.Controls
                     catch (InvalidOperationException) // invalidOperationException)
                     {
                         Items.SortDescriptions.Clear();
-                        throw new InvalidOperationException("DataGrid_ProbableInvalidSortDescription"); // SR.Get(SRID.DataGrid_ProbableInvalidSortDescription), invalidOperationException);
+                        throw new InvalidOperationException("DataGrid_ProbableInvalidSortDescription"); // SR.Get("SRID.DataGrid_ProbableInvalidSortDescription), invalidOperationException);
                     }
                 }
             }
@@ -8235,7 +8235,7 @@ namespace System.Windows.Controls
         {
             if (ClipboardCopyMode == DataGridClipboardCopyMode.None)
             {
-                throw new NotSupportedException("ClipboardCopyMode_Disabled"); // SR.Get(SRID.ClipboardCopyMode_Disabled));
+                throw new NotSupportedException("ClipboardCopyMode_Disabled"); // SR.Get("SRID.ClipboardCopyMode_Disabled));
             }
 
             args.Handled = true;

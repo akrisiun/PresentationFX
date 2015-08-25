@@ -298,8 +298,8 @@ namespace MS.Internal.Documents
 
             // No, we did not find anything. Alert the user.
             messageString = findToolBar.SearchUp ?
-                        SR.Get(SRID.DocumentViewerSearchUpCompleteLabel) :
-                        SR.Get(SRID.DocumentViewerSearchDownCompleteLabel);
+                        SR.Get("SRID.DocumentViewerSearchUpCompleteLabel) :
+                        SR.Get("SRID.DocumentViewerSearchDownCompleteLabel);
             messageString = String.Format(System.Globalization.CultureInfo.CurrentCulture, messageString, findToolBar.SearchText);
 
             HwndSource hwndSource = PresentationSource.CriticalFromVisual(findToolBar) as HwndSource;
@@ -308,7 +308,7 @@ namespace MS.Internal.Documents
             PresentationFramework.SecurityHelper.ShowMessageBoxHelper(
                 hwnd,
                 messageString,
-                SR.Get(SRID.DocumentViewerSearchCompleteTitle),
+                SR.Get("SRID.DocumentViewerSearchCompleteTitle),
                 MessageBoxButton.OK,
                 MessageBoxImage.Asterisk);
         }

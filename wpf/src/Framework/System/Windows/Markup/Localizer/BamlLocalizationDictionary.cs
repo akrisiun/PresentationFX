@@ -294,7 +294,7 @@ namespace System.Windows.Markup.Localizer
             {
                 throw new ArgumentOutOfRangeException(
                     "arrayIndex", 
-                    SR.Get(SRID.ParameterCannotBeNegative)
+                    SR.Get("SRID.ParameterCannotBeNegative")
                 );
             }
 
@@ -302,7 +302,7 @@ namespace System.Windows.Markup.Localizer
             {
                 throw new ArgumentException(
                     SR.Get(
-                        SRID.Collection_CopyTo_IndexGreaterThanOrEqualToArrayLength, 
+                        "SRID.Collection_CopyTo_IndexGreaterThanOrEqualToArrayLength", 
                         "arrayIndex", 
                         "array"
                     ),
@@ -314,7 +314,7 @@ namespace System.Windows.Markup.Localizer
             {
                 throw new ArgumentException(
                     SR.Get(
-                        SRID.Collection_CopyTo_NumberOfElementsExceedsArrayLength, 
+                        "SRID.Collection_CopyTo_NumberOfElementsExceedsArrayLength", 
                         "arrayIndex", 
                         "array"
                     )
@@ -376,7 +376,7 @@ namespace System.Windows.Markup.Localizer
             {
                 throw new ArgumentException(
                     SR.Get(
-                      SRID.Collection_CopyTo_ArrayCannotBeMultidimensional
+                      "SRID.Collection_CopyTo_ArrayCannotBeMultidimensional"
                     ), 
                     "array"
                 );

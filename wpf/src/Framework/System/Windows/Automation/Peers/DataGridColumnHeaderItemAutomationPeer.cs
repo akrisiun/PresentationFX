@@ -166,7 +166,7 @@ namespace System.Windows.Automation.Peers
 
         void ITransformProvider.Move(double x, double y)
         {
-            throw new InvalidOperationException(SR.Get(SRID.DataGridColumnHeaderItemAutomationPeer_Unsupported));
+            throw new InvalidOperationException(SR.Get("SRID.DataGridColumnHeaderItemAutomationPeer_Unsupported));
         } 
 
         void ITransformProvider.Resize(double width, double height)
@@ -177,13 +177,13 @@ namespace System.Windows.Automation.Peers
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.DataGridColumnHeaderItemAutomationPeer_Unresizable));
+                throw new InvalidOperationException(SR.Get("SRID.DataGridColumnHeaderItemAutomationPeer_Unresizable));
             }
         }
 
         void ITransformProvider.Rotate(double degrees)
         {
-            throw new InvalidOperationException(SR.Get(SRID.DataGridColumnHeaderItemAutomationPeer_Unsupported));
+            throw new InvalidOperationException(SR.Get("SRID.DataGridColumnHeaderItemAutomationPeer_Unsupported));
         }
 
         #endregion

@@ -530,7 +530,7 @@ namespace System.Windows.Documents
                 if (!addedSuggestion)
                 {
                     menuItem = new EditorMenuItem();
-                    menuItem.Header = SR.Get(SRID.TextBox_ContextMenu_NoSpellingSuggestions);
+                    menuItem.Header = SR.Get("SRID.TextBox_ContextMenu_NoSpellingSuggestions);
                     menuItem.IsEnabled = false;
                     this.Items.Add(menuItem);
                 }
@@ -538,7 +538,7 @@ namespace System.Windows.Documents
                 AddSeparator();
 
                 menuItem = new EditorMenuItem();
-                menuItem.Header = SR.Get(SRID.TextBox_ContextMenu_IgnoreAll);
+                menuItem.Header = SR.Get("SRID.TextBox_ContextMenu_IgnoreAll);
                 menuItem.Command = EditingCommands.IgnoreSpellingError;
                 this.Items.Add(menuItem);
                 menuItem.CommandTarget = textEditor.UiScope;
@@ -554,11 +554,11 @@ namespace System.Windows.Documents
                 {
                     if (suggestion[0] == 0x0020)
                     {
-                        return SR.Get(SRID.TextBox_ContextMenu_Description_SBCSSpace);
+                        return SR.Get("SRID.TextBox_ContextMenu_Description_SBCSSpace);
                     }
                     else if (suggestion[0] == 0x3000)
                     {
-                        return SR.Get(SRID.TextBox_ContextMenu_Description_DBCSSpace);
+                        return SR.Get("SRID.TextBox_ContextMenu_Description_DBCSSpace);
                     }
 
                 }
@@ -620,7 +620,7 @@ namespace System.Windows.Documents
                 if (count > 5)
                 {
                     menuItem = new EditorMenuItem();
-                    menuItem.Header = SR.Get(SRID.TextBox_ContextMenu_More);
+                    menuItem.Header = SR.Get("SRID.TextBox_ContextMenu_More);
                     menuItem.Command = ApplicationCommands.CorrectionList;
                     this.Items.Add(menuItem);
                     menuItem.CommandTarget = textEditor.UiScope;
@@ -644,13 +644,13 @@ namespace System.Windows.Documents
                 MenuItem menuItem;
 
                 menuItem = new EditorMenuItem();
-                menuItem.Header = SR.Get(SRID.TextBox_ContextMenu_Cut);
+                menuItem.Header = SR.Get("SRID.TextBox_ContextMenu_Cut);
                 menuItem.CommandTarget = textEditor.UiScope;
                 menuItem.Command = ApplicationCommands.Cut;
                 this.Items.Add(menuItem);
 
                 menuItem = new EditorMenuItem();
-                menuItem.Header = SR.Get(SRID.TextBox_ContextMenu_Copy);
+                menuItem.Header = SR.Get("SRID.TextBox_ContextMenu_Copy);
                 menuItem.CommandTarget = textEditor.UiScope;
                 menuItem.Command = ApplicationCommands.Copy;
                 this.Items.Add(menuItem);
@@ -662,7 +662,7 @@ namespace System.Windows.Documents
                     SecurityHelper.DemandAllClipboardPermission();
                 }
                 menuItem = new EditorMenuItem();
-                menuItem.Header = SR.Get(SRID.TextBox_ContextMenu_Paste);
+                menuItem.Header = SR.Get("SRID.TextBox_ContextMenu_Paste);
                 menuItem.CommandTarget = textEditor.UiScope;
                 menuItem.Command = ApplicationCommands.Paste;
                 this.Items.Add(menuItem);

@@ -197,7 +197,7 @@ namespace System.Windows.Controls
             {
                 // verify style is appropriate before applying it
                 if (!style.TargetType.IsInstanceOfType(this))
-                    throw new InvalidOperationException(SR.Get(SRID.StyleForWrongType, style.TargetType.Name, this.GetType().Name));
+                    throw new InvalidOperationException(SR.Get("SRID.StyleForWrongType, style.TargetType.Name, this.GetType().Name));
 
                 this.Style = style;
                 this.WriteInternalFlag2(InternalFlags2.IsStyleSetFromGenerator, true);
@@ -288,7 +288,7 @@ namespace System.Windows.Controls
             {
                 if (value.CacheLengthUnit == VirtualizationCacheLengthUnit.Page)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.PageCacheSizeNotAllowed));
+                    throw new InvalidOperationException(SR.Get("SRID.PageCacheSizeNotAllowed));
                 }
                 HierarchicalVirtualizationConstraintsField.SetValue(this, value);
             }

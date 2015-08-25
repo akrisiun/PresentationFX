@@ -140,7 +140,7 @@ namespace MS.Internal.Data
                     case NullChar:
                         break;
                     default:
-                        SetError(SRID.PathSyntax, _path.Substring(0, _index), _path.Substring(_index));
+                        SetError("SRID.PathSyntax, _path.Substring(0, _index), _path.Substring(_index));
                         return EmptyInfo;
                     }
                     _state = State.Prop;
@@ -203,13 +203,13 @@ namespace MS.Internal.Data
 
             if (level > 0)
             {
-                SetError(SRID.UnmatchedParen, _path.Substring(start));
+                SetError("SRID.UnmatchedParen, _path.Substring(start));
                 return;
             }
 
             if (level < 0)
             {
-                SetError(SRID.UnmatchedParen, _path.Substring(0, _index));
+                SetError("SRID.UnmatchedParen, _path.Substring(0, _index));
                 return;
             }
 
@@ -252,7 +252,7 @@ namespace MS.Internal.Data
             {
                 if (_index >= _n)
                 {
-                    SetError(SRID.UnmatchedBracket, _path.Substring(start - 1));
+                    SetError("SRID.UnmatchedBracket, _path.Substring(start - 1));
                     return;
                 }
 

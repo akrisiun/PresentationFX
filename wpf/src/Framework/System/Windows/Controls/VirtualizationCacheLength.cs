@@ -69,12 +69,12 @@ namespace System.Windows.Controls
         {
             if (DoubleUtil.IsNaN(cacheBeforeViewport))
             {
-                throw new ArgumentException(SR.Get(SRID.InvalidCtorParameterNoNaN, "cacheBeforeViewport"));
+                throw new ArgumentException(SR.Get("SRID.InvalidCtorParameterNoNaN, "cacheBeforeViewport"));
             }
 
             if (DoubleUtil.IsNaN(cacheAfterViewport))
             {
-                throw new ArgumentException(SR.Get(SRID.InvalidCtorParameterNoNaN, "cacheAfterViewport"));
+                throw new ArgumentException(SR.Get("SRID.InvalidCtorParameterNoNaN, "cacheAfterViewport"));
             }
 
             _cacheBeforeViewport = cacheBeforeViewport;

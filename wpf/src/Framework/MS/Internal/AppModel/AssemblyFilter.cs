@@ -74,7 +74,7 @@ namespace MS.Internal
                             if (AssemblyOnDisallowedList(assemblyName))
                             {
                                 // Kill the application domain
-                                UnsafeNativeMethods.ProcessUnhandledException_DLL(SR.Get(SRID.KillBitEnforcedShutdown) + assemblyName);
+                                UnsafeNativeMethods.ProcessUnhandledException_DLL(SR.Get("SRID.KillBitEnforcedShutdown") + assemblyName);
                                 // I want to ensure that the process really dies
                                 new SecurityPermission(SecurityPermissionFlag.UnmanagedCode).Assert();//BlessedAssert
                                 try

@@ -135,7 +135,7 @@ namespace MS.Internal.IO.Packaging
         /// <remarks>Not supported in indexing of core properties.</remarks>
         public string GetText(int bufferCharacterCount)
         {
-            throw new COMException(SR.Get(SRID.FilterGetTextNotSupported),
+            throw new COMException(SR.Get("SRID.FilterGetTextNotSupported),
                 (int)FilterErrorCode.FILTER_E_NO_TEXT);
         }
 
@@ -149,7 +149,7 @@ namespace MS.Internal.IO.Packaging
             // return error with FILTER_E_NO_MORE_VALUES.
             if (!_pendingGetValue)
             {
-                throw new COMException(SR.Get(SRID.FilterGetValueAlreadyCalledOnCurrentChunk),
+                throw new COMException(SR.Get("SRID.FilterGetValueAlreadyCalledOnCurrentChunk),
                     (int)FilterErrorCode.FILTER_E_NO_MORE_VALUES);
             }
 
@@ -413,7 +413,7 @@ namespace MS.Internal.IO.Packaging
             if (_currentIndex < 0 || _currentIndex >= _attributes.Length)
             {
                 throw new InvalidOperationException(
-                    SR.Get(SRID.CorePropertyEnumeratorPositionedOutOfBounds));
+                    SR.Get("SRID.CorePropertyEnumeratorPositionedOutOfBounds));
             }
         }
 

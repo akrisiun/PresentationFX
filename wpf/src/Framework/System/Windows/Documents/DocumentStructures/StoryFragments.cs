@@ -64,7 +64,7 @@ namespace System.Windows.Documents.DocumentStructures
                 return;
             }
 
-            throw new ArgumentException(SR.Get(SRID.UnexpectedParameterType, value.GetType(), typeof(StoryFragment)), "value");
+            throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType, value.GetType(), typeof(StoryFragment)), "value");
         }
         
         void IAddChild.AddText(string text) { } 
@@ -127,7 +127,7 @@ namespace System.Windows.Documents.DocumentStructures
                 return;
             }
 
-            throw new ArgumentException(SR.Get(SRID.DocumentStructureUnexpectedParameterType6, value.GetType(),
+            throw new ArgumentException(SR.Get("SRID.DocumentStructureUnexpectedParameterType6, value.GetType(),
                 typeof(SectionStructure), typeof(ParagraphStructure), typeof(FigureStructure), typeof(ListStructure), typeof(TableStructure), typeof(StoryBreak)),
                 "value");
         }

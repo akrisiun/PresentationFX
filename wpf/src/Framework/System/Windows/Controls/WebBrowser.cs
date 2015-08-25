@@ -114,7 +114,7 @@ namespace System.Windows.Controls
                             if (RegistryKeys.ReadLocalMachineBool(RegistryKeys.WPF_Hosting, RegistryKeys.value_UnblockWebBrowserControl) != true)
                             {
                                 //[Using a resource string for another issue that's close enough in meaning.]
-                                throw new SecurityException(SR.Get(SRID.AffectedByMsCtfIssue, "http://go.microsoft.com/fwlink/?LinkID=168882"));
+                                throw new SecurityException(SR.Get("SRID.AffectedByMsCtfIssue, "http://go.microsoft.com/fwlink/?LinkID=168882"));
                             }
                         }
                     }
@@ -482,7 +482,7 @@ namespace System.Windows.Controls
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.CannotInvokeScript));
+                throw new InvalidOperationException(SR.Get("SRID.CannotInvokeScript));
             }
             return retVal;
         }
@@ -588,7 +588,7 @@ namespace System.Windows.Controls
                     Type t = value.GetType();
                     if (!System.Runtime.InteropServices.Marshal.IsTypeVisibleFromCom(t))
                     {
-                        throw new ArgumentException(SR.Get(SRID.NeedToBeComVisible));
+                        throw new ArgumentException(SR.Get("SRID.NeedToBeComVisible));
                     }
                 }
 
@@ -881,7 +881,7 @@ namespace System.Windows.Controls
                 // We still don't have _axIWebBrowser2. Throw an exception.
                 if (_axIWebBrowser2 == null)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.WebBrowserNoCastToIWebBrowser2));
+                    throw new InvalidOperationException(SR.Get("SRID.WebBrowserNoCastToIWebBrowser2));
                 }
                 return _axIWebBrowser2;
             }
@@ -1025,7 +1025,7 @@ namespace System.Windows.Controls
             
             if (pSource != null && pSource.RootVisual is PopupRoot)
             {
-                throw new InvalidOperationException(SR.Get(SRID.CannotBeInsidePopup));
+                throw new InvalidOperationException(SR.Get("SRID.CannotBeInsidePopup));
             }
         }
 
@@ -1190,7 +1190,7 @@ namespace System.Windows.Controls
 
             if (!source.IsAbsoluteUri)
             {
-                throw new ArgumentException(SR.Get(SRID.AbsoluteUriOnly), "source");
+                throw new ArgumentException(SR.Get("SRID.AbsoluteUriOnly), "source");
             }
 
             // Resolve Pack://siteoforigin.

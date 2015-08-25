@@ -2931,7 +2931,7 @@ namespace System.Windows.Controls
                     VirtualizationMode oldVirtualizationMode = InRecyclingMode ? VirtualizationMode.Recycling : VirtualizationMode.Standard;
                     if (oldVirtualizationMode != virtualizationMode)
                     {
-                        throw new InvalidOperationException(SR.Get(SRID.CantSwitchVirtualizationModePostMeasure));
+                        throw new InvalidOperationException(SR.Get("SRID.CantSwitchVirtualizationModePostMeasure));
                     }
                 }
                 else

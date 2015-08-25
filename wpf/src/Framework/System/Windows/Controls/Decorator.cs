@@ -73,12 +73,12 @@ namespace System.Windows.Controls
         {
             if (!(value is UIElement))
             {
-                throw new ArgumentException (SR.Get(SRID.UnexpectedParameterType, value.GetType(), typeof(UIElement)), "value");
+                throw new ArgumentException (SR.Get("SRID.UnexpectedParameterType, value.GetType(), typeof(UIElement)), "value");
             }
 
             if (this.Child != null)
             {
-                throw new ArgumentException(SR.Get(SRID.CanOnlyHaveOneChild, this.GetType(), value.GetType()));
+                throw new ArgumentException(SR.Get("SRID.CanOnlyHaveOneChild, this.GetType(), value.GetType()));
             }
 
             this.Child = (UIElement)value;
@@ -181,7 +181,7 @@ namespace System.Windows.Controls
             if (    (_child == null)
                 ||  (index != 0))
             {
-                throw new ArgumentOutOfRangeException("index", index, SR.Get(SRID.Visual_ArgumentOutOfRange));
+                throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange));
             }
             
             return _child;

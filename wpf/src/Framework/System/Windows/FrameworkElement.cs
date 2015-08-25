@@ -492,7 +492,7 @@ namespace System.Windows
 
                 if( targetObject == null )
                 {
-                    throw new ArgumentException( SR.Get(SRID.TargetNameNotFound, targetName));
+                    throw new ArgumentException( SR.Get("SRID.TargetNameNotFound", targetName));
                 }
 
                 FrameworkObject fo = new FrameworkObject(targetObject);
@@ -502,7 +502,7 @@ namespace System.Windows
                 }
                 else
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.NamedObjectMustBeFrameworkElement, targetName));
+                    throw new InvalidOperationException(SR.Get("SRID.NamedObjectMustBeFrameworkElement", targetName));
                 }
             }
 
@@ -651,11 +651,11 @@ namespace System.Windows
         {
             if (_templateChild == null)
             {
-                throw new ArgumentOutOfRangeException("index", index, SR.Get(SRID.Visual_ArgumentOutOfRange));
+                throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange"));
             }
             if (index != 0)
             {
-                throw new ArgumentOutOfRangeException("index", index, SR.Get(SRID.Visual_ArgumentOutOfRange));
+                throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange"));
             }
             return _templateChild;
         }
@@ -690,14 +690,14 @@ namespace System.Windows
                     resources.AddOwner(this);
                     ResourcesField.SetValue(this, resources);
 
-                    if( TraceResourceDictionary.IsEnabled )
-                    {
-                        TraceResourceDictionary.TraceActivityItem(
-                                TraceResourceDictionary.NewResourceDictionary,
-                                this,
-                                0,
-                                resources );
-                    }
+                    //if( TraceResourceDictionary.IsEnabled )
+                    //{
+                    //    TraceResourceDictionary.TraceActivityItem(
+                    //            TraceResourceDictionary.NewResourceDictionary,
+                    //            this,
+                    //            0,
+                    //            resources );
+                    //}
 
                 }
 
@@ -709,15 +709,15 @@ namespace System.Windows
                 ResourceDictionary oldValue = ResourcesField.GetValue(this);
                 ResourcesField.SetValue(this, value);
 
-                if( TraceResourceDictionary.IsEnabled )
-                {
-                    TraceResourceDictionary.Trace(
-                            TraceEventType.Start,
-                            TraceResourceDictionary.NewResourceDictionary,
-                            this,
-                            oldValue,
-                            value );
-                }
+                //if( TraceResourceDictionary.IsEnabled )
+                //{
+                //    TraceResourceDictionary.Trace(
+                //            TraceEventType.Start,
+                //            TraceResourceDictionary.NewResourceDictionary,
+                //            this,
+                //            oldValue,
+                //            value );
+                //}
 
 
                 if (oldValue != null)
@@ -748,15 +748,15 @@ namespace System.Windows
                 }
 
 
-                if( TraceResourceDictionary.IsEnabled )
-                {
-                    TraceResourceDictionary.Trace(
-                            TraceEventType.Stop,
-                            TraceResourceDictionary.NewResourceDictionary,
-                            this,
-                            oldValue,
-                            value );
-                }
+                //if( TraceResourceDictionary.IsEnabled )
+                //{
+                //    TraceResourceDictionary.Trace(
+                //            TraceEventType.Stop,
+                //            TraceResourceDictionary.NewResourceDictionary,
+                //            this,
+                //            oldValue,
+                //            value );
+                //}
 
 
             }
@@ -1045,16 +1045,16 @@ namespace System.Windows
             object value;
             InheritanceBehavior inheritanceBehavior = InheritanceBehavior.Default;
 
-            if( TraceResourceDictionary.IsEnabled )
-            {
-                FrameworkObject element = new FrameworkObject(fe, fce);
+            //if( TraceResourceDictionary.IsEnabled )
+            //{
+            //    FrameworkObject element = new FrameworkObject(fe, fce);
 
-                TraceResourceDictionary.Trace(
-                    TraceEventType.Start,
-                    TraceResourceDictionary.FindResource,
-                     element.DO,
-                     resourceKey );
-            }
+            //    TraceResourceDictionary.Trace(
+            //        TraceEventType.Start,
+            //        TraceResourceDictionary.FindResource,
+            //         element.DO,
+            //         resourceKey );
+            //}
 
             try
             {
@@ -1083,13 +1083,13 @@ namespace System.Windows
                     {
                         source = app;
 
-                        if( TraceResourceDictionary.IsEnabled )
-                        {
-                            TraceResourceDictionary.TraceActivityItem(
-                                TraceResourceDictionary.FoundResourceInApplication,
-                                 resourceKey,
-                                value );
-                        }
+                        //if( TraceResourceDictionary.IsEnabled )
+                        //{
+                        //    TraceResourceDictionary.TraceActivityItem(
+                        //        TraceResourceDictionary.FoundResourceInApplication,
+                        //         resourceKey,
+                        //        value );
+                        //}
 
                         return value;
                     }
@@ -1106,14 +1106,14 @@ namespace System.Windows
                     {
                         source = SystemResourceHost.Instance;
 
-                        if( TraceResourceDictionary.IsEnabled )
-                        {
-                            TraceResourceDictionary.TraceActivityItem(
-                                TraceResourceDictionary.FoundResourceInTheme,
-                                source,
-                                resourceKey,
-                                value );
-                        }
+                        //if( TraceResourceDictionary.IsEnabled )
+                        //{
+                        //    TraceResourceDictionary.TraceActivityItem(
+                        //        TraceResourceDictionary.FoundResourceInTheme,
+                        //        source,
+                        //        resourceKey,
+                        //        value );
+                        //}
 
 
                         return value;
@@ -1122,37 +1122,37 @@ namespace System.Windows
             }
             finally
             {
-                if( TraceResourceDictionary.IsEnabled )
-                {
-                    FrameworkObject element = new FrameworkObject(fe, fce);
+                //if( TraceResourceDictionary.IsEnabled )
+                //{
+                //    FrameworkObject element = new FrameworkObject(fe, fce);
 
-                    TraceResourceDictionary.Trace(
-                        TraceEventType.Stop,
-                        TraceResourceDictionary.FindResource,
-                         element.DO,
-                         resourceKey );
-                }
+                //    TraceResourceDictionary.Trace(
+                //        TraceEventType.Stop,
+                //        TraceResourceDictionary.FindResource,
+                //         element.DO,
+                //         resourceKey );
+                //}
             }
 
             // We haven't found the resource.  Trace a message to the debugger.
             //
             // Only trace if this isn't an implicit
             // style lookup and the element has been loaded
-            if (TraceResourceDictionary.IsEnabledOverride && !isImplicitStyleLookup)
-            {
-                if ((fe != null && fe.IsLoaded) || (fce != null && fce.IsLoaded))
-                {
-                    TraceResourceDictionary.Trace( TraceEventType.Warning,
-                            TraceResourceDictionary.ResourceNotFound,
-                            resourceKey );
-                }
-                else if( TraceResourceDictionary.IsEnabled )
-                {
-                    TraceResourceDictionary.TraceActivityItem(
-                            TraceResourceDictionary.ResourceNotFound,
-                            resourceKey );
-                }
-            }
+            //if (TraceResourceDictionary.IsEnabledOverride && !isImplicitStyleLookup)
+            //{
+            //    if ((fe != null && fe.IsLoaded) || (fce != null && fce.IsLoaded))
+            //    {
+            //        TraceResourceDictionary.Trace( TraceEventType.Warning,
+            //                TraceResourceDictionary.ResourceNotFound,
+            //                resourceKey );
+            //    }
+            //    else if( TraceResourceDictionary.IsEnabled )
+            //    {
+            //        TraceResourceDictionary.TraceActivityItem(
+            //                TraceResourceDictionary.ResourceNotFound,
+            //                resourceKey );
+            //    }
+            //}
 
             source = null;
             return DependencyProperty.UnsetValue;
@@ -1190,7 +1190,7 @@ namespace System.Windows
                 {
                     // We suspect a loop here because the loop count
                     // has exceeded the MAX_TREE_DEPTH expected
-                    throw new InvalidOperationException(SR.Get(SRID.LogicalTreeLoop));
+                    throw new InvalidOperationException(SR.Get("SRID.LogicalTreeLoop"));
                 }
                 else
                 {
@@ -1214,14 +1214,14 @@ namespace System.Windows
                     {
                         source = fe;
 
-                        if( TraceResourceDictionary.IsEnabled )
-                        {
-                            TraceResourceDictionary.TraceActivityItem(
-                                TraceResourceDictionary.FoundResourceOnElement,
-                                source,
-                                resourceKey,
-                                value );
-                        }
+                        //if( TraceResourceDictionary.IsEnabled )
+                        //{
+                        //    TraceResourceDictionary.TraceActivityItem(
+                        //        TraceResourceDictionary.FoundResourceOnElement,
+                        //        source,
+                        //        resourceKey,
+                        //        value );
+                        //}
 
                         return value;
                     }
@@ -1250,14 +1250,14 @@ namespace System.Windows
                     {
                         source = fce;
 
-                        if( TraceResourceDictionary.IsEnabled )
-                        {
-                            TraceResourceDictionary.TraceActivityItem(
-                                TraceResourceDictionary.FoundResourceOnElement,
-                                source,
-                                resourceKey,
-                                value );
-                        }
+                        //if( TraceResourceDictionary.IsEnabled )
+                        //{
+                        //    TraceResourceDictionary.TraceActivityItem(
+                        //        TraceResourceDictionary.FoundResourceOnElement,
+                        //        source,
+                        //        resourceKey,
+                        //        value );
+                        //}
 
                         return value;
                     }
@@ -1280,16 +1280,16 @@ namespace System.Windows
                     {
                         source = style;
 
-                        if( TraceResourceDictionary.IsEnabled )
-                        {
-                            TraceResourceDictionary.TraceActivityItem(
-                                TraceResourceDictionary.FoundResourceInStyle,
-                                style.Resources,
-                                resourceKey,
-                                style,
-                                fo.DO,
-                                value );
-                        }
+                        //if( TraceResourceDictionary.IsEnabled )
+                        //{
+                        //    TraceResourceDictionary.TraceActivityItem(
+                        //        TraceResourceDictionary.FoundResourceInStyle,
+                        //        style.Resources,
+                        //        resourceKey,
+                        //        style,
+                        //        fo.DO,
+                        //        value );
+                        //}
 
                         return value;
                     }
@@ -1301,16 +1301,16 @@ namespace System.Windows
                     {
                         source = frameworkTemplate;
 
-                        if( TraceResourceDictionary.IsEnabled )
-                        {
-                            TraceResourceDictionary.TraceActivityItem(
-                                TraceResourceDictionary.FoundResourceInTemplate,
-                                frameworkTemplate.Resources,
-                                resourceKey,
-                                frameworkTemplate,
-                                fo.DO,
-                                value );
-                        }
+                        //if( TraceResourceDictionary.IsEnabled )
+                        //{
+                        //    TraceResourceDictionary.TraceActivityItem(
+                        //        TraceResourceDictionary.FoundResourceInTemplate,
+                        //        frameworkTemplate.Resources,
+                        //        resourceKey,
+                        //        frameworkTemplate,
+                        //        fo.DO,
+                        //        value );
+                        //}
 
                         return value;
                     }
@@ -1323,16 +1323,16 @@ namespace System.Windows
                     {
                         source = themeStyle;
 
-                        if( TraceResourceDictionary.IsEnabled )
-                        {
-                            TraceResourceDictionary.TraceActivityItem(
-                                TraceResourceDictionary.FoundResourceInThemeStyle,
-                                themeStyle.Resources,
-                                resourceKey,
-                                themeStyle,
-                                fo.DO,
-                                value );
-                        }
+                        //if( TraceResourceDictionary.IsEnabled )
+                        //{
+                        //    TraceResourceDictionary.TraceActivityItem(
+                        //        TraceResourceDictionary.FoundResourceInThemeStyle,
+                        //        themeStyle.Resources,
+                        //        resourceKey,
+                        //        themeStyle,
+                        //        fo.DO,
+                        //        value );
+                        //}
 
                         return value;
                     }
@@ -1890,7 +1890,7 @@ namespace System.Windows
                     // Commented this because the implicit fetch could also return a DeferredDictionaryReference
                     // if (!(implicitValue is Style))
                     // {
-                    //     throw new InvalidOperationException(SR.Get(SRID.InvalidImplicitStyleResource, this.GetType().Name, implicitValue));
+                    //     throw new InvalidOperationException(SR.Get("SRID.InvalidImplicitStyleResource, this.GetType().Name, implicitValue));
                     // }
 
                     // This style has been fetched from resources
@@ -2661,7 +2661,7 @@ namespace System.Windows
                 }
                 else
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.Illegal_InheritanceBehaviorSettor));
+                    throw new InvalidOperationException(SR.Get("SRID.Illegal_InheritanceBehaviorSettor"));
                 }
             }
         }
@@ -5343,7 +5343,7 @@ namespace System.Windows
             // Nested BeginInits on the same instance aren't permitted
             if (ReadInternalFlag(InternalFlags.InitPending))
             {
-                throw new InvalidOperationException(SR.Get(SRID.NestedBeginInitNotSupported));
+                throw new InvalidOperationException(SR.Get("SRID.NestedBeginInitNotSupported"));
             }
 
             // Mark the element as pending initialization
@@ -5358,7 +5358,7 @@ namespace System.Windows
             // Every EndInit must be preceeded by a BeginInit
             if (!ReadInternalFlag(InternalFlags.InitPending))
             {
-                throw new InvalidOperationException(SR.Get(SRID.EndInitWithoutBeginInitNotSupported));
+                throw new InvalidOperationException(SR.Get("SRID.EndInitWithoutBeginInitNotSupported"));
             }
 
             // Reset the pending flag
@@ -6189,7 +6189,7 @@ namespace System.Windows
                 // Thus we support any indices in the range [-1, 65535).
                 if (value < -1 || value >= 0xFFFF)
                 {
-                    throw new ArgumentOutOfRangeException("value", SR.Get(SRID.TemplateChildIndexOutOfRange));
+                    throw new ArgumentOutOfRangeException("value", SR.Get("SRID.TemplateChildIndexOutOfRange"));
                 }
 
                 uint childIndex = (value == -1) ? 0xFFFF : (uint)value;

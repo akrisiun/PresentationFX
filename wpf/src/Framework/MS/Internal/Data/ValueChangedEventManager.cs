@@ -96,7 +96,7 @@ namespace MS.Internal.Data
             if (handler == null)
                 throw new ArgumentNullException("handler");
             if (handler.GetInvocationList().Length != 1)
-                throw new NotSupportedException(SR.Get(SRID.NoMulticastHandlers));
+                throw new NotSupportedException(SR.Get("SRID.NoMulticastHandlers));
 
             CurrentManager.PrivateAddHandler(source, handler, pd);
         }
@@ -109,7 +109,7 @@ namespace MS.Internal.Data
             if (handler == null)
                 throw new ArgumentNullException("handler");
             if (handler.GetInvocationList().Length != 1)
-                throw new NotSupportedException(SR.Get(SRID.NoMulticastHandlers));
+                throw new NotSupportedException(SR.Get("SRID.NoMulticastHandlers));
 
             CurrentManager.PrivateRemoveHandler(source, handler, pd);
         }

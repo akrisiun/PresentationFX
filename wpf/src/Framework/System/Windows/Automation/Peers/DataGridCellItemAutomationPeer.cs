@@ -203,7 +203,7 @@ namespace System.Windows.Automation.Peers
 
             if (string.IsNullOrEmpty(name))
             {
-                name = SR.Get(SRID.DataGridCellItemAutomationPeer_NameCoreFormat, _item, _column.DisplayIndex);
+                name = SR.Get("SRID.DataGridCellItemAutomationPeer_NameCoreFormat, _item, _column.DisplayIndex);
             }
 
             return name;
@@ -549,7 +549,7 @@ namespace System.Windows.Automation.Peers
             // BeginEdit on a NewItemPlaceholder row returns false.
             if (!success  && !IsNewItemPlaceholder)
             {
-                throw new InvalidOperationException(SR.Get(SRID.DataGrid_AutomationInvokeFailed));
+                throw new InvalidOperationException(SR.Get("SRID.DataGrid_AutomationInvokeFailed));
             }
         }
 
@@ -586,7 +586,7 @@ namespace System.Windows.Automation.Peers
         {
             if (!IsCellSelectionUnit)
             {
-                throw new InvalidOperationException(SR.Get(SRID.DataGrid_CannotSelectCell));
+                throw new InvalidOperationException(SR.Get("SRID.DataGrid_CannotSelectCell));
             }
 
             // If item is already selected - do nothing
@@ -611,7 +611,7 @@ namespace System.Windows.Automation.Peers
         {
             if (!IsCellSelectionUnit)
             {
-                throw new InvalidOperationException(SR.Get(SRID.DataGrid_CannotSelectCell));
+                throw new InvalidOperationException(SR.Get("SRID.DataGrid_CannotSelectCell));
             }
 
             EnsureEnabled();
@@ -627,7 +627,7 @@ namespace System.Windows.Automation.Peers
         {
             if (!IsCellSelectionUnit)
             {
-                throw new InvalidOperationException(SR.Get(SRID.DataGrid_CannotSelectCell));
+                throw new InvalidOperationException(SR.Get("SRID.DataGrid_CannotSelectCell));
             }
 
             EnsureEnabled();
@@ -652,7 +652,7 @@ namespace System.Windows.Automation.Peers
         {
             if (_column.IsReadOnly)
             {
-                throw new InvalidOperationException(SR.Get(SRID.DataGrid_ColumnIsReadOnly));
+                throw new InvalidOperationException(SR.Get("SRID.DataGrid_ColumnIsReadOnly));
             }
             if (this.OwningDataGrid != null)
             {
@@ -701,7 +701,7 @@ namespace System.Windows.Automation.Peers
             // To avoid the situation on legacy systems which may not have new unmanaged core. this check with old unmanaged core
             // avoids throwing exception and provide older behavior returning default values for items which are virtualized rather than throwing exception.
             if (VirtualizedItemPatternIdentifiers.Pattern != null && !IsItemInAutomationTree())
-                throw new ElementNotAvailableException(SR.Get(SRID.VirtualizedElement));
+                throw new ElementNotAvailableException(SR.Get("SRID.VirtualizedElement));
         }
 
         private bool IsItemInAutomationTree()

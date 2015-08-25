@@ -111,7 +111,7 @@ namespace System.Windows.Controls
                 return;
             }
 
-            throw (new ArgumentException("Grid_UnexpectedParameterType")); //SR.Get(SRID.Grid_UnexpectedParameterType, value.GetType(), typeof(UIElement)), "value"));
+            throw (new ArgumentException("Grid_UnexpectedParameterType")); //SR.Get("SRID.Grid_UnexpectedParameterType, value.GetType(), typeof(UIElement)), "value"));
         }
 
         /// <summary>
@@ -381,7 +381,7 @@ namespace System.Windows.Controls
             {
                 if (_gridLinesRenderer == null)
                 {
-                    throw new ArgumentOutOfRangeException("index", index, SR.Get(SRID.Visual_ArgumentOutOfRange));
+                    throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange"));
                 }
                 return _gridLinesRenderer;
             }
@@ -3096,12 +3096,12 @@ namespace System.Windows.Controls
                     if (_currentEnumerator == -1)
                     {
                         #pragma warning suppress 6503 // IEnumerator.Current is documented to throw this exception
-                        throw new InvalidOperationException("EnumeratorNotStarted"); // SR.Get(SRID.EnumeratorNotStarted));
+                        throw new InvalidOperationException("EnumeratorNotStarted"); // SR.Get("SRID.EnumeratorNotStarted));
                     }
                     if (_currentEnumerator >= 3)
                     {
                         #pragma warning suppress 6503 // IEnumerator.Current is documented to throw this exception
-                        throw new InvalidOperationException("EnumeratorReachedEnd"); // SR.Get(SRID.EnumeratorReachedEnd));
+                        throw new InvalidOperationException("EnumeratorReachedEnd"); // SR.Get("SRID.EnumeratorReachedEnd));
                     }
 
                     //  assert below is not true anymore since UIElementCollection allowes for null children

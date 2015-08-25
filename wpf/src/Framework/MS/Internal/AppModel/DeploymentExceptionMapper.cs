@@ -207,38 +207,38 @@ namespace MS.Internal
 
             if (e == null)
             {
-                errorTitle = SR.Get(SRID.CancelledTitle);
-                errorMessage = SR.Get(SRID.CancelledText);
+                errorTitle = SR.Get("SRID.CancelledTitle);
+                errorMessage = SR.Get("SRID.CancelledText);
             }
             else if (e is DependentPlatformMissingException)
             {
-                errorTitle = SR.Get(SRID.PlatformRequirementTitle);
+                errorTitle = SR.Get("SRID.PlatformRequirementTitle);
                 errorMessage = e.Message;
             }
             else if (e is InvalidDeploymentException)
             {
-                errorTitle = SR.Get(SRID.InvalidDeployTitle);
-                errorMessage = SR.Get(SRID.InvalidDeployText);
+                errorTitle = SR.Get("SRID.InvalidDeployTitle);
+                errorMessage = SR.Get("SRID.InvalidDeployText);
             }
             else if (e is TrustNotGrantedException)
             {
-                errorTitle = SR.Get(SRID.TrustNotGrantedTitle);
-                errorMessage = SR.Get(SRID.TrustNotGrantedText);
+                errorTitle = SR.Get("SRID.TrustNotGrantedTitle);
+                errorMessage = SR.Get("SRID.TrustNotGrantedText);
             }
             else if (e is DeploymentDownloadException)
             {
-                errorTitle = SR.Get(SRID.DownloadTitle);
-                errorMessage = SR.Get(SRID.DownloadText);
+                errorTitle = SR.Get("SRID.DownloadTitle);
+                errorMessage = SR.Get("SRID.DownloadText);
             }
             else if (e is DeploymentException)
             {
-                errorTitle = SR.Get(SRID.DeployTitle);
-                errorMessage = SR.Get(SRID.DeployText);
+                errorTitle = SR.Get("SRID.DeployTitle);
+                errorMessage = SR.Get("SRID.DeployText);
             }
             else
             {
-                errorTitle = SR.Get(SRID.UnknownErrorTitle);
-                errorMessage = SR.Get(SRID.UnknownErrorText) + "\n\n" + e.Message;
+                errorTitle = SR.Get("SRID.UnknownErrorTitle);
+                errorMessage = SR.Get("SRID.UnknownErrorText) + "\n\n" + e.Message;
             }
         }
 

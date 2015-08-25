@@ -311,7 +311,7 @@ namespace System.Windows
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.DragMoveFail));
+                throw new InvalidOperationException(SR.Get("SRID.DragMoveFail));
             }
 
         }
@@ -343,11 +343,11 @@ namespace System.Windows
 
             if ( _isVisible == true )
             {
-                throw new InvalidOperationException(SR.Get(SRID.ShowDialogOnVisible));
+                throw new InvalidOperationException(SR.Get("SRID.ShowDialogOnVisible));
             }
             else if ( _showingAsDialog == true )
             {
-                throw new InvalidOperationException(SR.Get(SRID.ShowDialogOnModal));
+                throw new InvalidOperationException(SR.Get("SRID.ShowDialogOnModal));
             }
 
             _dialogOwnerHandle = _ownerHandle;
@@ -822,7 +822,7 @@ namespace System.Windows
 
             if (!((Window) d).IsSourceWindowNull)
             {
-                throw new InvalidOperationException(SR.Get(SRID.ChangeNotAllowedAfterShow));
+                throw new InvalidOperationException(SR.Get("SRID.ChangeNotAllowedAfterShow));
             }
 
             return value;
@@ -1282,12 +1282,12 @@ namespace System.Windows
                 VerifyContextAndObjectState();
                 if (value == this)
                 {
-                    throw new ArgumentException(SR.Get(SRID.CannotSetOwnerToItself));
+                    throw new ArgumentException(SR.Get("SRID.CannotSetOwnerToItself));
                 }
 
                 if ( _showingAsDialog == true )
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.CantSetOwnerAfterDialogIsShown));
+                    throw new InvalidOperationException(SR.Get("SRID.CantSetOwnerAfterDialogIsShown));
                 }
 
                 if (value != null && value.IsSourceWindowNull == true)
@@ -1295,9 +1295,9 @@ namespace System.Windows
                     // Try to be specific in the error message.
                     if (value._disposed)
                     {
-                        throw new InvalidOperationException(SR.Get(SRID.CantSetOwnerToClosedWindow));
+                        throw new InvalidOperationException(SR.Get("SRID.CantSetOwnerToClosedWindow));
                     }
-                    throw new InvalidOperationException(SR.Get(SRID.CantSetOwnerWhosHwndIsNotCreated));
+                    throw new InvalidOperationException(SR.Get("SRID.CantSetOwnerWhosHwndIsNotCreated));
                 }
 
                 if ( _ownerWindow == value )
@@ -1316,7 +1316,7 @@ namespace System.Windows
                         {
                             if (ownedWindows[i] == value)
                             {
-                                throw new ArgumentException(SR.Get(SRID.CircularOwnerChild, value, this));
+                                throw new ArgumentException(SR.Get("SRID.CircularOwnerChild, value, this));
                             }
                         }
                     }
@@ -1440,7 +1440,7 @@ namespace System.Windows
                 }
                 else
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.DialogResultMustBeSetAfterShowDialog));
+                    throw new InvalidOperationException(SR.Get("SRID.DialogResultMustBeSetAfterShowDialog));
 
                 }
             }
@@ -1792,7 +1792,7 @@ namespace System.Windows
 
             if ( VisualTreeHelper.GetParent(this) != null )
             {
-                throw new InvalidOperationException(SR.Get(SRID.WindowMustBeRoot));
+                throw new InvalidOperationException(SR.Get("SRID.WindowMustBeRoot));
             }
         }
 
@@ -2409,7 +2409,7 @@ namespace System.Windows
             base.OnAncestorChanged();
             if (Parent != null)
             {
-                throw new InvalidOperationException(SR.Get(SRID.WindowMustBeRoot));
+                throw new InvalidOperationException(SR.Get("SRID.WindowMustBeRoot));
             }
         }
 
@@ -3206,7 +3206,7 @@ namespace System.Windows
 
                 if ( _showingAsDialog == true )
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.CantSetOwnerAfterDialogIsShown));
+                    throw new InvalidOperationException(SR.Get("SRID.CantSetOwnerAfterDialogIsShown));
                 }
 
                 SetOwnerHandle(value);
@@ -3691,7 +3691,7 @@ namespace System.Windows
 #if DISPOSE
             if (_disposed)
             {
-                throw new ObjectDisposedException(null, SR.Get(SRID.WindowDisposed));
+                throw new ObjectDisposedException(null, SR.Get("SRID.WindowDisposed));
             }
 #endif
         }
@@ -3700,7 +3700,7 @@ namespace System.Windows
         {
             if (_disposed == true)
             {
-                throw new InvalidOperationException(SR.Get(SRID.ReshowNotAllowed));
+                throw new InvalidOperationException(SR.Get("SRID.ReshowNotAllowed));
             }
         }
 
@@ -3708,12 +3708,12 @@ namespace System.Windows
         {
             if (_isClosing == true)
             {
-                throw new InvalidOperationException(SR.Get(SRID.InvalidOperationDuringClosing));
+                throw new InvalidOperationException(SR.Get("SRID.InvalidOperationDuringClosing));
             }
 
             if (IsSourceWindowNull == false && IsCompositionTargetInvalid == true)
             {
-                throw new InvalidOperationException(SR.Get(SRID.InvalidCompositionTarget));
+                throw new InvalidOperationException(SR.Get("SRID.InvalidCompositionTarget));
             }
         }
 
@@ -3721,7 +3721,7 @@ namespace System.Windows
         {
             if (HwndCreatedButNotShown)
             {
-                throw new InvalidOperationException(SR.Get(SRID.NotAllowedBeforeShow));
+                throw new InvalidOperationException(SR.Get("SRID.NotAllowedBeforeShow));
             }
         }
 
@@ -4042,10 +4042,10 @@ namespace System.Windows
                     break;
 #if THEATRE_FULLSCREEN
                 case WindowState.Theatre:
-                    throw new NotImplementedException(SR.Get(SRID.NotImplementedException));
+                    throw new NotImplementedException(SR.Get("SRID.NotImplementedException));
 
                 case WindowState.FullScreen:
-                    throw new NotImplementedException(SR.Get(SRID.NotImplementedException));
+                    throw new NotImplementedException(SR.Get("SRID.NotImplementedException));
 #endif //THEATRE_FULLSCREEN
             }
         }
@@ -5853,7 +5853,7 @@ namespace System.Windows
             if (!Double.IsPositiveInfinity(l) && !DoubleUtil.IsNaN(l) &&
                 ((l > Int32.MaxValue) || (l < Int32.MinValue)))
             {
-                throw new ArgumentException(SR.Get(SRID.ValueNotBetweenInt32MinMax, l));
+                throw new ArgumentException(SR.Get("SRID.ValueNotBetweenInt32MinMax, l));
             }
         }
 
@@ -5864,13 +5864,13 @@ namespace System.Windows
             if (Double.IsPositiveInfinity(length) ||
                 Double.IsNegativeInfinity(length))
             {
-                throw new ArgumentException(SR.Get(SRID.InvalidValueForTopLeft, length));
+                throw new ArgumentException(SR.Get("SRID.InvalidValueForTopLeft, length));
             }
 
             if ((length > Int32.MaxValue) ||
                 (length < Int32.MinValue))
             {
-                throw new ArgumentException(SR.Get(SRID.ValueNotBetweenInt32MinMax, length));
+                throw new ArgumentException(SR.Get("SRID.ValueNotBetweenInt32MinMax, length));
             }
         }
 
@@ -6508,7 +6508,7 @@ namespace System.Windows
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.TransformNotSupported));
+                throw new InvalidOperationException(SR.Get("SRID.TransformNotSupported));
             }
 
             return value;
@@ -6522,7 +6522,7 @@ namespace System.Windows
         {
             if ((bool)value != false)
             {
-                throw new InvalidOperationException(SR.Get(SRID.ClipToBoundsNotSupported));
+                throw new InvalidOperationException(SR.Get("SRID.ClipToBoundsNotSupported));
             }
             return value;
         }
@@ -7066,7 +7066,7 @@ namespace System.Windows
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.IncorrectFlowDirection));
+                throw new InvalidOperationException(SR.Get("SRID.IncorrectFlowDirection));
             }
 
         }
@@ -7200,7 +7200,7 @@ namespace System.Windows
         {
             if (AllowsTransparency && style != WindowStyle.None)
             {
-                throw new InvalidOperationException(SR.Get(SRID.MustUseWindowStyleNone));
+                throw new InvalidOperationException(SR.Get("SRID.MustUseWindowStyleNone));
             }
         }
 
@@ -7216,7 +7216,7 @@ namespace System.Windows
             // Don't check this consistency in a RBW (would break because Visibility is set when launching the RBW).
             //
             if (!_inTrustedSubWindow && WindowState == WindowState.Maximized && !ShowActivated)
-                throw new InvalidOperationException(SR.Get(SRID.ShowNonActivatedAndMaximized));
+                throw new InvalidOperationException(SR.Get("SRID.ShowNonActivatedAndMaximized));
         }
 
         private static bool IsValidSizeToContent(SizeToContent value)

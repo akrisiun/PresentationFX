@@ -237,7 +237,7 @@ namespace System.Windows.Markup
                             lineNumber = xamlNode.LineNumber;
                             linePosition = xamlNode.LinePosition;
                         }
-                        newMessage = e.Message + " " + SR.Get(SRID.ParserLineAndOffset,
+                        newMessage = e.Message + " " + SR.Get("SRID.ParserLineAndOffset,
                                                   lineNumber.ToString(CultureInfo.CurrentCulture),
                                                   linePosition.ToString(CultureInfo.CurrentCulture));
                     }
@@ -577,7 +577,7 @@ namespace System.Windows.Markup
         public virtual void WriteUnknownTagStart(XamlUnknownTagStartNode xamlUnknownTagStartNode)
         {
             // The default action for unknown tags is throw an exception.
-            ThrowException(SRID.ParserUnknownTag ,
+            ThrowException("SRID.ParserUnknownTag ,
                         xamlUnknownTagStartNode.Value,
                         xamlUnknownTagStartNode.XmlNamespace,
                         xamlUnknownTagStartNode.LineNumber,
@@ -592,7 +592,7 @@ namespace System.Windows.Markup
             // The default action for unknown tags is throw an exception.  This should never
             // get here unless there is a coding error, since it would first hit
             // WriteUnknownTagStart
-            ThrowException(SRID.ParserUnknownTag ,
+            ThrowException("SRID.ParserUnknownTag ,
                         "???",
                         xamlUnknownTagEndNode.LineNumber,
                         xamlUnknownTagEndNode.LinePosition);
@@ -677,7 +677,7 @@ namespace System.Windows.Markup
         public virtual void WriteUnknownAttribute(XamlUnknownAttributeNode xamlUnknownAttributeNode)
         {
             // The default action for unknown attributes is throw an exception.
-            ThrowException(SRID.ParserUnknownAttribute ,
+            ThrowException("SRID.ParserUnknownAttribute ,
                         xamlUnknownAttributeNode.Name,
                         xamlUnknownAttributeNode.XmlNamespace,
                         xamlUnknownAttributeNode.LineNumber,
@@ -728,7 +728,7 @@ namespace System.Windows.Markup
             {
                 if (xamlPropertyNode.ValueElementType == null)
                 {
-                    ThrowException(SRID.ParserNoType,
+                    ThrowException("SRID.ParserNoType,
                                    xamlPropertyNode.ValueTypeFullName,
                                    xamlPropertyNode.LineNumber,
                                    xamlPropertyNode.LinePosition);
@@ -782,7 +782,7 @@ namespace System.Windows.Markup
             // parsing scenario and should throw.
             if (xamlPIMappingNode.AssemblyName.Length == 0)
             {
-                ThrowException(SRID.ParserMapPIMissingKey, xamlPIMappingNode.LineNumber, xamlPIMappingNode.LinePosition);
+                ThrowException("SRID.ParserMapPIMissingKey, xamlPIMappingNode.LineNumber, xamlPIMappingNode.LinePosition);
             }
 
             if (BamlRecordWriter != null)
@@ -802,7 +802,7 @@ namespace System.Windows.Markup
 
             if (null == ParserHooks)
             {
-                ThrowException(SRID.ParserNoEvents,
+                ThrowException("SRID.ParserNoEvents,
                     xamlClrEventNode.LineNumber,
                     xamlClrEventNode.LinePosition);
             }
@@ -903,7 +903,7 @@ namespace System.Windows.Markup
         /// </summary>
         public virtual void WriteDefTag(XamlDefTagNode xamlDefTagNode)
         {
-            ThrowException(SRID.ParserDefTag,
+            ThrowException("SRID.ParserDefTag,
                         xamlDefTagNode.Value,
                         xamlDefTagNode.LineNumber,
                         xamlDefTagNode.LinePosition);
@@ -937,7 +937,7 @@ namespace System.Windows.Markup
                    {
                        if (xamlDefAttributeNode.Value == "Async")
                        {
-                           ThrowException(SRID.ParserNoBamlAsync, "Async",
+                           ThrowException("SRID.ParserNoBamlAsync, "Async",
                                       xamlDefAttributeNode.LineNumber,
                                       xamlDefAttributeNode.LinePosition);
                        }
@@ -946,7 +946,7 @@ namespace System.Windows.Markup
 
                case XamlReaderHelper.DefinitionAsyncRecords:
                     // Update the AsyncRecords and don't store this as a def attribute
-                       ThrowException(SRID.ParserNoBamlAsync, xamlDefAttributeNode.Name,
+                       ThrowException("SRID.ParserNoBamlAsync, xamlDefAttributeNode.Name,
                                       xamlDefAttributeNode.LineNumber,
                                       xamlDefAttributeNode.LinePosition);
                    break;
@@ -964,9 +964,9 @@ namespace System.Windows.Markup
                     //Error if x:Uid or x:Name are markup extensions
                     if (MarkupExtensionParser.LooksLikeAMarkupExtension(attributeValue))
                     {
-                        string message = SR.Get(SRID.ParserBadUidOrNameME, attributeValue);
+                        string message = SR.Get("SRID.ParserBadUidOrNameME, attributeValue);
                         message += " ";
-                        message += SR.Get(SRID.ParserLineAndOffset,
+                        message += SR.Get("SRID.ParserLineAndOffset,
                                     xamlDefAttributeNode.LineNumber.ToString(CultureInfo.CurrentCulture),
                                     xamlDefAttributeNode.LinePosition.ToString(CultureInfo.CurrentCulture));
 
@@ -1140,7 +1140,7 @@ namespace System.Windows.Markup
                     }
                     else
                     {
-                        ThrowException(SRID.ParserBadSyncMode,
+                        ThrowException("SRID.ParserBadSyncMode,
                                xamlDefAttributeNode.LineNumber,
                                xamlDefAttributeNode.LinePosition );
                     }
@@ -1453,7 +1453,7 @@ namespace System.Windows.Markup
         private static void ThrowExceptionWithLine(string message, int lineNumber, int linePosition)
         {
             message += " ";
-            message += SR.Get(SRID.ParserLineAndOffset,
+            message += SR.Get("SRID.ParserLineAndOffset,
                                     lineNumber.ToString(CultureInfo.CurrentCulture),
                                     linePosition.ToString(CultureInfo.CurrentCulture));
 

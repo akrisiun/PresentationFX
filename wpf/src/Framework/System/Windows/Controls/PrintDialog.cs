@@ -106,7 +106,7 @@ namespace System.Windows.Controls
             {
                 if ((value.PageTo <= 0) || (value.PageFrom <= 0))
                 {
-                    throw new System.ArgumentException(SR.Get(SRID.PrintDialogInvalidPageRange), "PageRange");
+                    throw new System.ArgumentException(SR.Get("SRID.PrintDialogInvalidPageRange), "PageRange");
                 }
 
                 _pageRange = value;
@@ -184,7 +184,7 @@ namespace System.Windows.Controls
             {
                 if (_minPage <= 0)
                 {
-                    throw new System.ArgumentException(SR.Get(SRID.PrintDialogZeroNotAllowed, "MinPage"));
+                    throw new System.ArgumentException(SR.Get("SRID.PrintDialogZeroNotAllowed, "MinPage"));
                 }
 
                 _minPage = value;
@@ -204,7 +204,7 @@ namespace System.Windows.Controls
             {
                 if (_maxPage <= 0)
                 {
-                    throw new System.ArgumentException(SR.Get(SRID.PrintDialogZeroNotAllowed, "MaxPage"));
+                    throw new System.ArgumentException(SR.Get("SRID.PrintDialogZeroNotAllowed, "MaxPage"));
                 }
 
                 _maxPage = value;
@@ -713,7 +713,7 @@ namespace System.Windows.Controls
                 }
                 catch (SecurityException)
                 {
-                    throw new PrintDialogException(SR.Get(SRID.PartialTrustPrintDialogMustBeInvoked));
+                    throw new PrintDialogException(SR.Get("SRID.PartialTrustPrintDialogMustBeInvoked));
                 }
             }
 

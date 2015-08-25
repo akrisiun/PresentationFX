@@ -718,7 +718,7 @@ namespace System.Windows.Documents
                 // Otherwise it's a security concern to disclose this data.
                 if (hasDemand)
                 {
-                    throw new ArgumentException(SR.Get(SRID.CustomDictionaryFailedToLoadDictionaryUri, lexiconFilePath), e);
+                    throw new ArgumentException(SR.Get("SRID.CustomDictionaryFailedToLoadDictionaryUri, lexiconFilePath), e);
                 }
                 else
                 {
@@ -752,7 +752,7 @@ namespace System.Windows.Documents
         private void Dispose(bool disposing)
         {
             if (_isDisposed)
-                throw new ObjectDisposedException(SR.Get(SRID.TextEditorSpellerInteropHasBeenDisposed));
+                throw new ObjectDisposedException(SR.Get("SRID.TextEditorSpellerInteropHasBeenDisposed));
 
             if (_textChunk != null)
             {

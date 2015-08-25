@@ -356,7 +356,7 @@ namespace MS.Internal.AppModel
             // application, so this exception message should be displayed to the user (except if we are
             // trying direct activation, in which case the exception is caught and we fall back to the full
             // IPHM activation).
-            throw new ApplicationException(SR.Get(SRID.AppActivationException));
+            throw new ApplicationException(SR.Get("SRID.AppActivationException));
         }
 
         /// <SecurityNote>
@@ -372,7 +372,7 @@ namespace MS.Internal.AppModel
             EventTrace.EasyTraceEvent(EventTrace.Keyword.KeywordHosting | EventTrace.Keyword.KeywordPerf, EventTrace.Event.WpfHost_DownloadDeplManifestStart);
 
             StartAsynchronousOperation();
-            SetStatusText(SR.Get(SRID.HostingStatusDownloadAppInfo));
+            SetStatusText(SR.Get("SRID.HostingStatusDownloadAppInfo));
 
             _hostingManager.GetManifestCompleted += new EventHandler<GetManifestCompletedEventArgs>(GetManifestCompleted);
             // Possible reentrancy! When making the outgoing calls to the browser to update its
@@ -515,7 +515,7 @@ namespace MS.Internal.AppModel
         [SecurityCritical, SecurityTreatAsSafe]
         void ShowDownloadingStatusMessage()
         {
-            SetStatusText(SR.Get(SRID.HostingStatusDownloadApp));
+            SetStatusText(SR.Get("SRID.HostingStatusDownloadApp));
         }
 
         /// <SecurityNote>
@@ -531,7 +531,7 @@ namespace MS.Internal.AppModel
             if (CheckAccess()) // initial call by Dispatcher?
             { // Do a callback to a worker thread 
                 // Status bar is set on the main thread (here) to avoid switching.
-                SetStatusText(SR.Get(SRID.HostingStatusVerifying));
+                SetStatusText(SR.Get("SRID.HostingStatusVerifying));
 
                 // Creating an STA thread to get CLR's 'selectively permeable' managed locks. This is needed to
                 // enable the dispatching of the window event hook calls needed to intercept the showing of the
@@ -585,7 +585,7 @@ namespace MS.Internal.AppModel
                                 Exception exception = (Exception)exceptionObj;
                                 if (CriticalExceptions.IsCriticalException(exception))
                                 { // Wrap the exception object in order to preserve the original callstack.
-                                    throw new DeploymentException(SR.Get(SRID.UnknownErrorText), exception);
+                                    throw new DeploymentException(SR.Get("SRID.UnknownErrorText), exception);
                                 }
 
                                 GetManifestCompletedEventArgs args = _getManifestCompletedEventArgs;
@@ -716,7 +716,7 @@ namespace MS.Internal.AppModel
             }
 
             // ASSUMES ALREADY IN CORRECT CONTEXT
-            SetStatusText(SR.Get(SRID.HostingStatusFailed));
+            SetStatusText(SR.Get("SRID.HostingStatusFailed));
             string version = String.Empty;
             MissingDependencyType getWinFXReq = MissingDependencyType.Others;
 
@@ -760,13 +760,13 @@ namespace MS.Internal.AppModel
             {
                 case MissingDependencyType.WinFX:
                     // Wrong version of Avalon is installed.
-                    errorTitle = SR.Get(SRID.PlatformRequirementTitle);
-                    errorMessage = SR.Get(SRID.IncompatibleWinFXText, version);
+                    errorTitle = SR.Get("SRID.PlatformRequirementTitle);
+                    errorMessage = SR.Get("SRID.IncompatibleWinFXText, version);
                     break;
                 case MissingDependencyType.CLR:
                     // Missing CLR dependency
-                    errorTitle = SR.Get(SRID.PlatformRequirementTitle);
-                    errorMessage = SR.Get(SRID.IncompatibleCLRText, version);
+                    errorTitle = SR.Get("SRID.PlatformRequirementTitle);
+                    errorMessage = SR.Get("SRID.IncompatibleCLRText, version);
                     break;
                 default:
                     // All other deployment exceptions
@@ -828,7 +828,7 @@ namespace MS.Internal.AppModel
             CancelAsynchronousOperation();
 
             // ASSUMES ALREADY IN CORRECT CONTEXT
-            SetStatusText(SR.Get(SRID.HostingStatusCancelled));
+            SetStatusText(SR.Get("SRID.HostingStatusCancelled));
             string errorTitle, errorMessage;
             DeploymentExceptionMapper.GetErrorTextFromException(null, out errorTitle, out errorMessage);
             IErrorPage errorpage = null;
@@ -959,7 +959,7 @@ namespace MS.Internal.AppModel
                 return null;
             }
 
-            SetStatusText(SR.Get(SRID.HostingStatusPreparingToRun));
+            SetStatusText(SR.Get("SRID.HostingStatusPreparingToRun));
             // This is the last progress message set. It is cleared by
             // IBrowserCallbackServices.OnBeforeShowNavigationWindow() (in CColeDocument).
 

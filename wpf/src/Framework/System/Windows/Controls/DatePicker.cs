@@ -692,7 +692,7 @@ namespace System.Windows.Controls
                 // this text is not shown on the UI, just used for Accessibility purposes
                 if (_dropDownButton.Content == null)
                 {
-                    _dropDownButton.Content = SR.Get(SRID.DatePicker_DropDownButtonName);
+                    _dropDownButton.Content = SR.Get("SRID.DatePicker_DropDownButtonName);
                 }
             }
 
@@ -1116,7 +1116,7 @@ namespace System.Windows.Controls
                 }
                 else
                 {
-                    DatePickerDateValidationErrorEventArgs dateValidationError = new DatePickerDateValidationErrorEventArgs(new ArgumentOutOfRangeException("text", SR.Get(SRID.Calendar_OnSelectedDateChanged_InvalidValue)), text);
+                    DatePickerDateValidationErrorEventArgs dateValidationError = new DatePickerDateValidationErrorEventArgs(new ArgumentOutOfRangeException("text", SR.Get("SRID.Calendar_OnSelectedDateChanged_InvalidValue)), text);
                     OnDateValidationError(dateValidationError);
 
                     if (dateValidationError.ThrowException)
@@ -1277,13 +1277,13 @@ namespace System.Windows.Controls
                 {
                     case DatePickerFormat.Long:
                         {
-                            this._textBox.Watermark = string.Format(CultureInfo.CurrentCulture, SR.Get(SRID.DatePicker_WatermarkText), dtfi.LongDatePattern.ToString());
+                            this._textBox.Watermark = string.Format(CultureInfo.CurrentCulture, SR.Get("SRID.DatePicker_WatermarkText), dtfi.LongDatePattern.ToString());
                             break;
                         }
 
                     case DatePickerFormat.Short:
                         {
-                            this._textBox.Watermark = string.Format(CultureInfo.CurrentCulture, SR.Get(SRID.DatePicker_WatermarkText), dtfi.ShortDatePattern.ToString());
+                            this._textBox.Watermark = string.Format(CultureInfo.CurrentCulture, SR.Get("SRID.DatePicker_WatermarkText), dtfi.ShortDatePattern.ToString());
                             break;
                         }
                 }

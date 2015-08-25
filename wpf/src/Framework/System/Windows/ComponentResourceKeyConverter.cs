@@ -106,7 +106,7 @@ namespace System.Windows.Markup
             ComponentResourceKey key = value as ComponentResourceKey;
             if (key == null)
             {
-                throw new ArgumentException(SR.Get(SRID.MustBeOfType, "value", "ComponentResourceKey")); 
+                throw new ArgumentException(SR.Get("SRID.MustBeOfType, "value", "ComponentResourceKey")); 
             }
             if (destinationType == null)
             {

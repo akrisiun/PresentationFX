@@ -30,10 +30,12 @@ using SRID = System.Windows.SRID;
 
 namespace System.Windows
 {
-    public static class SR {
-    
+    internal static partial class SR {
+
+        public static string Get(object parm, params object[] rest) { return parm as string; }
     }
-    public static class SRID { 
+
+    internal static partial class SRID { 
     
     }
 
@@ -84,7 +86,7 @@ namespace System.Windows
             }
             else
             {
-                throw new InvalidOperationException("NameScopeNotFound"); // SR.Get(SRID.NameScopeNotFound, name, "register"));
+                throw new InvalidOperationException("NameScopeNotFound"); // SR.Get("SRID.NameScopeNotFound, name, "register"));
             }
         }
 
@@ -102,7 +104,7 @@ namespace System.Windows
             }
             else
             {
-                throw new InvalidOperationException("NameScopeNotFound"); // SR.Get(SRID.NameScopeNotFound, name, "unregister"));
+                throw new InvalidOperationException("NameScopeNotFound"); // SR.Get("SRID.NameScopeNotFound, name, "unregister"));
             }
         }
 
@@ -205,7 +207,7 @@ namespace System.Windows
                 // might be iterating during a property invalidation tree walk.
                 if (IsLogicalChildrenIterationInProgress)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.CannotModifyLogicalChildrenDuringTreeWalk));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotModifyLogicalChildrenDuringTreeWalk"));
                 }
 
                 // Now that the child is going to be added, the FE/FCE construction is considered finished,
@@ -253,7 +255,7 @@ namespace System.Windows
                 // might be iterating during a property invalidation tree walk.
                 if (IsLogicalChildrenIterationInProgress)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.CannotModifyLogicalChildrenDuringTreeWalk));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotModifyLogicalChildrenDuringTreeWalk"));
                 }
 
                 // Child is present
@@ -316,13 +318,13 @@ namespace System.Windows
             // This mitigates illegal tree state caused by logical child stealing as illustrated in bug 970706
             if (_parent != null && newParent != null && _parent != newParent)
             {
-                throw new System.InvalidOperationException("HasLogicalParent"); // SR.Get(SRID.HasLogicalParent));
+                throw new System.InvalidOperationException("HasLogicalParent"); // SR.Get("SRID.HasLogicalParent));
             }
 
             // Trivial check to avoid loops
             if (newParent == this)
             {
-                throw new System.InvalidOperationException("CannotBeSelfParent"); // sSR.Get(SRID.CannotBeSelfParent));
+                throw new System.InvalidOperationException("CannotBeSelfParent"); // sSR.Get("SRID.CannotBeSelfParent));
             }
 
             // Logical Parent implies no InheritanceContext
@@ -645,7 +647,7 @@ namespace System.Windows
                 }
                 else
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.CyclicStyleReferenceDetected, this));
+                    throw new InvalidOperationException(SR.Get("SRID.CyclicStyleReferenceDetected, this"));
                 }
             }
         }
@@ -699,7 +701,7 @@ namespace System.Windows
             }
             else
             {
-                throw new InvalidOperationException("CyclicThemeStyleReferenceDetected"); // SR.Get(SRID.CyclicThemeStyleReferenceDetected, this));
+                throw new InvalidOperationException("CyclicThemeStyleReferenceDetected"); // SR.Get("SRID.CyclicThemeStyleReferenceDetected, this));
             }
         }
 

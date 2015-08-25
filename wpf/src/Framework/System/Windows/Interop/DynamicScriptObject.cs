@@ -426,7 +426,7 @@ namespace System.Windows.Interop
                             // of the first two checks below.
                             if (!Marshal.IsTypeVisibleFromCom(argType) && !argType.IsCOMObject && argType != typeof(DateTime))
                             {
-                                throw new ArgumentException("NeedToBeComVisible"); // SR.Get(SRID.NeedToBeComVisible));
+                                throw new ArgumentException("NeedToBeComVisible"); // SR.Get("SRID.NeedToBeComVisible));
                             }
                         }
                     }

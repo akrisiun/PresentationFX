@@ -48,7 +48,7 @@ namespace System.Windows.Automation.Peers
             Selector parentSelector = (Selector)(ItemsControlAutomationPeer.Owner);
             if (parentSelector == null)
             {
-                throw new InvalidOperationException(SR.Get(SRID.UIA_OperationCannotBePerformed));
+                throw new InvalidOperationException(SR.Get("SRID.UIA_OperationCannotBePerformed));
             }
 
             parentSelector.SelectionChange.SelectJustThisItem(parentSelector.NewItemInfo(Item), true /* assumeInItemsCollection */);
@@ -68,7 +68,7 @@ namespace System.Windows.Automation.Peers
             {
                 // Parent must exist and be multi-select
                 // in single-select mode the selected item should be null or Owner
-                throw new InvalidOperationException(SR.Get(SRID.UIA_OperationCannotBePerformed));
+                throw new InvalidOperationException(SR.Get("SRID.UIA_OperationCannotBePerformed));
             }
 
             parentSelector.SelectionChange.Begin();

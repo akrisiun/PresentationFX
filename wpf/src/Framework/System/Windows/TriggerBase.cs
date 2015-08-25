@@ -138,7 +138,7 @@ namespace System.Windows
             {
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.CannotChangeAfterSealed, "trigger"));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed, "trigger"));
                 }
 
                 _executeEnterActionsOnApply = value;
@@ -160,7 +160,7 @@ namespace System.Windows
             {
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.CannotChangeAfterSealed, "trigger"));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed, "trigger"));
                 }
 
                 _executeExitActionsOnApply = value;
@@ -177,7 +177,7 @@ namespace System.Windows
             // Not allowed to use Style to affect the StyleProperty.
             if (dp == FrameworkElement.StyleProperty)
             {
-                throw new ArgumentException(SR.Get(SRID.StylePropertyInStyleNotAllowed));
+                throw new ArgumentException(SR.Get("SRID.StylePropertyInStyleNotAllowed));
             }
         }
 
@@ -194,7 +194,7 @@ namespace System.Windows
 
             if (target.Length == 0)
             {
-                throw new ArgumentException(SR.Get(SRID.ChildNameMustBeNonEmpty));
+                throw new ArgumentException(SR.Get("SRID.ChildNameMustBeNonEmpty));
             }
 
             return String.Intern(target);
@@ -249,7 +249,7 @@ namespace System.Windows
                     // 984916 for details.
                     if (source == dependent && propertyValue.ChildName == StyleHelper.SelfName)
                     {
-                        throw new InvalidOperationException(SR.Get(SRID.PropertyTriggerCycleDetected, source.Name));
+                        throw new InvalidOperationException(SR.Get("SRID.PropertyTriggerCycleDetected, source.Name));
                     }
                 }
             }
@@ -308,7 +308,7 @@ namespace System.Windows
                     }
                     else
                     {
-                        throw new InvalidOperationException(SR.Get(SRID.VisualTriggerSettersIncludeUnsupportedSetterType, setters[i].GetType().Name));
+                        throw new InvalidOperationException(SR.Get("SRID.VisualTriggerSettersIncludeUnsupportedSetterType, setters[i].GetType().Name));
                     }
                 }
             }
@@ -366,7 +366,7 @@ namespace System.Windows
 
                 if( _nextGlobalLayerRank == Int64.MaxValue )
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.PropertyTriggerLayerLimitExceeded));
+                    throw new InvalidOperationException(SR.Get("SRID.PropertyTriggerLayerLimitExceeded));
                 }
             }
         }

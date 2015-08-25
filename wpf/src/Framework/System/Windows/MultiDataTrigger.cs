@@ -113,7 +113,7 @@ namespace System.Windows
             {
                 if (_conditions[i].SourceName != null && _conditions[i].SourceName.Length > 0)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.SourceNameNotSupportedForDataTriggers));
+                    throw new InvalidOperationException(SR.Get("SRID.SourceNameNotSupportedForDataTriggers));
                 }
 
                 TriggerConditions[i] = new TriggerCondition(
@@ -136,7 +136,7 @@ namespace System.Windows
                         propertyValue.ValueType = PropertyValueType.DataTriggerResource;
                         break;
                     default:
-                        throw new InvalidOperationException(SR.Get(SRID.UnexpectedValueTypeForDataTrigger, propertyValue.ValueType));
+                        throw new InvalidOperationException(SR.Get("SRID.UnexpectedValueTypeForDataTrigger, propertyValue.ValueType));
                 }
 
                 // Put back modified struct

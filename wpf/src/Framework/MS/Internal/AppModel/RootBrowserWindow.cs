@@ -597,7 +597,7 @@ namespace MS.Internal.AppModel
 
         internal override void VerifyApiSupported()
         {
-            throw new InvalidOperationException(SR.Get(SRID.NotSupportedInBrowser));
+            throw new InvalidOperationException(SR.Get("SRID.NotSupportedInBrowser));
         }
 
         internal override void ClearResizeGripControl(Control oldCtrl)
@@ -782,7 +782,7 @@ namespace MS.Internal.AppModel
                         // Even when 2 edges are next to each other, it is considered as intersect by the Rect class.
                         if ((rect.Width > 0) && (rect.Height > 0))
                         {
-                            throw new InvalidOperationException(SR.Get(SRID.WebBrowserOverlap));
+                            throw new InvalidOperationException(SR.Get("SRID.WebBrowserOverlap));
                         }
                     }
                     _webBrowserList.Add(webBrowser);
@@ -1108,7 +1108,7 @@ namespace MS.Internal.AppModel
             {
                 if (!String.IsNullOrEmpty(pageTitle))
                 {
-                    description = SR.Get(SRID.PrintJobDescription, windowTitle, pageTitle);
+                    description = SR.Get("SRID.PrintJobDescription, windowTitle, pageTitle);
                 }
                 else
                 {
@@ -1140,7 +1140,7 @@ namespace MS.Internal.AppModel
             // If no other option, use a localized constant
             if (description == null)
             {
-                description = SR.Get(SRID.UntitledPrintJobDescription);
+                description = SR.Get("SRID.UntitledPrintJobDescription);
             }
 
             return description;

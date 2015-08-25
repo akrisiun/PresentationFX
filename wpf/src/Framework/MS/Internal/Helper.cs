@@ -62,7 +62,7 @@ namespace MS.Internal
 
             private object DoTryCatchWhen(object arg)
             {
-                throw new ResourceReferenceKeyNotFoundException(SR.Get(SRID.MarkupExtensionResourceNotFound, _name), _name);
+                throw new ResourceReferenceKeyNotFoundException(SR.Get("SRID.MarkupExtensionResourceNotFound, _name), _name);
             }
 
             private object CatchHandler(object arg)
@@ -309,7 +309,7 @@ namespace MS.Internal
             }
             else if (throwIfNeither)
             {
-                throw new InvalidOperationException(SR.Get(SRID.MustBeFrameworkDerived, d.GetType()));
+                throw new InvalidOperationException(SR.Get("SRID.MustBeFrameworkDerived, d.GetType()));
             }
             else
             {
@@ -689,7 +689,7 @@ namespace MS.Internal
                         if (!typeof(MarkupExtension).IsAssignableFrom(memberType) ||
                              !memberType.IsAssignableFrom(markupExtension.GetType()))
                         {
-                            throw new XamlParseException(SR.Get(SRID.MarkupExtensionDynamicOrBindingOnClrProp,
+                            throw new XamlParseException(SR.Get("SRID.MarkupExtensionDynamicOrBindingOnClrProp,
                                                                 markupExtension.GetType().Name,
                                                                 targetMember.Name,
                                                                 targetType.Name));
@@ -710,7 +710,7 @@ namespace MS.Internal
                         if (!typeof(BindingBase).IsAssignableFrom(markupExtension.GetType()) ||
                             !typeof(Collection<BindingBase>).IsAssignableFrom(targetProperty.GetType()))
                         {
-                            throw new XamlParseException(SR.Get(SRID.MarkupExtensionDynamicOrBindingInCollection,
+                            throw new XamlParseException(SR.Get("SRID.MarkupExtensionDynamicOrBindingInCollection,
                                                                 markupExtension.GetType().Name,
                                                                 targetProperty.GetType().Name));
                         }
@@ -734,7 +734,7 @@ namespace MS.Internal
                 if (!typeof(BindingBase).IsAssignableFrom(markupExtension.GetType()) ||
                     !typeof(Collection<BindingBase>).IsAssignableFrom(targetType))
                 {
-                    throw new XamlParseException(SR.Get(SRID.MarkupExtensionDynamicOrBindingInCollection,
+                    throw new XamlParseException(SR.Get("SRID.MarkupExtensionDynamicOrBindingInCollection,
                                                         markupExtension.GetType().Name,
                                                         targetType.Name));
                 }

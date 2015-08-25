@@ -79,7 +79,7 @@ namespace System.Windows.Automation.Peers
         //we can consider to add it later. (One concern is GVCH doesn't support reorder by moving itself)
         void ITransformProvider.Move(double x, double y)
         {
-            throw new InvalidOperationException(SR.Get(SRID.UIA_OperationCannotBePerformed));
+            throw new InvalidOperationException(SR.Get("SRID.UIA_OperationCannotBePerformed));
         }
 
         void ITransformProvider.Resize(double width, double height)
@@ -110,7 +110,7 @@ namespace System.Windows.Automation.Peers
 
         void ITransformProvider.Rotate(double degrees)
         {
-            throw new InvalidOperationException(SR.Get(SRID.UIA_OperationCannotBePerformed));
+            throw new InvalidOperationException(SR.Get("SRID.UIA_OperationCannotBePerformed));
         }
 
         #endregion

@@ -45,7 +45,7 @@ namespace System.Windows
 
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.CannotChangeAfterSealed, "DataTrigger"));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed", "DataTrigger"));
                 }
 
                 _binding = value;
@@ -73,18 +73,18 @@ namespace System.Windows
 
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.CannotChangeAfterSealed, "DataTrigger"));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed", "DataTrigger"));
                 }
 
                 if (value is MarkupExtension)
                 {
-                    throw new ArgumentException(SR.Get(SRID.ConditionValueOfMarkupExtensionNotSupported,
+                    throw new ArgumentException(SR.Get("SRID.ConditionValueOfMarkupExtensionNotSupported",
                                                        value.GetType().Name));
                 }
 
                 if( value is Expression )
                 {
-                    throw new ArgumentException(SR.Get(SRID.ConditionValueOfExpressionNotSupported));
+                    throw new ArgumentException(SR.Get("SRID.ConditionValueOfExpressionNotSupported"));
                 }
 
                 _value = value;
@@ -175,7 +175,7 @@ namespace System.Windows
                         propertyValue.ValueType = PropertyValueType.DataTriggerResource;
                         break;
                     default:
-                        throw new InvalidOperationException(SR.Get(SRID.UnexpectedValueTypeForDataTrigger, propertyValue.ValueType));
+                        throw new InvalidOperationException(SR.Get("SRID.UnexpectedValueTypeForDataTrigger", propertyValue.ValueType));
                 }
 
                 // Put back modified struct

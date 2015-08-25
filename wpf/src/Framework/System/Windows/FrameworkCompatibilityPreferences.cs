@@ -43,7 +43,7 @@ namespace System.Windows
                 {
                     if (_isSealed)
                     {
-                        throw new InvalidOperationException(SR.Get(SRID.CompatibilityPreferencesSealed, "AreInactiveSelectionHighlightBrushKeysSupported", "FrameworkCompatibilityPreferences"));
+                        throw new InvalidOperationException(SR.Get("SRID.CompatibilityPreferencesSealed", "AreInactiveSelectionHighlightBrushKeysSupported", "FrameworkCompatibilityPreferences"));
                     }
 
                     _areInactiveSelectionHighlightBrushKeysSupported = value;
@@ -111,7 +111,8 @@ namespace System.Windows
                 {
                     if (_isSealed)
                     {
-                        throw new InvalidOperationException(SR.Get(SRID.CompatibilityPreferencesSealed, "AextBoxDisplaysText", "FrameworkCompatibilityPreferences"));
+                        throw new InvalidOperationException(SR.Get("SRID.CompatibilityPreferencesSealed"
+                            , "AextBoxDisplaysText", "FrameworkCompatibilityPreferences"));
                     }
 
                     _keepTextBoxDisplaySynchronizedWithTextProperty = value;
@@ -159,7 +160,9 @@ namespace System.Windows
                 {
                     if (_isSealed)
                     {
-                        throw new InvalidOperationException(SR.Get(SRID.CompatibilityPreferencesSealed, "HandleTwoWayBindingToPropertyWithNonPublicSetter", "FrameworkCompatibilityPreferences"));
+                        throw new InvalidOperationException(SR.Get("SRID.CompatibilityPreferencesSealed"
+                            , "HandleTwoWayBindingToPropertyWithNonPublicSetter"
+                            , "FrameworkCompatibilityPreferences"));
                     }
 
                     // apps are allowed to tighten the restriction, but not to loosen it
@@ -215,7 +218,8 @@ namespace System.Windows
                 {
                     if (_isSealed)
                     {
-                        throw new InvalidOperationException(SR.Get(SRID.CompatibilityPreferencesSealed, "UseSetWindowPosForTopmostWindows", "FrameworkCompatibilityPreferences"));
+                        throw new InvalidOperationException(SR.Get("SRID.CompatibilityPreferencesSealed"
+                            , "UseSetWindowPosForTopmostWindows", "FrameworkCompatibilityPreferences"));
                     }
 
                     _useSetWindowPosForTopmostWindows = value;

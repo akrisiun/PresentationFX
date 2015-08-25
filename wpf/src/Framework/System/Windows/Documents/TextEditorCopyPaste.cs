@@ -56,18 +56,18 @@ namespace System.Windows.Documents
         [SecurityCritical, SecurityTreatAsSafe]
         internal static void _RegisterClassHandlers(Type controlType, bool acceptsRichContent, bool readOnly, bool registerEventListeners)
         {
-            CommandHelpers.RegisterCommandHandler(controlType, ApplicationCommands.Copy, new ExecutedRoutedEventHandler(OnCopy), new CanExecuteRoutedEventHandler(OnQueryStatusCopy), KeyGesture.CreateFromResourceStrings(SR.Get(SRID.KeyCopy), SR.Get(SRID.KeyCopyDisplayString)), KeyGesture.CreateFromResourceStrings(SR.Get(SRID.KeyCtrlInsert), SR.Get(SRID.KeyCtrlInsertDisplayString)));
+            CommandHelpers.RegisterCommandHandler(controlType, ApplicationCommands.Copy, new ExecutedRoutedEventHandler(OnCopy), new CanExecuteRoutedEventHandler(OnQueryStatusCopy), KeyGesture.CreateFromResourceStrings(SR.Get("SRID.KeyCopy), SR.Get("SRID.KeyCopyDisplayString)), KeyGesture.CreateFromResourceStrings(SR.Get("SRID.KeyCtrlInsert), SR.Get("SRID.KeyCtrlInsertDisplayString)));
             if (acceptsRichContent)
             {
                 CommandHelpers.RegisterCommandHandler(controlType, EditingCommands.CopyFormat, new ExecutedRoutedEventHandler(OnCopyFormat), new CanExecuteRoutedEventHandler(OnQueryStatusCopyFormat), SRID.KeyCopyFormat, SRID.KeyCopyFormatDisplayString);
             }
             if (!readOnly)
             {
-                CommandHelpers.RegisterCommandHandler(controlType, ApplicationCommands.Cut, new ExecutedRoutedEventHandler(OnCut), new CanExecuteRoutedEventHandler(OnQueryStatusCut), KeyGesture.CreateFromResourceStrings(SR.Get(SRID.KeyCut), SR.Get(SRID.KeyCutDisplayString)), KeyGesture.CreateFromResourceStrings(SR.Get(SRID.KeyShiftDelete), SR.Get(SRID.KeyShiftDeleteDisplayString)));
+                CommandHelpers.RegisterCommandHandler(controlType, ApplicationCommands.Cut, new ExecutedRoutedEventHandler(OnCut), new CanExecuteRoutedEventHandler(OnQueryStatusCut), KeyGesture.CreateFromResourceStrings(SR.Get("SRID.KeyCut), SR.Get("SRID.KeyCutDisplayString)), KeyGesture.CreateFromResourceStrings(SR.Get("SRID.KeyShiftDelete), SR.Get("SRID.KeyShiftDeleteDisplayString)));
                 // temp vars to reduce code under elevation
                 ExecutedRoutedEventHandler ExecutedRoutedEventHandler = new ExecutedRoutedEventHandler(OnPaste);
                 CanExecuteRoutedEventHandler CanExecuteRoutedEventHandler = new CanExecuteRoutedEventHandler(OnQueryStatusPaste);
-                InputGesture inputGesture = KeyGesture.CreateFromResourceStrings(SR.Get(SRID.KeyShiftInsert), SR.Get(SRID.KeyShiftInsertDisplayString));
+                InputGesture inputGesture = KeyGesture.CreateFromResourceStrings(SR.Get("SRID.KeyShiftInsert), SR.Get("SRID.KeyShiftInsertDisplayString));
                 new UIPermission(UIPermissionClipboard.AllClipboard).Assert(); //BlessedAssert
                 try
                 {

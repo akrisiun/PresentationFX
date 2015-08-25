@@ -78,7 +78,7 @@ public static class LogicalTreeHelper
         }
         if( elementName == String.Empty )
         {
-            throw new ArgumentException(SR.Get(SRID.StringEmpty), "elementName");
+            throw new ArgumentException(SR.Get("SRID.StringEmpty), "elementName");
         }
 
         DependencyObject namedElement = null;

@@ -87,19 +87,19 @@ namespace System.Windows.Documents.Serialization
             }
             if (factoryInstance.DisplayName == null)
             {
-                throw new ArgumentException(SR.Get(SRID.SerializerProviderDisplayNameNull));
+                throw new ArgumentException(SR.Get("SRID.SerializerProviderDisplayNameNull));
             }
             if (factoryInstance.ManufacturerName == null)
             {
-                throw new ArgumentException(SR.Get(SRID.SerializerProviderManufacturerNameNull));
+                throw new ArgumentException(SR.Get("SRID.SerializerProviderManufacturerNameNull));
             }
             if (factoryInstance.ManufacturerWebsite == null)
             {
-                throw new ArgumentException(SR.Get(SRID.SerializerProviderManufacturerWebsiteNull));
+                throw new ArgumentException(SR.Get("SRID.SerializerProviderManufacturerWebsiteNull));
             }
             if (factoryInstance.DefaultFileExtension == null)
             {
-                throw new ArgumentException(SR.Get(SRID.SerializerProviderDefaultFileExtensionNull));
+                throw new ArgumentException(SR.Get("SRID.SerializerProviderDefaultFileExtensionNull));
             }
 
             SerializerDescriptor sd = new SerializerDescriptor();

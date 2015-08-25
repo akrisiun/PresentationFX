@@ -63,7 +63,7 @@ namespace System.Windows.Controls
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.ListView_IllegalChildrenType));
+                throw new InvalidOperationException(SR.Get("SRID.ListView_IllegalChildrenType));
             }
         }
 
@@ -89,7 +89,7 @@ namespace System.Windows.Controls
         /// <returns></returns>
         public override string ToString()
         {
-            return SR.Get(SRID.ToStringFormatString_GridView, this.GetType(), Columns.Count);
+            return SR.Get("SRID.ToStringFormatString_GridView, this.GetType(), Columns.Count);
         }
 
         /// <summary>

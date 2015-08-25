@@ -130,7 +130,7 @@ namespace MS.Internal.Data
             }
             catch (Exception e)
             {
-                throw new InvalidOperationException(SR.Get(SRID.InvalidOperation_IComparerFailed), e);
+                throw new InvalidOperationException(SR.Get("SRID.InvalidOperation_IComparerFailed), e);
             }
         }
 
@@ -582,7 +582,7 @@ namespace MS.Internal.Data
             if (arrayIndex < 0)
                 throw new ArgumentOutOfRangeException("arrayIndex");
             if (arrayIndex + Count > array.Length)
-                throw new ArgumentException(SR.Get(SRID.Argument_InvalidOffLen));
+                throw new ArgumentException(SR.Get("SRID.Argument_InvalidOffLen));
 
             foreach (T item in this)
             {

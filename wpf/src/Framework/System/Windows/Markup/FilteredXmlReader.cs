@@ -130,7 +130,7 @@ internal class FilteredXmlReader : XmlTextReader
     {
         // Index-based acccess are not allowed.  See remark at top of this file.
         throw new InvalidOperationException(
-            SR.Get(SRID.ParserFilterXmlReaderNoIndexAttributeAccess));
+            SR.Get("SRID.ParserFilterXmlReaderNoIndexAttributeAccess));
     }
 
     public override string GetAttribute( string attributeName )
@@ -162,7 +162,7 @@ internal class FilteredXmlReader : XmlTextReader
     {
         // Index-based acccess are not allowed.  See remark at top of this file.
         throw new InvalidOperationException(
-            SR.Get(SRID.ParserFilterXmlReaderNoIndexAttributeAccess));
+            SR.Get("SRID.ParserFilterXmlReaderNoIndexAttributeAccess));
     }
 
     public override bool MoveToAttribute( string attributeName )
@@ -349,7 +349,7 @@ internal class FilteredXmlReader : XmlTextReader
             base.Value == uidNamespace)
         {
             throw new InvalidOperationException(
-                SR.Get(SRID.ParserFilterXmlReaderNoDefinitionPrefixChangeAllowed));
+                SR.Get("SRID.ParserFilterXmlReaderNoDefinitionPrefixChangeAllowed));
         }
     }
 

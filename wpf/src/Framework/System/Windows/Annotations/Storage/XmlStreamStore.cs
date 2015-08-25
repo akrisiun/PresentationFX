@@ -86,7 +86,7 @@ namespace System.Windows.Annotations.Storage
                 throw new ArgumentNullException("stream");
 
             if (!stream.CanSeek)
-                throw new ArgumentException(SR.Get(SRID.StreamDoesNotSupportSeek));
+                throw new ArgumentException(SR.Get("SRID.StreamDoesNotSupportSeek));
 
             SetStream(stream, null);
         }
@@ -156,11 +156,11 @@ namespace System.Windows.Annotations.Storage
 
                     // we are making sure that the newAnnotation doesn't already exist in the store
                     if (editor != null)
-                        throw new ArgumentException(SR.Get(SRID.AnnotationAlreadyExists), "newAnnotation");
+                        throw new ArgumentException(SR.Get("SRID.AnnotationAlreadyExists), "newAnnotation");
 
                     // we are making sure that the newAnnotation doesn't already exist in the store map
                     if (_storeAnnotationsMap.FindAnnotation(newAnnotation.Id) != null)
-                        throw new ArgumentException(SR.Get(SRID.AnnotationAlreadyExists), "newAnnotation");
+                        throw new ArgumentException(SR.Get("SRID.AnnotationAlreadyExists), "newAnnotation");
 
                     // simply add the annotation to the map to save on performance
                     // notice that we need to tell the map that this instance of the annotation is dirty
@@ -391,7 +391,7 @@ namespace System.Windows.Annotations.Storage
                 CheckStatus();
                 if (!_stream.CanWrite)
                 {
-                    throw new UnauthorizedAccessException(SR.Get(SRID.StreamCannotBeWritten));
+                    throw new UnauthorizedAccessException(SR.Get("SRID.StreamCannotBeWritten));
                 }
 
                 if (_dirty)
@@ -597,7 +597,7 @@ namespace System.Windows.Annotations.Storage
                         string nodeId = node.GetAttribute("Id", "");
                         if (String.IsNullOrEmpty(nodeId))
                         {
-                            throw new XmlException(SR.Get(SRID.RequiredAttributeMissing, AnnotationXmlConstants.Attributes.Id, AnnotationXmlConstants.Elements.Annotation));
+                            throw new XmlException(SR.Get("SRID.RequiredAttributeMissing, AnnotationXmlConstants.Attributes.Id, AnnotationXmlConstants.Elements.Annotation));
                         }
 
                         try
@@ -606,7 +606,7 @@ namespace System.Windows.Annotations.Storage
                         }
                         catch (FormatException fe)
                         {
-                            throw new InvalidOperationException(SR.Get(SRID.CannotParseId), fe);
+                            throw new InvalidOperationException(SR.Get("SRID.CannotParseId), fe);
                         }
 
                         retObj.Add(annId);
@@ -812,11 +812,11 @@ namespace System.Windows.Annotations.Storage
             {
                 if (knownNamespace == null)
                 {
-                    throw new ArgumentException(SR.Get(SRID.NullUri), "knownNamespaces");
+                    throw new ArgumentException(SR.Get("SRID.NullUri), "knownNamespaces");
                 }
                 if (allNamespaces.Contains(knownNamespace))
                 {
-                    throw new ArgumentException(SR.Get(SRID.DuplicatedUri), "knownNamespaces");
+                    throw new ArgumentException(SR.Get("SRID.DuplicatedUri), "knownNamespaces");
                 }
                 allNamespaces.Add(knownNamespace);
             }
@@ -830,12 +830,12 @@ namespace System.Windows.Annotations.Storage
                     {
                         if (name == null)
                         {
-                            throw new ArgumentException(SR.Get(SRID.NullUri), "knownNamespaces");
+                            throw new ArgumentException(SR.Get("SRID.NullUri), "knownNamespaces");
                         }
 
                         if (allNamespaces.Contains(name))
                         {
-                            throw new ArgumentException(SR.Get(SRID.DuplicatedCompatibleUri), "knownNamespaces");
+                            throw new ArgumentException(SR.Get("SRID.DuplicatedCompatibleUri), "knownNamespaces");
                         }
                         allNamespaces.Add(name);
                     }//foreach
@@ -915,7 +915,7 @@ namespace System.Windows.Annotations.Storage
             {
                 if (!Uri.IsWellFormedUriString(xmlNamespace, UriKind.RelativeOrAbsolute))
                 {
-                    throw new ArgumentException(SR.Get(SRID.InvalidNamespace, xmlNamespace), "xmlNamespace");
+                    throw new ArgumentException(SR.Get("SRID.InvalidNamespace, xmlNamespace), "xmlNamespace");
                 }
                 Uri namespaceUri = new Uri(xmlNamespace, UriKind.RelativeOrAbsolute);
                 if (!_ignoredNamespaces.Contains(namespaceUri))
@@ -966,10 +966,10 @@ namespace System.Windows.Annotations.Storage
             lock (SyncRoot)
             {
                 if (IsDisposed)
-                    throw new ObjectDisposedException(null, SR.Get(SRID.ObjectDisposed_StoreClosed));
+                    throw new ObjectDisposedException(null, SR.Get("SRID.ObjectDisposed_StoreClosed));
 
                 if (_stream == null)
-                    throw new InvalidOperationException(SR.Get(SRID.StreamNotSet));
+                    throw new InvalidOperationException(SR.Get("SRID.StreamNotSet));
             }
         }
 

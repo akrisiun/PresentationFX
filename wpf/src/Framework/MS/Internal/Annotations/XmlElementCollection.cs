@@ -100,7 +100,7 @@ namespace MS.Internal.Annotations
         {
             if (item != null && this.Contains(item))
             {
-                throw new ArgumentException(SR.Get(SRID.XmlNodeAlreadyOwned, "change", "change"), "item");
+                throw new ArgumentException(SR.Get("SRID.XmlNodeAlreadyOwned, "change", "change"), "item");
             }
 
             base.InsertItem(index, item);
@@ -116,7 +116,7 @@ namespace MS.Internal.Annotations
         {
             if (item != null && this.Contains(item))
             {
-                throw new ArgumentException(SR.Get(SRID.XmlNodeAlreadyOwned, "change", "change"), "item");
+                throw new ArgumentException(SR.Get("SRID.XmlNodeAlreadyOwned, "change", "change"), "item");
             }
 
             XmlElement originalItem = this[index];

@@ -55,10 +55,10 @@ namespace MS.Internal.Documents
             {
                 ContainerVisual pageVisualHost = currentParent as ContainerVisual;
                 if (pageVisualHost == null)
-                    throw new ArgumentException(SR.Get(SRID.DocumentPageView_ParentNotDocumentPageHost), "pageVisual");
+                    throw new ArgumentException(SR.Get("SRID.DocumentPageView_ParentNotDocumentPageHost), "pageVisual");
                 DocumentPageHost docPageHost = VisualTreeHelper.GetParent(pageVisualHost) as DocumentPageHost;
                 if (docPageHost == null)
-                    throw new ArgumentException(SR.Get(SRID.DocumentPageView_ParentNotDocumentPageHost), "pageVisual");
+                    throw new ArgumentException(SR.Get("SRID.DocumentPageView_ParentNotDocumentPageHost), "pageVisual");
                 docPageHost.PageVisual = null;
             }
         }
@@ -124,7 +124,7 @@ namespace MS.Internal.Documents
         {
             if (index != 0 || _pageVisual == null)
             {
-                throw new ArgumentOutOfRangeException("index", index, SR.Get(SRID.Visual_ArgumentOutOfRange));
+                throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange));
             }
             return VisualTreeHelper.GetParent(_pageVisual) as Visual;
         }

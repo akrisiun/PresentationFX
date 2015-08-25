@@ -39,7 +39,7 @@ namespace System.Windows
 
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.CannotChangeAfterSealed, "Trigger"));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed", "Trigger"));
                 }
 
                 _property = value;
@@ -69,7 +69,7 @@ namespace System.Windows
 
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.CannotChangeAfterSealed, "Trigger"));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed", "Trigger"));
                 }
 
                 if (value is NullExtension)
@@ -79,13 +79,13 @@ namespace System.Windows
 
                 if (value is MarkupExtension)
                 {
-                    throw new ArgumentException(SR.Get(SRID.ConditionValueOfMarkupExtensionNotSupported,
+                    throw new ArgumentException(SR.Get("SRID.ConditionValueOfMarkupExtensionNotSupported",
                                                        value.GetType().Name));
                 }
 
                 if (value is Expression)
                 {
-                    throw new ArgumentException(SR.Get(SRID.ConditionValueOfExpressionNotSupported));
+                    throw new ArgumentException(SR.Get("SRID.ConditionValueOfExpressionNotSupported"));
                 }
 
                 _value = value;
@@ -116,7 +116,7 @@ namespace System.Windows
 
                 if( IsSealed )
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.CannotChangeAfterSealed, "Trigger"));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed", "Trigger"));
                 }
 
                 _sourceName = value;
@@ -184,7 +184,7 @@ namespace System.Windows
 
             if (setter == null)
             {
-                throw new ArgumentException(SR.Get(SRID.UnexpectedParameterType, o.GetType(), typeof(Setter)), "o");
+                throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType", o.GetType(), typeof(Setter)), "o");
             }
 
             return setter;
@@ -202,7 +202,7 @@ namespace System.Windows
                 // Ensure valid condition
                 if (!_property.IsValidValue(_value))
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.InvalidPropertyValue, _value, _property.Name ));
+                    throw new InvalidOperationException(SR.Get("SRID.InvalidPropertyValue", _value, _property.Name ));
                 }
             }
 

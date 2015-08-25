@@ -192,7 +192,7 @@ namespace System.Windows.Documents
             }
             if (item.Parent != this)
             {
-                throw new InvalidOperationException(SR.Get(SRID.ListElementItemNotAChildOfList));
+                throw new InvalidOperationException(SR.Get("SRID.ListElementItemNotAChildOfList));
             }
 
             // Count ListItem siblings (not other element types) back to first item.

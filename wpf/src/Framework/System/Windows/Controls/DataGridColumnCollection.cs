@@ -43,12 +43,12 @@ namespace System.Windows.Controls
         {
             if (item == null)
             {
-                throw new ArgumentNullException("item", SR.Get(SRID.DataGrid_NullColumn));
+                throw new ArgumentNullException("item", SR.Get("SRID.DataGrid_NullColumn));
             }
 
             if (item.DataGridOwner != null)
             {
-                throw new ArgumentException(SR.Get(SRID.DataGrid_InvalidColumnReuse, item.Header), "item");
+                throw new ArgumentException(SR.Get("SRID.DataGrid_InvalidColumnReuse, item.Header), "item");
             }
 
             if (DisplayIndexMapInitialized)
@@ -64,17 +64,17 @@ namespace System.Windows.Controls
         {
             if (item == null)
             {
-                throw new ArgumentNullException("item", SR.Get(SRID.DataGrid_NullColumn));
+                throw new ArgumentNullException("item", SR.Get("SRID.DataGrid_NullColumn));
             }
 
             if (index >= Count || index < 0)
             {
-                throw new ArgumentOutOfRangeException("index", SR.Get(SRID.DataGrid_ColumnIndexOutOfRange, item.Header));
+                throw new ArgumentOutOfRangeException("index", SR.Get("SRID.DataGrid_ColumnIndexOutOfRange, item.Header));
             }
 
             if (item.DataGridOwner != null && this[index] != item)
             {
-                throw new ArgumentException(SR.Get(SRID.DataGrid_InvalidColumnReuse, item.Header), "item");
+                throw new ArgumentException(SR.Get("SRID.DataGrid_InvalidColumnReuse, item.Header), "item");
             }
 
             if (DisplayIndexMapInitialized)
@@ -479,7 +479,7 @@ namespace System.Windows.Controls
 
             if (changingColumn != null && oldDisplayIndex >= columnCount)
             {
-                throw new ArgumentOutOfRangeException("displayIndex", oldDisplayIndex, SR.Get(SRID.DataGrid_ColumnDisplayIndexOutOfRange, changingColumn.Header));
+                throw new ArgumentOutOfRangeException("displayIndex", oldDisplayIndex, SR.Get("SRID.DataGrid_ColumnDisplayIndexOutOfRange, changingColumn.Header));
             }
 
             // First loop:
@@ -501,7 +501,7 @@ namespace System.Windows.Controls
                 {
                     if (assignedDisplayIndexMap.ContainsKey(currentColumnDisplayIndex))
                     {
-                        throw new ArgumentException(SR.Get(SRID.DataGrid_DuplicateDisplayIndex));
+                        throw new ArgumentException(SR.Get("SRID.DataGrid_DuplicateDisplayIndex));
                     }
 
                     assignedDisplayIndexMap.Add(currentColumnDisplayIndex, columnIndex);
@@ -722,7 +722,7 @@ namespace System.Windows.Controls
         {
             if (!IsDisplayIndexValid(column, displayIndex, isAdding))
             {
-                throw new ArgumentOutOfRangeException("displayIndex", displayIndex, SR.Get(SRID.DataGrid_ColumnDisplayIndexOutOfRange, column.Header));
+                throw new ArgumentOutOfRangeException("displayIndex", displayIndex, SR.Get("SRID.DataGrid_ColumnDisplayIndexOutOfRange, column.Header));
             }
         }
 

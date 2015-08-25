@@ -50,7 +50,7 @@ namespace MS.Internal.Annotations.Component
             }
             else
             {
-                throw new ArgumentException(SR.Get(SRID.AnnotationAdorner_NotUIElement), "component");            
+                throw new ArgumentException(SR.Get("SRID.AnnotationAdorner_NotUIElement"), "component");            
             }
         }
 
@@ -111,7 +111,7 @@ namespace MS.Internal.Annotations.Component
         {
             if(index != 0 || _annotationComponent == null)
             {
-                throw new ArgumentOutOfRangeException("index", index, SR.Get(SRID.Visual_ArgumentOutOfRange));
+                throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange"));
             }
 
             return (UIElement)_annotationComponent;

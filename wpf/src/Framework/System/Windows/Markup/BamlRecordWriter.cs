@@ -363,7 +363,7 @@ namespace System.Windows.Markup
                         }
                         else
                         {
-                            XamlParser.ThrowException(SRID.ParserBadKey,
+                            XamlParser.ThrowException("SRID.ParserBadKey",
                                                       xamlElementNode.TypeFullName,
                                                       xamlElementNode.LineNumber,
                                                       xamlElementNode.LinePosition);
@@ -804,7 +804,7 @@ namespace System.Windows.Markup
                 !KnownTypes.Types[(int)KnownElements.TypeExtension].IsAssignableFrom(xamlKeyElementNode.ElementType) &&
                 !KnownTypes.Types[(int)KnownElements.ResourceKey].IsAssignableFrom(xamlKeyElementNode.ElementType))
             {
-                XamlParser.ThrowException(SRID.ParserBadKey,
+                XamlParser.ThrowException("SRID.ParserBadKey",
                                           xamlKeyElementNode.TypeFullName,
                                           xamlKeyElementNode.LineNumber,
                                           xamlKeyElementNode.LinePosition);
@@ -1583,7 +1583,7 @@ namespace System.Windows.Markup
                 {
                     if (keyRecord.Record == null)
                     {
-                        XamlParser.ThrowException(SRID.ParserNoDictionaryKey,
+                        XamlParser.ThrowException("SRID.ParserNoDictionaryKey",
                                               keyRecord.LineNumber,
                                               keyRecord.LinePosition);
                     }

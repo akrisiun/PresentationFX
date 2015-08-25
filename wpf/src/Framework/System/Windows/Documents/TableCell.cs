@@ -106,7 +106,7 @@ namespace System.Windows.Documents
 
             if((newParent != null) && (newParentTR == null))
             {
-                throw new InvalidOperationException(SR.Get(SRID.TableInvalidParentNodeType, newParent.GetType().ToString()));
+                throw new InvalidOperationException(SR.Get("SRID.TableInvalidParentNodeType, newParent.GetType().ToString()));
             }
 
             if(oldParent != null)

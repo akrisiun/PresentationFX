@@ -146,7 +146,7 @@ namespace System.Windows.Baml2006
                 return bamlAssembly.Name;
             }
 
-            throw new KeyNotFoundException(SR.Get(SRID.BamlAssemblyIdNotFound, assemblyId.ToString(System.Windows.Markup.TypeConverterHelper.InvariantEnglishUS)));
+            throw new KeyNotFoundException(SR.Get("SRID.BamlAssemblyIdNotFound", assemblyId.ToString(System.Windows.Markup.TypeConverterHelper.InvariantEnglishUS)));
         }
 
         internal Type GetClrType(Int16 typeId)
@@ -163,7 +163,7 @@ namespace System.Windows.Baml2006
                 return ResolveBamlTypeToType(bamlType);
             }
 
-            throw new KeyNotFoundException(SR.Get(SRID.BamlTypeIdNotFound, typeId.ToString(System.Windows.Markup.TypeConverterHelper.InvariantEnglishUS)));
+            throw new KeyNotFoundException(SR.Get("SRID.BamlTypeIdNotFound", typeId.ToString(System.Windows.Markup.TypeConverterHelper.InvariantEnglishUS)));
         }
 
         internal XamlType GetXamlType(Int16 typeId)
@@ -180,7 +180,7 @@ namespace System.Windows.Baml2006
                 return ResolveBamlType(bamlType, typeId);
             }
 
-            throw new KeyNotFoundException(SR.Get(SRID.BamlTypeIdNotFound, typeId.ToString(System.Windows.Markup.TypeConverterHelper.InvariantEnglishUS)));
+            throw new KeyNotFoundException(SR.Get("SRID.BamlTypeIdNotFound", typeId.ToString(System.Windows.Markup.TypeConverterHelper.InvariantEnglishUS)));
         }
 
         internal DependencyProperty GetDependencyProperty(Int16 propertyId)
@@ -360,7 +360,7 @@ namespace System.Windows.Baml2006
                 }
                 else if (assemblyId > _bamlAssembly.Count)
                 {
-                    throw new ArgumentOutOfRangeException("assemblyId", SR.Get(SRID.AssemblyIdOutOfSequence, assemblyId));
+                    throw new ArgumentOutOfRangeException("assemblyId", SR.Get("SRID.AssemblyIdOutOfSequence", assemblyId));
                 }
             }
             // Duplicate IDs (assemblyId < _bamlAssembly.Count) are ignored
@@ -388,7 +388,7 @@ namespace System.Windows.Baml2006
                 }
                 else if (typeId > _bamlType.Count)
                 {
-                    throw new ArgumentOutOfRangeException("typeId", SR.Get(SRID.TypeIdOutOfSequence, typeId));
+                    throw new ArgumentOutOfRangeException("typeId", SR.Get("SRID.TypeIdOutOfSequence", typeId));
                 }
             }
             // Duplicate IDs (typeID < _bamlType.Count) are ignored
@@ -415,7 +415,7 @@ namespace System.Windows.Baml2006
                 }
                 else if (propertyId > _bamlProperty.Count)
                 {
-                    throw new ArgumentOutOfRangeException("propertyId", SR.Get(SRID.PropertyIdOutOfSequence, propertyId));
+                    throw new ArgumentOutOfRangeException("propertyId", SR.Get("SRID.PropertyIdOutOfSequence", propertyId));
                 }
             }
             // Duplicate IDs (propertyId < _bamlProperty.Count) are ignored
@@ -436,7 +436,7 @@ namespace System.Windows.Baml2006
                 }
                 else if (stringId > _bamlString.Count)
                 {
-                    throw new ArgumentOutOfRangeException("stringId", SR.Get(SRID.StringIdOutOfSequence, stringId));
+                    throw new ArgumentOutOfRangeException("stringId", SR.Get("SRID.StringIdOutOfSequence", stringId));
                 }
             }
             // Duplicate IDs (stringId < _bamlString.Count) are ignored

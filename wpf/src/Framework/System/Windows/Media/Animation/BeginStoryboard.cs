@@ -80,7 +80,7 @@ public sealed class BeginStoryboard : TriggerAction
             }
             else
             {
-                throw new ArgumentException(SR.Get(SRID.Storyboard_UnrecognizedHandoffBehavior));
+                throw new ArgumentException(SR.Get("SRID.Storyboard_UnrecognizedHandoffBehavior"));
             }
         }
     }
@@ -105,7 +105,7 @@ public sealed class BeginStoryboard : TriggerAction
             if(value != null && !System.Windows.Markup.NameValidationHelper.IsValidIdentifierName(value))
             {
                 // Duplicate the error string thrown from DependencyObject.SetValueValidateParams
-                throw new ArgumentException(SR.Get(SRID.InvalidPropertyValue, value, "Name"));
+                throw new ArgumentException(SR.Get("SRID.InvalidPropertyValue", value, "Name"));
             }
             
             // Null is OK - it's to remove whatever name was previously set.
@@ -117,7 +117,7 @@ public sealed class BeginStoryboard : TriggerAction
     {
         if (IsSealed)
         {
-            throw new InvalidOperationException(SR.Get(SRID.CannotChangeAfterSealed, "BeginStoryboard"));
+            throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed", "BeginStoryboard"));
         }
     }
     
@@ -139,14 +139,14 @@ public sealed class BeginStoryboard : TriggerAction
                 //  property couldn't be resolved at Begin time.  Since we're
                 //  not allowing changes after this point, lack of resolution
                 //  here means the same thing.
-                throw new InvalidOperationException(SR.Get(SRID.Storyboard_StoryboardReferenceRequired));
+                throw new InvalidOperationException(SR.Get("SRID.Storyboard_StoryboardReferenceRequired"));
             }
             
             // We're planning to break our thread affinity - we also need to
             //  make sure the Storyboard can also be used accross threads.
             if(!snapshot.CanFreeze)
             {
-                throw new InvalidOperationException(SR.Get(SRID.Storyboard_UnableToFreeze));
+                throw new InvalidOperationException(SR.Get("SRID.Storyboard_UnableToFreeze"));
             }
             if(!snapshot.IsFrozen)
             {
@@ -204,7 +204,7 @@ public sealed class BeginStoryboard : TriggerAction
     {
         if( Storyboard == null )
         {
-            throw new InvalidOperationException(SR.Get(SRID.Storyboard_StoryboardReferenceRequired));
+            throw new InvalidOperationException(SR.Get("SRID.Storyboard_StoryboardReferenceRequired"));
         }
 
         if( Name != null )

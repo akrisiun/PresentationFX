@@ -97,13 +97,13 @@ namespace System.Windows.Documents
                 if (_navigator == null)
                 {
                     #pragma warning suppress 6503 // IEnumerator.Current is documented to throw this exception
-                    throw new InvalidOperationException(SR.Get(SRID.EnumeratorNotStarted));
+                    throw new InvalidOperationException(SR.Get("SRID.EnumeratorNotStarted));
                 }
 
                 if (_current == null)
                 {
                     #pragma warning suppress 6503 // IEnumerator.Current is documented to throw this exception
-                    throw new InvalidOperationException(SR.Get(SRID.EnumeratorReachedEnd));
+                    throw new InvalidOperationException(SR.Get("SRID.EnumeratorReachedEnd));
                 }
 
                 return _current;
@@ -119,7 +119,7 @@ namespace System.Windows.Documents
             // Throw if the tree has been modified since this enumerator was created.
             if (_start != null && _generation != _start.TextContainer.Generation)
             {
-                throw new InvalidOperationException(SR.Get(SRID.EnumeratorVersionChanged));
+                throw new InvalidOperationException(SR.Get("SRID.EnumeratorVersionChanged));
             }
 
             // Return false if the collection is empty
@@ -173,7 +173,7 @@ namespace System.Windows.Documents
             // Throw if the tree has been modified since this enumerator was created.
             if (_start != null && _generation != _start.TextContainer.Generation)
             {
-                throw new InvalidOperationException(SR.Get(SRID.EnumeratorVersionChanged));
+                throw new InvalidOperationException(SR.Get("SRID.EnumeratorVersionChanged));
             }
 
             _navigator = null;

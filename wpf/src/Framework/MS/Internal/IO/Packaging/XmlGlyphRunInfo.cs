@@ -70,7 +70,7 @@ namespace MS.Internal.IO.Packaging
         { 
             get
             {
-                throw new NotSupportedException("XmlGlyphRunInfoIsNonGraphic"); // SR.Get(SRID.XmlGlyphRunInfoIsNonGraphic));
+                throw new NotSupportedException("XmlGlyphRunInfoIsNonGraphic"); // SR.Get("SRID.XmlGlyphRunInfoIsNonGraphic));
             }
         }
 
@@ -87,7 +87,7 @@ namespace MS.Internal.IO.Packaging
         { 
             get
             {
-                throw new NotSupportedException("XmlGlyphRunInfoIsNonGraphic"); // SR.Get(SRID.XmlGlyphRunInfoIsNonGraphic));
+                throw new NotSupportedException("XmlGlyphRunInfoIsNonGraphic"); // SR.Get("SRID.XmlGlyphRunInfoIsNonGraphic));
             }
         }
 
@@ -108,7 +108,7 @@ namespace MS.Internal.IO.Packaging
         { 
             get
             {
-                throw new NotSupportedException("XmlGlyphRunInfoIsNonGraphic"); // SR.Get(SRID.XmlGlyphRunInfoIsNonGraphic));
+                throw new NotSupportedException("XmlGlyphRunInfoIsNonGraphic"); // SR.Get("SRID.XmlGlyphRunInfoIsNonGraphic));
             }
         }
 
@@ -128,7 +128,7 @@ namespace MS.Internal.IO.Packaging
         { 
             get
             {
-                throw new NotSupportedException(SR.Get(SRID.XmlGlyphRunInfoIsNonGraphic));
+                throw new NotSupportedException(SR.Get("SRID.XmlGlyphRunInfoIsNonGraphic));
             }
         }
 
@@ -142,7 +142,7 @@ namespace MS.Internal.IO.Packaging
         { 
             get
             {
-                throw new NotSupportedException(SR.Get(SRID.XmlGlyphRunInfoIsNonGraphic));
+                throw new NotSupportedException(SR.Get("SRID.XmlGlyphRunInfoIsNonGraphic));
             }
         }
 
@@ -156,7 +156,7 @@ namespace MS.Internal.IO.Packaging
         { 
             get
             {
-                throw new NotSupportedException("XmlGlyphRunInfoIsNonGraphic"); // SR.Get(SRID.XmlGlyphRunInfoIsNonGraphic));
+                throw new NotSupportedException("XmlGlyphRunInfoIsNonGraphic"); // SR.Get("SRID.XmlGlyphRunInfoIsNonGraphic));
             }
         }
 

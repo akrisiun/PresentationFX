@@ -99,7 +99,7 @@ namespace MS.Internal.AppModel
 
                 if (stream == null)
                 {
-                    throw new IOException(SR.Get(SRID.UnableToLocateResource, _name));
+                    throw new IOException(SR.Get("SRID.UnableToLocateResource, _name));
                 }
             }
 
@@ -155,7 +155,7 @@ namespace MS.Internal.AppModel
                     // Throw here we will catch all those cases.
                     if (String.Compare(Path.GetExtension(_name), ResourceContainer.BamlExt, StringComparison.OrdinalIgnoreCase) == 0)
                     {
-                        throw new IOException(SR.Get(SRID.UnableToLocateResource, _name));
+                        throw new IOException(SR.Get("SRID.UnableToLocateResource, _name));
                     }
 
                     if (String.Compare(Path.GetExtension(_name), ResourceContainer.XamlExt, StringComparison.OrdinalIgnoreCase) == 0)

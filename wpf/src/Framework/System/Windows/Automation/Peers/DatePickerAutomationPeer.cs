@@ -69,13 +69,13 @@ namespace System.Windows.Automation.Peers
                     //The focus should have gone to the TextBox inside DatePicker
                     if (tb == null || !tb.IsKeyboardFocused)
                     {
-                        throw new InvalidOperationException(SR.Get(SRID.SetFocusFailed));
+                        throw new InvalidOperationException(SR.Get("SRID.SetFocusFailed));
                     }
                 }
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.SetFocusFailed));
+                throw new InvalidOperationException(SR.Get("SRID.SetFocusFailed));
             }
 
         }
@@ -120,7 +120,7 @@ namespace System.Windows.Automation.Peers
         /// <returns></returns>
         protected override string GetLocalizedControlTypeCore()
         {
-            return SR.Get(SRID.DatePickerAutomationPeer_LocalizedControlType);
+            return SR.Get("SRID.DatePickerAutomationPeer_LocalizedControlType);
         }
 
         #endregion Protected Methods

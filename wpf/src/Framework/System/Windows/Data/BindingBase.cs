@@ -425,7 +425,7 @@ namespace System.Windows.Data
         internal void CheckSealed()
         {
             if (_isSealed)
-                throw new InvalidOperationException(SR.Get(SRID.ChangeSealedBinding));
+                throw new InvalidOperationException(SR.Get("SRID.ChangeSealedBinding));
         }
 
         // Return one of the special ValidationRules

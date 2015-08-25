@@ -37,7 +37,7 @@ namespace System.Windows.Controls.Primitives
         /// <returns></returns>
         public override string ToString()
         {
-            return SR.Get(SRID.ToStringFormatString_GridViewRowPresenterBase,
+            return SR.Get("SRID.ToStringFormatString_GridViewRowPresenterBase,
                 this.GetType(),
                 (Columns != null) ? Columns.Count : 0);
         }
@@ -128,7 +128,7 @@ namespace System.Windows.Controls.Primitives
         {
             if (_uiElementCollection == null)
             {
-                throw new ArgumentOutOfRangeException("index", index, SR.Get(SRID.Visual_ArgumentOutOfRange));
+                throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange));
             }
             return _uiElementCollection[index];
         }

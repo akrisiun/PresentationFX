@@ -518,7 +518,7 @@ namespace System.Windows.Markup.Primitives
                     // When the reader supports <x:Argument1>...</x:Argument1> format, do the following:
                     //   _writer.WriteStartElement(string.Format(CultureInfo.InvariantCulture, "Argument{0}", argumentCompositeIndexes[argumentCompositeIndex++]), NamespaceCache.XamlNamespace);
                     // The writer generates an exception for now:
-                    throw new InvalidOperationException(SR.Get(SRID.UnserializableKeyValue));
+                    throw new InvalidOperationException(SR.Get("SRID.UnserializableKeyValue));
                 }
                 Debug.Assert(!noOtherPropertiesAllowed || property.IsKey,
                     "Problem with MarkupObject implemenation: Items returning a ValueAsString can have no other properties");
@@ -692,7 +692,7 @@ namespace System.Windows.Markup.Primitives
                                     // When the reader supports <x:Key> ... </x:Key> format do the following:
                                     //   _writer.WriteStartElement("Key", NamespaceCache.XamlNamespace);
                                     // The writer generates an exception for now:
-                                    throw new InvalidOperationException(SR.Get(SRID.UnserializableKeyValue, property.Value.GetType().FullName));
+                                    throw new InvalidOperationException(SR.Get("SRID.UnserializableKeyValue, property.Value.GetType().FullName));
                                 }
                                 else
                                 {

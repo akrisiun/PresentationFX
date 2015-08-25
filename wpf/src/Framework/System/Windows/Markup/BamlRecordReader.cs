@@ -748,7 +748,7 @@ namespace System.Windows.Markup
 
 
 
-                            ThrowException(SRID.ParserBamlEvent, bamlRoutedEventRecord.Value);
+                            ThrowException("SRID.ParserBamlEvent", bamlRoutedEventRecord.Value);
                         }
                         break;
 
@@ -797,7 +797,7 @@ namespace System.Windows.Markup
                     case BamlRecordType.LineNumberAndPosition:  // Should be skipped in ReadNextRecordWithDebugExtension.
                     case BamlRecordType.LinePosition:           // Should be skipped in ReadNextRecordWithDebugExtension.
                     default:
-                        ThrowException(SRID.ParserUnknownBaml, ((int)bamlRecord.RecordType).ToString(CultureInfo.CurrentCulture));
+                        ThrowException("SRID.ParserUnknownBaml", ((int)bamlRecord.RecordType).ToString(CultureInfo.CurrentCulture));
                         break;
                 }
 
@@ -897,7 +897,7 @@ namespace System.Windows.Markup
                     element = CreateInstanceFromType(elementType, typeId, false);
                     if (element == null)
                     {
-                        ThrowException(SRID.ParserNoElementCreate2, elementType.FullName);
+                        ThrowException("SRID.ParserNoElementCreate2", elementType.FullName);
                     }
                 }
 
@@ -1048,7 +1048,7 @@ namespace System.Windows.Markup
                     null == currentContext.ExpectedType)
                 {
                     string propName = GetPropNameFrom(currentContext.ObjectData);
-                    ThrowException(SRID.ParserNoComplexMulti, propName);
+                    ThrowException("SRID.ParserNoComplexMulti", propName);
                 }
 
                 // If this is the very top element as indicated by there not being a
@@ -1212,7 +1212,7 @@ namespace System.Windows.Markup
                 (ReaderFlags.DependencyObject != CurrentContext.ContextType &&
                  ReaderFlags.ClrObject != CurrentContext.ContextType))
             {
-                ThrowException(SRID.ParserUnexpectedEndEle);
+                ThrowException("SRID.ParserUnexpectedEndEle");
             }
 
             object currentElement = GetCurrentObjectData();
@@ -1378,7 +1378,7 @@ namespace System.Windows.Markup
                                     (ParserContext.RootElement == parent);
                                 if (!XamlTypeMapper.IsAllowedPropertySet(propertyDefinition.PropertyInfo, allowProtected, out isPublicProperty))
                                 {
-                                    ThrowException(SRID.ParserCantSetContentProperty, propertyDefinition.Name, propertyDefinition.PropertyInfo.ReflectedType.Name);
+                                    ThrowException("SRID.ParserCantSetContentProperty", propertyDefinition.Name, propertyDefinition.PropertyInfo.ReflectedType.Name);
                                 }
                             }
                         }
@@ -1402,7 +1402,7 @@ namespace System.Windows.Markup
 
             if (contentProperty == null)
             {
-                ThrowException(SRID.ParserCantGetDPOrPi, GetPropertyNameFromAttributeId(attributeId));
+                ThrowException("SRID.ParserCantGetDPOrPi", GetPropertyNameFromAttributeId(attributeId));
             }
 
             CurrentContext.ContentProperty = contentProperty;
@@ -1508,7 +1508,7 @@ namespace System.Windows.Markup
 
                             if (dp == null)
                             {
-                                ThrowException(SRID.ParserNoDPOnOwner, paramString, ownerType.FullName);
+                                ThrowException("SRID.ParserNoDPOnOwner", paramString, ownerType.FullName);
                             }
                         }
 
@@ -1587,7 +1587,7 @@ namespace System.Windows.Markup
                                     e = tie.InnerException;
                                 }
 
-                                ThrowExceptionWithLine(SR.Get(SRID.ParserFailedToCreateFromConstructor, info.DeclaringType.Name),  e);
+                                ThrowExceptionWithLine(SR.Get("SRID.ParserFailedToCreateFromConstructor", info.DeclaringType.Name),  e);
 
                             }
 #endif
@@ -1605,7 +1605,7 @@ namespace System.Windows.Markup
             else
             {
                 // If we get to here, then no matching constructor was found, so complain
-                ThrowException(SRID.ParserBadConstructorParams, elementType.Name, paramCount.ToString(CultureInfo.CurrentCulture));
+                ThrowException("SRID.ParserBadConstructorParams", elementType.Name, paramCount.ToString(CultureInfo.CurrentCulture));
             }
 
             if( TraceMarkup.IsEnabled )
@@ -1687,7 +1687,7 @@ namespace System.Windows.Markup
                     }
 
                     ThrowExceptionWithLine(
-                                   SR.Get(SRID.ParserCannotConvertString,
+                                   SR.Get("SRID.ParserCannotConvertString",
                                           param.ToString(),
                                           paramInfo.ParameterType.FullName),
                                    e);
@@ -1728,7 +1728,7 @@ namespace System.Windows.Markup
                 long bytesAvailable = stream.Length - startPosition;
                 if (bytesAvailable < bamlRecord.ContentSize)
                 {
-                    ThrowException(SRID.ParserDeferContentAsync);
+                    ThrowException("SRID.ParserDeferContentAsync");
                 }
 
                 // Read through all the key records and the static resource records
@@ -1846,7 +1846,7 @@ namespace System.Windows.Markup
                             // Enum.ToString(culture) is [Obsolete]
                             #pragma warning disable 0618
 
-                            ThrowException(SRID.ParserUnexpInBAML, keyRecord.RecordType.ToString(CultureInfo.CurrentCulture));
+                            ThrowException("SRID.ParserUnexpInBAML", keyRecord.RecordType.ToString(CultureInfo.CurrentCulture));
 
                             #pragma warning restore 0618
                         }
@@ -1978,7 +1978,7 @@ namespace System.Windows.Markup
                 (ReaderFlags.DependencyObject != CurrentContext.ContextType &&
                  ReaderFlags.ClrObject != CurrentContext.ContextType))
             {
-                ThrowException(SRID.ParserUnexpInBAML, "Property");
+                ThrowException("SRID.ParserUnexpInBAML", "Property");
             }
 
             // Define attrbuteId
@@ -2067,7 +2067,7 @@ namespace System.Windows.Markup
                     return;
                 }
             }
-            ThrowException(SRID.ParserUnexpInBAML, "BamlLiteralContent" );
+            ThrowException("SRID.ParserUnexpInBAML", "BamlLiteralContent" );
         }
 
         // Read the start of a complex property section.  Determine the property to set
@@ -2079,7 +2079,7 @@ namespace System.Windows.Markup
                 !(ReaderFlags.ClrObject == CurrentContext.ContextType ||
                   ReaderFlags.DependencyObject == CurrentContext.ContextType))
             {
-                ThrowException(SRID.ParserUnexpInBAML, "PropertyComplexStart");
+                ThrowException("SRID.ParserUnexpInBAML", "PropertyComplexStart");
             }
 
             short attributeId = bamlPropertyRecord.AttributeId;
@@ -2115,7 +2115,7 @@ namespace System.Windows.Markup
             }
             else
             {
-                ThrowException(SRID.ParserCantGetDPOrPi, GetPropertyNameFromAttributeId(attributeId));
+                ThrowException("SRID.ParserCantGetDPOrPi", GetPropertyNameFromAttributeId(attributeId));
             }
 
             // Set the name of the property into the context
@@ -2161,7 +2161,7 @@ namespace System.Windows.Markup
                 dp = MapTable.GetDependencyPropertyValueFromId(dpId, dpName, out declaringType);
                 if (dp == null)
                 {
-                    ThrowException(SRID.ParserCannotConvertPropertyValue, "Property", typeof(DependencyProperty).FullName);
+                    ThrowException("SRID.ParserCannotConvertPropertyValue", "Property", typeof(DependencyProperty).FullName);
                 }
 
                 bamlPropertyRecord.ValueObject = dp;
@@ -2207,7 +2207,7 @@ namespace System.Windows.Markup
 
                 if (!bamlPropertyRecord.ValueObjectSet && !bamlPropertyRecord.IsRawEnumValueSet)
                 {
-                    string message = SR.Get(SRID.ParserCannotConvertPropertyValue, propertyName, propertyType.FullName);
+                    string message = SR.Get("SRID.ParserCannotConvertPropertyValue", propertyName, propertyType.FullName);
                     ThrowExceptionWithLine(message, innerException);
                 }
             }
@@ -2227,7 +2227,7 @@ namespace System.Windows.Markup
                 (ReaderFlags.DependencyObject != CurrentContext.ContextType &&
                  ReaderFlags.ClrObject != CurrentContext.ContextType))
             {
-                ThrowException(SRID.ParserUnexpInBAML, "PropertyCustom");
+                ThrowException("SRID.ParserUnexpInBAML", "PropertyCustom");
             }
 
             // the value of the property
@@ -2259,7 +2259,7 @@ namespace System.Windows.Markup
                         throw;
                     }
 
-                    string message = SR.Get(SRID.ParserCannotConvertPropertyValue, propertyDefinition.Name, propertyDefinition.PropertyType.FullName);
+                    string message = SR.Get("SRID.ParserCannotConvertPropertyValue", propertyDefinition.Name, propertyDefinition.PropertyType.FullName);
                     ThrowExceptionWithLine(message, e);
                 }
 #endif
@@ -2288,7 +2288,7 @@ namespace System.Windows.Markup
                                                                        valueObject);
                     if (!set)
                     {
-                        ThrowException(SRID.ParserCantSetAttribute, "property", propertyDefinition.Name, "set");
+                        ThrowException("SRID.ParserCantSetAttribute", "property", propertyDefinition.Name, "set");
                     }
                 }
                 else
@@ -2304,7 +2304,7 @@ namespace System.Windows.Markup
             }
             else
             {
-                ThrowException(SRID.ParserCantGetDPOrPi, GetPropertyNameFromAttributeId(attributeId));
+                ThrowException("SRID.ParserCantGetDPOrPi", GetPropertyNameFromAttributeId(attributeId));
             }
         }
 
@@ -2318,7 +2318,7 @@ namespace System.Windows.Markup
                 (ReaderFlags.DependencyObject != CurrentContext.ContextType &&
                  ReaderFlags.ClrObject != CurrentContext.ContextType))
             {
-                ThrowException(SRID.ParserUnexpInBAML, "Property");
+                ThrowException("SRID.ParserUnexpInBAML", "Property");
             }
 
             ReadPropertyRecordBase(bamlPropertyRecord.Value, bamlPropertyRecord.AttributeId, 0);
@@ -2333,7 +2333,7 @@ namespace System.Windows.Markup
                 (ReaderFlags.DependencyObject != CurrentContext.ContextType &&
                  ReaderFlags.ClrObject != CurrentContext.ContextType))
             {
-                ThrowException(SRID.ParserUnexpInBAML, "Property");
+                ThrowException("SRID.ParserUnexpInBAML", "Property");
             }
 
             ReadPropertyRecordBase(bamlPropertyRecord.Value, bamlPropertyRecord.AttributeId,
@@ -2349,7 +2349,7 @@ namespace System.Windows.Markup
                 (ReaderFlags.DependencyObject != CurrentContext.ContextType &&
                  ReaderFlags.ClrObject != CurrentContext.ContextType))
             {
-                ThrowException(SRID.ParserUnexpInBAML, "Property");
+                ThrowException("SRID.ParserUnexpInBAML", "Property");
             }
 
             string attribValue = GetPropertyValueFromStringId(bamlPropertyRecord.StringId);
@@ -2458,7 +2458,7 @@ namespace System.Windows.Markup
                         break;
                 }
 
-                ThrowException(SRID.ParserCannotConvertPropertyValue, propertyName, valueTypeName);
+                ThrowException("SRID.ParserCannotConvertPropertyValue", propertyName, valueTypeName);
             }
 
             return valueObject;
@@ -2470,7 +2470,8 @@ namespace System.Windows.Markup
                 (ReaderFlags.DependencyObject != CurrentContext.ContextType &&
                  ReaderFlags.ClrObject != CurrentContext.ContextType))
             {
-                ThrowException(SRID.ParserUnexpInBAML, "Property");
+                ThrowException("SRID.ParserUnexpInBAML"
+                    , "Property");
             }
 
             // Define attrbuteId
@@ -2518,7 +2519,7 @@ namespace System.Windows.Markup
 
                 if( !SetPropertyValue( element, propertyDefinition, value ))
                 {
-                    ThrowException(SRID.ParserCantGetDPOrPi, GetPropertyNameFromAttributeId(attributeId));
+                    ThrowException("SRID.ParserCantGetDPOrPi", GetPropertyNameFromAttributeId(attributeId));
                 }
 
 #if !STRESS
@@ -2536,7 +2537,7 @@ namespace System.Windows.Markup
                     e = tie.InnerException;
                 }
 
-                string message = SR.Get(SRID.ParserCannotConvertPropertyValue, propertyDefinition.Name, propertyDefinition.PropertyType.FullName);
+                string message = SR.Get("SRID.ParserCannotConvertPropertyValue", propertyDefinition.Name, propertyDefinition.PropertyType.FullName);
                 ThrowExceptionWithLine(message, e);
 
             }
@@ -2605,7 +2606,7 @@ namespace System.Windows.Markup
                                                                        value);
                     if (!set)
                     {
-                        ThrowException(SRID.ParserCantSetAttribute, "property", propertyDefinition.Name, "set");
+                        ThrowException("SRID.ParserCantSetAttribute", "property", propertyDefinition.Name, "set");
                     }
                 }
                 else
@@ -2673,7 +2674,7 @@ namespace System.Windows.Markup
                 (ReaderFlags.DependencyObject != CurrentContext.ContextType &&
                  ReaderFlags.ClrObject != CurrentContext.ContextType))
             {
-                ThrowException(SRID.ParserUnexpInBAML, "Property");
+                ThrowException("SRID.ParserUnexpInBAML", "Property");
             }
 
             // Define attrbuteId
@@ -2694,7 +2695,7 @@ namespace System.Windows.Markup
 #endif
                 if( !SetPropertyValue( element, propertyDefinition, valueType ))
                 {
-                    ThrowException(SRID.ParserCantGetDPOrPi, GetPropertyNameFromAttributeId(attributeId));
+                    ThrowException("SRID.ParserCantGetDPOrPi", GetPropertyNameFromAttributeId(attributeId));
                 }
 #if !STRESS
             }
@@ -2711,7 +2712,7 @@ namespace System.Windows.Markup
                     e = tie.InnerException;
                 }
 
-                ThrowExceptionWithLine(SR.Get(SRID.ParserCannotSetValue, element.GetType().FullName, propertyDefinition.Name, valueType.Name), e);
+                ThrowExceptionWithLine(SR.Get("SRID.ParserCannotSetValue", element.GetType().FullName, propertyDefinition.Name, valueType.Name), e);
             }
 #endif
         }
@@ -2875,7 +2876,7 @@ namespace System.Windows.Markup
                                                               attribValue);
                             if (d == null)
                             {
-                                ThrowException(SRID.ParserCantCreateDelegate, reid.HandlerType.Name, attribValue);
+                                ThrowException("SRID.ParserCantCreateDelegate", reid.HandlerType.Name, attribValue);
                             }
 
                             UIElement uiel = element as UIElement;
@@ -2909,7 +2910,7 @@ namespace System.Windows.Markup
                                                               attribValue);
                             if (d == null)
                             {
-                                ThrowException(SRID.ParserCantCreateDelegate, ei.EventHandlerType.Name, attribValue);
+                                ThrowException("SRID.ParserCantCreateDelegate", ei.EventHandlerType.Name, attribValue);
                             }
 
                             if (isInternal)
@@ -2921,7 +2922,7 @@ namespace System.Windows.Markup
                                                                                     d);
                                 if (!added)
                                 {
-                                    ThrowException(SRID.ParserCantSetAttribute, "event", ei.Name, "add");
+                                    ThrowException("SRID.ParserCantSetAttribute", "event", ei.Name, "add");
                                 }
                             }
                             else
@@ -2934,7 +2935,7 @@ namespace System.Windows.Markup
                     }
                     else
                     {
-                        ThrowException(SRID.ParserCantGetDPOrPi, propertyDefinition.Name);
+                        ThrowException("SRID.ParserCantGetDPOrPi", propertyDefinition.Name);
                     }
                 }
 #if !STRESS
@@ -2953,7 +2954,7 @@ namespace System.Windows.Markup
                     e = tie.InnerException;
                 }
 
-                ThrowExceptionWithLine(SR.Get(SRID.ParserCannotSetValue, element.GetType().FullName, propertyDefinition.AttributeInfo.Name, attribValue), e);
+                ThrowExceptionWithLine(SR.Get("SRID.ParserCannotSetValue", element.GetType().FullName, propertyDefinition.AttributeInfo.Name, attribValue), e);
 
             }
 #endif
@@ -3023,7 +3024,7 @@ namespace System.Windows.Markup
 
             if (!holder.PropertyType.IsArray)
             {
-                ThrowException(SRID.ParserNoMatchingArray, GetPropertyNameFromAttributeId(attributeId));
+                ThrowException("SRID.ParserNoMatchingArray", GetPropertyNameFromAttributeId(attributeId));
             }
 
             Debug.Assert(!holder.ReadOnly); // this is being checked in XamlReaderHelper, just assert
@@ -3098,7 +3099,7 @@ namespace System.Windows.Markup
             {
                 // if we reached this case, then we had a read-only IEnumerable property
                 // under a non-IAddChild element.  Throw an exception
-                ThrowException(SRID.ParserReadOnlyProp, holder.PropertyDefinition.Name);
+                ThrowException("SRID.ParserReadOnlyProp", holder.PropertyDefinition.Name);
             }
 
             PushContext(flags | ReaderFlags.CollectionHolder, holder, expectedType, 0);
@@ -3190,7 +3191,7 @@ namespace System.Windows.Markup
             }
             else
             {
-                ThrowException(SRID.ParserNullPropertyCollection, holder.PropertyDefinition.Name);
+                ThrowException("SRID.ParserNullPropertyCollection", holder.PropertyDefinition.Name);
             }
 
             context.ExpectedType = null; // Don't want to receive any other values
@@ -3211,7 +3212,7 @@ namespace System.Windows.Markup
             {
                 // if an explicit collection was under a collection property and following its end tag an element
                 // was placed, then throw an exception.
-                ThrowException(SRID.ParserPropertyCollectionClosed, holder.PropertyDefinition.Name);
+                ThrowException("SRID.ParserPropertyCollectionClosed", holder.PropertyDefinition.Name);
             }
 
             return holder;
@@ -3328,7 +3329,7 @@ namespace System.Windows.Markup
 
                 if (key == null)
                 {
-                    ThrowException(SRID.ParserNoResource, bamlDefAttributeRecord.Value);
+                    ThrowException("SRID.ParserNoResource", bamlDefAttributeRecord.Value);
                 }
 
                 SetKeyOnContext(key, bamlDefAttributeRecord.Value, CurrentContext, ParentContext);
@@ -3363,7 +3364,7 @@ namespace System.Windows.Markup
             {
                 // The x:Shared token information was stored in the IBamlDictionaryKey
                 // in the compiled case. Otherwise, it makes no sense to use it.
-                ThrowException(SRID.ParserDefSharedOnlyInCompiled);
+                ThrowException("SRID.ParserDefSharedOnlyInCompiled");
             }
 
             else if (bamlDefAttributeRecord.Name == XamlReaderHelper.DefinitionRuntimeName) // x:Name
@@ -3382,7 +3383,7 @@ namespace System.Windows.Markup
                 // with the BamlRecordReader (since it should catch unknown def
                 // attributes), or if a BamlWriter was used to write
                 // a bogus attribute.
-                ThrowException(SRID.ParserUnknownDefAttribute, bamlDefAttributeRecord.Name);
+                ThrowException("SRID.ParserUnknownDefAttribute", bamlDefAttributeRecord.Name);
             }
         }
 
@@ -3400,7 +3401,7 @@ namespace System.Windows.Markup
 
             if (keyType == null)
             {
-                ThrowException(SRID.ParserNoResource, XamlReaderHelper.DefinitionName);
+                ThrowException("SRID.ParserNoResource", XamlReaderHelper.DefinitionName);
             }
 
             SetKeyOnContext(keyType, XamlReaderHelper.DefinitionName, CurrentContext, ParentContext);
@@ -3431,12 +3432,13 @@ namespace System.Windows.Markup
 
                     if (element != null && element == holder.Dictionary)
                     {
-                        ThrowExceptionWithLine(SR.Get(SRID.ParserKeyOnExplicitDictionary, attributeName,
+                        ThrowExceptionWithLine(SR.Get("SRID.ParserKeyOnExplicitDictionary", attributeName,
                                        element.GetType().ToString(), holder.PropertyDefinition.Name), e);
                     }
                 }
 
-                ThrowExceptionWithLine(SR.Get(SRID.ParserNoMatchingIDictionary, attributeName), e);
+                ThrowExceptionWithLine(SR.Get("SRID.ParserNoMatchingIDictionary"
+                    , attributeName), e);
             }
 
             // set key on context
@@ -3503,7 +3505,7 @@ namespace System.Windows.Markup
                         }
                         else
                         {
-                            ThrowException(SRID.ParserCannotConvertString, bamlTextRecord.Value,
+                            ThrowException("SRID.ParserCannotConvertString", bamlTextRecord.Value,
                                            CurrentContext.ExpectedType.FullName);
                         }
                     }
@@ -3516,7 +3518,7 @@ namespace System.Windows.Markup
                         if (parent == null)
                         {
                             // GetCurrentObjectData failed to create an object for us to add content to.
-                            ThrowException(SRID.ParserCantCreateInstanceType, CurrentContext.ExpectedType.FullName);
+                            ThrowException("SRID.ParserCantCreateInstanceType", CurrentContext.ExpectedType.FullName);
                         }
 
                         // We have object instance, and we have several ways to put
@@ -3533,7 +3535,7 @@ namespace System.Windows.Markup
                         else
                         {
                             // All of the above attempts to deal with the text has failed.
-                            ThrowException(SRID.ParserIAddChildText,
+                            ThrowException("SRID.ParserIAddChildText",
                                     parent.GetType().FullName,
                                     bamlTextRecord.Value);
                         }
@@ -3546,7 +3548,7 @@ namespace System.Windows.Markup
                 {
                     if (null == CurrentContext.ExpectedType)
                     {
-                        ThrowException(SRID.ParserNoComplexMulti,
+                        ThrowException("SRID.ParserNoComplexMulti",
                                        GetPropNameFrom(CurrentContext.ObjectData));
                     }
 
@@ -3568,7 +3570,7 @@ namespace System.Windows.Markup
                     }
                     else
                     {
-                        ThrowException(SRID.ParserCantCreateTextComplexProp,
+                        ThrowException("SRID.ParserCantCreateTextComplexProp",
                               attribInfo.OwnerType.FullName,
                               bamlTextRecord.Value);
                     }
@@ -3579,7 +3581,7 @@ namespace System.Windows.Markup
                 {
                     if (null == CurrentContext.ExpectedType)
                     {
-                        ThrowException(SRID.ParserNoComplexMulti,
+                        ThrowException("SRID.ParserNoComplexMulti",
                                        GetPropNameFrom(CurrentContext.ObjectData));
                     }
 
@@ -3592,7 +3594,7 @@ namespace System.Windows.Markup
                     }
                     else
                     {
-                        ThrowException(SRID.ParserCantCreateTextComplexProp,
+                        ThrowException("SRID.ParserCantCreateTextComplexProp",
                             CurrentContext.ExpectedType.FullName, bamlTextRecord.Value);
                     }
 
@@ -3606,7 +3608,7 @@ namespace System.Windows.Markup
 
                     if (iaddchild == null)
                     {
-                        ThrowException(SRID.ParserNoMatchingIList, "?");
+                        ThrowException("SRID.ParserNoMatchingIList", "?");
                     }
 
                     iaddchild.AddText(bamlTextRecord.Value);
@@ -3619,7 +3621,7 @@ namespace System.Windows.Markup
 
                     if (holder.List == null)
                     {
-                        ThrowException(SRID.ParserNoMatchingIList, "?");
+                        ThrowException("SRID.ParserNoMatchingIList", "?");
                     }
 
                     holder.List.Add(bamlTextRecord.Value);
@@ -3637,7 +3639,7 @@ namespace System.Windows.Markup
 
                 default:
                 {
-                    ThrowException(SRID.ParserUnexpInBAML, "Text");
+                    ThrowException("SRID.ParserUnexpInBAML", "Text");
                     break;
                 }
             }
@@ -3666,7 +3668,7 @@ namespace System.Windows.Markup
                 // with the BamlRecordReader (since it should catch unknown def
                 // attributes), or if a BamlWriter was used to write
                 // a bogus attribute.
-                ThrowException(SRID.ParserUnknownPresentationOptionsAttribute, bamlPresentationOptionsAttributeRecord.Name);
+                ThrowException("SRID.ParserUnknownPresentationOptionsAttribute", bamlPresentationOptionsAttributeRecord.Name);
             }
         }
 
@@ -3780,7 +3782,7 @@ namespace System.Windows.Markup
                     e = tie.InnerException;
                 }
 
-                ThrowExceptionWithLine(SR.Get(SRID.ParserCannotSetValue, currentTarget.GetType().FullName, attribInfo.Name, o), e);
+                ThrowExceptionWithLine(SR.Get("SRID.ParserCannotSetValue", currentTarget.GetType().FullName, attribInfo.Name, o), e);
             }
 #endif
 
@@ -3803,7 +3805,7 @@ namespace System.Windows.Markup
             object toReturn = o;
             if( !TryOptionallyMakeNullable( propertyType, propName, ref toReturn ))
             {
-                ThrowException(SRID.ParserBadNullableType,
+                ThrowException("SRID.ParserBadNullableType",
                                propName,
                                ((Type)propertyType.GetGenericArguments()[0]).Name,
                                o.GetType().FullName);
@@ -3920,7 +3922,7 @@ namespace System.Windows.Markup
                     e = tie.InnerException;
                 }
 
-                ThrowExceptionWithLine(SR.Get(SRID.ParserCannotSetValue, parentObject.GetType().FullName, memberInfo.Name, o), e);
+                ThrowExceptionWithLine(SR.Get("SRID.ParserCannotSetValue", parentObject.GetType().FullName, memberInfo.Name, o), e);
             }
 #endif
 
@@ -4031,7 +4033,7 @@ namespace System.Windows.Markup
 
             if (DependencyProperty.UnsetValue == propValue)
             {
-                ThrowException(SRID.ParserNullReturned, propertyName, attribValue);
+                ThrowException("SRID.ParserNullReturned", propertyName, attribValue);
             }
 
             return propValue;
@@ -4053,18 +4055,18 @@ namespace System.Windows.Markup
             {
                 if (propertyType == typeof(Type))
                 {
-                    message = SR.Get(SRID.ParserErrorParsingAttribType,
+                    message = SR.Get("SRID.ParserErrorParsingAttribType",
                                      propertyName, attribValue);
                 }
                 else
                 {
-                    message = SR.Get(SRID.ParserErrorParsingAttrib,
+                    message = SR.Get("SRID.ParserErrorParsingAttrib",
                                      propertyName, attribValue, propertyType.Name);
                 }
             }
             else
             {
-                message = SR.Get(SRID.ParserErrorParsingAttribType,
+                message = SR.Get("SRID.ParserErrorParsingAttribType",
                                  propertyName, attribValue);
             }
 
@@ -4272,13 +4274,13 @@ namespace System.Windows.Markup
             object  resourceNameObject = XamlTypeMapper.GetDictionaryKey(resourceName, ParserContext);
             if (resourceNameObject == null)
             {
-               ThrowException(SRID.ParserNoResource, resourceNameString);
+               ThrowException("SRID.ParserNoResource", resourceNameString);
             }
 
             object value = FindResourceInParentChain(resourceNameObject, false /*allowDeferredResourceReference*/, false /*mustReturnDeferredResourceReference*/);
             if (value == DependencyProperty.UnsetValue)
             {
-                ThrowException(SRID.ParserNoResource , "{" + resourceNameObject.ToString() + "}");
+                ThrowException("SRID.ParserNoResource ", "{" + resourceNameObject.ToString() + "}");
             }
 
             return value;
@@ -4297,7 +4299,7 @@ namespace System.Windows.Markup
                                                  context.ExpectedTypeId, true);
                 if (null == context.ObjectData)
                 {
-                    ThrowException(SRID.ParserCantCreateInstanceType, context.ExpectedType.FullName);
+                    ThrowException("SRID.ParserCantCreateInstanceType", context.ExpectedType.FullName);
                 }
 
                 // Finish set up of the newly created element.
@@ -4606,7 +4608,8 @@ namespace System.Windows.Markup
                     }
                 }
 
-                ThrowExceptionWithLine( SR.Get(SRID.ParserFailedEndInit), e );
+                ThrowExceptionWithLine( SR.Get("SRID.ParserFailedEndInit"
+                    ), e );
             }
 
         }
@@ -4704,7 +4707,7 @@ namespace System.Windows.Markup
                         if (currentContext.Key == null)
                         {
                             // throw an exception if this element does not have a key
-                            ThrowException(SRID.ParserNoDictionaryKey);
+                            ThrowException("SRID.ParserNoDictionaryKey");
                         }
 
                         dictionary.Add(currentContext.Key, currentObject);
@@ -4993,7 +4996,7 @@ namespace System.Windows.Markup
                         if (dpo == null)
                         {
                             // ?? This appears to be old code, we shouldn't ever get into this path.
-                            ThrowException(SRID.ParserParentDO, value.ToString());
+                            ThrowException("SRID.ParserParentDO", value.ToString());
                         }
 
                         if( TraceMarkup.IsEnabled )
@@ -5041,7 +5044,7 @@ namespace System.Windows.Markup
                                                                                value);
                             if (!set)
                             {
-                                ThrowException(SRID.ParserCantSetContentProperty, pi.Name, pi.ReflectedType.Name);
+                                ThrowException("SRID.ParserCantSetContentProperty", pi.Name, pi.ReflectedType.Name);
                             }
 
                             if( TraceMarkup.IsEnabled )
@@ -5071,7 +5074,7 @@ namespace System.Windows.Markup
                 }
 
                 ThrowExceptionWithLine(
-                    SR.Get(SRID.ParserCannotAddChild,
+                    SR.Get("SRID.ParserCannotAddChild",
                            value.GetType().Name,
                            container.GetType().Name),
                         e);
@@ -5297,14 +5300,14 @@ namespace System.Windows.Markup
             {
                 if (!ReflectionHelper.IsPublicType(type))
                 {
-                    ThrowException(SRID.ParserNotMarkedPublic, type.Name);
+                    ThrowException("SRID.ParserNotMarkedPublic", type.Name);
                 }
             }
             else
             {
                 if (!ReflectionHelper.IsInternalType(type))
                 {
-                    ThrowException(SRID.ParserNotAllowedInternalType, type.Name);
+                    ThrowException("SRID.ParserNotAllowedInternalType", type.Name);
                 }
             }
 
@@ -5343,7 +5346,7 @@ namespace System.Windows.Markup
                             instance = XamlTypeMapper.CreateInternalInstance(ParserContext, type);
                             if (instance == null && throwOnFail)
                             {
-                                ThrowException(SRID.ParserNotAllowedInternalType, type.Name);
+                                ThrowException("SRID.ParserNotAllowedInternalType", type.Name);
                             }
                         }
                     }
@@ -5376,12 +5379,12 @@ namespace System.Windows.Markup
                        ParentContext.ContextType == ReaderFlags.PropertyComplexDP)
                    {
                        BamlAttributeInfoRecord attribInfo = GetParentObjectData() as BamlAttributeInfoRecord;
-                       ThrowException(SRID.ParserNoDefaultPropConstructor,
+                       ThrowException("SRID.ParserNoDefaultPropConstructor",
                                       type.Name, attribInfo.DP.Name);
                    }
                    else
                    {
-                       ThrowExceptionWithLine(SR.Get(SRID.ParserNoDefaultConstructor, type.Name), e );
+                       ThrowExceptionWithLine(SR.Get("SRID.ParserNoDefaultConstructor", type.Name), e );
                    }
                }
 
@@ -5396,7 +5399,7 @@ namespace System.Windows.Markup
                     throw;
                 }
 
-                ThrowExceptionWithLine( SR.Get(SRID.ParserErrorCreatingInstance, type.Name, type.Assembly.FullName), e);
+                ThrowExceptionWithLine( SR.Get("SRID.ParserErrorCreatingInstance", type.Name, type.Assembly.FullName), e);
                 return null;
             }
 #endif

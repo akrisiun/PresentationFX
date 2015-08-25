@@ -364,7 +364,7 @@ namespace System.Windows.Documents
                     if (controlType.IsAssignableFrom((Type)_registeredEditingTypes[i]))
                     {
                         throw new InvalidOperationException(
-                            SR.Get(SRID.TextEditorCanNotRegisterCommandHandler, ((Type)_registeredEditingTypes[i]).Name, controlType.Name));
+                            SR.Get("SRID.TextEditorCanNotRegisterCommandHandler, ((Type)_registeredEditingTypes[i]).Name, controlType.Name));
                     }
                 }
 
@@ -424,7 +424,7 @@ namespace System.Windows.Documents
             // ---------
             if (!readOnly)
             {
-                CommandHelpers.RegisterCommandHandler(controlType, ApplicationCommands.Undo, new ExecutedRoutedEventHandler(OnUndo), new CanExecuteRoutedEventHandler(OnQueryStatusUndo), KeyGesture.CreateFromResourceStrings(SR.Get(SRID.KeyUndo), SR.Get(SRID.KeyUndoDisplayString)), KeyGesture.CreateFromResourceStrings(SR.Get(SRID.KeyAltUndo), SR.Get(SRID.KeyAltUndoDisplayString)));
+                CommandHelpers.RegisterCommandHandler(controlType, ApplicationCommands.Undo, new ExecutedRoutedEventHandler(OnUndo), new CanExecuteRoutedEventHandler(OnQueryStatusUndo), KeyGesture.CreateFromResourceStrings(SR.Get("SRID.KeyUndo), SR.Get("SRID.KeyUndoDisplayString)), KeyGesture.CreateFromResourceStrings(SR.Get("SRID.KeyAltUndo), SR.Get("SRID.KeyAltUndoDisplayString)));
                 CommandHelpers.RegisterCommandHandler(controlType, ApplicationCommands.Redo, new ExecutedRoutedEventHandler(OnRedo), new CanExecuteRoutedEventHandler(OnQueryStatusRedo), SRID.KeyRedo, SRID.KeyRedoDisplayString);
             }
         }

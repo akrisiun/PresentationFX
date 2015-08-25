@@ -388,7 +388,7 @@ namespace System.Windows.Data
         {
             ViewManager vm = ViewManager.Current;
             if (vm == null)
-                throw new InvalidOperationException(SR.Get(SRID.AccessCollectionAfterShutDown, collection));
+                throw new InvalidOperationException(SR.Get("SRID.AccessCollectionAfterShutDown, collection));
 
             vm.AccessCollection(collection, accessMethod, writeAccess);
         }

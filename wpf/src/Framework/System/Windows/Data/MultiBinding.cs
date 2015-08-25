@@ -63,7 +63,7 @@ public class MultiBinding : BindingBase, IAddChild
         if (binding != null)
             Bindings.Add(binding);
         else
-            throw new ArgumentException(SR.Get(SRID.ChildHasWrongType, this.GetType().Name, "BindingBase", value.GetType().FullName), "value");
+            throw new ArgumentException(SR.Get("SRID.ChildHasWrongType, this.GetType().Name, "BindingBase", value.GetType().FullName), "value");
     }
 
     ///<summary>
@@ -349,7 +349,7 @@ public class MultiBinding : BindingBase, IAddChild
     internal override BindingExpressionBase CreateBindingExpressionOverride(DependencyObject target, DependencyProperty dp, BindingExpressionBase owner)
     {
         if (Converter == null && String.IsNullOrEmpty(StringFormat))
-            throw new InvalidOperationException(SR.Get(SRID.MultiBindingHasNoConverter));
+            throw new InvalidOperationException(SR.Get("SRID.MultiBindingHasNoConverter));
 
         for (int i = 0; i < Bindings.Count; ++i)
         {
@@ -386,7 +386,7 @@ public class MultiBinding : BindingBase, IAddChild
         {
             if (binding.UpdateSourceTrigger != UpdateSourceTrigger.PropertyChanged &&
                 binding.UpdateSourceTrigger != UpdateSourceTrigger.Default)
-                throw new InvalidOperationException(SR.Get(SRID.NoUpdateSourceTriggerForInnerBindingOfMultiBinding));
+                throw new InvalidOperationException(SR.Get("SRID.NoUpdateSourceTriggerForInnerBindingOfMultiBinding));
         }
     }
 

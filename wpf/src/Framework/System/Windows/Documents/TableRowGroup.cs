@@ -102,7 +102,7 @@ namespace System.Windows.Documents
                 return;
             }
 
-            throw (new ArgumentException(SR.Get(SRID.UnexpectedParameterType, value.GetType(), typeof(TableRow)), "value"));
+            throw (new ArgumentException(SR.Get("SRID.UnexpectedParameterType, value.GetType(), typeof(TableRow)), "value"));
         }
 
         /// <summary>
@@ -327,7 +327,7 @@ namespace System.Windows.Documents
 
             if (newParent != null && !(newParent is Table))
             {
-                throw new InvalidOperationException(SR.Get(SRID.TableInvalidParentNodeType, newParent.GetType().ToString()));
+                throw new InvalidOperationException(SR.Get("SRID.TableInvalidParentNodeType, newParent.GetType().ToString()));
             }
 
             if (oldParent != null)

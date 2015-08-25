@@ -55,7 +55,7 @@ namespace MS.Internal.Annotations.Component
                 if (adorner.AnnotationComponent == null)
                     throw new ArgumentNullException("annotation component");
                 if (adorner.AnnotationComponent.PresentationContext != null)
-                    throw new InvalidOperationException(SR.Get(SRID.ComponentAlreadyInPresentationContext, adorner.AnnotationComponent));
+                    throw new InvalidOperationException(SR.Get("SRID.ComponentAlreadyInPresentationContext", adorner.AnnotationComponent));
                 _annotationAdorner = adorner;
             }
         }
@@ -212,7 +212,7 @@ namespace MS.Internal.Annotations.Component
             {// need to find annotation adorner in layer, remove it and do house-keeping
                 AnnotationAdorner foundAdorner = this.FindAnnotationAdorner(component);
 
-                if (foundAdorner == null) throw new InvalidOperationException(SR.Get(SRID.ComponentNotInPresentationContext, component));
+                if (foundAdorner == null) throw new InvalidOperationException(SR.Get("SRID.ComponentNotInPresentationContext", component));
 
                 _adornerLayer.Remove(foundAdorner);
                 foundAdorner.RemoveChildren();
@@ -506,7 +506,7 @@ namespace MS.Internal.Annotations.Component
             {
                 adorner = this.FindAnnotationAdorner(component);
 
-                if (adorner == null) throw new InvalidOperationException(SR.Get(SRID.ComponentNotInPresentationContext, component));
+                if (adorner == null) throw new InvalidOperationException(SR.Get("SRID.ComponentNotInPresentationContext", component));
             }
 
             return adorner;

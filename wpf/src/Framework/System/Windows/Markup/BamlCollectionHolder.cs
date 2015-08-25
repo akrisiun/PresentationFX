@@ -30,7 +30,7 @@ namespace System.Windows.Markup
         {
             _reader      = reader;
             _parent      = parent;
-            _propDef     = new WpfPropertyDefinition(reader, attributeId, parent is DependencyObject);
+            _propDef     = new sWpfPropertyDefinition(reader, attributeId, parent is DependencyObject);
             _attributeId = attributeId;
 
             if (needDefault)
@@ -134,7 +134,7 @@ namespace System.Windows.Markup
                     DependencyObject dpParent = Parent as DependencyObject;
                     if (dpParent == null)
                     {
-                        _reader.ThrowException(SRID.ParserParentDO, Parent.ToString());
+                        _reader.ThrowException("SRID.ParserParentDO", Parent.ToString());
                     }
                     _reader.SetDependencyValue(dpParent, PropertyDefinition.DependencyProperty, Collection);
                 }
@@ -151,7 +151,7 @@ namespace System.Windows.Markup
                 }
                 else
                 {
-                    _reader.ThrowException(SRID.ParserCantGetDPOrPi, AttributeName);
+                    _reader.ThrowException("SRID.ParserCantGetDPOrPi", AttributeName);
                 }
             }
         }
@@ -188,7 +188,7 @@ namespace System.Windows.Markup
                     
                     if (_defaultCollection == null)
                     {
-                        _reader.ThrowException(SRID.ParserCantGetProperty, PropertyDefinition.Name);
+                        _reader.ThrowException("SRID.ParserCantGetProperty", PropertyDefinition.Name);
                     }
                 }
                 else
@@ -201,7 +201,7 @@ namespace System.Windows.Markup
             }
             else
             {
-                _reader.ThrowException(SRID.ParserCantGetDPOrPi, AttributeName);
+                _reader.ThrowException("SRID.ParserCantGetDPOrPi", AttributeName);
             }
         }
 
@@ -215,7 +215,7 @@ namespace System.Windows.Markup
                 if (DefaultCollection == null)
                 {
                     // if the property is read-only and has a null default value, throw an exception
-                    _reader.ThrowException(SRID.ParserReadOnlyNullProperty, PropertyDefinition.Name);
+                    _reader.ThrowException("SRID.ParserReadOnlyNullProperty", PropertyDefinition.Name);
                 }
 
                 // the property is read-only, so we have to use its default value as the dictionary

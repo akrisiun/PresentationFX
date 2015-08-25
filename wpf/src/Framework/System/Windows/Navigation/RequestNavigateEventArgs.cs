@@ -75,7 +75,7 @@ namespace System.Windows.Navigation
         {
             if (RoutedEvent == null)
             {
-                throw new InvalidOperationException(SR.Get(SRID.RequestNavigateEventMustHaveRoutedEvent));
+                throw new InvalidOperationException(SR.Get("SRID.RequestNavigateEventMustHaveRoutedEvent));
             }
 
             RequestNavigateEventHandler handler = (RequestNavigateEventHandler)genericHandler;

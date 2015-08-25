@@ -46,7 +46,7 @@ namespace System.Windows.Documents
 
             if (position.TextContainer != container)
             {
-                throw new ArgumentException(SR.Get(SRID.NotInAssociatedTree, paramName));
+                throw new ArgumentException(SR.Get("SRID.NotInAssociatedTree, paramName));
             }
         }
 
@@ -67,11 +67,11 @@ namespace System.Windows.Documents
             }
             if (startPosition.TextContainer != endPosition.TextContainer)
             {
-                throw new ArgumentException(SR.Get(SRID.InDifferentTextContainers, "startPosition", "endPosition"));
+                throw new ArgumentException(SR.Get("SRID.InDifferentTextContainers, "startPosition", "endPosition"));
             }
             if (startPosition.CompareTo(endPosition) > 0)
             {
-                throw new ArgumentException(SR.Get(SRID.BadTextPositionOrder, "startPosition", "endPosition"));
+                throw new ArgumentException(SR.Get("SRID.BadTextPositionOrder, "startPosition", "endPosition"));
             }
         }
 
@@ -115,7 +115,7 @@ namespace System.Windows.Documents
 
             if (!TextSchema.IsValidChild(/*position:*/position, /*childType:*/child.GetType()))
             {
-                throw new ArgumentException(SR.Get(SRID.TextSchema_ChildTypeIsInvalid, position.Parent.GetType().Name, child.GetType().Name));
+                throw new ArgumentException(SR.Get("SRID.TextSchema_ChildTypeIsInvalid, position.Parent.GetType().Name, child.GetType().Name));
             }
 
             // The new child should not be currently in other text tree
@@ -123,7 +123,7 @@ namespace System.Windows.Documents
             {
                 if (((TextElement)child).Parent != null)
                 {
-                    throw new ArgumentException(SR.Get(SRID.TextSchema_TheChildElementBelongsToAnotherTreeAlready, child.GetType().Name));
+                    throw new ArgumentException(SR.Get("SRID.TextSchema_TheChildElementBelongsToAnotherTreeAlready, child.GetType().Name));
                 }
             }
             else
@@ -132,7 +132,7 @@ namespace System.Windows.Documents
                 // Cannot call UIElement.Parent across assembly boundary. So skip this part of validation. This condition will be checked elsewhere anyway.
                 //if (((UIElement)child).Parent != null)
                 //{
-                //    throw new ArgumentException(SR.Get(SRID.TextSchema_TheChildElementBelongsToAnotherTreeAlready, child.GetType().Name));
+                //    throw new ArgumentException(SR.Get("SRID.TextSchema_TheChildElementBelongsToAnotherTreeAlready, child.GetType().Name));
                 //}
             }
         }

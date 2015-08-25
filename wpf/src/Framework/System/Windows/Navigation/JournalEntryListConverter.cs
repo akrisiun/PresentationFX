@@ -174,7 +174,7 @@ namespace System.Windows.Navigation
                 }
 
                 DependencyObject current = new DependencyObject();
-                current.SetValue(JournalEntry.NameProperty, SR.Get(SRID.NavWindowMenuCurrentPage));
+                current.SetValue(JournalEntry.NameProperty, SR.Get("SRID.NavWindowMenuCurrentPage));
 
                 // "Current Page"
                 _items.Add(current);

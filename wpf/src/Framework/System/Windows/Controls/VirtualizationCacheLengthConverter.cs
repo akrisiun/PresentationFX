@@ -236,7 +236,7 @@ namespace System.Windows.Controls
                     return new VirtualizationCacheLength(lengths[0], lengths[1]);
             }
 
-            throw new FormatException(SR.Get(SRID.InvalidStringVirtualizationCacheLength, s));
+            throw new FormatException(SR.Get("SRID.InvalidStringVirtualizationCacheLength, s));
         }
 
     #endregion

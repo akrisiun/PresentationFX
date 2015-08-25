@@ -66,7 +66,7 @@ namespace System.Windows
                     }
                     else
                     {
-                        throw new InvalidOperationException(SR.Get(SRID.ColorConvertedBitmapExtensionSyntax));
+                        throw new InvalidOperationException(SR.Get("SRID.ColorConvertedBitmapExtensionSyntax));
                     }
                 }
             }
@@ -84,11 +84,11 @@ namespace System.Windows
         {
             if (_image == null)
             {
-                throw new InvalidOperationException(SR.Get(SRID.ColorConvertedBitmapExtensionNoSourceImage));
+                throw new InvalidOperationException(SR.Get("SRID.ColorConvertedBitmapExtensionNoSourceImage));
             }
             if (_sourceProfile == null)
             {
-                throw new InvalidOperationException(SR.Get(SRID.ColorConvertedBitmapExtensionNoSourceProfile));
+                throw new InvalidOperationException(SR.Get("SRID.ColorConvertedBitmapExtensionNoSourceProfile));
             }
             
             // [BreakingChange] Dev10 Bug #454108
@@ -98,7 +98,7 @@ namespace System.Windows
             IUriContext uriContext = serviceProvider.GetService(typeof(IUriContext)) as IUriContext;
             if( uriContext == null )
             {
-                throw new InvalidOperationException(SR.Get(SRID.MarkupExtensionNoContext, GetType().Name, "IUriContext" ));
+                throw new InvalidOperationException(SR.Get("SRID.MarkupExtensionNoContext, GetType().Name, "IUriContext" ));
             }
             _baseUri = uriContext.BaseUri;
             

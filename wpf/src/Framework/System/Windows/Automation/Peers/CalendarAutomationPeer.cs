@@ -202,13 +202,13 @@ namespace System.Windows.Automation.Peers
 
                     if (focusedButton == null || !focusedButton.IsKeyboardFocused)
                     {
-                        throw new InvalidOperationException(SR.Get(SRID.SetFocusFailed));
+                        throw new InvalidOperationException(SR.Get("SRID.SetFocusFailed));
                     }
                 }
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.SetFocusFailed));
+                throw new InvalidOperationException(SR.Get("SRID.SetFocusFailed));
             }
         }
 
@@ -438,17 +438,17 @@ namespace System.Windows.Automation.Peers
             {
                 case 0:
                     {
-                        return SR.Get(SRID.CalendarAutomationPeer_MonthMode);
+                        return SR.Get("SRID.CalendarAutomationPeer_MonthMode);
                     }
 
                 case 1:
                     {
-                        return SR.Get(SRID.CalendarAutomationPeer_YearMode);
+                        return SR.Get("SRID.CalendarAutomationPeer_YearMode);
                     }
 
                 case 2:
                     {
-                        return SR.Get(SRID.CalendarAutomationPeer_DecadeMode);
+                        return SR.Get("SRID.CalendarAutomationPeer_DecadeMode);
                     }
             }
 
@@ -514,7 +514,7 @@ namespace System.Windows.Automation.Peers
                 // if provider is not null, peer must exist
                 if (startAfterDatePeer == null)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.InavalidStartItem));
+                    throw new InvalidOperationException(SR.Get("SRID.InavalidStartItem));
                 }
             }
 
@@ -538,7 +538,7 @@ namespace System.Windows.Automation.Peers
 
                 if( !nextDate.HasValue || (startAfterDatePeer != null && nextDate <= startAfterDatePeer.Date) )
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.CalendarNamePropertyValueNotValid));
+                    throw new InvalidOperationException(SR.Get("SRID.CalendarNamePropertyValueNotValid));
                 }
 
                 currentMode = (startAfterDatePeer != null) ? startAfterDatePeer.ButtonMode : OwningCalendar.DisplayMode;
@@ -556,7 +556,7 @@ namespace System.Windows.Automation.Peers
             }
             else
             {
-                throw new ArgumentException(SR.Get(SRID.PropertyNotSupported));
+                throw new ArgumentException(SR.Get("SRID.PropertyNotSupported));
             }
 
             if (nextDate.HasValue)

@@ -434,7 +434,7 @@ namespace System.Windows.Markup
 
                     if (null == type)
                     {
-                        ThrowException(SRID.ParserFailFindType, typeInfo.TypeFullName);
+                        ThrowException("SRID.ParserFailFindType", typeInfo.TypeFullName);
                     }
                 }
             }
@@ -608,7 +608,7 @@ namespace System.Windows.Markup
 
                     if (tc == null)
                     {
-                        ThrowException(SRID.ParserNoTypeConv, propType.Name);
+                        ThrowException("SRID.ParserNoTypeConv", propType.Name);
                     }
                     else
                     {
@@ -852,7 +852,7 @@ namespace System.Windows.Markup
                     propName = attributeInfo.OwnerType.FullName + "." + attributeInfo.Name;
                 }
 
-                ThrowException(SRID.ParserNoPropType, propName);
+                ThrowException("SRID.ParserNoPropType", propName);
             }
             else
             {
@@ -959,7 +959,8 @@ namespace System.Windows.Markup
 
                 if (null != ownerType)
                 {
-                    bamlAttributeInfoRecord.Event = XamlTypeMapper.RoutedEventFromName(bamlAttributeInfoRecord.Name,ownerType);
+                    bamlAttributeInfoRecord.Event = 
+                        XamlTypeMapper.RoutedEventFromName(bamlAttributeInfoRecord.Name,ownerType);
                 }
             }
 

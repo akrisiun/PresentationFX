@@ -300,7 +300,7 @@ namespace System.Windows.Documents
 
             if (offset < 1 || offset > textContainer.InternalSymbolCount - 1)
             {
-                throw new ArgumentException(SR.Get(SRID.BadDistance));
+                throw new ArgumentException(SR.Get("SRID.BadDistance));
             }
 
             textContainer.GetNodeAndEdgeAtOffset(offset, out node, out edge);
@@ -1408,7 +1408,7 @@ namespace System.Windows.Documents
 
             if (textElement.Parent != null)
             {
-                throw new InvalidOperationException(SR.Get(SRID.TextPointer_CannotInsertTextElementBecauseItBelongsToAnotherTree));
+                throw new InvalidOperationException(SR.Get("SRID.TextPointer_CannotInsertTextElementBecauseItBelongsToAnotherTree));
             }
             textElement.RepositionWithContent(this);
         }
@@ -1439,7 +1439,7 @@ namespace System.Windows.Documents
                 Type containerType = this.TextContainer.Parent.GetType();
                 if (!TextSchema.IsValidChildOfContainer(containerType, typeof(Paragraph)))
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.TextSchema_IllegalElement, "Paragraph", containerType));
+                    throw new InvalidOperationException(SR.Get("SRID.TextSchema_IllegalElement, "Paragraph", containerType));
                 }
             }
 
@@ -1448,7 +1448,7 @@ namespace System.Windows.Documents
             if (ancestor != null)
             {
                 // Cannot split a hyperlink element!
-                throw new InvalidOperationException(SR.Get(SRID.TextSchema_CannotSplitElement, ancestor.GetType().Name));
+                throw new InvalidOperationException(SR.Get("SRID.TextSchema_CannotSplitElement, ancestor.GetType().Name));
             }
 
             TextPointer position;
@@ -1772,19 +1772,19 @@ namespace System.Windows.Documents
             }
             if (startIndex < 0)
             {
-                throw new ArgumentException(SR.Get(SRID.NegativeValue, "startIndex"));
+                throw new ArgumentException(SR.Get("SRID.NegativeValue, "startIndex"));
             }
             if (startIndex > textBuffer.Length)
             {
-                throw new ArgumentException(SR.Get(SRID.StartIndexExceedsBufferSize, startIndex, textBuffer.Length));
+                throw new ArgumentException(SR.Get("SRID.StartIndexExceedsBufferSize, startIndex, textBuffer.Length));
             }
             if (count < 0)
             {
-                throw new ArgumentException(SR.Get(SRID.NegativeValue, "count"));
+                throw new ArgumentException(SR.Get("SRID.NegativeValue, "count"));
             }
             if (count > textBuffer.Length - startIndex)
             {
-                throw new ArgumentException(SR.Get(SRID.MaxLengthExceedsBufferSize, count, textBuffer.Length, startIndex));
+                throw new ArgumentException(SR.Get("SRID.MaxLengthExceedsBufferSize, count, textBuffer.Length, startIndex));
             }
             Invariant.Assert(textNode != null, "textNode is expected to be non-null");
 
@@ -2170,7 +2170,7 @@ namespace System.Windows.Documents
 
             if (!((TextElement)this.Parent).IsEmpty) // the parent may be InlineUIContainer or BlockUIContainer
             {
-                throw new InvalidOperationException(SR.Get(SRID.TextSchema_UIElementNotAllowedInThisPosition));
+                throw new InvalidOperationException(SR.Get("SRID.TextSchema_UIElementNotAllowedInThisPosition));
             }
 
             _tree.BeginChange();
@@ -2561,7 +2561,7 @@ namespace System.Windows.Documents
             element = this.Parent as TextElement;
             if (element == null)
             {
-                throw new InvalidOperationException(SR.Get(SRID.NoScopingElement, "This TextPointer"));
+                throw new InvalidOperationException(SR.Get("SRID.NoScopingElement, "This TextPointer"));
             }
 
             return element.ReadLocalValue(formattingProperty);
@@ -2659,7 +2659,7 @@ namespace System.Windows.Documents
             elementNode = GetScopingNode() as TextTreeTextElementNode;
             if (elementNode == null)
             {
-                throw new InvalidOperationException(SR.Get(SRID.NoScopingElement, "This TextNavigator"));
+                throw new InvalidOperationException(SR.Get("SRID.NoScopingElement, "This TextNavigator"));
             }
 
             MoveToNode(_tree, elementNode, edge);
@@ -3567,7 +3567,7 @@ namespace System.Windows.Documents
                 if (position.Parent == null)
                 {
                     // 
-                    throw new InvalidOperationException(SR.Get(SRID.TextSchema_CannotInsertContentInThisPosition));
+                    throw new InvalidOperationException(SR.Get("SRID.TextSchema_CannotInsertContentInThisPosition));
                 }
 
                 // Ensure text content.
@@ -3924,7 +3924,7 @@ namespace System.Windows.Documents
                 offset = position.GetSymbolOffset() + distance;
                 if (offset < 1 || offset > position.TextContainer.InternalSymbolCount - 1)
                 {
-                    throw new ArgumentException(SR.Get(SRID.BadDistance));
+                    throw new ArgumentException(SR.Get("SRID.BadDistance));
                 }
 
                 position.TextContainer.GetNodeAndEdgeAtOffset(offset, out node, out edge);
@@ -3970,7 +3970,7 @@ namespace System.Windows.Documents
         {
             if (this.IsFrozen)
             {
-                throw new InvalidOperationException(SR.Get(SRID.TextPositionIsFrozen));
+                throw new InvalidOperationException(SR.Get("SRID.TextPositionIsFrozen));
             }
         }
 

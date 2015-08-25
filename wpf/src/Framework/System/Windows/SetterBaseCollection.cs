@@ -102,7 +102,7 @@ namespace System.Windows
         {
             if (_sealed)
             {
-                throw new InvalidOperationException(SR.Get(SRID.CannotChangeAfterSealed, "SetterBaseCollection"));
+                throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed, "SetterBaseCollection"));
             }
         }
 

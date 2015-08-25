@@ -97,7 +97,7 @@ public sealed class ZoomPercentageConverter : IValueConverter
                 {
                     // Ensure output string is formatted to current globalization standards.
                     return String.Format(CultureInfo.CurrentCulture,
-                        SR.Get(SRID.ZoomPercentageConverterStringFormat), percent);
+                        SR.Get("SRID.ZoomPercentageConverterStringFormat), percent);
                 }
             }
 

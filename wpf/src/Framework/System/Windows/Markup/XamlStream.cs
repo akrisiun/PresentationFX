@@ -180,9 +180,9 @@ namespace System.Windows.Markup
                     WritePosition = (int) (WritePosition + offset);
                     break;
                 case SeekOrigin.End:
-                    throw new NotSupportedException(SR.Get(SRID.ParserWriterNoSeekEnd));
+                    throw new NotSupportedException(SR.Get("SRID.ParserWriterNoSeekEnd));
                 default:
-                    throw new ArgumentException(SR.Get(SRID.ParserWriterUnknownOrigin));
+                    throw new ArgumentException(SR.Get("SRID.ParserWriterUnknownOrigin));
             }
 
             if( (!( WritePosition <= WriteLength ))
@@ -334,9 +334,9 @@ namespace System.Windows.Markup
                     ReadPosition = (int) (ReadPosition + offset);
                     break;
                 case SeekOrigin.End:
-                    throw new NotSupportedException(SR.Get(SRID.ParserWriterNoSeekEnd));
+                    throw new NotSupportedException(SR.Get("SRID.ParserWriterNoSeekEnd));
                 default:
-                    throw new ArgumentException(SR.Get(SRID.ParserWriterUnknownOrigin));
+                    throw new ArgumentException(SR.Get("SRID.ParserWriterUnknownOrigin));
             }
 
             // validate if at a good readPosition.

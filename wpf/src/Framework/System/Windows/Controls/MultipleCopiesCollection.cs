@@ -232,12 +232,12 @@ namespace System.Windows.Controls
 
         public int Add(object value)
         {
-            throw new NotSupportedException(SR.Get(SRID.DataGrid_ReadonlyCellsItemsSource));
+            throw new NotSupportedException(SR.Get("SRID.DataGrid_ReadonlyCellsItemsSource));
         }
 
         public void Clear()
         {
-            throw new NotSupportedException(SR.Get(SRID.DataGrid_ReadonlyCellsItemsSource));
+            throw new NotSupportedException(SR.Get("SRID.DataGrid_ReadonlyCellsItemsSource));
         }
 
         public bool Contains(object value)
@@ -262,7 +262,7 @@ namespace System.Windows.Controls
 
         public void Insert(int index, object value)
         {
-            throw new NotSupportedException(SR.Get(SRID.DataGrid_ReadonlyCellsItemsSource));
+            throw new NotSupportedException(SR.Get("SRID.DataGrid_ReadonlyCellsItemsSource));
         }
 
         public bool IsFixedSize
@@ -277,12 +277,12 @@ namespace System.Windows.Controls
 
         public void Remove(object value)
         {
-            throw new NotSupportedException(SR.Get(SRID.DataGrid_ReadonlyCellsItemsSource));
+            throw new NotSupportedException(SR.Get("SRID.DataGrid_ReadonlyCellsItemsSource));
         }
 
         void IList.RemoveAt(int index)
         {
-            throw new NotSupportedException(SR.Get(SRID.DataGrid_ReadonlyCellsItemsSource));
+            throw new NotSupportedException(SR.Get("SRID.DataGrid_ReadonlyCellsItemsSource));
         }
 
         public object this[int index]

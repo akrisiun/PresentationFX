@@ -319,7 +319,7 @@ namespace MS.Internal.Controls
             else
             {
                 throw new ArgumentOutOfRangeException("index",
-                            SR.Get(SRID.ItemCollectionRemoveArgumentOutOfRange));
+                            SR.Get("SRID.ItemCollectionRemoveArgumentOutOfRange));
             }
         }
 
@@ -716,7 +716,7 @@ namespace MS.Internal.Controls
             //  an attempt to add the same element twice to the collection
             if (LogicalTreeHelper.GetParent(node) != null)
             {
-                throw new InvalidOperationException(SR.Get(SRID.ReparentModelChildIllegal));
+                throw new InvalidOperationException(SR.Get("SRID.ReparentModelChildIllegal));
             }
             return node;
         }

@@ -109,7 +109,7 @@ namespace System.Windows.Controls
             }
             else
             {
-                throw new ArgumentException(SR.Get(SRID.AudioVideo_InvalidDependencyObject));
+                throw new ArgumentException(SR.Get("SRID.AudioVideo_InvalidDependencyObject"));
             }
         }
 
@@ -281,7 +281,7 @@ namespace System.Windows.Controls
             //
             if (_loadedBehavior != MediaState.Manual && _unloadedBehavior != MediaState.Manual)
             {
-                throw new NotSupportedException(SR.Get(SRID.AudioVideo_CannotControlMedia));
+                throw new NotSupportedException(SR.Get("SRID.AudioVideo_CannotControlMedia"));
             }
 
             _mediaState._value = mediaState;
@@ -738,7 +738,7 @@ namespace System.Windows.Controls
         {
             if (_clock._value != null)
             {
-                throw new InvalidOperationException(SR.Get(SRID.MediaElement_CannotSetSourceOnMediaElementDrivenByClock));
+                throw new InvalidOperationException(SR.Get("SRID.MediaElement_CannotSetSourceOnMediaElementDrivenByClock"));
             }
 
             _source._value = (Uri)e.NewValue;

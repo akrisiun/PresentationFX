@@ -257,7 +257,7 @@ namespace System.Windows.Data
             else
             {
                 throw new ArgumentOutOfRangeException("removeIndex",
-                            SR.Get(SRID.ItemCollectionRemoveArgumentOutOfRange));
+                            SR.Get("SRID.ItemCollectionRemoveArgumentOutOfRange));
             }
         }
 
@@ -489,7 +489,7 @@ namespace System.Windows.Data
         private void AddCollectionContainer(CollectionContainer cc)
         {
             if (InternalList.Contains(cc))
-                throw new ArgumentException(SR.Get(SRID.CollectionContainerMustBeUniqueForComposite), "cc");
+                throw new ArgumentException(SR.Get("SRID.CollectionContainerMustBeUniqueForComposite), "cc");
 
             CollectionChangedEventManager.AddHandler(cc, OnContainedCollectionChanged);
 

@@ -82,10 +82,10 @@ namespace MS.Internal.Annotations.Anchoring
             TextAnchor secondAnchor = anchor2 as TextAnchor;
 
             if ((anchor1 != null) && (firstAnchor == null))
-                throw new ArgumentException(SR.Get(SRID.WrongSelectionType), "anchor1: type = " + anchor1.GetType().ToString());
+                throw new ArgumentException(SR.Get("SRID.WrongSelectionType), "anchor1: type = " + anchor1.GetType().ToString());
 
             if ((anchor2 != null) && (secondAnchor == null))
-                throw new ArgumentException(SR.Get(SRID.WrongSelectionType), "Anchor2: type = " + anchor2.GetType().ToString());
+                throw new ArgumentException(SR.Get("SRID.WrongSelectionType), "Anchor2: type = " + anchor2.GetType().ToString());
 
             if (firstAnchor == null)
             {
@@ -242,7 +242,7 @@ namespace MS.Internal.Annotations.Anchoring
             TextAnchor anchor = selection as TextAnchor;
 
             if (anchor == null)
-                throw new ArgumentException(SR.Get(SRID.WrongSelectionType), "selection");
+                throw new ArgumentException(SR.Get("SRID.WrongSelectionType), "selection");
 
             return GetAnchorPointForPointer(anchor.Start.CreatePointer(LogicalDirection.Forward));
         }
@@ -387,7 +387,7 @@ namespace MS.Internal.Annotations.Anchoring
             {
                 TextAnchor textAnchor = selection as TextAnchor;
                 if (textAnchor == null)
-                    throw new ArgumentException(SR.Get(SRID.WrongSelectionType), "selection");
+                    throw new ArgumentException(SR.Get("SRID.WrongSelectionType), "selection");
 
                 start = textAnchor.Start;
                 end = textAnchor.End;

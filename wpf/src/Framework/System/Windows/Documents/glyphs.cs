@@ -274,35 +274,35 @@ namespace System.Windows.Documents
                 else if ('A' <= c && c <= 'F')
                     nibble = c - 'A' + 10;
                 else
-                    throw new ArgumentException(SR.Get(SRID.GlyphsCaretStopsContainsHexDigits), "CaretStops");
+                    throw new ArgumentException(SR.Get("SRID.GlyphsCaretStopsContainsHexDigits), "CaretStops");
 
                 Debug.Assert(0 <= nibble && nibble <= 15);
 
                 if ((nibble & 8) != 0)
                 {
                     if (i >= caretStops.Length)
-                        throw new ArgumentException(SR.Get(SRID.GlyphsCaretStopsLengthCorrespondsToUnicodeString), "CaretStops");
+                        throw new ArgumentException(SR.Get("SRID.GlyphsCaretStopsLengthCorrespondsToUnicodeString), "CaretStops");
                     caretStops[i] = true;
                 }
                 ++i;
                 if ((nibble & 4) != 0)
                 {
                     if (i >= caretStops.Length)
-                        throw new ArgumentException(SR.Get(SRID.GlyphsCaretStopsLengthCorrespondsToUnicodeString), "CaretStops");
+                        throw new ArgumentException(SR.Get("SRID.GlyphsCaretStopsLengthCorrespondsToUnicodeString), "CaretStops");
                     caretStops[i] = true;
                 }
                 ++i;
                 if ((nibble & 2) != 0)
                 {
                     if (i >= caretStops.Length)
-                        throw new ArgumentException(SR.Get(SRID.GlyphsCaretStopsLengthCorrespondsToUnicodeString), "CaretStops");
+                        throw new ArgumentException(SR.Get("SRID.GlyphsCaretStopsLengthCorrespondsToUnicodeString), "CaretStops");
                     caretStops[i] = true;
                 }
                 ++i;
                 if ((nibble & 1) != 0)
                 {
                     if (i >= caretStops.Length)
-                        throw new ArgumentException(SR.Get(SRID.GlyphsCaretStopsLengthCorrespondsToUnicodeString), "CaretStops");
+                        throw new ArgumentException(SR.Get("SRID.GlyphsCaretStopsLengthCorrespondsToUnicodeString), "CaretStops");
                     caretStops[i] = true;
                 }
                 ++i;
@@ -331,7 +331,7 @@ namespace System.Windows.Documents
             {
                 // Indices and UnicodeString cannot both be empty.
                 if (String.IsNullOrEmpty(UnicodeString) && String.IsNullOrEmpty(Indices))
-                    throw new ArgumentException(SR.Get(SRID.GlyphsUnicodeStringAndIndicesCannotBothBeEmpty));
+                    throw new ArgumentException(SR.Get("SRID.GlyphsUnicodeStringAndIndicesCannotBothBeEmpty));
 
                 glyphRunProperties = new LayoutDependentGlyphRunProperties();
 
@@ -432,15 +432,15 @@ namespace System.Windows.Documents
                 for (int i=0; i<firstBracket; i++)
                 {
                     if (!Char.IsWhiteSpace(valueSpec[i]))
-                        throw new ArgumentException(SR.Get(SRID.GlyphsClusterBadCharactersBeforeBracket));
+                        throw new ArgumentException(SR.Get("SRID.GlyphsClusterBadCharactersBeforeBracket));
                 }
 
                 if (inCluster)
-                    throw new ArgumentException(SR.Get(SRID.GlyphsClusterNoNestedClusters));
+                    throw new ArgumentException(SR.Get("SRID.GlyphsClusterNoNestedClusters));
 
                 int secondBracket = valueSpec.IndexOf(')');
                 if (secondBracket == -1 || secondBracket <= firstBracket + 1)
-                    throw new ArgumentException(SR.Get(SRID.GlyphsClusterNoMatchingBracket));
+                    throw new ArgumentException(SR.Get("SRID.GlyphsClusterNoMatchingBracket));
 
                 // look for colon separator
                 int colon = valueSpec.IndexOf(':');
@@ -454,7 +454,7 @@ namespace System.Windows.Documents
                 else
                 {
                     if (colon <= firstBracket + 1 || colon >= secondBracket - 1)
-                        throw new ArgumentException(SR.Get(SRID.GlyphsClusterMisplacedSeparator));
+                        throw new ArgumentException(SR.Get("SRID.GlyphsClusterMisplacedSeparator));
                     string characterClusterSpec = valueSpec.Substring(firstBracket + 1, colon - (firstBracket + 1));
                     characterClusterSize = int.Parse(characterClusterSpec, CultureInfo.InvariantCulture);
                     string glyphClusterSpec = valueSpec.Substring(colon + 1, secondBracket - (colon + 1));
@@ -491,7 +491,7 @@ namespace System.Windows.Documents
         private static void SetClusterMapEntry(ushort[] clusterMap, int index, ushort value)
         {
             if (index < 0 || index >= clusterMap.Length)
-                throw new ArgumentException(SR.Get(SRID.GlyphsUnicodeStringIsTooShort));
+                throw new ArgumentException(SR.Get("SRID.GlyphsUnicodeStringIsTooShort));
             clusterMap[index] = value;
         }
 
@@ -590,10 +590,10 @@ namespace System.Windows.Documents
                                     ref parsedGlyphData.glyphIndex))
                                 {
                                     if (String.IsNullOrEmpty(unicodeString))
-                                        throw new ArgumentException(SR.Get(SRID.GlyphsIndexRequiredIfNoUnicode));
+                                        throw new ArgumentException(SR.Get("SRID.GlyphsIndexRequiredIfNoUnicode));
 
                                     if (unicodeString.Length <= parsedCharacterCount)
-                                        throw new ArgumentException(SR.Get(SRID.GlyphsUnicodeStringIsTooShort));
+                                        throw new ArgumentException(SR.Get("SRID.GlyphsUnicodeStringIsTooShort));
 
                                     parsedGlyphData.glyphIndex = GetGlyphFromCharacter(fontFace, unicodeString[parsedCharacterCount]);
                                 }
@@ -622,7 +622,7 @@ namespace System.Windows.Documents
                                 {
                                     parsedGlyphData.advanceWidth = double.Parse(valueSpec, CultureInfo.InvariantCulture);
                                     if (parsedGlyphData.advanceWidth < 0)
-                                        throw new ArgumentException(SR.Get(SRID.GlyphsAdvanceWidthCannotBeNegative));
+                                        throw new ArgumentException(SR.Get("SRID.GlyphsAdvanceWidthCannotBeNegative));
                                 }
                                 break;
 
@@ -640,7 +640,7 @@ namespace System.Windows.Documents
 
                             default:
                                 // too many commas; can't interpret
-                                throw new ArgumentException(SR.Get(SRID.GlyphsTooManyCommas));
+                                throw new ArgumentException(SR.Get("SRID.GlyphsTooManyCommas));
                         }
                         #endregion Interpret one comma-delimited value
 
@@ -685,10 +685,10 @@ namespace System.Windows.Documents
                 while (parsedCharacterCount < unicodeString.Length)
                 {
                     if (inCluster)
-                        throw new ArgumentException(SR.Get(SRID.GlyphsIndexRequiredWithinCluster));
+                        throw new ArgumentException(SR.Get("SRID.GlyphsIndexRequiredWithinCluster));
 
                     if (unicodeString.Length <= parsedCharacterCount)
-                        throw new ArgumentException(SR.Get(SRID.GlyphsUnicodeStringIsTooShort));
+                        throw new ArgumentException(SR.Get("SRID.GlyphsUnicodeStringIsTooShort));
 
                     parsedGlyphData.glyphIndex = GetGlyphFromCharacter(fontFace, unicodeString[parsedCharacterCount]);
                     parsedGlyphData.advanceWidth = GetAdvanceWidth(fontFace, parsedGlyphData.glyphIndex, sideways);

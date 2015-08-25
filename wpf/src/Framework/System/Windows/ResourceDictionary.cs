@@ -142,7 +142,7 @@ namespace System.Windows
             {
                 if (value == null || String.IsNullOrEmpty(value.OriginalString))
                 {
-                    throw new ArgumentException(SR.Get(SRID.ResourceDictionaryLoadFromFailure, value == null ? "''" : value.ToString()));
+                    throw new ArgumentException(SR.Get("SRID.ResourceDictionaryLoadFromFailure", value == null ? "''" : value.ToString()));
                 }
 
                 _source = value;
@@ -206,7 +206,7 @@ namespace System.Windows
 
                 if (loadedRD == null)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.ResourceDictionaryLoadFromFailure, _source.ToString()));
+                    throw new InvalidOperationException(SR.Get("SRID.ResourceDictionaryLoadFromFailure", _source.ToString()));
                 }
 
                 // ReferenceCopy all the key-value pairs in the _baseDictionary
@@ -255,7 +255,7 @@ namespace System.Windows
         /// <param name="scopedElement">Element where name is defined</param>
         public void RegisterName(string name, object scopedElement)
         {
-            throw new NotSupportedException(SR.Get(SRID.NamesNotSupportedInsideResourceDictionary));
+            throw new NotSupportedException(SR.Get("SRID.NamesNotSupportedInsideResourceDictionary"));
         }
 
         /// <summary>
@@ -393,7 +393,7 @@ namespace System.Windows
         {
             if (IsReadOnly)
             {
-                throw new InvalidOperationException(SR.Get(SRID.ResourceDictionaryIsReadOnly));
+                throw new InvalidOperationException(SR.Get("SRID.ResourceDictionaryIsReadOnly"));
             }
 
             object oldValue = _baseDictionary[key];
@@ -404,14 +404,14 @@ namespace System.Windows
                 // to the old resource before we overwrite it.
                 ValidateDeferredResourceReferences(key);
 
-                if( TraceResourceDictionary.IsEnabled )
-                {
-                    TraceResourceDictionary.Trace( TraceEventType.Start,
-                                                   TraceResourceDictionary.AddResource,
-                                                   this,
-                                                   key,
-                                                   value );
-                }
+                //if( TraceResourceDictionary.IsEnabled )
+                //{
+                //    TraceResourceDictionary.Trace( TraceEventType.Start,
+                //                                   TraceResourceDictionary.AddResource,
+                //                                   this,
+                //                                   key,
+                //                                   value );
+                //}
 
 
                 _baseDictionary[key] = value;
@@ -422,15 +422,15 @@ namespace System.Windows
                 // Notify owners of the change and fire invalidate if already initialized
                 NotifyOwners(new ResourcesChangeInfo(key));
 
-                if( TraceResourceDictionary.IsEnabled )
-                {
-                    TraceResourceDictionary.Trace(
-                                                  TraceEventType.Stop,
-                                                  TraceResourceDictionary.AddResource,
-                                                  this,
-                                                  key,
-                                                  value );
-                }
+                //if( TraceResourceDictionary.IsEnabled )
+                //{
+                //    TraceResourceDictionary.Trace(
+                //                                  TraceEventType.Stop,
+                //                                  TraceResourceDictionary.AddResource,
+                //                                  this,
+                //                                  key,
+                //                                  value );
+                //}
 
 
             }
@@ -585,17 +585,17 @@ namespace System.Windows
         {
             if (IsReadOnly)
             {
-                throw new InvalidOperationException(SR.Get(SRID.ResourceDictionaryIsReadOnly));
+                throw new InvalidOperationException(SR.Get("SRID.ResourceDictionaryIsReadOnly"));
             }
 
-            if( TraceResourceDictionary.IsEnabled )
-            {
-                TraceResourceDictionary.Trace( TraceEventType.Start,
-                                               TraceResourceDictionary.AddResource,
-                                               this,
-                                               key,
-                                               value );
-            }
+            //if( TraceResourceDictionary.IsEnabled )
+            //{
+            //    TraceResourceDictionary.Trace( TraceEventType.Start,
+            //                                   TraceResourceDictionary.AddResource,
+            //                                   this,
+            //                                   key,
+            //                                   value );
+            //}
 
 
             _baseDictionary.Add(key, value);
@@ -606,14 +606,14 @@ namespace System.Windows
             // Notify owners of the change and fire invalidate if already initialized
             NotifyOwners(new ResourcesChangeInfo(key));
 
-            if( TraceResourceDictionary.IsEnabled )
-            {
-                TraceResourceDictionary.Trace( TraceEventType.Stop,
-                                               TraceResourceDictionary.AddResource,
-                                               this,
-                                               key,
-                                               value );
-            }
+            //if( TraceResourceDictionary.IsEnabled )
+            //{
+            //    TraceResourceDictionary.Trace( TraceEventType.Stop,
+            //                                   TraceResourceDictionary.AddResource,
+            //                                   this,
+            //                                   key,
+            //                                   value );
+            //}
 
         }
 
@@ -639,7 +639,7 @@ namespace System.Windows
         {
             if (IsReadOnly)
             {
-                throw new InvalidOperationException(SR.Get(SRID.ResourceDictionaryIsReadOnly));
+                throw new InvalidOperationException(SR.Get("SRID.ResourceDictionaryIsReadOnly"));
             }
 
             if (Count > 0)
@@ -767,7 +767,7 @@ namespace System.Windows
         {
             if (IsReadOnly)
             {
-                throw new InvalidOperationException(SR.Get(SRID.ResourceDictionaryIsReadOnly));
+                throw new InvalidOperationException(SR.Get("SRID.ResourceDictionaryIsReadOnly"));
             }
 
             // We need to validate all the deferred references that refer
@@ -878,7 +878,7 @@ namespace System.Windows
             // Nested BeginInits on the same instance aren't permitted
             if (IsInitializePending)
             {
-                throw new InvalidOperationException(SR.Get(SRID.NestedBeginInitNotSupported));
+                throw new InvalidOperationException(SR.Get("SRID.NestedBeginInitNotSupported"));
             }
 
             IsInitializePending = true;
@@ -897,7 +897,7 @@ namespace System.Windows
             // EndInit without a BeginInit isn't permitted
             if (!IsInitializePending)
             {
-                throw new InvalidOperationException(SR.Get(SRID.EndInitWithoutBeginInitNotSupported));
+                throw new InvalidOperationException(SR.Get("SRID.EndInitWithoutBeginInitNotSupported"));
             }
             Debug.Assert(IsInitialized == false, "Dictionary should not be initialized when EndInit is called");
 
@@ -970,30 +970,30 @@ namespace System.Windows
 
             try
             {
-                if (TraceResourceDictionary.IsEnabled)
-                {
-                    TraceResourceDictionary.Trace(
-                        TraceEventType.Start,
-                        TraceResourceDictionary.RealizeDeferContent,
-                        this,
-                        key,
-                        value);
-                }
+                //if (TraceResourceDictionary.IsEnabled)
+                //{
+                //    TraceResourceDictionary.Trace(
+                //        TraceEventType.Start,
+                //        TraceResourceDictionary.RealizeDeferContent,
+                //        this,
+                //        key,
+                //        value);
+                //}
 
                 value = CreateObject(keyRecord);
 
             }
             finally
             {
-                if (TraceResourceDictionary.IsEnabled)
-                {
-                    TraceResourceDictionary.Trace(
-                        TraceEventType.Stop,
-                        TraceResourceDictionary.RealizeDeferContent,
-                        this,
-                        key,
-                        value);
-                }
+                //if (TraceResourceDictionary.IsEnabled)
+                //{
+                //    TraceResourceDictionary.Trace(
+                //        TraceEventType.Stop,
+                //        TraceResourceDictionary.RealizeDeferContent,
+                //        this,
+                //        key,
+                //        value);
+                //}
 
             }
 
@@ -1063,12 +1063,12 @@ namespace System.Windows
                 }
                 else
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.ResourceDictionaryDuplicateDeferredContent));
+                    throw new InvalidOperationException(SR.Get("SRID.ResourceDictionaryDuplicateDeferredContent"));
                 }
             }
             else if (keys.Count > 0)
             {
-                throw new InvalidOperationException(SR.Get(SRID.ResourceDictionaryDeferredContentFailure));
+                throw new InvalidOperationException(SR.Get("SRID.ResourceDictionaryDeferredContentFailure"));
             }
         }
 
@@ -1167,18 +1167,18 @@ namespace System.Windows
 
                     _baseDictionary.Add(value, keyRecord);
 
-                    if (TraceResourceDictionary.IsEnabled)
-                    {
-                        TraceResourceDictionary.TraceActivityItem(
-                            TraceResourceDictionary.SetKey,
-                            this,
-                            value);
-                    }
+                    //if (TraceResourceDictionary.IsEnabled)
+                    //{
+                    //    TraceResourceDictionary.TraceActivityItem(
+                    //        TraceResourceDictionary.SetKey,
+                    //        this,
+                    //        value);
+                    //}
 
                 }
                 else
                 {
-                    throw new ArgumentException(SR.Get(SRID.KeyCollectionHasInvalidKey));
+                    throw new ArgumentException(SR.Get("SRID.KeyCollectionHasInvalidKey"));
                 }
             }
 
@@ -1417,7 +1417,7 @@ namespace System.Windows
                 }
                 else if (_ownerFEs.Contains(fe) && ContainsCycle(this))
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.ResourceDictionaryInvalidMergedDictionary));
+                    throw new InvalidOperationException(SR.Get("SRID.ResourceDictionaryInvalidMergedDictionary"));
                 }
 
                 // Propagate the HasImplicitStyles flag to the new owner
@@ -1439,7 +1439,7 @@ namespace System.Windows
                     }
                     else if (_ownerFCEs.Contains(fce) && ContainsCycle(this))
                     {
-                        throw new InvalidOperationException(SR.Get(SRID.ResourceDictionaryInvalidMergedDictionary));
+                        throw new InvalidOperationException(SR.Get("SRID.ResourceDictionaryInvalidMergedDictionary"));
                     }
 
                     // Propagate the HasImplicitStyles flag to the new owner
@@ -1461,7 +1461,7 @@ namespace System.Windows
                         }
                         else if (_ownerApps.Contains(app) && ContainsCycle(this))
                         {
-                            throw new InvalidOperationException(SR.Get(SRID.ResourceDictionaryInvalidMergedDictionary));
+                            throw new InvalidOperationException(SR.Get("SRID.ResourceDictionaryInvalidMergedDictionary"));
                         }
 
                         // Propagate the HasImplicitStyles flag to the new owner

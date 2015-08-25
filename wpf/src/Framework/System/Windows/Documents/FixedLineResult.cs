@@ -56,7 +56,7 @@ namespace System.Windows.Documents
 
             if (o.GetType() != typeof(FixedLineResult))
             {
-                throw new ArgumentException(SR.Get(SRID.UnexpectedParameterType, o.GetType(), typeof(FixedLineResult)), "o");
+                throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType, o.GetType(), typeof(FixedLineResult)), "o");
             }
 
             FixedLineResult lineResult = (FixedLineResult)o;

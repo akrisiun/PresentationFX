@@ -374,7 +374,7 @@ namespace System.Windows.Data
 
             if (request == null)
             {
-                throw new Exception(SR.Get(SRID.WebRequestCreationFailed));
+                throw new Exception(SR.Get("SRID.WebRequestCreationFailed));
             }
 
             // load it on a worker thread ?
@@ -580,7 +580,7 @@ namespace System.Windows.Data
                 WebResponse response = WpfWebRequestHelper.GetResponse(request);
                 if (response == null)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.GetResponseFailed));
+                    throw new InvalidOperationException(SR.Get("SRID.GetResponseFailed));
                 }
 
                 // Get Stream and content type from WebResponse.

@@ -233,7 +233,7 @@ namespace System.Windows.Interop
         [SecurityCritical, UIPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
         protected virtual IKeyboardInputSite RegisterKeyboardInputSinkCore(IKeyboardInputSink sink)
         {
-            throw new InvalidOperationException(SR.Get(SRID.HwndHostDoesNotSupportChildKeyboardSinks));
+            throw new InvalidOperationException(SR.Get("SRID.HwndHostDoesNotSupportChildKeyboardSinks));
         }
 
         /// <SecurityNote>
@@ -1160,20 +1160,20 @@ namespace System.Windows.Interop
 
             if(_hwnd.Handle == IntPtr.Zero || !UnsafeNativeMethods.IsWindow(_hwnd))
             {
-                throw new InvalidOperationException(SR.Get(SRID.ChildWindowNotCreated));
+                throw new InvalidOperationException(SR.Get("SRID.ChildWindowNotCreated));
             }
 
             // Make sure that the window that was created is indeed a child window.
             int windowStyle = UnsafeNativeMethods.GetWindowLong(new HandleRef(this,_hwnd.Handle), NativeMethods.GWL_STYLE);
             if((windowStyle & NativeMethods.WS_CHILD) == 0)
             {
-                throw new InvalidOperationException(SR.Get(SRID.HostedWindowMustBeAChildWindow));
+                throw new InvalidOperationException(SR.Get("SRID.HostedWindowMustBeAChildWindow));
             }
 
             // Make sure the child window is the child of the expected parent window.
             if(hwndParent.Handle != UnsafeNativeMethods.GetParent(_hwnd))
             {
-                throw new InvalidOperationException(SR.Get(SRID.ChildWindowMustHaveCorrectParent));
+                throw new InvalidOperationException(SR.Get("SRID.ChildWindowMustHaveCorrectParent));
             }
 
             // Only subclass the child HWND if it is owned by our thread.

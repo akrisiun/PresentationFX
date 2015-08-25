@@ -67,7 +67,7 @@ namespace System.Windows.Markup
                 // if the caller is not the XAML parser, don't answer.   This avoids
                 // returning an arbitrary delegate to a (possibly malicious) caller.
                 // See Dev11 629384.
-                throw new ArgumentException(SR.Get(SRID.TextRange_InvalidParameterValue), "typeDescriptorContext");
+                throw new ArgumentException(SR.Get("SRID.TextRange_InvalidParameterValue), "typeDescriptorContext");
             }
             IRootObjectProvider rootProvider = typeDescriptorContext.GetService(typeof(IRootObjectProvider)) as IRootObjectProvider;
             if (rootProvider != null && source is String)

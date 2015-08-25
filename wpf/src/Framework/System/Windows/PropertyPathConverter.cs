@@ -117,7 +117,7 @@ namespace System.Windows
             }
 
             #pragma warning suppress 6506 // source is obviously not null
-            throw new ArgumentException(SR.Get(SRID.CannotConvertType, source.GetType().FullName, typeof(PropertyPath)));
+            throw new ArgumentException(SR.Get("SRID.CannotConvertType, source.GetType().FullName, typeof(PropertyPath)));
         }
 
         /// <summary>
@@ -155,13 +155,13 @@ namespace System.Windows
 
             if (destinationType != typeof(String))
             {
-                throw new ArgumentException(SR.Get(SRID.CannotConvertType, typeof(PropertyPath), destinationType.FullName));
+                throw new ArgumentException(SR.Get("SRID.CannotConvertType, typeof(PropertyPath), destinationType.FullName));
             }
 
             PropertyPath path = value as PropertyPath;
             if (path == null)
             {
-                throw new ArgumentException(SR.Get(SRID.UnexpectedParameterType, value.GetType(), typeof(PropertyPath)), "value");
+                throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType, value.GetType(), typeof(PropertyPath)), "value");
             }
 
             if (path.PathParameters.Count == 0)

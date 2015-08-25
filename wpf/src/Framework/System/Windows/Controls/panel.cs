@@ -93,14 +93,14 @@ namespace System.Windows.Controls
             }
             if(IsItemsHost)
             {
-                throw new InvalidOperationException(SR.Get(SRID.Panel_BoundPanel_NoChildren));
+                throw new InvalidOperationException(SR.Get("SRID.Panel_BoundPanel_NoChildren));
             }
 
             UIElement uie = value as UIElement;
 
             if (uie == null)
             {
-                throw new ArgumentException(SR.Get(SRID.UnexpectedParameterType, value.GetType(), typeof(UIElement)), "value");
+                throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType, value.GetType(), typeof(UIElement)), "value");
             }
 
             Children.Add(uie);
@@ -384,7 +384,7 @@ namespace System.Windows.Controls
         {
             if (_uiElementCollection == null)
             {
-                throw new ArgumentOutOfRangeException("index", index, SR.Get(SRID.Visual_ArgumentOutOfRange));
+                throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange));
             }
 
             if (IsZStateDirty) { RecomputeZState(); }
@@ -583,7 +583,7 @@ namespace System.Windows.Controls
             if (itemsOwner == null)
             {
                 // This can happen if IsItemsHost=true, but the panel is not nested in an ItemsControl
-                throw new InvalidOperationException(SR.Get(SRID.Panel_ItemsControlNotFound));
+                throw new InvalidOperationException(SR.Get("SRID.Panel_ItemsControlNotFound));
             }
 
             IItemContainerGenerator itemsOwnerGenerator = itemsOwner.ItemContainerGenerator;

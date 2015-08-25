@@ -391,7 +391,7 @@ namespace System.Windows.Controls
             if (    (_localAdornerDecorator == null)
                 ||  (index != 0))
             {
-                throw new ArgumentOutOfRangeException("index", index, SR.Get(SRID.Visual_ArgumentOutOfRange));
+                throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange));
             }
 
             return _localAdornerDecorator;
@@ -1916,7 +1916,7 @@ namespace System.Windows.Controls
                 Double.IsInfinity(point.X)||
                 Double.IsInfinity(point.Y) )
             {
-                    throw new ArgumentException(SR.Get(SRID.InvalidPoint), "point");
+                    throw new ArgumentException(SR.Get("SRID.InvalidPoint), "point");
             }
 
 
@@ -2605,7 +2605,7 @@ namespace System.Windows.Controls
             // Use temp variables to reduce code under elevation
             ExecutedRoutedEventHandler pasteExecuteEventHandler = new ExecutedRoutedEventHandler(_OnCommandExecuted);
             CanExecuteRoutedEventHandler pasteQueryEnabledEventHandler = new CanExecuteRoutedEventHandler(_OnQueryCommandEnabled);
-            InputGesture pasteInputGesture = KeyGesture.CreateFromResourceStrings(SR.Get(SRID.KeyShiftInsert), SR.Get(SRID.KeyShiftInsertDisplayString));
+            InputGesture pasteInputGesture = KeyGesture.CreateFromResourceStrings(SR.Get("SRID.KeyShiftInsert), SR.Get("SRID.KeyShiftInsertDisplayString));
 
             new UIPermission(UIPermissionClipboard.AllClipboard).Assert(); // BlessedAssert:
             try

@@ -66,7 +66,7 @@ namespace System.Windows.Automation.Peers
         /// <returns></returns>
         protected override string GetLocalizedControlTypeCore()
         {
-            return IsDayButton ? SR.Get(SRID.CalendarAutomationPeer_DayButtonLocalizedControlType) : SR.Get(SRID.CalendarAutomationPeer_CalendarButtonLocalizedControlType);
+            return IsDayButton ? SR.Get("SRID.CalendarAutomationPeer_DayButtonLocalizedControlType) : SR.Get("SRID.CalendarAutomationPeer_CalendarButtonLocalizedControlType);
         }
 
         #endregion Protected Methods

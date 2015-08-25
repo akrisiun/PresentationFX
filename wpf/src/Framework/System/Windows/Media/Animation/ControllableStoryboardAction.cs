@@ -47,7 +47,7 @@ public abstract class ControllableStoryboardAction : TriggerAction
         {
             if (IsSealed)
             {
-                throw new InvalidOperationException(SR.Get(SRID.CannotChangeAfterSealed, "ControllableStoryboardAction"));
+                throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed, "ControllableStoryboardAction"));
             }
 
             // Null is allowed to wipe out existing name - as long as another
@@ -94,7 +94,7 @@ public abstract class ControllableStoryboardAction : TriggerAction
     {
         if( BeginStoryboardName == null )
         {
-            throw new InvalidOperationException(SR.Get(SRID.Storyboard_BeginStoryboardNameRequired));
+            throw new InvalidOperationException(SR.Get("SRID.Storyboard_BeginStoryboardNameRequired));
         }
 
         BeginStoryboard keyedBeginStoryboard = Storyboard.ResolveBeginStoryboardName( BeginStoryboardName, nameScope, fe, fce );
@@ -103,7 +103,7 @@ public abstract class ControllableStoryboardAction : TriggerAction
 
         if( storyboard == null )
         {
-            throw new InvalidOperationException(SR.Get(SRID.Storyboard_BeginStoryboardNoStoryboard, BeginStoryboardName));
+            throw new InvalidOperationException(SR.Get("SRID.Storyboard_BeginStoryboardNoStoryboard, BeginStoryboardName));
         }
         
         return storyboard;

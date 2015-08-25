@@ -1285,7 +1285,7 @@ namespace System.Windows.Data
                                 TraceData.Trace(TraceEventType.Critical, TraceData.RequiresExplicitCulture, TargetProperty.Name, this);
                             }
 
-                            throw new InvalidOperationException(SR.Get(SRID.RequiresExplicitCulture, TargetProperty.Name));
+                            throw new InvalidOperationException(SR.Get("SRID.RequiresExplicitCulture, TargetProperty.Name));
                         }
 
                         // cache CultureInfo since requerying an inheritable property on every Transfer/Update can be quite expensive
@@ -1826,7 +1826,7 @@ namespace System.Windows.Data
             else
             {
                 if (root.BindingGroup != bg)
-                    throw new InvalidOperationException(SR.Get(SRID.BindingGroup_CannotChangeGroups));
+                    throw new InvalidOperationException(SR.Get("SRID.BindingGroup_CannotChangeGroups));
             }
         }
 
@@ -2099,7 +2099,7 @@ namespace System.Windows.Data
         {
             if (IsDetached && status != _status)
             {
-                throw new InvalidOperationException(SR.Get(SRID.BindingExpressionStatusChanged, _status, status));
+                throw new InvalidOperationException(SR.Get("SRID.BindingExpressionStatusChanged, _status, status));
             }
 
             _status = status;

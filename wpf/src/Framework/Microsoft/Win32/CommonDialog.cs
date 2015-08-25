@@ -97,7 +97,7 @@ namespace Microsoft.Win32
             // (for example, if we're running as a service)
             if (!Environment.UserInteractive)
             {
-                throw new InvalidOperationException(SR.Get(SRID.CantShowModalOnNonInteractive));
+                throw new InvalidOperationException(SR.Get("SRID.CantShowModalOnNonInteractive"));
             }
 
             // Call GetActiveWindow to retrieve the window handle to the active window
@@ -180,7 +180,7 @@ namespace Microsoft.Win32
             // (for example, if we're running as a service)
             if (!Environment.UserInteractive)
             {
-                throw new InvalidOperationException(SR.Get(SRID.CantShowModalOnNonInteractive));
+                throw new InvalidOperationException(SR.Get("SRID.CantShowModalOnNonInteractive"));
             }
 
             // Get the handle of the owner window using WindowInteropHelper.
@@ -296,7 +296,7 @@ namespace Microsoft.Win32
             // This mitigates multi-threaded attacks without having to make the file dialogs thread-safe.
             if (_thread != Thread.CurrentThread)
             {
-                throw new InvalidOperationException(SR.Get(SRID.CantShowOnDifferentThread));
+                throw new InvalidOperationException(SR.Get("SRID.CantShowOnDifferentThread"));
             }
 
             SecurityHelper.DemandUIWindowPermission();

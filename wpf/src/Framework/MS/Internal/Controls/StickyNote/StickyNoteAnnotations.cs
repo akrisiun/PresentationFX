@@ -939,7 +939,7 @@ namespace System.Windows.Controls
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.AddAnnotationsNotImplemented));
+                throw new InvalidOperationException(SR.Get("SRID.AddAnnotationsNotImplemented));
             }
         }
 
@@ -969,7 +969,7 @@ namespace System.Windows.Controls
             }
             else
             {
-                throw new ArgumentException(SR.Get(SRID.InvalidValueSpecified), "attachedAnnotation");
+                throw new ArgumentException(SR.Get("SRID.InvalidValueSpecified), "attachedAnnotation");
             }
         }
 
@@ -981,7 +981,7 @@ namespace System.Windows.Controls
         /// <param name="previousAttachmentLevel">The previous attachment level of the attached annotation.</param>
         void IAnnotationComponent.ModifyAttachedAnnotation(IAttachedAnnotation attachedAnnotation, object previousAttachedAnchor, AttachmentLevel previousAttachmentLevel)
         {
-            throw new NotSupportedException(SR.Get(SRID.NotSupported));
+            throw new NotSupportedException(SR.Get("SRID.NotSupported));
         }
 
         /// <summary>
@@ -1032,7 +1032,7 @@ namespace System.Windows.Controls
 
                 if (double.IsInfinity(anchor.X) || double.IsInfinity(anchor.Y))
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.InvalidAnchorPosition));
+                    throw new InvalidOperationException(SR.Get("SRID.InvalidAnchorPosition));
                 }
 
                 if ((double.IsNaN(anchor.X)) || (double.IsNaN(anchor.Y)))
@@ -1313,7 +1313,7 @@ namespace System.Windows.Controls
             bool hasTextData = sncAnnotation.HasTextData;
             if (hasInkData && hasTextData)
             {
-                throw new ArgumentException(SR.Get(SRID.InvalidStickyNoteAnnotation), "attachedAnnotation");
+                throw new ArgumentException(SR.Get("SRID.InvalidStickyNoteAnnotation), "attachedAnnotation");
             }
             else if (hasInkData)
             {

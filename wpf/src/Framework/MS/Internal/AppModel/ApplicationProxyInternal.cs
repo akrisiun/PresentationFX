@@ -111,7 +111,7 @@ namespace MS.Internal.AppModel
 
             if (_proxyInstance != null)
             {
-                throw new InvalidOperationException(SR.Get(SRID.MultiSingleton, this.GetType().FullName));
+                throw new InvalidOperationException(SR.Get("SRID.MultiSingleton", this.GetType().FullName));
             }
             // Set this here so it will be true for documents or applications (i.e. anything in the browser.)
             BrowserInteropHelper.SetBrowserHosted(true);

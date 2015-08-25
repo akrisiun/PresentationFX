@@ -113,13 +113,13 @@ namespace System.Windows
                 // visual triggers. It is an error to specify the OverridesDefaultStyle  in your own ThemeStyle.
                 if (StyleHelper.IsSetOnContainer(FrameworkElement.OverridesDefaultStyleProperty, ref newThemeStyle.ContainerDependents, true))
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.CannotHaveOverridesDefaultStyleInThemeStyle));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotHaveOverridesDefaultStyleInThemeStyle));
                 }
                 // Check if the theme style has EventHandlers set on the target tag or int its setter collection.
                 // We do not support EventHandlers in a ThemeStyle
                 if (newThemeStyle.HasEventSetters)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.CannotHaveEventHandlersInThemeStyle));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotHaveEventHandlersInThemeStyle));
                 }
 #pragma warning restore 6503
             }
@@ -450,35 +450,35 @@ namespace System.Windows
             if (StyleHelper.IsSetOnContainer(Control.TemplateProperty, ref containerDependents, true) ||
                 StyleHelper.IsSetOnContainer(ContentPresenter.TemplateProperty, ref containerDependents, true))
             {
-                throw new InvalidOperationException(SR.Get(SRID.CannotHavePropertyInTemplate, Control.TemplateProperty.Name));
+                throw new InvalidOperationException(SR.Get("SRID.CannotHavePropertyInTemplate, Control.TemplateProperty.Name));
             }
 
             // Check if the template has the Style property set on the container via its visual triggers.
             // It is an error to specify the StyleProperty in your own Template.
             if (StyleHelper.IsSetOnContainer(FrameworkElement.StyleProperty, ref containerDependents, true))
             {
-                throw new InvalidOperationException(SR.Get(SRID.CannotHavePropertyInTemplate, FrameworkElement.StyleProperty.Name));
+                throw new InvalidOperationException(SR.Get("SRID.CannotHavePropertyInTemplate, FrameworkElement.StyleProperty.Name));
             }
 
             // Check if the template has the DefaultStyleKey property set on the container via its visual triggers.
             // It is an error to specify the DefaultStyleKeyProperty in your own Template.
             if (StyleHelper.IsSetOnContainer(FrameworkElement.DefaultStyleKeyProperty, ref containerDependents, true))
             {
-                throw new InvalidOperationException(SR.Get(SRID.CannotHavePropertyInTemplate, FrameworkElement.DefaultStyleKeyProperty.Name));
+                throw new InvalidOperationException(SR.Get("SRID.CannotHavePropertyInTemplate, FrameworkElement.DefaultStyleKeyProperty.Name));
             }
 
             // Check if the template has the OverridesDefaultStyle property set on the container via its visual triggers.
             // It is an error to specify the OverridesDefaultStyleProperty in your own Template.
             if (StyleHelper.IsSetOnContainer(FrameworkElement.OverridesDefaultStyleProperty, ref containerDependents, true))
             {
-                throw new InvalidOperationException(SR.Get(SRID.CannotHavePropertyInTemplate, FrameworkElement.OverridesDefaultStyleProperty.Name));
+                throw new InvalidOperationException(SR.Get("SRID.CannotHavePropertyInTemplate, FrameworkElement.OverridesDefaultStyleProperty.Name));
             }
 
             // Check if the template has the Name property set on the container via its visual triggers.
             // It is an error to specify the Name in your own Template.
             if (StyleHelper.IsSetOnContainer(FrameworkElement.NameProperty, ref containerDependents, true))
             {
-                throw new InvalidOperationException(SR.Get(SRID.CannotHavePropertyInTemplate, FrameworkElement.NameProperty.Name));
+                throw new InvalidOperationException(SR.Get("SRID.CannotHavePropertyInTemplate, FrameworkElement.NameProperty.Name));
             }
         }
 
@@ -515,7 +515,7 @@ namespace System.Windows
             int childIndex = QueryChildIndexFromChildName(propertyValue.ChildName, childIndexFromChildName);
             if (childIndex == -1)
             {
-                throw new InvalidOperationException(SR.Get(SRID.NameNotFound, propertyValue.ChildName));
+                throw new InvalidOperationException(SR.Get("SRID.NameNotFound, propertyValue.ChildName));
             }
 
             object value = propertyValue.ValueInternal;
@@ -568,7 +568,7 @@ namespace System.Windows
 
                             if (propertyValue.Conditions[i].Property == null)
                             {
-                                throw new InvalidOperationException(SR.Get(SRID.MissingTriggerProperty));
+                                throw new InvalidOperationException(SR.Get("SRID.MissingTriggerProperty));
                             }
                             int index = triggerSourceRecordMap.EnsureEntry(propertyValue.Conditions[i].Property.GlobalIndex);
                             AddPropertyDependent(childIndex, propertyValue.Property,
@@ -990,7 +990,7 @@ namespace System.Windows
                             }
                             else
                             {
-                                throw new InvalidOperationException(SR.Get(SRID.UnsupportedTriggerInTemplate, triggerBase.GetType().Name));
+                                throw new InvalidOperationException(SR.Get("SRID.UnsupportedTriggerInTemplate, triggerBase.GetType().Name));
                             }
                         }
                     }
@@ -1007,7 +1007,7 @@ namespace System.Windows
                     }
                     else
                     {
-                        throw new InvalidOperationException(SR.Get(SRID.UnsupportedTriggerInTemplate, triggerBase.GetType().Name));
+                        throw new InvalidOperationException(SR.Get("SRID.UnsupportedTriggerInTemplate, triggerBase.GetType().Name));
                     }
                 }
             }
@@ -1095,7 +1095,7 @@ namespace System.Windows
 
                 if( childIndex == -1 )
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.EventTriggerTargetNameUnresolvable, eventTrigger.SourceName));
+                    throw new InvalidOperationException(SR.Get("SRID.EventTriggerTargetNameUnresolvable, eventTrigger.SourceName));
                 }
 
                 eventTrigger.TriggerChildIndex = childIndex;
@@ -1604,7 +1604,7 @@ namespace System.Windows
                         else
                         {
                             Debug.Assert(!freezable.CanFreeze, "If a freezable could have been frozen it would have been done by now.");
-                            throw new InvalidOperationException(SR.Get(SRID.CrossThreadAccessOfUnshareableFreezable, freezable.GetType().FullName));
+                            throw new InvalidOperationException(SR.Get("SRID.CrossThreadAccessOfUnshareableFreezable, freezable.GetType().FullName));
                         }
                     }
 
@@ -2088,7 +2088,7 @@ namespace System.Windows
                             // Same Style, Same type, on a chain of Style-created nodes.
                             //  This is bad news since this chain will continue indefinitely.
                             throw new InvalidOperationException(
-                                SR.Get(SRID.TemplateCircularReferenceFound, name, walkNode.GetType()));
+                                SR.Get("SRID.TemplateCircularReferenceFound, name, walkNode.GetType()));
                         }
                     }
                 }
@@ -2345,7 +2345,7 @@ namespace System.Windows
             }
             else if (throwIfNeither && !(d is System.Windows.Media.Media3D.Visual3D) )
             {
-                throw new InvalidOperationException(SR.Get(SRID.MustBeFrameworkDerived, d.GetType()));
+                throw new InvalidOperationException(SR.Get("SRID.MustBeFrameworkDerived, d.GetType()));
             }
             else
             {
@@ -4055,7 +4055,7 @@ namespace System.Windows
 
                         if (child == null)
                         {
-                            throw new InvalidOperationException(SR.Get(SRID.ChildTemplateInstanceDoesNotExist));
+                            throw new InvalidOperationException(SR.Get("SRID.ChildTemplateInstanceDoesNotExist));
                         }
                     }
 
@@ -5275,14 +5275,14 @@ namespace System.Windows
 
             if (childIndexFromChildName.Contains(childName))
             {
-                throw new ArgumentException(SR.Get(SRID.NameScopeDuplicateNamesNotAllowed, childName));
+                throw new ArgumentException(SR.Get("SRID.NameScopeDuplicateNamesNotAllowed, childName));
             }
 
             // Normal templated child check
             // If we're about to give out an index that we can't support, throw.
             if (lastChildIndex >= 0xFFFF)
             {
-                throw new InvalidOperationException(SR.Get(SRID.StyleHasTooManyElements));
+                throw new InvalidOperationException(SR.Get("SRID.StyleHasTooManyElements));
             }
 
             // No index found, allocate

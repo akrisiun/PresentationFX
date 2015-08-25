@@ -778,7 +778,7 @@ namespace System.Windows.Markup
                 if (null != _writeCache[(int)record.RecordType])
                 {
                     // This is really an internal error.
-                    throw new InvalidOperationException(SR.Get(SRID.ParserMultiBamls));
+                    throw new InvalidOperationException(SR.Get("SRID.ParserMultiBamls"));
                 }
                 _writeCache[(int)record.RecordType] = record;
             }
@@ -2699,7 +2699,7 @@ namespace System.Windows.Markup
 
             if (!converted)
             {
-                throw new XamlParseException(SR.Get(SRID.ParserBadString, Value, ValueType.Name));
+                throw new XamlParseException(SR.Get("SRID.ParserBadString", Value, ValueType.Name));
             }
         }
 
@@ -4595,7 +4595,7 @@ namespace System.Windows.Markup
                 // Make sure we don't intrude on the Flags portion of the assembly ID
                 if (_assemblyId > 0x0FFF)
                 {
-                    throw new XamlParseException(SR.Get(SRID.ParserTooManyAssemblies));
+                    throw new XamlParseException(SR.Get("SRID.ParserTooManyAssemblies"));
                 }
                 _assemblyId = value;
             }

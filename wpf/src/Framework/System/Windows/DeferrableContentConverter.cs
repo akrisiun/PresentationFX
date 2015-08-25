@@ -50,7 +50,7 @@ namespace System.Windows
                 Baml2006SchemaContext schemaContext = xamlSchemaContext as Baml2006SchemaContext;
                 if (schemaContext == null)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.ExpectedBamlSchemaContext));
+                    throw new InvalidOperationException(SR.Get("SRID.ExpectedBamlSchemaContext));
                 }
 
                 IXamlObjectWriterFactory objectWriterFactory =
@@ -63,7 +63,7 @@ namespace System.Windows
                 ResourceDictionary dictionary = ipvt.TargetObject as ResourceDictionary;
                 if (dictionary == null)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.ExpectedResourceDictionaryTarget));
+                    throw new InvalidOperationException(SR.Get("SRID.ExpectedResourceDictionaryTarget));
                 }
 
                 Stream stream = value as Stream;
@@ -77,7 +77,7 @@ namespace System.Windows
                 }
                 if (stream == null)
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.ExpectedBinaryContent));
+                    throw new InvalidOperationException(SR.Get("SRID.ExpectedBinaryContent));
                 }
 
                 // 
@@ -94,7 +94,7 @@ namespace System.Windows
             T result = provider.GetService(typeof(T)) as T;
             if (result == null)
             {
-                throw new InvalidOperationException(SR.Get(SRID.DeferringLoaderNoContext, typeof(DeferrableContentConverter).Name, typeof(T).Name));
+                throw new InvalidOperationException(SR.Get("SRID.DeferringLoaderNoContext, typeof(DeferrableContentConverter).Name, typeof(T).Name));
             }
             return result;
         }

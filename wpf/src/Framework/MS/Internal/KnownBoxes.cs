@@ -10,7 +10,7 @@ namespace MS.Internal.KnownBoxes
         {
             if (width < 0 || height < 0)
             {
-                throw new System.ArgumentException(SR.Get(SRID.Rect_WidthAndHeightCannotBeNegative));
+                throw new System.ArgumentException(SR.Get("SRID.Rect_WidthAndHeightCannotBeNegative"));
             }
 
             _width = width;
@@ -29,7 +29,7 @@ namespace MS.Internal.KnownBoxes
             {
                 if (value < 0)
                 {
-                    throw new System.ArgumentException(SR.Get(SRID.Rect_WidthAndHeightCannotBeNegative));
+                    throw new System.ArgumentException(SR.Get("SRID.Rect_WidthAndHeightCannotBeNegative"));
                 }
 
                 _width = value;
@@ -46,7 +46,7 @@ namespace MS.Internal.KnownBoxes
             {
                 if (value < 0)
                 {
-                    throw new System.ArgumentException(SR.Get(SRID.Rect_WidthAndHeightCannotBeNegative));
+                    throw new System.ArgumentException(SR.Get("SRID.Rect_WidthAndHeightCannotBeNegative"));
                 }
 
                 _height = value;

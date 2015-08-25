@@ -416,7 +416,7 @@ namespace MS.Internal.Data
                 }
                 else
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.MemberNotAllowedForView, "NewItemPlaceholderPosition"));
+                    throw new InvalidOperationException(SR.Get("SRID.MemberNotAllowedForView, "NewItemPlaceholderPosition"));
                 }
             }
         }
@@ -455,7 +455,7 @@ namespace MS.Internal.Data
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.MemberNotAllowedForView, "AddNew"));
+                throw new InvalidOperationException(SR.Get("SRID.MemberNotAllowedForView, "AddNew"));
             }
         }
 
@@ -474,7 +474,7 @@ namespace MS.Internal.Data
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.MemberNotAllowedForView, "CommitNew"));
+                throw new InvalidOperationException(SR.Get("SRID.MemberNotAllowedForView, "CommitNew"));
             }
         }
 
@@ -491,7 +491,7 @@ namespace MS.Internal.Data
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.MemberNotAllowedForView, "CancelNew"));
+                throw new InvalidOperationException(SR.Get("SRID.MemberNotAllowedForView, "CancelNew"));
             }
         }
 
@@ -572,7 +572,7 @@ namespace MS.Internal.Data
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.MemberNotAllowedForView, "RemoveAt"));
+                throw new InvalidOperationException(SR.Get("SRID.MemberNotAllowedForView, "RemoveAt"));
             }
         }
 
@@ -588,7 +588,7 @@ namespace MS.Internal.Data
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.MemberNotAllowedForView, "Remove"));
+                throw new InvalidOperationException(SR.Get("SRID.MemberNotAllowedForView, "Remove"));
             }
         }
 
@@ -612,7 +612,7 @@ namespace MS.Internal.Data
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.MemberNotAllowedForView, "EditItem"));
+                throw new InvalidOperationException(SR.Get("SRID.MemberNotAllowedForView, "EditItem"));
             }
         }
 
@@ -629,7 +629,7 @@ namespace MS.Internal.Data
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.MemberNotAllowedForView, "CommitEdit"));
+                throw new InvalidOperationException(SR.Get("SRID.MemberNotAllowedForView, "CommitEdit"));
             }
         }
 
@@ -646,7 +646,7 @@ namespace MS.Internal.Data
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.MemberNotAllowedForView, "CancelEdit"));
+                throw new InvalidOperationException(SR.Get("SRID.MemberNotAllowedForView, "CancelEdit"));
             }
         }
 
@@ -753,7 +753,7 @@ namespace MS.Internal.Data
             }
             else
             {
-                throw new InvalidOperationException(SR.Get(SRID.MemberNotAllowedForView, "AddNewItem"));
+                throw new InvalidOperationException(SR.Get("SRID.MemberNotAllowedForView, "AddNewItem"));
             }
         }
 
@@ -817,7 +817,7 @@ namespace MS.Internal.Data
                 if (cvls != null)
                     cvls.IsLiveSorting = value;
                 else
-                    throw new InvalidOperationException(SR.Get(SRID.CannotChangeLiveShaping, "IsLiveSorting", "CanChangeLiveSorting"));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeLiveShaping, "IsLiveSorting", "CanChangeLiveSorting"));
             }
         }
 
@@ -840,7 +840,7 @@ namespace MS.Internal.Data
                 if (cvls != null)
                     cvls.IsLiveFiltering = value;
                 else
-                    throw new InvalidOperationException(SR.Get(SRID.CannotChangeLiveShaping, "IsLiveFiltering", "CanChangeLiveFiltering"));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeLiveShaping, "IsLiveFiltering", "CanChangeLiveFiltering"));
             }
         }
 
@@ -863,7 +863,7 @@ namespace MS.Internal.Data
                 if (cvls != null)
                     cvls.IsLiveGrouping = value;
                 else
-                    throw new InvalidOperationException(SR.Get(SRID.CannotChangeLiveShaping, "IsLiveGrouping", "CanChangeLiveGrouping"));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeLiveShaping, "IsLiveGrouping", "CanChangeLiveGrouping"));
             }
         }
 

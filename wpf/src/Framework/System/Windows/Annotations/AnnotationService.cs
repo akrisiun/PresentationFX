@@ -160,7 +160,7 @@ namespace System.Windows.Annotations
                 throw new ArgumentNullException("root");
 
             if (!(root is FrameworkElement || root is FrameworkContentElement))
-                throw new ArgumentException(SR.Get(SRID.ParameterMustBeLogicalNode), "root");
+                throw new ArgumentException(SR.Get("SRID.ParameterMustBeLogicalNode"), "root");
 
             Initialize(root);
         }
@@ -192,7 +192,7 @@ namespace System.Windows.Annotations
             VerifyAccess();
 
             if (_isEnabled)
-                throw new InvalidOperationException(SR.Get(SRID.AnnotationServiceIsAlreadyEnabled));
+                throw new InvalidOperationException(SR.Get("SRID.AnnotationServiceIsAlreadyEnabled"));
 
             // Make sure there isn't a service above or below us
             VerifyServiceConfiguration(_root);
@@ -231,7 +231,7 @@ namespace System.Windows.Annotations
                 }
                 else
                 {
-                    throw new InvalidOperationException(SR.Get(SRID.OnlyFlowFixedSupported));
+                    throw new InvalidOperationException(SR.Get("SRID.OnlyFlowFixedSupported"));
                 }
             }
 
@@ -252,7 +252,7 @@ namespace System.Windows.Annotations
             VerifyAccess();
 
             if (!_isEnabled)
-                throw new InvalidOperationException(SR.Get(SRID.AnnotationServiceNotEnabled));
+                throw new InvalidOperationException(SR.Get("SRID.AnnotationServiceNotEnabled"));
 
             // If it hasn't been run yet, abort the pending operation.  Still need to
             // unregister and unload annotations.  They may have been loaded due to a
@@ -384,12 +384,12 @@ namespace System.Windows.Annotations
                 throw new ArgumentNullException("element");
 
             if (!(element is FrameworkElement || element is FrameworkContentElement))
-                throw new ArgumentException(SR.Get(SRID.ParameterMustBeLogicalNode), "element");
+                throw new ArgumentException(SR.Get("SRID.ParameterMustBeLogicalNode"), "element");
 
             VerifyAccess();
 
             if (!_isEnabled)
-                throw new InvalidOperationException(SR.Get(SRID.AnnotationServiceNotEnabled));
+                throw new InvalidOperationException(SR.Get("SRID.AnnotationServiceNotEnabled"));
 
             //fire start trace event
             EventTrace.EasyTraceEvent(EventTrace.Keyword.KeywordAnnotation, EventTrace.Event.LoadAnnotationsBegin);
@@ -421,12 +421,12 @@ namespace System.Windows.Annotations
                 throw new ArgumentNullException("element");
 
             if (!(element is FrameworkElement || element is FrameworkContentElement))
-                throw new ArgumentException(SR.Get(SRID.ParameterMustBeLogicalNode), "element");
+                throw new ArgumentException(SR.Get("SRID.ParameterMustBeLogicalNode"), "element");
 
             VerifyAccess();
 
             if (!_isEnabled)
-                throw new InvalidOperationException(SR.Get(SRID.AnnotationServiceNotEnabled));
+                throw new InvalidOperationException(SR.Get("SRID.AnnotationServiceNotEnabled"));
 
             // Short circuit search for annotations if the service has no attached annotations
             if (_annotationMap.IsEmpty)
@@ -460,7 +460,7 @@ namespace System.Windows.Annotations
             VerifyAccess();
 
             if (!_isEnabled)
-                throw new InvalidOperationException(SR.Get(SRID.AnnotationServiceNotEnabled));
+                throw new InvalidOperationException(SR.Get("SRID.AnnotationServiceNotEnabled"));
 
             return _annotationMap.GetAllAttachedAnnotations();
         }
@@ -485,32 +485,32 @@ namespace System.Windows.Annotations
         ///   Command to create Highlight annotation for the current selection.  (selection > 0)
         ///  User can pass the color as command parameter. Default yellow color is used otherwise.
         /// </summary>
-        public static readonly RoutedUICommand CreateHighlightCommand = new RoutedUICommand(SR.Get(SRID.CreateHighlight), "CreateHighlight", typeof(AnnotationService), null);
+        public static readonly RoutedUICommand CreateHighlightCommand = new RoutedUICommand(SR.Get("SRID.CreateHighlight"), "CreateHighlight", typeof(AnnotationService), null);
 
         /// <summary>
         ///  Command to create Text StickyNote annotation for the current selection.  (selection > 0)
         /// </summary>
-        public static readonly RoutedUICommand CreateTextStickyNoteCommand = new RoutedUICommand(SR.Get(SRID.CreateTextNote), "CreateTextStickyNote", typeof(AnnotationService), null);
+        public static readonly RoutedUICommand CreateTextStickyNoteCommand = new RoutedUICommand(SR.Get("SRID.CreateTextNote"), "CreateTextStickyNote", typeof(AnnotationService), null);
 
         /// <summary>
         ///  Command to create Ink StickyNote annotation for the current selection.  (selection > 0)
         /// </summary>
-        public static readonly RoutedUICommand CreateInkStickyNoteCommand = new RoutedUICommand(SR.Get(SRID.CreateInkNote), "CreateInkStickyNote", typeof(AnnotationService), null);
+        public static readonly RoutedUICommand CreateInkStickyNoteCommand = new RoutedUICommand(SR.Get("SRID.CreateInkNote"), "CreateInkStickyNote", typeof(AnnotationService), null);
 
         /// <summary>
         ///   Command to clear highlight(s) for the current selection.
         /// </summary>
-        public static readonly RoutedUICommand ClearHighlightsCommand = new RoutedUICommand(SR.Get(SRID.ClearHighlight), "ClearHighlights", typeof(AnnotationService), null);
+        public static readonly RoutedUICommand ClearHighlightsCommand = new RoutedUICommand(SR.Get("SRID.ClearHighlight"), "ClearHighlights", typeof(AnnotationService), null);
 
         /// <summary>
         ///   Command to delete all Ink  and Text StickyNote annotation(s) that are included in a selection.
         /// </summary>
-        public static readonly RoutedUICommand DeleteStickyNotesCommand = new RoutedUICommand(SR.Get(SRID.DeleteNotes), "DeleteStickyNotes", typeof(AnnotationService), null);
+        public static readonly RoutedUICommand DeleteStickyNotesCommand = new RoutedUICommand(SR.Get("SRID.DeleteNotes"), "DeleteStickyNotes", typeof(AnnotationService), null);
 
         /// <summary>
         ///   Command to delete all Ink+Text StickyNote and highlight annotation(s) that are included in a selection.
         /// </summary>
-        public static readonly RoutedUICommand DeleteAnnotationsCommand = new RoutedUICommand(SR.Get(SRID.DeleteAnnotations), "DeleteAnnotations", typeof(AnnotationService), null);
+        public static readonly RoutedUICommand DeleteAnnotationsCommand = new RoutedUICommand(SR.Get("SRID.DeleteAnnotations"), "DeleteAnnotations", typeof(AnnotationService), null);
 
         /// <summary>
         ///     Returns whether or not the annotation service is enabled.
@@ -1103,7 +1103,7 @@ namespace System.Windows.Annotations
 
             // First make sure there isn't a service above us
             if (AnnotationService.GetService(root) != null)
-                throw new InvalidOperationException(SR.Get(SRID.AnnotationServiceAlreadyExists));
+                throw new InvalidOperationException(SR.Get("SRID.AnnotationServiceAlreadyExists"));
 
             // Now check the tree below us for an existing service
             DescendentsWalker<Object> walker = new DescendentsWalker<Object>(TreeWalkPriority.VisualTree, VerifyNoServiceOnNode, null);
@@ -1191,7 +1191,7 @@ namespace System.Windows.Annotations
             AnnotationService existingService = node.ReadLocalValue(AnnotationService.ServiceProperty) as AnnotationService;
             if (existingService != null)
             {
-                throw new InvalidOperationException(SR.Get(SRID.AnnotationServiceAlreadyExists));
+                throw new InvalidOperationException(SR.Get("SRID.AnnotationServiceAlreadyExists"));
             }
 
             return true;
@@ -1339,7 +1339,7 @@ namespace System.Windows.Annotations
             // if we already have an annotation in our map - then something is messed up (store has bug)
             // we are getting an add event on something that already exists - throw an exception
             if (_annotationMap.GetAttachedAnnotations(annotation.Id).Count > 0)
-                throw new Exception(SR.Get(SRID.AnnotationAlreadyExistInService));
+                throw new Exception(SR.Get("SRID.AnnotationAlreadyExistInService"));
 
             List<AttachedAnnotationChangedEventArgs> eventsToFire = new List<AttachedAnnotationChangedEventArgs>(annotation.Anchors.Count);
 

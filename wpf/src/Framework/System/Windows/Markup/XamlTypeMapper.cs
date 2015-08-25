@@ -218,12 +218,12 @@ namespace System.Windows.Markup
             if (assemblyPath == string.Empty)
             {
                 _lineNumber = 0;  // Public API, so we don't know the line number.
-                ThrowException(SRID.ParserBadAssemblyPath);
+                ThrowException("SRID.ParserBadAssemblyPath);
             }
             if (assemblyName == string.Empty)
             {
                 _lineNumber = 0;  // Public API, so we don't know the line number.
-                ThrowException(SRID.ParserBadAssemblyName);
+                ThrowException("SRID.ParserBadAssemblyName);
             }
 
             string asmName = assemblyName.ToUpper(CultureInfo.InvariantCulture);
@@ -484,7 +484,7 @@ namespace System.Windows.Markup
                         {
                             string request = assemblyName.ToString();
                             string found = cachedName.ToString();
-                            throw new InvalidOperationException(SR.Get(SRID.ParserAssemblyLoadVersionMismatch, request, found));
+                            throw new InvalidOperationException(SR.Get("SRID.ParserAssemblyLoadVersionMismatch, request, found));
                         }
                     }
                     return asm;
@@ -545,7 +545,7 @@ namespace System.Windows.Markup
             if (owner != null && !ReflectionHelper.IsPublicType(owner))
             {
                 _lineNumber = 0;  // Public API, so we don't know the line number.
-                ThrowException(SRID.ParserOwnerEventMustBePublic, owner.FullName );
+                ThrowException("SRID.ParserOwnerEventMustBePublic, owner.FullName );
             }
 
             RoutedEvent Event = GetDependencyObject(true,owner,xmlNamespace,
@@ -606,7 +606,7 @@ namespace System.Windows.Markup
                 }
                 else
                 {
-                    string message = SR.Get(SRID.ParserCannotConvertPropertyValueString, value, propName, propType.FullName);
+                    string message = SR.Get("SRID.ParserCannotConvertPropertyValueString, value, propName, propType.FullName);
                     XamlParseException.ThrowException(parserContext, _lineNumber, _linePosition, message, null);
                 }
             }
@@ -687,13 +687,13 @@ namespace System.Windows.Markup
                         // <SomeElement SomeProp="SomeText"/> and there's no TypeConverter
                         //  to handle converting "SomeText" into an instance of something
                         //  that can be set into SomeProp.
-                        message = SR.Get(SRID.ParserDefaultConverterProperty, propType.FullName, propName, value);
+                        message = SR.Get("SRID.ParserDefaultConverterProperty, propType.FullName, propName, value);
                     }
                     else
                     {
                         // <SomeElement>SomeText</SomeElement> and there's no TypeConverter
                         //  associated with the type SomeElement
-                        message = SR.Get(SRID.ParserDefaultConverterElement, propType.FullName, value);
+                        message = SR.Get("SRID.ParserDefaultConverterElement, propType.FullName, value);
                     }
                     XamlParseException.ThrowException(parserContext, _lineNumber, _linePosition, message, null);
                 }
@@ -732,7 +732,7 @@ namespace System.Windows.Markup
                 //
                 // propName is 'Fill' in this case.
 
-                message = SR.Get(SRID.ParserCannotConvertPropertyValueString, value, propName, propType);
+                message = SR.Get("SRID.ParserCannotConvertPropertyValueString, value, propName, propType);
             }
             else
             {
@@ -745,7 +745,7 @@ namespace System.Windows.Markup
                 // There is no associated propName available in this case, so we
                 //  give a different error message.
 
-                message = SR.Get(SRID.ParserCannotConvertInitializationText, value, propType );
+                message = SR.Get("SRID.ParserCannotConvertInitializationText, value, propType );
             }
             return message;
         }
@@ -775,14 +775,14 @@ namespace System.Windows.Markup
 
             if (value == string.Empty)
             {
-                ThrowException(SRID.ParserBadName, value);
+                ThrowException("SRID.ParserBadName, value);
             }
 
             if (MarkupExtensionParser.LooksLikeAMarkupExtension(value))
             {
-                string message = SR.Get(SRID.ParserBadUidOrNameME, value);
+                string message = SR.Get("SRID.ParserBadUidOrNameME, value);
                 message += " ";
-                message += SR.Get(SRID.ParserLineAndOffset,
+                message += SR.Get("SRID.ParserLineAndOffset,
                             lineNumber.ToString(CultureInfo.CurrentCulture),
                             linePosition.ToString(CultureInfo.CurrentCulture));
 
@@ -793,7 +793,7 @@ namespace System.Windows.Markup
 
             if (!NameValidationHelper.IsValidIdentifierName(value))
             {
-                ThrowException(SRID.ParserBadName, value);
+                ThrowException("SRID.ParserBadName, value);
             }
         }
 
@@ -826,7 +826,7 @@ namespace System.Windows.Markup
                         }
                         else if (Char.IsDigit(attribValue[i]))
                         {
-                            ThrowException(SRID.ParserNoDigitEnums, propName, attribValue);
+                            ThrowException("SRID.ParserNoDigitEnums, propName, attribValue);
                         }
                         else
                         {
@@ -1385,7 +1385,7 @@ namespace System.Windows.Markup
 #if PBTCOMPILER
                                     if (tryInternal && memberInfo != null && !IsAllowedMethod(mi, false))
                                     {
-                                        ThrowException(SRID.ParserCantSetAttribute, "bubbling event", objectType.Name + "." + localName, "Add Handler method");
+                                        ThrowException("SRID.ParserCantSetAttribute, "bubbling event", objectType.Name + "." + localName, "Add Handler method");
                                     }
 #endif
                                 }
@@ -1409,7 +1409,7 @@ namespace System.Windows.Markup
                                     if (!ReflectionHelper.IsPublicType(ei.EventHandlerType))
 #endif
                                     {
-                                        ThrowException(SRID.ParserEventDelegateTypeNotAccessible, ei.EventHandlerType.FullName, objectType.Name + "." + localName);
+                                        ThrowException("SRID.ParserEventDelegateTypeNotAccessible, ei.EventHandlerType.FullName, objectType.Name + "." + localName);
                                     }
 
 #if PBTCOMPILER
@@ -1420,7 +1420,7 @@ namespace System.Windows.Markup
                                         // check to make sure that the public type is accessible\allowed.
                                         if (!IsAllowedEvent(ei, false))
                                         {
-                                            ThrowException(SRID.ParserCantSetAttribute, "event", objectType.Name + "." + localName, "add");
+                                            ThrowException("SRID.ParserCantSetAttribute, "event", objectType.Name + "." + localName, "add");
                                         }
                                     }
                                     else
@@ -1432,7 +1432,7 @@ namespace System.Windows.Markup
 #if PBTCOMPILER
                                             memberInfo = null;
 #else
-                                            ThrowException(SRID.ParserCantSetAttribute, "event", objectType.Name + "." + localName, "add");
+                                            ThrowException("SRID.ParserCantSetAttribute, "event", objectType.Name + "." + localName, "add");
 #endif
                                         }
 #if PBTCOMPILER
@@ -1469,7 +1469,7 @@ namespace System.Windows.Markup
 #if PBTCOMPILER
                             if (tryInternal && memberInfo != null && !IsAllowedMethod(memberInfo as MethodInfo, false))
                             {
-                                ThrowException(SRID.ParserCantSetAttribute, "attached property", objectType.Name + "." + localName, "Set method");
+                                ThrowException("SRID.ParserCantSetAttribute, "attached property", objectType.Name + "." + localName, "Set method");
                             }
 #endif
 
@@ -1488,7 +1488,7 @@ namespace System.Windows.Markup
                                     if (owner != null &&
                                         !objectType.IsAssignableFrom(owner))
                                     {
-                                        ThrowException(SRID.ParserAttachedPropInheritError,
+                                        ThrowException("SRID.ParserAttachedPropInheritError,
                                                        String.Format(CultureInfo.CurrentCulture, "{0}.{1}", objectType.Name, localName),
                                                        owner.Name);
                                     }
@@ -1548,7 +1548,7 @@ namespace System.Windows.Markup
 #if PBTCOMPILER
                                     if (tryInternal && memberInfo != null && !IsAllowedMethod(mi, true))
                                     {
-                                        ThrowException(SRID.ParserCantSetAttribute, "bubbling event", owner.Name + "." + localName, "Add Handler method");
+                                        ThrowException("SRID.ParserCantSetAttribute, "bubbling event", owner.Name + "." + localName, "Add Handler method");
                                     }
 #endif
                                 }
@@ -1569,7 +1569,7 @@ namespace System.Windows.Markup
                                     if (!ReflectionHelper.IsPublicType(ei.EventHandlerType))
 #endif
                                     {
-                                        ThrowException(SRID.ParserEventDelegateTypeNotAccessible, ei.EventHandlerType.FullName, owner.Name + "." + localName);
+                                        ThrowException("SRID.ParserEventDelegateTypeNotAccessible, ei.EventHandlerType.FullName, owner.Name + "." + localName);
                                     }
 
 #if PBTCOMPILER
@@ -1581,7 +1581,7 @@ namespace System.Windows.Markup
                                         // since that would have all ready been done in the caller of this fucntion.
                                         if (!IsAllowedEvent(ei, true))
                                         {
-                                            ThrowException(SRID.ParserCantSetAttribute, "event", owner.Name + "." + localName, "add");
+                                            ThrowException("SRID.ParserCantSetAttribute, "event", owner.Name + "." + localName, "add");
                                         }
                                     }
                                     else
@@ -1593,7 +1593,7 @@ namespace System.Windows.Markup
 #if PBTCOMPILER
                                             memberInfo = null;
 #else
-                                            ThrowException(SRID.ParserCantSetAttribute, "event", owner.Name + "." + localName, "add");
+                                            ThrowException("SRID.ParserCantSetAttribute, "event", owner.Name + "." + localName, "add");
 #endif
                                         }
 #if PBTCOMPILER
@@ -1629,7 +1629,7 @@ namespace System.Windows.Markup
 #if PBTCOMPILER
                             if (tryInternal && memberInfo != null && !IsAllowedMethod(memberInfo as MethodInfo, true))
                             {
-                                ThrowException(SRID.ParserCantSetAttribute, "attached property", owner.Name + "." + localName, "Set method");
+                                ThrowException("SRID.ParserCantSetAttribute, "attached property", owner.Name + "." + localName, "Set method");
                             }
 #endif
 
@@ -1870,7 +1870,7 @@ namespace System.Windows.Markup
                     GetTypeOnly(xmlNamespace, globalClassName);
                 if (typeAndSerializer == null || typeAndSerializer.ObjectType == null)
                 {
-                    ThrowException(SRID.ParserNoType, globalClassName);
+                    ThrowException("SRID.ParserNoType, globalClassName);
                 }
                 ownerType = typeAndSerializer.ObjectType;
             }
@@ -1956,7 +1956,7 @@ namespace System.Windows.Markup
                             //  was no name specified at all.  (null or empty string.)
                             // The latter case may get a special meaning in the future,
                             //  but for now they're all errors.
-                            ThrowException(SRID.ParserXmlLangPropertyValueInvalid);
+                            ThrowException("SRID.ParserXmlLangPropertyValueInvalid);
                         }
                     }
                 }
@@ -2363,7 +2363,7 @@ namespace System.Windows.Markup
                 }
                 if (targetType == null)
                 {
-                    ThrowException(SRID.ParserNoType, typeName);
+                    ThrowException("SRID.ParserNoType, typeName);
                 }
             }
             else if (!isTypeExpected && prefix.Length == 0)
@@ -2376,7 +2376,7 @@ namespace System.Windows.Markup
             else
             {
                 // A type was expected but we didn't find one. So throw.
-                ThrowException(SRID.ParserBadMemberReference, valueParam);
+                ThrowException("SRID.ParserBadMemberReference, valueParam);
             }
 
 
@@ -2396,7 +2396,7 @@ namespace System.Windows.Markup
                 if (targetType == null)
                 {
                     // if there was also no default target type then throw.
-                    ThrowException(SRID.ParserBadMemberReference, memberValue);
+                    ThrowException("SRID.ParserBadMemberReference, memberValue);
                 }
             }
 
@@ -2443,14 +2443,14 @@ namespace System.Windows.Markup
 
                     if (!isAllowed)
                     {
-                        ThrowException(SRID.ParserStaticMemberNotAllowed, memberName, targetType.Name);
+                        ThrowException("SRID.ParserStaticMemberNotAllowed, memberName, targetType.Name);
                     }
                 }
             }
 #endif
             if (mi == null)
             {
-                ThrowException(SRID.ParserInvalidStaticMember, memberName, targetType.Name);
+                ThrowException("SRID.ParserInvalidStaticMember, memberName, targetType.Name);
             }
 
             return mi;
@@ -2649,7 +2649,7 @@ namespace System.Windows.Markup
                                 if (!IsInternalTypeAllowedInFullTrust(objectType))
 #endif
                                 {
-                                    ThrowException(SRID.ParserPublicType, objectType.Name);
+                                    ThrowException("SRID.ParserPublicType, objectType.Name);
                                 }
                             }
                             // Create new data structure to store information for the current type
@@ -3080,7 +3080,7 @@ namespace System.Windows.Markup
                 xmlns = context.XmlnsDictionary[string.Empty];
                 if (xmlns == null)
                 {
-                    ThrowException(SRID.ParserUndeclaredNS, string.Empty);
+                    ThrowException("SRID.ParserUndeclaredNS, string.Empty);
                 }
             }
             else
@@ -3089,7 +3089,7 @@ namespace System.Windows.Markup
                 xmlns = context.XmlnsDictionary[prefix];
                 if (xmlns == null)
                 {
-                    ThrowException(SRID.ParserUndeclaredNS, prefix);
+                    ThrowException("SRID.ParserUndeclaredNS, prefix);
                 }
                 else
                 {
@@ -3132,7 +3132,7 @@ namespace System.Windows.Markup
                     _lineNumber = context != null ? context.LineNumber : 0;
                     _linePosition = context != null ? context.LinePosition : 0;
 
-                    ThrowException(SRID.ParserResourceKeyType, typeString);
+                    ThrowException("SRID.ParserResourceKeyType, typeString);
                 }
             }
 
@@ -3158,7 +3158,7 @@ namespace System.Windows.Markup
                 string xmlns = context.XmlnsDictionary[string.Empty];
                 if (xmlns == null)
                 {
-                    ThrowException(SRID.ParserUndeclaredNS, string.Empty);
+                    ThrowException("SRID.ParserUndeclaredNS, string.Empty);
                 }
                 else
                 {
@@ -3171,7 +3171,7 @@ namespace System.Windows.Markup
                 string xmlns = context.XmlnsDictionary[prefix];
                 if (xmlns == null)
                 {
-                    ThrowException(SRID.ParserUndeclaredNS, prefix);
+                    ThrowException("SRID.ParserUndeclaredNS, prefix);
                 }
                 else
                 {
@@ -3262,7 +3262,7 @@ namespace System.Windows.Markup
             string namespaceURI = parserContext.XmlnsDictionary[nsPrefix];
             if (namespaceURI == null)
             {
-                parserContext.XamlTypeMapper.ThrowException(SRID.ParserPrefixNSProperty, nsPrefix, nameString);
+                parserContext.XamlTypeMapper.ThrowException("SRID.ParserPrefixNSProperty, nsPrefix, nameString);
             }
 
             return namespaceURI;
@@ -3730,7 +3730,7 @@ namespace System.Windows.Markup
 
             if (null == typeConverter)
             {
-                ThrowException(SRID.ParserNoTypeConv, type.Name);
+                ThrowException("SRID.ParserNoTypeConv, type.Name);
             }
 
             return typeConverter;

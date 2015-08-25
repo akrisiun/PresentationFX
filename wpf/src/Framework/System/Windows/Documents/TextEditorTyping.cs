@@ -90,7 +90,7 @@ namespace System.Windows.Documents
             CommandHelpers.RegisterCommandHandler(controlType, EditingCommands.Space                , onSpace                                                , onQueryStatusNYI                  , SRID.KeySpace,            SRID.KeySpaceDisplayString                  );
             CommandHelpers.RegisterCommandHandler(controlType, EditingCommands.ShiftSpace           , onSpace                                                , onQueryStatusNYI                  , SRID.KeyShiftSpace,       SRID.KeyShiftSpaceDisplayString             );
 
-            CommandHelpers.RegisterCommandHandler(controlType, EditingCommands.Backspace            , new ExecutedRoutedEventHandler(OnBackspace)            , onQueryStatusNYI                  , KeyGesture.CreateFromResourceStrings(SR.Get(SRID.KeyBackspace),        SR.Get(SRID.KeyBackspaceDisplayString)),   KeyGesture.CreateFromResourceStrings(SR.Get(SRID.KeyShiftBackspace), SR.Get(SRID.KeyShiftBackspaceDisplayString)) );
+            CommandHelpers.RegisterCommandHandler(controlType, EditingCommands.Backspace            , new ExecutedRoutedEventHandler(OnBackspace)            , onQueryStatusNYI                  , KeyGesture.CreateFromResourceStrings(SR.Get("SRID.KeyBackspace),        SR.Get("SRID.KeyBackspaceDisplayString)),   KeyGesture.CreateFromResourceStrings(SR.Get("SRID.KeyShiftBackspace), SR.Get("SRID.KeyShiftBackspaceDisplayString)) );
 
         }
 

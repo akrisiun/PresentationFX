@@ -168,7 +168,7 @@ using MS.Internal.Permissions;
             if (value == true && !SecurityHelper.CheckUnmanagedCodePermission())
             {
                 value = false;
-                throw new SecurityException(SR.Get(SRID.SecurityExceptionForSettingSandboxExternalToTrue));
+                throw new SecurityException(SR.Get("SRID.SecurityExceptionForSettingSandboxExternalToTrue));
             }
         }
 
@@ -525,7 +525,7 @@ using MS.Internal.Permissions;
               //
               if (targetZone < 0)
               {
-                throw new SecurityException( SR.Get(SRID.Invalid_URI) );
+                throw new SecurityException( SR.Get("SRID.Invalid_URI) );
               }
               pSec = null;
               curSecMgr = null;

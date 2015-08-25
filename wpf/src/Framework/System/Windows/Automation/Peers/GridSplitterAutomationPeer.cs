@@ -58,12 +58,12 @@ namespace System.Windows.Automation.Peers
         }
         void ITransformProvider.Resize(double width, double height)
         {
-            throw new InvalidOperationException(SR.Get(SRID.UIA_OperationCannotBePerformed));
+            throw new InvalidOperationException(SR.Get("SRID.UIA_OperationCannotBePerformed));
 
         }
         void ITransformProvider.Rotate(double degrees)
         {
-            throw new InvalidOperationException(SR.Get(SRID.UIA_OperationCannotBePerformed));
+            throw new InvalidOperationException(SR.Get("SRID.UIA_OperationCannotBePerformed));
         }
 
         #endregion

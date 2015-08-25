@@ -882,7 +882,7 @@ namespace System.Windows.Navigation
         /// </summary>
         protected override void AddChild(object value)
         {
-            throw new InvalidOperationException(SR.Get(SRID.NoAddChild));
+            throw new InvalidOperationException(SR.Get("SRID.NoAddChild));
         }
 
         /// <summary>

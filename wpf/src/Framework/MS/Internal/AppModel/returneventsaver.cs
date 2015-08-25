@@ -142,7 +142,7 @@ namespace MS.Internal.AppModel
 
                     if (string.Compare(_returnList[i]._targetTypeName, caller.GetType().AssemblyQualifiedName, StringComparison.Ordinal) != 0)
                     {
-                        throw new NotSupportedException(SR.Get(SRID.ReturnEventHandlerMustBeOnParentPage));
+                        throw new NotSupportedException(SR.Get("SRID.ReturnEventHandlerMustBeOnParentPage));
                     }
 
                     Delegate d;
@@ -157,7 +157,7 @@ namespace MS.Internal.AppModel
                     }
                     catch (Exception ex)
                     {
-                        throw new NotSupportedException(SR.Get(SRID.ReturnEventHandlerMustBeOnParentPage), ex);
+                        throw new NotSupportedException(SR.Get("SRID.ReturnEventHandlerMustBeOnParentPage), ex);
                     }
                     finally
                     {
