@@ -14,6 +14,31 @@ using Microsoft.Win32;
 
 namespace System.Security
 {
+    internal static class AssemblyRef
+    {
+        public const string System = "2.0.0.0";
+        public const string SystemCore = "3.5.0.0";
+        public const string SystemData = "3.5.0.0";
+        public const string SystemSecurity = "3.5.0.0";
+        public const string SystemDrawing = "2.0.0.0";
+
+        public const string SystemRuntime = "3.5.0.0";
+        public const string SystemRuntimeWindowsRuntime = "3.5.0.0";
+
+        public const string Mscorlib = "3.5.0.0";
+        public const string WindowsBase = "3.5.0.0";
+        public const string EcmaPublicKeyFull = "?";
+        public const string MicrosoftPublicKeyFull = "?";
+
+        public const string EcmaPublicKeyToken = "?";
+        public const string MicrosoftPublicKeyToken = "b77a5c561934e089";
+
+        // <add name="ServiceModel" type="System.ServiceModel.Activation.HttpModule, System.ServiceModel, Version=3.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" preCondition="managedHandler" />
+
+        //  CodeGroup microsoftGroup = new UnionCodeGroup( new StrongNameMembershipCondition( microsoftBlob, null, null ), level.GetNamedPermissionSet( "FullTrust" ) );
+        // StrongNamePublicKeyBlob ecmaBlob = new StrongNamePublicKeyBlob( AssemblyRef.EcmaPublicKeyFull );
+    }
+
     internal static class BuiltInPermissionSets
     {
         //

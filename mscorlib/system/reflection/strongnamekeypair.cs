@@ -28,9 +28,13 @@ namespace System.Reflection
     using System.Runtime.Versioning;
     using Microsoft.Win32;
     using System.Diagnostics.Contracts;
+
+    /*
 #if !FEATURE_CORECLR
     using Microsoft.Runtime.Hosting;
-#endif
+#endif 
+     */
+
 
 #if FEATURE_CORECLR
     // Dummy type to avoid ifdefs in signature definitions
@@ -42,8 +46,26 @@ namespace System.Reflection
         }
     }
 #else
+
+    public static class StrongNameHelpers
+    {
+       public static bool StrongNameGetPublicKey(object nullObj, byte[] _keyPairArray, int Length,
+                            out IntPtr pbPublicKey, out int cbPublicKey)
+        {
+           pbPublicKey = IntPtr.Zero;
+           cbPublicKey = 0;
+           return false;
+       }
+
+       public static void StrongNameFreeBuffer(IntPtr pbPublicKey)
+       {
+           return;
+       }
+
+    }
+
     [Serializable]
-[System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(true)]
     public class StrongNameKeyPair : IDeserializationCallback, ISerializable 
     {
         private bool    _keyPairExported;

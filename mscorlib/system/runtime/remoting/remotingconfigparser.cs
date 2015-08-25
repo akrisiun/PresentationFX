@@ -21,8 +21,13 @@ using System.Runtime.Remoting.Channels;
 using System.Globalization;
 using System.Runtime.Versioning;
 
-namespace System.Runtime.Remoting.Activation {    
-   
+namespace System.Runtime.Remoting.Activation {
+
+    internal static class AssemblyRef
+    {
+        public const string SystemRuntimeRemoting = "3.5.0.0";
+    
+    }
 
     internal class RemotingXmlConfigFileData
     {

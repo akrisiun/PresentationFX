@@ -17,7 +17,6 @@ namespace System.Threading
     using System.Runtime.ConstrainedExecution;
     using System.Runtime.Versioning;
     using System.Diagnostics.Contracts;
-    using System.Diagnostics.Tracing;
     using Microsoft.Win32.SafeHandles;
 
 
@@ -576,12 +575,7 @@ namespace System.Threading
                         success = true;
                     }
                     else
-                    {
-#if !FEATURE_CORECLR
-                        if (FrameworkEventSource.IsInitialized && FrameworkEventSource.Log.IsEnabled(EventLevel.Informational, FrameworkEventSource.Keywords.ThreadTransfer))
-                            FrameworkEventSource.Log.ThreadTransferSendObj(this, 1, string.Empty, true);
-#endif // !FEATURE_CORECLR
-
+                    {                    
                         success = TimerQueue.Instance.UpdateTimer(this, dueTime, period);
                     }
                 }
@@ -692,11 +686,6 @@ namespace System.Threading
         [SecuritySafeCritical]
         internal void CallCallback()
         {
-#if !FEATURE_CORECLR
-            if (FrameworkEventSource.IsInitialized && FrameworkEventSource.Log.IsEnabled(EventLevel.Informational, FrameworkEventSource.Keywords.ThreadTransfer))
-                FrameworkEventSource.Log.ThreadTransferReceiveObj(this, 1, string.Empty);
-#endif // !FEATURE_CORECLR
-
             // call directly if EC flow is suppressed
             if (m_executionContext == null)
             {

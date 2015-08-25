@@ -243,11 +243,11 @@ namespace Microsoft.Win32 {
         }
 #if !FEATURE_PAL && !FEATURE_CORECLR
         [SecurityCritical]
-        [DllImport("combase.dll", PreserveSig = true)]
-        internal static extern int RoGetActivationFactory(
+        [DllImport("combase.dll", PreserveSig = false)]
+        [return: MarshalAs(UnmanagedType.IInspectable)]
+        internal static extern object RoGetActivationFactory(
             [MarshalAs(UnmanagedType.HString)] string activatableClassId,
-            [In] ref Guid iid,
-            [Out,MarshalAs(UnmanagedType.IInspectable)] out Object factory);
+            [In] ref Guid iid);
 #endif
 
     }

@@ -20,7 +20,7 @@ namespace System {
 
     [GuidAttribute("27FFF232-A7A8-40dd-8D4A-734AD59FCD41")]
     [InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-[System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(true)]
     public interface IAppDomainSetup
     {
         String ApplicationBase {

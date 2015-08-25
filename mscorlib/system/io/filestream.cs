@@ -33,7 +33,6 @@ using System.Runtime.CompilerServices;
 using System.Globalization;
 using System.Runtime.Versioning;
 using System.Diagnostics.Contracts;
-using System.Diagnostics.Tracing;
 
 /*
  * FileStream supports different modes of accessing the disk - async mode
@@ -324,11 +323,6 @@ namespace System.IO {
             FileStreamAsyncResult asyncResult =
                 (FileStreamAsyncResult)overlapped.AsyncResult;
             asyncResult._numBytes = (int)numBytes;
-
-#if !FEATURE_CORECLR
-            if (FrameworkEventSource.IsInitialized && FrameworkEventSource.Log.IsEnabled(EventLevel.Informational, FrameworkEventSource.Keywords.ThreadTransfer))
-                FrameworkEventSource.Log.ThreadTransferReceive((long)(asyncResult.OverLapped), 2, string.Empty);
-#endif // FEATURE_CORECLR
 
             // Handle reading from & writing to closed pipes.  While I'm not sure
             // this is entirely necessary anymore, maybe it's possible for 
@@ -2088,11 +2082,6 @@ namespace System.IO {
                 SeekCore(numBytes, SeekOrigin.Current);
             }
 
-#if !FEATURE_CORECLR
-            if (FrameworkEventSource.IsInitialized && FrameworkEventSource.Log.IsEnabled(EventLevel.Informational, FrameworkEventSource.Keywords.ThreadTransfer))
-                FrameworkEventSource.Log.ThreadTransferSend((long)(asyncResult.OverLapped), 2, string.Empty, false);
-#endif // !FEATURE_CORECLR
-
             // queue an async ReadFile operation and pass in a packed overlapped
             int hr = 0;
             int r = ReadFileNative(_handle, bytes, offset, numBytes, intOverlapped, out hr);
@@ -2348,11 +2337,6 @@ namespace System.IO {
             }
 
             //Console.WriteLine("BeginWrite finishing.  pos: "+pos+"  numBytes: "+numBytes+"  _pos: "+_pos+"  Position: "+Position);
-
-#if !FEATURE_CORECLR
-            if (FrameworkEventSource.IsInitialized && FrameworkEventSource.Log.IsEnabled(EventLevel.Informational, FrameworkEventSource.Keywords.ThreadTransfer))
-                FrameworkEventSource.Log.ThreadTransferSend((long)(asyncResult.OverLapped), 2, string.Empty, false);
-#endif // !FEATURE_CORECLR
 
             int hr = 0;
             // queue an async WriteFile operation and pass in a packed overlapped

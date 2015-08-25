@@ -90,8 +90,6 @@ namespace System.Threading.Tasks
         [SecuritySafeCritical]
         private static WFD.IAsyncCausalityTracerStatics LoadFactory()
         {
-            if (!Environment.IsWinRTSupported) return null;
-            
             //COM Class Id
             string ClassId = "Windows.Foundation.Diagnostics.AsyncCausalityTracer";
 
@@ -99,27 +97,32 @@ namespace System.Threading.Tasks
             Guid guid = new Guid(0x50850B26, 0x267E, 0x451B, 0xA8, 0x90, 0XAB, 0x6A, 0x37, 0x02, 0x45, 0xEE);
 
             Object factory = null;
-            
-            WFD.IAsyncCausalityTracerStatics validFactory = null;
 
             try
             {
-                int hresult = Microsoft.Win32.UnsafeNativeMethods.RoGetActivationFactory(ClassId, ref guid, out factory);
-
-                if (hresult < 0 || factory == null) return null; //This prevents having an exception thrown in case IAsyncCausalityTracerStatics isn't registered.
-                
-                validFactory = (WFD.IAsyncCausalityTracerStatics)factory;
-
-                EventRegistrationToken token = validFactory.add_TracingStatusChanged(new EventHandler<WFD.TracingStatusChangedEventArgs>(TracingStatusChangedHandler));
-                Contract.Assert(token != null, "EventRegistrationToken is null");
+                factory = Microsoft.Win32.UnsafeNativeMethods.RoGetActivationFactory(ClassId, ref guid);
             }
-            catch (Exception)
+            catch (COMException)
             {
-                // Although catching generic Exception is not recommended, this file is one exception
-                // since we don't want to propagate any kind of exception to the user since all we are
-                // doing here depends on internal state.
+                //IAsyncCausalityTracerStatics interface not present in this OS
                 return null;
             }
+            catch (EntryPointNotFoundException)
+            {
+                //RoGetActivationFactory method not present in combase.dll
+                return null;
+            }
+            catch (DllNotFoundException)
+            {
+                //combase.dll not found
+                return null;
+            }
+
+            WFD.IAsyncCausalityTracerStatics validFactory = (WFD.IAsyncCausalityTracerStatics)factory;
+
+            EventRegistrationToken token = validFactory.add_TracingStatusChanged(new EventHandler<WFD.TracingStatusChangedEventArgs>(TracingStatusChangedHandler));
+
+            Contract.Assert(token != null, "EventRegistrationToken is null");
 
             return validFactory;
         }

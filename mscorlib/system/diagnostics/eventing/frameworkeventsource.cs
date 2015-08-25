@@ -48,7 +48,6 @@ namespace System.Diagnostics.Tracing {
             // uses of dynamic type loading by ProjectN applications running on the desktop CLR
             //
             public const EventKeywords DynamicTypeUsage = (EventKeywords)0x0008;
-            public const EventKeywords ThreadTransfer   = (EventKeywords)0x0010;
         }
 
         /// <summary>ETW tasks that have start/stop events.</summary>
@@ -59,14 +58,6 @@ namespace System.Diagnostics.Tracing {
             public const EventTask GetResponse      = (EventTask)1;
             /// <summary>Begin / End - GetRequestStream</summary>
             public const EventTask GetRequestStream = (EventTask)2;
-            /// <summary>Send / Receive - begin transfer/end transfer</summary>
-            public const EventTask ThreadTransfer = (EventTask)3;
-        }
-
-        [FriendAccessAllowed]
-        public static class Opcodes
-        {
-            public const EventOpcode ReceiveHandled = (EventOpcode)11;
         }
 
         // This predicate is used by consumers of this class to deteremine if the class has actually been initialized,
@@ -85,54 +76,6 @@ namespace System.Diagnostics.Tracing {
 
         // The FrameworkEventSource GUID is {8E9F5090-2D75-4d03-8A81-E5AFBF85DAF1}
         private FrameworkEventSource() : base(new Guid(0x8e9f5090, 0x2d75, 0x4d03, 0x8a, 0x81, 0xe5, 0xaf, 0xbf, 0x85, 0xda, 0xf1), "System.Diagnostics.Eventing.FrameworkEventSource") { }
-
-        // WriteEvent overloads (to avoid the "params" EventSource.WriteEvent
-
-        // optimized for common signatures (used by the ThreadTransferSend/Receive events)
-        [NonEvent, System.Security.SecuritySafeCritical]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Concurrency", "CA8001", Justification = "This does not need to be correct when racing with other threads")]
-        private unsafe void WriteEvent(int eventId, long arg1, int arg2, string arg3, bool arg4)
-        {
-            if (IsEnabled())
-            {
-                if (arg3 == null) arg3 = "";
-                fixed (char* string3Bytes = arg3)
-                {
-                    EventSource.EventData* descrs = stackalloc EventSource.EventData[4];
-                    descrs[0].DataPointer = (IntPtr)(&arg1);
-                    descrs[0].Size = 8;
-                    descrs[1].DataPointer = (IntPtr)(&arg2);
-                    descrs[1].Size = 4;
-                    descrs[2].DataPointer = (IntPtr)string3Bytes;
-                    descrs[2].Size = ((arg3.Length + 1) * 2);
-                    descrs[3].DataPointer = (IntPtr)(&arg4);
-                    descrs[3].Size = 4;
-                    WriteEventCore(eventId, 4, descrs);
-                }
-            }
-        }
-
-        // optimized for common signatures (used by the ThreadTransferSend/Receive events)
-        [NonEvent, System.Security.SecuritySafeCritical]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Concurrency", "CA8001", Justification = "This does not need to be correct when racing with other threads")]
-        private unsafe void WriteEvent(int eventId, long arg1, int arg2, string arg3)
-        {
-            if (IsEnabled())
-            {
-                if (arg3 == null) arg3 = "";
-                fixed (char* string3Bytes = arg3)
-                {
-                    EventSource.EventData* descrs = stackalloc EventSource.EventData[3];
-                    descrs[0].DataPointer = (IntPtr)(&arg1);
-                    descrs[0].Size = 8;
-                    descrs[1].DataPointer = (IntPtr)(&arg2);
-                    descrs[1].Size = 4;
-                    descrs[2].DataPointer = (IntPtr)string3Bytes;
-                    descrs[2].Size = ((arg3.Length + 1) * 2);
-                    WriteEventCore(eventId, 3, descrs);
-                }
-            }
-        }
 
         // ResourceManager Event Definitions 
 
@@ -416,23 +359,23 @@ namespace System.Diagnostics.Tracing {
                 return assembly.FullName;
         }
 
-        [Event(30, Level = EventLevel.Verbose, Keywords = Keywords.ThreadPool|Keywords.ThreadTransfer)]
+        [Event(30, Level = EventLevel.Verbose, Keywords = Keywords.ThreadPool)]
         public void ThreadPoolEnqueueWork(long workID) {
             WriteEvent(30, workID);
         }
         [NonEvent, System.Security.SecuritySafeCritical]
-        public unsafe void ThreadPoolEnqueueWorkObject(object workID) {
+        internal unsafe void ThreadPoolEnqueueWorkObject(object workID) {
             // convert the Object Id to a long
             ThreadPoolEnqueueWork((long) *((void**) JitHelpers.UnsafeCastToStackPointer(ref workID)));
         }
 
-        [Event(31, Level = EventLevel.Verbose, Keywords = Keywords.ThreadPool|Keywords.ThreadTransfer)]
+        [Event(31, Level = EventLevel.Verbose, Keywords = Keywords.ThreadPool)]
         public void ThreadPoolDequeueWork(long workID) {
             WriteEvent(31, workID);
         }
 
         [NonEvent, System.Security.SecuritySafeCritical]
-        public unsafe void ThreadPoolDequeueWorkObject(object workID) {
+        internal unsafe void ThreadPoolDequeueWorkObject(object workID) {
             // convert the Object Id to a long
             ThreadPoolDequeueWork((long) *((void**) JitHelpers.UnsafeCastToStackPointer(ref workID)));
         }
@@ -1066,66 +1009,6 @@ namespace System.Diagnostics.Tracing {
         [NonEvent, System.Security.SecuritySafeCritical]
         public unsafe void EndGetRequestStream(object id) {
             EndGetRequestStream((long) *((void**) JitHelpers.UnsafeCastToStackPointer(ref id)));
-        }
-
-        // id -   represents a correlation ID that allows correlation of two activities, one stamped by 
-        //        ThreadTransferSend, the other by ThreadTransferReceive
-        // kind - identifies the transfer: values below 64 are reserved for the runtime. Currently used values:
-        //        1 - managed Timers ("roaming" ID)
-        //        2 - managed async IO operations (FileStream, PipeStream, a.o.)
-        //        3 - WinRT dispatch operations
-        // info - any additional information user code might consider interesting
-        [Event(150, Level = EventLevel.Informational, Keywords = Keywords.ThreadTransfer, Task = Tasks.ThreadTransfer, Opcode = EventOpcode.Send)]
-        public void ThreadTransferSend(long id, int kind, string info, bool multiDequeues) {
-            if (IsEnabled())
-                WriteEvent(150, id, kind, info, multiDequeues);
-        }
-        // id - is a managed object. it gets translated to the object's address. ETW listeners must
-        //      keep track of GC movements in order to correlate the value passed to XyzSend with the
-        //      (possibly changed) value passed to XyzReceive
-        [NonEvent, System.Security.SecuritySafeCritical]
-        public unsafe void ThreadTransferSendObj(object id, int kind, string info, bool multiDequeues) {
-            ThreadTransferSend((long) *((void**) JitHelpers.UnsafeCastToStackPointer(ref id)), kind, info, multiDequeues);
-        }
-
-        // id -   represents a correlation ID that allows correlation of two activities, one stamped by 
-        //        ThreadTransferSend, the other by ThreadTransferReceive
-        // kind - identifies the transfer: values below 64 are reserved for the runtime. Currently used values:
-        //        1 - managed Timers ("roaming" ID)
-        //        2 - managed async IO operations (FileStream, PipeStream, a.o.)
-        //        3 - WinRT dispatch operations
-        // info - any additional information user code might consider interesting
-        [Event(151, Level = EventLevel.Informational, Keywords = Keywords.ThreadTransfer, Task = Tasks.ThreadTransfer, Opcode = EventOpcode.Receive)]
-        public void ThreadTransferReceive(long id, int kind, string info) {
-            if (IsEnabled())
-                WriteEvent(151, id, kind, info);
-        }
-        // id - is a managed object. it gets translated to the object's address. ETW listeners must
-        //      keep track of GC movements in order to correlate the value passed to XyzSend with the
-        //      (possibly changed) value passed to XyzReceive
-        [NonEvent, System.Security.SecuritySafeCritical]
-        public unsafe void ThreadTransferReceiveObj(object id, int kind, string info) {
-            ThreadTransferReceive((long) *((void**) JitHelpers.UnsafeCastToStackPointer(ref id)), kind, info);
-        }
-
-        // id -   represents a correlation ID that allows correlation of two activities, one stamped by 
-        //        ThreadTransferSend, the other by ThreadTransferReceive
-        // kind - identifies the transfer: values below 64 are reserved for the runtime. Currently used values:
-        //        1 - managed Timers ("roaming" ID)
-        //        2 - managed async IO operations (FileStream, PipeStream, a.o.)
-        //        3 - WinRT dispatch operations
-        // info - any additional information user code might consider interesting
-        [Event(152, Level = EventLevel.Informational, Keywords = Keywords.ThreadTransfer, Task = Tasks.ThreadTransfer, Opcode = Opcodes.ReceiveHandled)]
-        public void ThreadTransferReceiveHandled(long id, int kind, string info) {
-            if (IsEnabled())
-                WriteEvent(152, id, kind, info);
-        }
-        // id - is a managed object. it gets translated to the object's address. ETW listeners must
-        //      keep track of GC movements in order to correlate the value passed to XyzSend with the
-        //      (possibly changed) value passed to XyzReceive
-        [NonEvent, System.Security.SecuritySafeCritical]
-        public unsafe void ThreadTransferReceiveHandledObj(object id, int kind, string info) {
-            ThreadTransferReceive((long) *((void**) JitHelpers.UnsafeCastToStackPointer(ref id)), kind, info);
         }
 
     }

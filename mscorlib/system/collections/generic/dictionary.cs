@@ -432,11 +432,9 @@ namespace System.Collections.Generic {
                 }
             }
             for (int i = 0; i < count; i++) {
-                if (newEntries[i].hashCode >= 0) {
-                    int bucket = newEntries[i].hashCode % newSize;
-                    newEntries[i].next = newBuckets[bucket];
-                    newBuckets[bucket] = i;
-                }
+                int bucket = newEntries[i].hashCode % newSize;
+                newEntries[i].next = newBuckets[bucket];
+                newBuckets[bucket] = i;
             }
             buckets = newBuckets;
             entries = newEntries;

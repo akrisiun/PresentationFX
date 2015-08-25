@@ -429,7 +429,7 @@ namespace System.Globalization {
             [System.Security.SecuritySafeCritical]  // auto-generated
             get 
             {
-                return (this.m_cultureData.SLOCALIZED----);
+                return "en-US"; // (this.m_cultureData.SLOCALIZED----);
             }
         }
 

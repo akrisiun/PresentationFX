@@ -52,8 +52,19 @@ namespace System {
     }
 #endif // FEATURE_SPLIT_RESOURCES
 
+    [Flags]
+    public enum CompatibilityFlag
+    {
+        DateTimeParseIgnorePunctuation = 1,
+        EagerlyGenerateRandomAsymmKeys = 2,
+        FullTrustListAssembliesInGac = 4
+     }
+
     [ComVisible(true)]
     public static class Environment {
+
+        // temporary Whidbey stub for compatibility flags
+        // bool GetCompatibilityFlag(CompatibilityFlag flag) { return false; }
 
         // Assume the following constants include the terminating '\0' - use <, not <=
         const int MaxEnvVariableValueLength = 32767;  // maximum length for environment variable name and value
@@ -1795,6 +1806,7 @@ namespace System {
             get;
         }
 
+        /* */
 #if !FEATURE_CORECLR
         // This is the temporary Whidbey stub for compatibility flags
         [ResourceExposure(ResourceScope.None)]
@@ -1802,6 +1814,7 @@ namespace System {
         [System.Security.SecurityCritical]
         internal static extern bool GetCompatibilityFlag(CompatibilityFlag flag);
 #endif //!FEATURE_CORECLR
+
 
         public static string UserName {
             [System.Security.SecuritySafeCritical]  // auto-generated

@@ -18,7 +18,6 @@ using System.Globalization;
 using System.Reflection;
 using System.Resources;
 using System.Security;
-using System.Security.Permissions;
 using System.Text;
 using System.Threading;
 using Microsoft.Win32;
@@ -2262,11 +2261,8 @@ namespace System.Diagnostics.Tracing
         /// <param name="method">The method to probe.</param>
         /// <returns>The literal value or -1 if the value could not be determined. </returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Switch statement is clearer than alternatives")]
-        [SecuritySafeCritical]
         static private int GetHelperCallFirstArg(MethodInfo method)
         {
-            // we need this permission in low trust
-            new ReflectionPermission(ReflectionPermissionFlag.MemberAccess).Assert();
             // Currently searches for the following pattern
             // 
             // ...     // CAN ONLY BE THE INSTRUCTIONS BELOW
@@ -4103,13 +4099,8 @@ namespace System.Diagnostics.Tracing
             sb.Append(" <resources culture=\"").Append(CultureInfo.CurrentUICulture.Name).Append("\">").AppendLine();
             sb.Append("  <stringTable>").AppendLine();
 
-            var sortedStrings = new string[stringTab.Keys.Count];
-            stringTab.Keys.CopyTo(sortedStrings, 0);
-            // Avoid using public Array.Sort as that attempts to access BinaryCompatibility. Unfortunately FrameworkEventSource gets called 
-            // very early in the app domain creation, when _FusionStore is not set up yet, resulting in a failure to run the static constructory
-            // for BinaryCompatibility. This failure is then cached and a TypeInitializationException is thrown every time some code attampts to
-            // access BinaryCompatibility.
-            ArraySortHelper<string>.IntrospectiveSort(sortedStrings, 0, sortedStrings.Length, Comparer<string>.Default);
+            var sortedStrings = new List<string>(stringTab.Keys);
+            sortedStrings.Sort();
             foreach (var stringKey in sortedStrings)
                 sb.Append("   <string id=\"").Append(stringKey).Append("\" value=\"").Append(stringTab[stringKey]).Append("\"/>").AppendLine();
             sb.Append("  </stringTable>").AppendLine();

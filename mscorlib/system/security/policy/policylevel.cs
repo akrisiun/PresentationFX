@@ -12,6 +12,14 @@
 // Abstraction for a level of policy (e.g. Enterprise, Machine, User)
 //
 
+namespace System { 
+    internal static class ThisAssembly
+    {
+        public const string Version = "3.5.0.0";
+        public const string InformationalVersion = "12345";
+    }
+}
+
 namespace System.Security.Policy {
     using Microsoft.Win32;
     using System.Collections;
@@ -32,6 +40,7 @@ namespace System.Security.Policy {
     using System.Deployment.Internal.Isolation.Manifest;
     using System.Deployment.Internal.Isolation;
 #endif
+    
     // Duplicated in vm\SecurityConfig.h
     [Serializable]
     internal enum ConfigId {

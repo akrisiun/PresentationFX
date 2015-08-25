@@ -219,7 +219,7 @@ namespace System {
         [System.Security.SecurityCritical] // auto-generated
         private AppDomainManager _domainManager;
         private Dictionary<String, Object[]> _LocalStore;
-        private AppDomainSetup   _FusionStore;
+        private System.AppDomainSetup   _FusionStore;
         private Evidence         _SecurityIdentity;
 #pragma warning disable 169
         private Object[]         _Policies; // Called from the VM.

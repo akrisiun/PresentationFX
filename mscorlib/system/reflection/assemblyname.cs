@@ -30,7 +30,7 @@ namespace System.Reflection {
     [Serializable]
     [ClassInterface(ClassInterfaceType.None)]
     [ComDefaultInterface(typeof(_AssemblyName))]
-[System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(true)]
     public sealed class AssemblyName : _AssemblyName, ICloneable, ISerializable, IDeserializationCallback
     {
         //

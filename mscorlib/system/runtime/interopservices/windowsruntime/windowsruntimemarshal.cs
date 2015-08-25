@@ -1222,46 +1222,7 @@ namespace System.Runtime.InteropServices.WindowsRuntime
             Marshal.InitializeManagedWinRTFactoryObject(activationFactory, (RuntimeType)type);
             return activationFactory;
         }
-
-#if FEATURE_COMINTEROP_WINRT_DESKTOP_HOST
-        // Currently we use only a single class activator since we have a requirement that all class activations come from the same
-        // app base and we haven't sorted through the various code sharing implications of spinning up multiple AppDomains.  This
-        // holds the IWinRTClassActivator* that is used for the process
-        private static IntPtr s_pClassActivator = IntPtr.Zero;
-
-        [SecurityCritical]
-        internal static IntPtr GetClassActivatorForApplication(string appBase)
-        {
-            if (s_pClassActivator == IntPtr.Zero)
-            {
-                AppDomainSetup hostDomainSetup = new AppDomainSetup()
-                {
-                    ApplicationBase = appBase,
-                };
-
-                AppDomain hostDomain = AppDomain.CreateDomain(Environment.GetResourceString("WinRTHostDomainName", appBase), null, hostDomainSetup);
-                WinRTClassActivator activator = (WinRTClassActivator)hostDomain.CreateInstanceAndUnwrap(typeof(WinRTClassActivator).Assembly.FullName, typeof(WinRTClassActivator).FullName);
-                IntPtr pActivator = activator.GetIWinRTClassActivator();
-
-                if (Interlocked.CompareExchange(ref s_pClassActivator, pActivator, IntPtr.Zero) != IntPtr.Zero)
-                {
-                    Marshal.Release(pActivator);
-                    activator = null;
-
-                    try
-                    {
-                        AppDomain.Unload(hostDomain);
-                    }
-                    catch (CannotUnloadAppDomainException) { }
-                }
-            }
-
-            Marshal.AddRef(s_pClassActivator);
-            return s_pClassActivator;
-        }
-#endif // FEATURE_COMINTEROP_WINRT_DESKTOP_HOST
-
-#endif // FEATURE_COMINTEROP_WINRT_MANAGED_ACTIVATION
+#endif
 
         //
         // Get activation factory object for a specified WinRT type
@@ -1297,7 +1258,7 @@ namespace System.Runtime.InteropServices.WindowsRuntime
 #else // FEATURE_CORECLR                
                 // Managed factories are not supported so as to minimize public surface (and test effort)
                 throw new NotSupportedException();
-#endif // !FEATURE_CORECLR
+#endif // !FEATURE_CORECLR                
             }
         }
 
