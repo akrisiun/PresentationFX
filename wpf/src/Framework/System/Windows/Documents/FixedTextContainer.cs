@@ -335,14 +335,14 @@ namespace System.Windows.Documents
 
             if (position.TextContainer != this)
             {
-                throw new ArgumentException(SR.Get("SRID.NotInAssociatedContainer, "position"));
+                throw new ArgumentException(SR.Get("SRID.NotInAssociatedContainer", "position"));
             }
 
             FixedTextPointer ftp = position as FixedTextPointer;
 
             if (ftp == null)
             {
-                throw new ArgumentException(SR.Get("SRID.BadFixedTextPosition, "position"));
+                throw new ArgumentException(SR.Get("SRID.BadFixedTextPosition", "position"));
             }
 
             return ftp;

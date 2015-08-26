@@ -97,7 +97,7 @@ namespace System.Windows.Documents
 
             if (!(o is FixedSOMSemanticBox))
             {
-                throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType, o.GetType(), typeof(FixedSOMSemanticBox)), "o");
+                throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType", o.GetType(), typeof(FixedSOMSemanticBox)), "o");
             }
 
             SpatialComparison compareHor = _CompareHorizontal(o as FixedSOMSemanticBox, false);

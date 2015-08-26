@@ -1179,7 +1179,7 @@ namespace System.Windows.Controls
             }
             catch (MissingMethodException e)
             {
-                throw new ArgumentException(SR.Get("SRID.ListView_MissingParameterlessConstructor, headerType), e);
+                throw new ArgumentException(SR.Get("SRID.ListView_MissingParameterlessConstructor", headerType), e);
             }
 
             Debug.Assert(header != null, "Cannot instantiate GridViewColumnHeader in AddFloatingHeader");

@@ -371,7 +371,7 @@ namespace System.Windows.Interop
                         _browserCallbackServices.ProcessUnhandledException(
                             String.Format(
                                 CultureInfo.CurrentCulture,
-                                SR.Get("SRID.AffectedByMsCtfIssue),
+                                SR.Get("SRID.AffectedByMsCtfIssue"),
                                 "http://support.microsoft.com/kb/954494"
                             )
                         );
@@ -396,7 +396,7 @@ namespace System.Windows.Interop
                 // This catches non-CLS compliant exceptions.
                 // Not having this clause triggers an FxCop violation.
                 exitCode = -1;
-                _browserCallbackServices.ProcessUnhandledException(SR.Get("SRID.NonClsActivationException));
+                _browserCallbackServices.ProcessUnhandledException(SR.Get("SRID.NonClsActivationException"));
                 throw;
             }
             finally
@@ -842,14 +842,14 @@ namespace System.Windows.Interop
 
             if (eventHandle.IsInvalid || eventHandle.IsClosed)
             {
-                throw new ArgumentException(SR.Get("SRID.InvalidEventHandle), "eventHandle");
+                throw new ArgumentException(SR.Get("SRID.InvalidEventHandle"), "eventHandle");
             }
 
             Uri requestedUri = new Uri(url, UriKind.Absolute);
 
             if(tempFile.Length <= 0)
             {
-                throw new ArgumentException(SR.Get("SRID.InvalidTempFileName), "tempFile");
+                throw new ArgumentException(SR.Get("SRID.InvalidTempFileName"), "tempFile");
             }
 
             ByteRangeDownloader loader = new ByteRangeDownloader(requestedUri, tempFile, eventHandle);
@@ -880,12 +880,12 @@ namespace System.Windows.Interop
 
             if (byteRanges.Length <= 0 || (byteRanges.Length % 2) != 0)
             {
-                throw new ArgumentException(SR.Get("SRID.InvalidByteRanges, "byteRanges"));
+                throw new ArgumentException(SR.Get("SRID.InvalidByteRanges", "byteRanges"));
             }
 
             if (_downloader == null)
             {
-                throw new InvalidOperationException(SR.Get("SRID.ByteRangeDownloaderNotInitialized));
+                throw new InvalidOperationException(SR.Get("SRID.ByteRangeDownloaderNotInitialized"));
             }
 
             ((ByteRangeDownloader) _downloader).RequestByteRanges(ByteRangeDownloader.ConvertByteRanges(byteRanges));
@@ -910,7 +910,7 @@ namespace System.Windows.Interop
 
             if (_downloader == null)
             {
-                throw new InvalidOperationException(SR.Get("SRID.ByteRangeDownloaderNotInitialized));
+                throw new InvalidOperationException(SR.Get("SRID.ByteRangeDownloaderNotInitialized"));
             }
 
             int[,] ranges = ((ByteRangeDownloader) _downloader).GetDownloadedByteRanges();
@@ -925,7 +925,7 @@ namespace System.Windows.Interop
         {
             if (_downloader == null)
             {
-                throw new InvalidOperationException(SR.Get("SRID.ByteRangeDownloaderNotInitialized));
+                throw new InvalidOperationException(SR.Get("SRID.ByteRangeDownloaderNotInitialized"));
             }
 
             ((IDisposable) _downloader).Dispose();
@@ -1250,7 +1250,7 @@ namespace System.Windows.Interop
                 throw new InvalidOperationException(
                     String.Format(
                         CultureInfo.CurrentCulture,
-                        SR.Get("SRID.DocumentApplicationRegistryKeyNotFound),
+                        SR.Get("SRID.DocumentApplicationRegistryKeyNotFound"),
                         RegistryKeys.HKLM_XpsViewerLocalServer32));
             }
 

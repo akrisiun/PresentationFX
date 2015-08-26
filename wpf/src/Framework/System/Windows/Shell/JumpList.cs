@@ -68,7 +68,7 @@ namespace System.Windows.Shell
                 || (reasons == null && rejectedItems != null)
                 || (rejectedItems != null && reasons != null && rejectedItems.Count != reasons.Count))
             {
-                throw new ArgumentException(SR.Get("SRID.JumpItemsRejectedEventArgs_CountMismatch));
+                throw new ArgumentException(SR.Get("SRID.JumpItemsRejectedEventArgs_CountMismatch"));
             }
 
             // We don't want the contents of the list getting modified in the event handler,
@@ -441,7 +441,7 @@ namespace System.Windows.Shell
         {
             if (!IsUnmodified)
             {
-                throw new InvalidOperationException(SR.Get("SRID.JumpList_CantNestBeginInitCalls));
+                throw new InvalidOperationException(SR.Get("SRID.JumpList_CantNestBeginInitCalls"));
             }
 
             _initializing = true;
@@ -463,7 +463,7 @@ namespace System.Windows.Shell
         {
             if (_initializing != true)
             {
-                throw new NotSupportedException(SR.Get("SRID.JumpList_CantCallUnbalancedEndInit));
+                throw new NotSupportedException(SR.Get("SRID.JumpList_CantCallUnbalancedEndInit"));
             }
 
             _initializing = false;
@@ -521,7 +521,7 @@ namespace System.Windows.Shell
         {
             if (_initializing == true)
             {
-                throw new InvalidOperationException(SR.Get("SRID.JumpList_CantApplyUntilEndInit));
+                throw new InvalidOperationException(SR.Get("SRID.JumpList_CantApplyUntilEndInit"));
             }
 
             // After this attempting to use ISupportInitialize is invalid.
@@ -719,10 +719,10 @@ namespace System.Windows.Shell
                 // We can instead handle this.
                 
                 // Try to notify the developer if they're hitting this. 
-                if (TraceShell.IsEnabled)
-                {
-                    TraceShell.Trace(TraceEventType.Error, TraceShell.RejectingJumpItemsBecauseCatastrophicFailure);
-                }
+                //if (TraceShell.IsEnabled)
+                //{
+                //    TraceShell.Trace(TraceEventType.Error, TraceShell.RejectingJumpItemsBecauseCatastrophicFailure);
+                //}
                 RejectEverything();
                 return;
             }
@@ -962,10 +962,10 @@ namespace System.Windows.Shell
                 // then drop all ShellItems and retry without them.
                 if (isHeterogenous && hr == HRESULT.DESTS_E_NO_MATCHING_ASSOC_HANDLER)
                 {
-                    if (TraceShell.IsEnabled)
-                    {
-                        TraceShell.Trace(TraceEventType.Error, TraceShell.RejectingJumpListCategoryBecauseNoRegisteredHandler(category));
-                    }
+                    //if (TraceShell.IsEnabled)
+                    //{
+                    //    TraceShell.Trace(TraceEventType.Error, TraceShell.RejectingJumpListCategoryBecauseNoRegisteredHandler(category));
+                    //}
 
                     Utilities.SafeRelease(ref shellObjectCollection);
                     var linksOnlyList = new List<_ShellObjectPair>();

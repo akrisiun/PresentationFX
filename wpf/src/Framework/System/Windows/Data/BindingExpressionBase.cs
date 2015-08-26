@@ -161,24 +161,24 @@ namespace System.Windows.Data
                 PresentationTraceSources.SetTraceLevel(this, traceLevel);
             }
 
-            if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.CreateExpression))
-            {
-                if (parent == null)
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.CreatedExpression(
-                                            TraceData.Identify(this),
-                                            TraceData.Identify(binding)));
-                }
-                else
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.CreatedExpressionInParent(
-                                            TraceData.Identify(this),
-                                            TraceData.Identify(binding),
-                                            TraceData.Identify(parent)));
-                }
-            }
+            //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.CreateExpression))
+            //{
+            //    //if (parent == null)
+            //    //{
+            //    //    TraceData.Trace(TraceEventType.Warning,
+            //    //                        TraceData.CreatedExpression(
+            //    //                            TraceData.Identify(this),
+            //    //                            TraceData.Identify(binding)));
+            //    //}
+            //    //else
+            //    //{
+            //    //    TraceData.Trace(TraceEventType.Warning,
+            //    //                        TraceData.CreatedExpressionInParent(
+            //    //                            TraceData.Identify(this),
+            //    //                            TraceData.Identify(binding),
+            //    //                            TraceData.Identify(parent)));
+            //    //}
+            //}
 
             if (LookupValidationRule(typeof(ExceptionValidationRule)) != null)
             {
@@ -943,13 +943,13 @@ namespace System.Windows.Data
                 }
             }
 
-            if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.Attach))
-            {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.AttachExpression(
-                                        TraceData.Identify(this),
-                                        target.GetType().FullName, dp.Name, AvTrace.GetHashCodeHelper(target)));
-            }
+            //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.Attach))
+            //{
+            //    //TraceData.Trace(TraceEventType.Warning,
+            //    //                    TraceData.AttachExpression(
+            //    //                        TraceData.Identify(this),
+            //    //                        target.GetType().FullName, dp.Name, AvTrace.GetHashCodeHelper(target)));
+            //}
 
             return true;
         }
@@ -978,12 +978,12 @@ namespace System.Windows.Data
             _targetProperty = null;
             SetStatus(BindingStatusInternal.Detached);
 
-            if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.Attach))
-            {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.DetachExpression(
-                                        TraceData.Identify(this)));
-            }
+            //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.Attach))
+            //{
+            //    //TraceData.Trace(TraceEventType.Warning,
+            //    //                    TraceData.DetachExpression(
+            //    //                        TraceData.Identify(this)));
+            //}
         }
 
         /// <summary>
@@ -1196,13 +1196,13 @@ namespace System.Windows.Data
 
                         if (!validationResult.IsValid)
                         {
-                            if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.Update))
-                            {
-                                TraceData.Trace(TraceEventType.Warning,
-                                                    TraceData.ValidationRuleFailed(
-                                                        TraceData.Identify(this),
-                                                        TraceData.Identify(validationRule)));
-                            }
+                            //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.Update))
+                            //{
+                            //    TraceData.Trace(TraceEventType.Warning,
+                            //                        TraceData.ValidationRuleFailed(
+                            //                            TraceData.Identify(this),
+                            //                            TraceData.Identify(validationRule)));
+                            //}
 
                             UpdateValidationError( new ValidationError(validationRule, this, validationResult.ErrorContent, null));
                             return false; // kenlai: 
@@ -1280,12 +1280,12 @@ namespace System.Windows.Data
                             // A binding for the Language property needs the value
                             // of the Language property.  This circularity is not
                             // supported (bug 1274874).
-                            if (TraceData.IsEnabled)
-                            {
-                                TraceData.Trace(TraceEventType.Critical, TraceData.RequiresExplicitCulture, TargetProperty.Name, this);
-                            }
+                            //if (TraceData.IsEnabled)
+                            //{
+                            //    TraceData.Trace(TraceEventType.Critical, TraceData.RequiresExplicitCulture, TargetProperty.Name, this);
+                            //}
 
-                            throw new InvalidOperationException(SR.Get("SRID.RequiresExplicitCulture, TargetProperty.Name));
+                            throw new InvalidOperationException(SR.Get("SRID.RequiresExplicitCulture", TargetProperty.Name));
                         }
 
                         // cache CultureInfo since requerying an inheritable property on every Transfer/Update can be quite expensive
@@ -1561,10 +1561,10 @@ namespace System.Windows.Data
                 {
                     value = DefaultValue;
 
-                    if (TraceData.IsEnabled)
-                    {
-                        TraceData.Trace(TraceEventType.Information, TraceData.NoValueToTransfer, this);
-                    }
+                    //if (TraceData.IsEnabled)
+                    //{
+                    //    TraceData.Trace(TraceEventType.Information, TraceData.NoValueToTransfer, this);
+                    //}
                 }
             }
 
@@ -1745,14 +1745,14 @@ namespace System.Windows.Data
 
                     if (bgCandidate.Name == groupName)
                     {
-                        if (bgCandidate.SharesProposedValues && TraceData.IsEnabled)
-                        {
-                            TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.SharesProposedValuesRequriesImplicitBindingGroup(
-                                            TraceData.Identify(this),
-                                            groupName,
-                                            TraceData.Identify(bgCandidate)));
-                        }
+                        //if (bgCandidate.SharesProposedValues && TraceData.IsEnabled)
+                        //{
+                        //    TraceData.Trace(TraceEventType.Warning,
+                        //            TraceData.SharesProposedValuesRequriesImplicitBindingGroup(
+                        //                    TraceData.Identify(this),
+                        //                    groupName,
+                        //                    TraceData.Identify(bgCandidate)));
+                        //}
 
                         // return the matching group
                         return bgCandidate;
@@ -1762,12 +1762,12 @@ namespace System.Windows.Data
                 }
 
                 // no match - report an error
-                if (TraceData.IsEnabled)
-                {
-                    TraceData.Trace(TraceEventType.Error,
-                            TraceData.BindingGroupNameMatchFailed(groupName),
-                            this);
-                }
+                //if (TraceData.IsEnabled)
+                //{
+                //    TraceData.Trace(TraceEventType.Error,
+                //            TraceData.BindingGroupNameMatchFailed(groupName),
+                //            this);
+                //}
 
                 MarkAsNonGrouped();
                 return null;
@@ -1813,20 +1813,20 @@ namespace System.Windows.Data
                 {
                     root.UpdateBindingGroup(bg);
 
-                    if (bg.SharesProposedValues && TraceData.IsEnabled)
-                    {
-                        TraceData.Trace(TraceEventType.Warning,
-                                TraceData.SharesProposedValuesRequriesImplicitBindingGroup(
-                                        TraceData.Identify(root),
-                                        root.ParentBindingBase.BindingGroupName,
-                                        TraceData.Identify(bg)));
-                    }
+                    //if (bg.SharesProposedValues && TraceData.IsEnabled)
+                    //{
+                    //    TraceData.Trace(TraceEventType.Warning,
+                    //            TraceData.SharesProposedValuesRequriesImplicitBindingGroup(
+                    //                    TraceData.Identify(root),
+                    //                    root.ParentBindingBase.BindingGroupName,
+                    //                    TraceData.Identify(bg)));
+                    //}
                 }
             }
             else
             {
                 if (root.BindingGroup != bg)
-                    throw new InvalidOperationException(SR.Get("SRID.BindingGroup_CannotChangeGroups));
+                    throw new InvalidOperationException(SR.Get("SRID.BindingGroup_CannotChangeGroups"));
             }
         }
 
@@ -2099,7 +2099,7 @@ namespace System.Windows.Data
         {
             if (IsDetached && status != _status)
             {
-                throw new InvalidOperationException(SR.Get("SRID.BindingExpressionStatusChanged, _status, status));
+                throw new InvalidOperationException(SR.Get("SRID.BindingExpressionStatusChanged", _status, status));
             }
 
             _status = status;
@@ -2116,16 +2116,16 @@ namespace System.Windows.Data
 
             if (result == DefaultValueObject)
             {
-                if (TraceData.IsEnabled)
-                {
-                    TraceData.Trace(TraceEventType.Error,
-                            TraceData.FallbackConversionFailed(
-                                AvTrace.ToStringHelper(value),
-                                AvTrace.TypeName(value),
-                                dp.Name,
-                                dp.PropertyType.Name),
-                            sender, e);
-                }
+                //if (TraceData.IsEnabled)
+                //{
+                //    TraceData.Trace(TraceEventType.Error,
+                //            TraceData.FallbackConversionFailed(
+                //                AvTrace.ToStringHelper(value),
+                //                AvTrace.TypeName(value),
+                //                dp.Name,
+                //                dp.PropertyType.Name),
+                //            sender, e);
+                //}
             }
 
             return result;
@@ -2142,16 +2142,16 @@ namespace System.Windows.Data
 
             if (result == DefaultValueObject)
             {
-                if (TraceData.IsEnabled)
-                {
-                    TraceData.Trace(TraceEventType.Error,
-                            TraceData.TargetNullValueConversionFailed(
-                                AvTrace.ToStringHelper(value),
-                                AvTrace.TypeName(value),
-                                dp.Name,
-                                dp.PropertyType.Name),
-                            sender, e);
-                }
+                //if (TraceData.IsEnabled)
+                //{
+                //    TraceData.Trace(TraceEventType.Error,
+                //            TraceData.TargetNullValueConversionFailed(
+                //                AvTrace.ToStringHelper(value),
+                //                AvTrace.TypeName(value),
+                //                dp.Name,
+                //                dp.PropertyType.Name),
+                //            sender, e);
+                //}
             }
 
             return result;
@@ -2505,13 +2505,13 @@ namespace System.Windows.Data
                 ChangeFlag(PrivateFlags.iPropagationMask, false);
                 ChangeFlag((PrivateFlags)f, true);
 
-                if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ResolveDefaults))
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.ResolveDefaultMode(
-                                            TraceData.Identify(this),
-                                            (f == BindingFlags.OneWay) ? BindingMode.OneWay : BindingMode.TwoWay));
-                }
+                //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ResolveDefaults))
+                //{
+                //    TraceData.Trace(TraceEventType.Warning,
+                //                        TraceData.ResolveDefaultMode(
+                //                            TraceData.Identify(this),
+                //                            (f == BindingFlags.OneWay) ? BindingMode.OneWay : BindingMode.TwoWay));
+                //}
             }
 
             Debug.Assert((_flags & PrivateFlags.iPropagationMask) != PrivateFlags.iPropDefault,
@@ -2524,13 +2524,13 @@ namespace System.Windows.Data
 
                 SetUpdateSourceTrigger(ust);
 
-                if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ResolveDefaults))
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.ResolveDefaultUpdate(
-                                            TraceData.Identify(this),
-                                            ust));
-                }
+                //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ResolveDefaults))
+                //{
+                //    TraceData.Trace(TraceEventType.Warning,
+                //                        TraceData.ResolveDefaultUpdate(
+                //                            TraceData.Identify(this),
+                //                            ust));
+                //}
             }
 
             Invariant.Assert((_flags & PrivateFlags.iUpdateMask) != PrivateFlags.iUpdateDefault,

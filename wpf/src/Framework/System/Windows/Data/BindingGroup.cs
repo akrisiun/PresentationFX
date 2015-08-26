@@ -468,9 +468,9 @@ namespace System.Windows.Data
             }
 
             if (value == Binding.DoNothing)
-                throw new ValueUnavailableException(SR.Get("SRID.BindingGroup_NoEntry, item, propertyName));
+                throw new ValueUnavailableException(SR.Get("SRID.BindingGroup_NoEntry", item, propertyName));
             else
-                throw new ValueUnavailableException(SR.Get("SRID.BindingGroup_ValueUnavailable, item, propertyName));
+                throw new ValueUnavailableException(SR.Get("SRID.BindingGroup_ValueUnavailable", item, propertyName));
         }
 
         /// <summary>

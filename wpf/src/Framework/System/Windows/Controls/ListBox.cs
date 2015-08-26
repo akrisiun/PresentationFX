@@ -76,7 +76,8 @@ namespace System.Windows.Controls
             EventManager.RegisterClassHandler(typeof(ListBox), Mouse.MouseUpEvent, new MouseButtonEventHandler(OnMouseButtonUp), true);
             EventManager.RegisterClassHandler(typeof(ListBox), Keyboard.GotKeyboardFocusEvent, new KeyboardFocusChangedEventHandler(OnGotKeyboardFocus));
 
-            CommandHelpers.RegisterCommandHandler(typeof(ListBox), ListBox.SelectAllCommand, new ExecutedRoutedEventHandler(OnSelectAll), new CanExecuteRoutedEventHandler(OnQueryStatusSelectAll), KeyGesture.CreateFromResourceStrings(SR.Get("SRID.ListBoxSelectAllKey), SR.Get("SRID.ListBoxSelectAllKeyDisplayString)));
+            CommandHelpers.RegisterCommandHandler(typeof(ListBox), ListBox.SelectAllCommand, new ExecutedRoutedEventHandler(OnSelectAll), new CanExecuteRoutedEventHandler(OnQueryStatusSelectAll), KeyGesture.CreateFromResourceStrings(
+                    SR.Get("SRID.ListBoxSelectAllKey"), SR.Get("SRID.ListBoxSelectAllKeyDisplayString")));
 
         }
 
@@ -101,7 +102,7 @@ namespace System.Windows.Controls
             }
             else
             {
-                throw new NotSupportedException(SR.Get("SRID.ListBoxSelectAllSelectionMode));
+                throw new NotSupportedException(SR.Get("SRID.ListBoxSelectAllSelectionMode"));
             }
         }
 
@@ -967,7 +968,7 @@ namespace System.Windows.Controls
                     ListBoxItem listBoxItem = info.Container as ListBoxItem;
                     if (listBoxItem == null)
                     {
-                        throw new InvalidOperationException(SR.Get("SRID.ListBoxInvalidAnchorItem, value));
+                        throw new InvalidOperationException(SR.Get("SRID.ListBoxInvalidAnchorItem", value));
                     }
 
                     AnchorItemInternal = info;
@@ -1013,7 +1014,7 @@ namespace System.Windows.Controls
         private DispatcherTimer _autoScrollTimer;
 
         private static RoutedUICommand SelectAllCommand =
-            new RoutedUICommand(SR.Get("SRID.ListBoxSelectAllText), "SelectAll", typeof(ListBox));
+            new RoutedUICommand(SR.Get("SRID.ListBoxSelectAllText"), "SelectAll", typeof(ListBox));
 
         #endregion
 

@@ -65,11 +65,11 @@ namespace MS.Internal.Documents
             // Reentrancy check.
             if (_document.StructuralCache.IsFormattingInProgress)
             {
-                throw new InvalidOperationException(SR.Get("SRID.FlowDocumentFormattingReentrancy));
+                throw new InvalidOperationException(SR.Get("SRID.FlowDocumentFormattingReentrancy"));
             }
             if (_document.StructuralCache.IsContentChangeInProgress)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextContainerChangingReentrancyInvalid));
+                throw new InvalidOperationException(SR.Get("SRID.TextContainerChangingReentrancyInvalid"));
             }
 
             // Check if we can continue with formatting without nuking incremental udpate info.

@@ -185,7 +185,7 @@ namespace System.Windows.Data
             Type newCollectionViewType = (Type) e.NewValue;
 
             if (!ctrl._isInitializing)
-                throw new InvalidOperationException(SR.Get("SRID.CollectionViewTypeIsInitOnly));
+                throw new InvalidOperationException(SR.Get("SRID.CollectionViewTypeIsInitOnly"));
 
             ctrl.OnCollectionViewTypeChanged(oldCollectionViewType, newCollectionViewType);
             ctrl.EnsureView();
@@ -1001,7 +1001,7 @@ namespace System.Windows.Data
                     }
                 }
                 else if (SortDescriptions.Count > 0)
-                    throw new InvalidOperationException(SR.Get("SRID.CannotSortView, view));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotSortView", view));
 
                 // Filter
                 Predicate<object> filter;
@@ -1019,7 +1019,7 @@ namespace System.Windows.Data
                     view.Filter = filter;
                 }
                 else if (filter != null)
-                    throw new InvalidOperationException(SR.Get("SRID.CannotFilterView, view));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotFilterView", view));
 
                 // GroupBy
                 if (view.CanGroup)
@@ -1031,7 +1031,7 @@ namespace System.Windows.Data
                     }
                 }
                 else if (GroupDescriptions.Count > 0)
-                    throw new InvalidOperationException(SR.Get("SRID.CannotGroupView, view));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotGroupView", view));
 
                 // Live shaping
                 if (liveView != null)

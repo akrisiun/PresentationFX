@@ -576,12 +576,12 @@ namespace System.Windows.Controls
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("d", SR.Get("SRID.Calendar_OnSelectedDateChanged_InvalidValue));
+                    throw new ArgumentOutOfRangeException("d", SR.Get("SRID.Calendar_OnSelectedDateChanged_InvalidValue"));
                 }
             }
             else
             {
-                throw new InvalidOperationException(SR.Get("SRID.Calendar_OnSelectedDateChanged_InvalidOperation));
+                throw new InvalidOperationException(SR.Get("SRID.Calendar_OnSelectedDateChanged_InvalidOperation"));
             }
         }
 

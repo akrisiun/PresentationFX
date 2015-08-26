@@ -100,16 +100,16 @@ namespace System.Windows.Controls
 
                         error = null;
 
-                        if (TraceData.IsEnabled)
-                        {
-                            TraceData.Trace(TraceEventType.Error,
-                                            TraceData.DataErrorInfoFailed(
-                                                name,
-                                                idei.GetType().FullName,
-                                                ex.GetType().FullName,
-                                                ex.Message),
-                                            bindingExpr);
-                        }
+                        //if (TraceData.IsEnabled)
+                        //{
+                        //    TraceData.Trace(TraceEventType.Error,
+                        //                    TraceData.DataErrorInfoFailed(
+                        //                        name,
+                        //                        idei.GetType().FullName,
+                        //                        ex.GetType().FullName,
+                        //                        ex.Message),
+                        //                    bindingExpr);
+                        //}
                     }
                     #pragma warning restore 56500
                     #pragma warning restore 1634, 1691
@@ -121,7 +121,7 @@ namespace System.Windows.Controls
                 }
             }
             else
-                throw new InvalidOperationException(SR.Get("SRID.ValidationRule_UnexpectedValue, this, value));
+                throw new InvalidOperationException(SR.Get("SRID.ValidationRule_UnexpectedValue", this, value));
 
             return ValidationResult.ValidResult;
         }

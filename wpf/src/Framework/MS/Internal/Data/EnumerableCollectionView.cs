@@ -425,13 +425,13 @@ namespace MS.Internal.Data
 
                 case NotifyCollectionChangedAction.Remove:
                     if (args.OldStartingIndex < 0)
-                        throw new InvalidOperationException(SR.Get("SRID.RemovedItemNotFound));
+                        throw new InvalidOperationException(SR.Get("SRID.RemovedItemNotFound"));
 
                     for (int i=args.OldItems.Count-1, index=args.OldStartingIndex+i; i>=0; --i, --index)
                     {
                         if (!Object.Equals(args.OldItems[i], _snapshot[index]))
                             // 
-                            throw new InvalidOperationException(SR.Get("SRID.AddedItemNotAtIndex, index));
+                            throw new InvalidOperationException(SR.Get("SRID.AddedItemNotAtIndex", index));
                         _snapshot.RemoveAt(index);
                     }
                     break;
@@ -441,14 +441,14 @@ namespace MS.Internal.Data
                     {
                         if (!Object.Equals(args.OldItems[i], _snapshot[index]))
                             // 
-                            throw new InvalidOperationException(SR.Get("SRID.AddedItemNotAtIndex, index));
+                            throw new InvalidOperationException(SR.Get("SRID.AddedItemNotAtIndex", index));
                         _snapshot[index] = args.NewItems[i];
                     }
                     break;
 
                 case NotifyCollectionChangedAction.Move:
                     if (args.NewStartingIndex < 0)
-                        throw new InvalidOperationException(SR.Get("SRID.CannotMoveToUnknownPosition));
+                        throw new InvalidOperationException(SR.Get("SRID.CannotMoveToUnknownPosition"));
 
                     if (args.OldStartingIndex < args.NewStartingIndex)
                     {
@@ -460,7 +460,7 @@ namespace MS.Internal.Data
                         {
                             if (!Object.Equals(args.OldItems[i], _snapshot[oldIndex]))
                                 // 
-                                throw new InvalidOperationException(SR.Get("SRID.AddedItemNotAtIndex, oldIndex));
+                                throw new InvalidOperationException(SR.Get("SRID.AddedItemNotAtIndex", oldIndex));
                             _snapshot.Move(oldIndex, newIndex);
                         }
                     }
@@ -474,7 +474,7 @@ namespace MS.Internal.Data
                         {
                             if (!Object.Equals(args.OldItems[i], _snapshot[oldIndex]))
                                 // 
-                                throw new InvalidOperationException(SR.Get("SRID.AddedItemNotAtIndex, oldIndex));
+                                throw new InvalidOperationException(SR.Get("SRID.AddedItemNotAtIndex", oldIndex));
                             _snapshot.Move(oldIndex, newIndex);
                         }
                     }
@@ -576,22 +576,12 @@ namespace MS.Internal.Data
                 }
                 catch (InvalidOperationException)
                 {
-                    // 
-
-
-
-
-
-
-
-
-
-                    if (TraceData.IsEnabled && !_warningHasBeenRaised)
-                    {
-                        _warningHasBeenRaised = true;
-                        TraceData.Trace(TraceEventType.Warning,
-                            TraceData.CollectionChangedWithoutNotification(SourceCollection.GetType().FullName));
-                    }
+                    //if (TraceData.IsEnabled && !_warningHasBeenRaised)
+                    //{
+                    //    _warningHasBeenRaised = true;
+                    //    TraceData.Trace(TraceEventType.Warning,
+                    //        TraceData.CollectionChangedWithoutNotification(SourceCollection.GetType().FullName));
+                    //}
 
                     // collection was changed - start over with a new enumerator
                     LoadSnapshotCore(SourceCollection);

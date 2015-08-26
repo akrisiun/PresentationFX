@@ -467,7 +467,7 @@ namespace System.Windows.Controls.Primitives
         {
             if (index != 0 || _pageHost == null)
             {
-                throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange));
+                throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange"));
             }
             return _pageHost;
         }

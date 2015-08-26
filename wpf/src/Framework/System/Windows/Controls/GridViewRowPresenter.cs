@@ -38,7 +38,7 @@ namespace System.Windows.Controls
         /// <returns></returns>
         public override string ToString()
         {
-            return SR.Get("SRID.ToStringFormatString_GridViewRowPresenter,
+            return SR.Get("SRID.ToStringFormatString_GridViewRowPresenter",
                 this.GetType(),
                 (Content != null) ? Content.ToString() : String.Empty,
                 (Columns != null) ? Columns.Count : 0);

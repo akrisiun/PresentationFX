@@ -216,15 +216,15 @@ namespace System.Windows.Automation.Peers
                 FlowDocumentReaderViewingMode mode = ConvertViewIdToMode(viewId);
                 if (mode == FlowDocumentReaderViewingMode.Page)
                 {
-                    name = SR.Get("SRID.FlowDocumentReader_MultipleViewProvider_PageViewName);
+                    name = SR.Get("SRID.FlowDocumentReader_MultipleViewProvider_PageViewName");
                 }
                 else if (mode == FlowDocumentReaderViewingMode.TwoPage)
                 {
-                    name = SR.Get("SRID.FlowDocumentReader_MultipleViewProvider_TwoPageViewName);
+                    name = SR.Get("SRID.FlowDocumentReader_MultipleViewProvider_TwoPageViewName");
                 }
                 else if (mode == FlowDocumentReaderViewingMode.Scroll)
                 {
-                    name = SR.Get("SRID.FlowDocumentReader_MultipleViewProvider_ScrollViewName);
+                    name = SR.Get("SRID.FlowDocumentReader_MultipleViewProvider_ScrollViewName");
                 }
             }
             return name;

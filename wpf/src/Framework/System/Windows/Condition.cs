@@ -53,7 +53,7 @@ namespace System.Windows
 
             if( !conditionProperty.IsValidValue( conditionValue ) )
             {
-                throw new ArgumentException(SR.Get("SRID.InvalidPropertyValue, conditionValue, conditionProperty.Name));
+                throw new ArgumentException(SR.Get("SRID.InvalidPropertyValue", conditionValue, conditionProperty.Name));
             }
 
             _property = conditionProperty;
@@ -88,12 +88,13 @@ namespace System.Windows
             {
                 if (_sealed)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed, "Condition"));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed", "Condition"));
                 }
 
                 if (_binding != null)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.ConditionCannotUseBothPropertyAndBinding));
+                    throw new InvalidOperationException(SR.Get("SRID.ConditionCannotUseBothPropertyAndBinding"
+                        ));
                 }
 
                 _property = value;
@@ -111,12 +112,12 @@ namespace System.Windows
             {
                 if (_sealed)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed, "Condition"));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed", "Condition"));
                 }
 
                 if( _property != null )
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.ConditionCannotUseBothPropertyAndBinding));
+                    throw new InvalidOperationException(SR.Get("SRID.ConditionCannotUseBothPropertyAndBinding"));
                 }
 
                 _binding = value;
@@ -134,18 +135,18 @@ namespace System.Windows
             {
                 if (_sealed)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed, "Condition"));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed", "Condition"));
                 }
 
                 if (value is MarkupExtension)
                 {
-                    throw new ArgumentException(SR.Get("SRID.ConditionValueOfMarkupExtensionNotSupported,
+                    throw new ArgumentException(SR.Get("SRID.ConditionValueOfMarkupExtensionNotSupported",
                                                        value.GetType().Name));
                 }
 
                 if( value is Expression )
                 {
-                    throw new ArgumentException(SR.Get("SRID.ConditionValueOfExpressionNotSupported));
+                    throw new ArgumentException(SR.Get("SRID.ConditionValueOfExpressionNotSupported"));
                 }
 
                 _value = value;
@@ -169,7 +170,7 @@ namespace System.Windows
             {
                 if( _sealed )
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed, "Condition"));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed", "Condition"));
                 }
 
                 _sourceName = value;
@@ -190,7 +191,7 @@ namespace System.Windows
 
             // Ensure valid condition
             if (_property != null && _binding != null)
-                throw new InvalidOperationException(SR.Get("SRID.ConditionCannotUseBothPropertyAndBinding));
+                throw new InvalidOperationException(SR.Get("SRID.ConditionCannotUseBothPropertyAndBinding"));
 
             switch (type)
             {
@@ -198,12 +199,12 @@ namespace System.Windows
                 case ValueLookupType.PropertyTriggerResource:
                     if (_property == null)
                     {
-                        throw new InvalidOperationException(SR.Get("SRID.NullPropertyIllegal, "Property"));
+                        throw new InvalidOperationException(SR.Get("SRID.NullPropertyIllegal", "Property"));
                     }
 
                     if (!_property.IsValidValue(_value))
                     {
-                        throw new InvalidOperationException(SR.Get("SRID.InvalidPropertyValue, _value, _property.Name));
+                        throw new InvalidOperationException(SR.Get("SRID.InvalidPropertyValue", _value, _property.Name));
                     }
                     break;
 
@@ -211,12 +212,12 @@ namespace System.Windows
                 case ValueLookupType.DataTriggerResource:
                     if (_binding == null)
                     {
-                        throw new InvalidOperationException(SR.Get("SRID.NullPropertyIllegal, "Binding"));
+                        throw new InvalidOperationException(SR.Get("SRID.NullPropertyIllegal", "Binding"));
                     }
                     break;
 
                 default:
-                    throw new InvalidOperationException(SR.Get("SRID.UnexpectedValueTypeForCondition, type));
+                    throw new InvalidOperationException(SR.Get("SRID.UnexpectedValueTypeForCondition", type));
             }
 
             // Freeze the condition value

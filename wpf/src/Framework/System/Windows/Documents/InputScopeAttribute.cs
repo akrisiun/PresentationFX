@@ -79,7 +79,7 @@ namespace System.Windows.Documents
                 }
                 catch (OutOfMemoryException)
                 {
-                    throw new COMException(SR.Get("SRID.InputScopeAttribute_E_OUTOFMEMORY), NativeMethods.E_OUTOFMEMORY);
+                    throw new COMException(SR.Get("SRID.InputScopeAttribute_E_OUTOFMEMORY"), NativeMethods.E_OUTOFMEMORY);
                 }
 
                 for (int i = 0; i < count; i++)
@@ -112,7 +112,7 @@ namespace System.Windows.Documents
             }
             catch (OutOfMemoryException)
             {
-                throw new COMException(SR.Get("SRID.InputScopeAttribute_E_OUTOFMEMORY), NativeMethods.E_OUTOFMEMORY);
+                throw new COMException(SR.Get("SRID.InputScopeAttribute_E_OUTOFMEMORY"), NativeMethods.E_OUTOFMEMORY);
             }
 
             int offset = 0;
@@ -131,7 +131,7 @@ namespace System.Windows.Documents
                         Marshal.FreeBSTR(Marshal.ReadIntPtr(ppbstrPhrases,  offset));
                         offset += Marshal.SizeOf(typeof(IntPtr));
                     }
-                    throw new COMException(SR.Get("SRID.InputScopeAttribute_E_OUTOFMEMORY), NativeMethods.E_OUTOFMEMORY);
+                    throw new COMException(SR.Get("SRID.InputScopeAttribute_E_OUTOFMEMORY"), NativeMethods.E_OUTOFMEMORY);
                 }
 
                 Marshal.WriteIntPtr(ppbstrPhrases , offset, pbstr);

@@ -102,7 +102,7 @@ namespace System.Windows
         {
             if (_sealed)
             {
-                throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed, "ConditionCollection"));
+                throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed", "ConditionCollection"));
             }
         }
         
@@ -116,7 +116,7 @@ namespace System.Windows
             Condition condition = value as Condition;
             if (condition == null)
             {
-                throw new ArgumentException(SR.Get("SRID.MustBeCondition));
+                throw new ArgumentException(SR.Get("SRID.MustBeCondition"));
             }
         }
 

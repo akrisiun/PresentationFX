@@ -251,7 +251,7 @@ namespace System.Windows.Automation.Peers
             string dateString = DateTimeHelper.ToLongDateString(Date, DateTimeHelper.GetCulture(OwningCalendar));
             if (IsDayButton && this.OwningCalendar.BlackoutDates.Contains(Date))
             {
-                return string.Format(DateTimeHelper.GetCurrentDateFormat(), SR.Get("SRID.CalendarAutomationPeer_BlackoutDayHelpText), dateString);
+                return string.Format(DateTimeHelper.GetCurrentDateFormat(), SR.Get("SRID.CalendarAutomationPeer_BlackoutDayHelpText"), dateString);
             }
 
             return dateString;
@@ -304,7 +304,8 @@ namespace System.Windows.Automation.Peers
 
         protected override string GetLocalizedControlTypeCore()
         {
-            return IsDayButton ? SR.Get("SRID.CalendarAutomationPeer_DayButtonLocalizedControlType) : SR.Get("SRID.CalendarAutomationPeer_CalendarButtonLocalizedControlType);
+            return IsDayButton ? SR.Get("SRID.CalendarAutomationPeer_DayButtonLocalizedControlType") 
+                : SR.Get("SRID.CalendarAutomationPeer_CalendarButtonLocalizedControlType");
         }
 
         protected override string GetNameCore()
@@ -559,7 +560,7 @@ namespace System.Windows.Automation.Peers
                 }
                 else
                 {
-                    throw new ElementNotAvailableException(SR.Get("SRID.VirtualizedElement));
+                    throw new ElementNotAvailableException(SR.Get("SRID.VirtualizedElement"));
                 }
             }
         }
@@ -578,7 +579,7 @@ namespace System.Windows.Automation.Peers
                 }
                 else
                 {
-                    throw new ElementNotAvailableException(SR.Get("SRID.VirtualizedElement));
+                    throw new ElementNotAvailableException(SR.Get("SRID.VirtualizedElement"));
                 }
             }
         }
@@ -618,7 +619,7 @@ namespace System.Windows.Automation.Peers
                 }
                 else
                 {
-                    throw new ElementNotAvailableException(SR.Get("SRID.VirtualizedElement));
+                    throw new ElementNotAvailableException(SR.Get("SRID.VirtualizedElement"));
                 }
             }
         }
@@ -644,7 +645,7 @@ namespace System.Windows.Automation.Peers
                 }
                 else
                 {
-                    throw new ElementNotAvailableException(SR.Get("SRID.VirtualizedElement));
+                    throw new ElementNotAvailableException(SR.Get("SRID.VirtualizedElement"));
                 }
             }
         }
@@ -858,7 +859,7 @@ namespace System.Windows.Automation.Peers
             // To avoid the situation on legacy systems which may not have new unmanaged core. this check with old unmanaged core
             // avoids throwing exception and provide older behavior returning default values for items which are virtualized rather than throwing exception.
             if (VirtualizedItemPatternIdentifiers.Pattern != null)
-                throw new ElementNotAvailableException(SR.Get("SRID.VirtualizedElement));
+                throw new ElementNotAvailableException(SR.Get("SRID.VirtualizedElement"));
         }
 
         #endregion Private Methods

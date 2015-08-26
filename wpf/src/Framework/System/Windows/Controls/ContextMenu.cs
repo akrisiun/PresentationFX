@@ -687,7 +687,7 @@ namespace System.Windows.Controls
 
             if (!Popup.IsRootedInPopup(_parentPopup, this))
             {
-                throw new InvalidOperationException(SR.Get("SRID.ElementMustBeInPopup, "ContextMenu"));
+                throw new InvalidOperationException(SR.Get("SRID.ElementMustBeInPopup", "ContextMenu"));
             }
         }
 
@@ -697,7 +697,7 @@ namespace System.Windows.Controls
 
             if (!Popup.IsRootedInPopup(_parentPopup, this))
             {
-                throw new InvalidOperationException(SR.Get("SRID.ElementMustBeInPopup, "ContextMenu"));
+                throw new InvalidOperationException(SR.Get("SRID.ElementMustBeInPopup", "ContextMenu"));
             }
         }
 

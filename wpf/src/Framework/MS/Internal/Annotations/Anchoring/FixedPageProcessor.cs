@@ -184,7 +184,7 @@ namespace MS.Internal.Annotations.Anchoring
                 throw new ArgumentNullException("startNode");
 
             if (PageNumberElementName != locatorPart.PartType)
-                throw new ArgumentException(SR.Get("SRID.IncorrectLocatorPartType, locatorPart.PartType.Namespace + ":" + locatorPart.PartType.Name), "locatorPart");
+                throw new ArgumentException(SR.Get("SRID.IncorrectLocatorPartType", locatorPart.PartType.Namespace + ":" + locatorPart.PartType.Name), "locatorPart");
 
             // Initial value
             continueResolving = true;
@@ -195,7 +195,7 @@ namespace MS.Internal.Annotations.Anchoring
             if (pageNumberString != null)
                 pageNumber = Int32.Parse(pageNumberString, NumberFormatInfo.InvariantInfo);
             else
-                throw new ArgumentException(SR.Get("SRID.IncorrectLocatorPartType, locatorPart.PartType.Namespace + ":" + locatorPart.PartType.Name), "locatorPart");
+                throw new ArgumentException(SR.Get("SRID.IncorrectLocatorPartType", locatorPart.PartType.Namespace + ":" + locatorPart.PartType.Name), "locatorPart");
 
             
             // Get the actual FixedPage for the page number specified in the LocatorPart.  We need

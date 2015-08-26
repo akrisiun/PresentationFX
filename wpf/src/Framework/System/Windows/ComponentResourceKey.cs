@@ -59,7 +59,7 @@ namespace System.Windows
                 }
                 if (_typeInTargetAssemblyInitialized)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.ChangingTypeNotAllowed));
+                    throw new InvalidOperationException(SR.Get("SRID.ChangingTypeNotAllowed"));
                 }
                 _typeInTargetAssembly = value;
                 _typeInTargetAssemblyInitialized = true;
@@ -91,7 +91,7 @@ namespace System.Windows
             {
                 if (_resourceIdInitialized)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.ChangingIdNotAllowed));
+                    throw new InvalidOperationException(SR.Get("SRID.ChangingIdNotAllowed"));
                 }
                 _resourceId = value;
                 _resourceIdInitialized = true;

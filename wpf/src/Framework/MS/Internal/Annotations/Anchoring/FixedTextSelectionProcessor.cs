@@ -111,14 +111,14 @@ namespace MS.Internal.Annotations.Anchoring
                 TextSelectionHelper.GetPointerPage(startPointer, out startPage);
                 start = TextSelectionHelper.GetPointForPointer(startPointer);
                 if (startPage == int.MinValue)
-                    throw new ArgumentException(SR.Get("SRID.SelectionDoesNotResolveToAPage, "start"), "selection");
+                    throw new ArgumentException(SR.Get("SRID.SelectionDoesNotResolveToAPage", "start"), "selection");
 
                 int endPage = int.MinValue;
                 ITextPointer endPointer = segment.End.CreatePointer(LogicalDirection.Backward);
                 TextSelectionHelper.GetPointerPage(endPointer, out endPage);
                 end = TextSelectionHelper.GetPointForPointer(endPointer);
                 if (endPage == int.MinValue)
-                    throw new ArgumentException(SR.Get("SRID.SelectionDoesNotResolveToAPage, "end"), "selection");
+                    throw new ArgumentException(SR.Get("SRID.SelectionDoesNotResolveToAPage", "end"), "selection");
 
                 int firstPage = pageEl.Count;
                 int numOfPages = endPage - startPage;
@@ -209,7 +209,7 @@ namespace MS.Internal.Annotations.Anchoring
             FixedPageProxy fp = startNode as FixedPageProxy;
 
             if (fp == null)
-                throw new ArgumentException(SR.Get("SRID.StartNodeMustBeFixedPageProxy), "startNode");
+                throw new ArgumentException(SR.Get("SRID.StartNodeMustBeFixedPageProxy"), "startNode");
 
             ContentLocatorPart part = new ContentLocatorPart(FixedTextElementName);
             if (fp.Segments.Count == 0)
@@ -299,7 +299,7 @@ namespace MS.Internal.Annotations.Anchoring
 
             if (docPage == null)
             {
-                throw new ArgumentException(SR.Get("SRID.StartNodeMustBeDocumentPageViewOrFixedPage), "startNode");
+                throw new ArgumentException(SR.Get("SRID.StartNodeMustBeDocumentPageViewOrFixedPage"), "startNode");
             }
 
             if (locatorPart == null)
@@ -322,7 +322,7 @@ namespace MS.Internal.Annotations.Anchoring
             {
                 string stringCount = locatorPart.NameValuePairs["Count"];
                 if (stringCount == null)
-                    throw new ArgumentException(SR.Get("SRID.InvalidLocatorPart, TextSelectionProcessor.CountAttribute));                
+                    throw new ArgumentException(SR.Get("SRID.InvalidLocatorPart", TextSelectionProcessor.CountAttribute));                
                 int count = Int32.Parse(stringCount, NumberFormatInfo.InvariantInfo);
 
                 for(int i = 0; i < count; i++)
@@ -469,13 +469,13 @@ namespace MS.Internal.Annotations.Anchoring
                 }
                 else
                 {
-                    throw new ArgumentException(SR.Get("SRID.WrongSelectionType), "selection: type=" + selection.GetType().ToString());            
+                    throw new ArgumentException(SR.Get("SRID.WrongSelectionType"), "selection: type=" + selection.GetType().ToString());            
                 }
             }
             
             if (!(start.TextContainer is FixedTextContainer ||
                 start.TextContainer is DocumentSequenceTextContainer))
-                throw new ArgumentException(SR.Get("SRID.WrongSelectionType), "selection: type=" + selection.GetType().ToString());            
+                throw new ArgumentException(SR.Get("SRID.WrongSelectionType"), "selection: type=" + selection.GetType().ToString());            
 
             return textSegments;
         }
@@ -496,7 +496,7 @@ namespace MS.Internal.Annotations.Anchoring
             if (anchor == null || !(anchor.Start.TextContainer is FixedTextContainer ||
                     anchor.Start.TextContainer is DocumentSequenceTextContainer))
             {
-                throw new ArgumentException(SR.Get("SRID.WrongSelectionType), "selection: type=" + selection.GetType().ToString());
+                throw new ArgumentException(SR.Get("SRID.WrongSelectionType"), "selection: type=" + selection.GetType().ToString());
             }
 
             return anchor;
@@ -515,15 +515,15 @@ namespace MS.Internal.Annotations.Anchoring
                 throw new ArgumentNullException("locatorPart");
 
             if (FixedTextElementName != locatorPart.PartType)
-                throw new ArgumentException(SR.Get("SRID.IncorrectLocatorPartType, locatorPart.PartType.Namespace + ":" + locatorPart.PartType.Name), "locatorPart");
+                throw new ArgumentException(SR.Get("SRID.IncorrectLocatorPartType", locatorPart.PartType.Namespace + ":" + locatorPart.PartType.Name), "locatorPart");
 
             string segmentValue = locatorPart.NameValuePairs[TextSelectionProcessor.SegmentAttribute + segmentNumber.ToString(NumberFormatInfo.InvariantInfo)];
             if (segmentValue == null)
-                throw new ArgumentException(SR.Get("SRID.InvalidLocatorPart, TextSelectionProcessor.SegmentAttribute + segmentNumber.ToString(NumberFormatInfo.InvariantInfo)));
+                throw new ArgumentException(SR.Get("SRID.InvalidLocatorPart", TextSelectionProcessor.SegmentAttribute + segmentNumber.ToString(NumberFormatInfo.InvariantInfo)));
 
             string[] values = segmentValue.Split(TextSelectionProcessor.Separator);
             if (values.Length != 4)
-                throw new ArgumentException(SR.Get("SRID.InvalidLocatorPart, TextSelectionProcessor.SegmentAttribute + segmentNumber.ToString(NumberFormatInfo.InvariantInfo)));
+                throw new ArgumentException(SR.Get("SRID.InvalidLocatorPart", TextSelectionProcessor.SegmentAttribute + segmentNumber.ToString(NumberFormatInfo.InvariantInfo)));
             start = GetPoint(values[0], values[1]);
             end = GetPoint(values[2], values[3]);
         }

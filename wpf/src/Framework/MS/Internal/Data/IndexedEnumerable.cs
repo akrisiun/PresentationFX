@@ -338,7 +338,7 @@ namespace MS.Internal.Data
                     {
                         // The number of elements in the source ICollection is greater than
                         // the available space from index to the end of the destination array.
-                        throw new ArgumentException(SR.Get("SRID.CopyToNotEnoughSpace), "index");
+                        throw new ArgumentException(SR.Get("SRID.CopyToNotEnoughSpace"), "index");
                     }
                 }
             }
@@ -743,7 +743,7 @@ namespace MS.Internal.Data
             void IEnumerator.Reset()
             {
                 if (_indexedEnumerable._enumerable == null)
-                    throw new InvalidOperationException(SR.Get("SRID.EnumeratorVersionChanged));
+                    throw new InvalidOperationException(SR.Get("SRID.EnumeratorVersionChanged"));
 
                 Dispose();
                 _enumerator = _enumerable.GetEnumerator();
@@ -754,7 +754,7 @@ namespace MS.Internal.Data
                 bool returnValue;
 
                 if (_indexedEnumerable._enumerable == null)
-                    throw new InvalidOperationException(SR.Get("SRID.EnumeratorVersionChanged));
+                    throw new InvalidOperationException(SR.Get("SRID.EnumeratorVersionChanged"));
 
                 if (_filterCallback == null)
                 {

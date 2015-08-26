@@ -191,7 +191,7 @@ namespace System.Windows.Automation.Peers
             {
                 if (!IsPropertySupportedByControlForFindItem(propertyId))
                 {
-                    throw new ArgumentException(SR.Get("SRID.PropertyNotSupported));
+                    throw new ArgumentException(SR.Get("SRID.PropertyNotSupported"));
                 }
             }
 
@@ -218,7 +218,7 @@ namespace System.Windows.Automation.Peers
                 {
                     if (startAfterItem.Item == null)
                     {
-                        throw new InvalidOperationException(SR.Get("SRID.InavalidStartItem));
+                        throw new InvalidOperationException(SR.Get("SRID.InavalidStartItem"));
                     }
 
                     // To find the index of the item in items collection which occurs 

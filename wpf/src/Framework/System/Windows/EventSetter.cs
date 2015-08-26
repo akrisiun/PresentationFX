@@ -105,15 +105,15 @@ namespace System.Windows
 
             if (_event == null)
             {
-                throw new ArgumentException(SR.Get("SRID.NullPropertyIllegal, "EventSetter.Event"));
+                throw new ArgumentException(SR.Get("SRID.NullPropertyIllegal", "EventSetter.Event"));
             }
             if (_handler == null)
             {
-                throw new ArgumentException(SR.Get("SRID.NullPropertyIllegal, "EventSetter.Handler"));
+                throw new ArgumentException(SR.Get("SRID.NullPropertyIllegal", "EventSetter.Handler"));
             }
             if (_handler.GetType() != _event.HandlerType)
             {
-                throw new ArgumentException(SR.Get("SRID.HandlerTypeIllegal));
+                throw new ArgumentException(SR.Get("SRID.HandlerTypeIllegal"));
             }
 
             base.Seal();

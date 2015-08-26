@@ -890,7 +890,7 @@ namespace System.Windows.Controls.Primitives
             // At least one DocumentPageView is required.
             if (pageViews == null)
             {
-                throw new ArgumentException(SR.Get("SRID.DocumentViewerPageViewsCollectionEmpty));
+                throw new ArgumentException(SR.Get("SRID.DocumentViewerPageViewsCollectionEmpty"));
             }
 
             // Expecting only one DocumentPageView with IsMasterPage property set to true.
@@ -900,7 +900,7 @@ namespace System.Windows.Controls.Primitives
                 {
                     if (hasMasterPage)
                     {
-                        throw new ArgumentException(SR.Get("SRID.DocumentViewerOneMasterPage));
+                        throw new ArgumentException(SR.Get("SRID.DocumentViewerOneMasterPage"));
                     }
                     hasMasterPage = true;
                 }
@@ -1742,13 +1742,13 @@ namespace System.Windows.Controls.Primitives
             // Check if Content has already been set.
             if (this.Document != null)
             {
-                throw new InvalidOperationException(SR.Get("SRID.DocumentViewerCanHaveOnlyOneChild));
+                throw new InvalidOperationException(SR.Get("SRID.DocumentViewerCanHaveOnlyOneChild"));
             }
             // Only IDocumentPaginatorSource is a valid content.
             IDocumentPaginatorSource document = value as IDocumentPaginatorSource;
             if (document == null)
             {
-                throw new ArgumentException(SR.Get("SRID.DocumentViewerChildMustImplementIDocumentPaginatorSource), "value");
+                throw new ArgumentException(SR.Get("SRID.DocumentViewerChildMustImplementIDocumentPaginatorSource"), "value");
             }
             this.Document = document;
         }

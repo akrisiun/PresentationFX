@@ -49,7 +49,7 @@ namespace System.Windows.Controls
 
             if ((cm != null) && (element.Dispatcher != cm.Dispatcher))
             {
-                throw new ArgumentException(SR.Get("SRID.ContextMenuInDifferentDispatcher));
+                throw new ArgumentException(SR.Get("SRID.ContextMenuInDifferentDispatcher"));
             }
 
             return cm;

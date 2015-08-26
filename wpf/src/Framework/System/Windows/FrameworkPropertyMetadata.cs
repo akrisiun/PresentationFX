@@ -223,7 +223,7 @@ namespace System.Windows
             if (!BindingOperations.IsValidUpdateSourceTrigger(defaultUpdateSourceTrigger))
                 throw new InvalidEnumArgumentException("defaultUpdateSourceTrigger", (int) defaultUpdateSourceTrigger, typeof(UpdateSourceTrigger));
             if (defaultUpdateSourceTrigger == UpdateSourceTrigger.Default)
-                throw new ArgumentException(SR.Get("SRID.NoDefaultUpdateSourceTrigger), "defaultUpdateSourceTrigger");
+                throw new ArgumentException(SR.Get("SRID.NoDefaultUpdateSourceTrigger"), "defaultUpdateSourceTrigger");
 
             TranslateFlags(flags);
             DefaultUpdateSourceTrigger = defaultUpdateSourceTrigger;
@@ -318,7 +318,7 @@ namespace System.Windows
             {
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse));
+                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse"));
                 }
 
                 WriteFlag(MetadataFlags.FW_AffectsMeasureID, value);
@@ -335,7 +335,7 @@ namespace System.Windows
             {
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse));
+                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse"));
                 }
 
                 WriteFlag(MetadataFlags.FW_AffectsArrangeID, value);
@@ -352,7 +352,7 @@ namespace System.Windows
             {
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse));
+                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse"));
                 }
 
                 WriteFlag(MetadataFlags.FW_AffectsParentMeasureID, value);
@@ -369,7 +369,7 @@ namespace System.Windows
             {
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse));
+                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse"));
                 }
 
                 WriteFlag(MetadataFlags.FW_AffectsParentArrangeID, value);
@@ -386,7 +386,7 @@ namespace System.Windows
             {
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse));
+                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse"));
                 }
 
                 WriteFlag(MetadataFlags.FW_AffectsRenderID, value);
@@ -403,7 +403,7 @@ namespace System.Windows
             {
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse));
+                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse"));
                 }
 
                 IsInherited = value;
@@ -422,7 +422,7 @@ namespace System.Windows
             {
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse));
+                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse"));
                 }
 
                 WriteFlag(MetadataFlags.FW_OverridesInheritanceBehaviorID, value);
@@ -441,7 +441,7 @@ namespace System.Windows
             {
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse));
+                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse"));
                 }
 
                 WriteFlag(MetadataFlags.FW_IsNotDataBindableID, value);
@@ -458,7 +458,7 @@ namespace System.Windows
             {
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse));
+                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse"));
                 }
 
                 WriteFlag(MetadataFlags.FW_BindsTwoWayByDefaultID, value);
@@ -477,12 +477,12 @@ namespace System.Windows
             {
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse));
+                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse"));
                 }
                 if (!BindingOperations.IsValidUpdateSourceTrigger(value))
                     throw new InvalidEnumArgumentException("value", (int) value, typeof(UpdateSourceTrigger));
                 if (value == UpdateSourceTrigger.Default)
-                    throw new ArgumentException(SR.Get("SRID.NoDefaultUpdateSourceTrigger), "value");
+                    throw new ArgumentException(SR.Get("SRID.NoDefaultUpdateSourceTrigger"), "value");
 
                 // FW_DefaultUpdateSourceTriggerEnumBit1        = 0x40000000,
                 // FW_DefaultUpdateSourceTriggerEnumBit2        = 0x80000000,
@@ -502,7 +502,7 @@ namespace System.Windows
             {
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse));
+                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse"));
                 }
 
                 WriteFlag(MetadataFlags.FW_ShouldBeJournaledID, value);
@@ -523,7 +523,7 @@ namespace System.Windows
             {
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse));
+                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse"));
                 }
 
                 WriteFlag(MetadataFlags.FW_SubPropertiesDoNotAffectRenderID, value);
@@ -542,7 +542,7 @@ namespace System.Windows
             {
                 if (IsSealed)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse));
+                    throw new InvalidOperationException(SR.Get("SRID.TypeMetadataCannotChangeAfterUse"));
                 }
 
                 WriteFlag(MetadataFlags.FW_ReadOnlyID, value);

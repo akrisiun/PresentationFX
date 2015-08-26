@@ -161,7 +161,7 @@ namespace System.Windows.Controls
         {
             if (!IsValidThread())
             {
-                throw new NotSupportedException(SR.Get("SRID.CalendarCollection_MultiThreadedCollectionChangeNotSupported));
+                throw new NotSupportedException(SR.Get("SRID.CalendarCollection_MultiThreadedCollectionChangeNotSupported"));
             }
 
             foreach (CalendarDateRange item in Items)
@@ -182,7 +182,7 @@ namespace System.Windows.Controls
         {
             if (!IsValidThread())
             {
-                throw new NotSupportedException(SR.Get("SRID.CalendarCollection_MultiThreadedCollectionChangeNotSupported));
+                throw new NotSupportedException(SR.Get("SRID.CalendarCollection_MultiThreadedCollectionChangeNotSupported"));
             }
 
             if (IsValid(item))
@@ -193,7 +193,7 @@ namespace System.Windows.Controls
             }
             else
             {
-                throw new ArgumentOutOfRangeException(SR.Get("SRID.Calendar_UnSelectableDates));
+                throw new ArgumentOutOfRangeException(SR.Get("SRID.Calendar_UnSelectableDates"));
             }
         }
 
@@ -205,7 +205,7 @@ namespace System.Windows.Controls
         {
             if (!IsValidThread())
             {
-                throw new NotSupportedException(SR.Get("SRID.CalendarCollection_MultiThreadedCollectionChangeNotSupported));
+                throw new NotSupportedException(SR.Get("SRID.CalendarCollection_MultiThreadedCollectionChangeNotSupported"));
             }
 
             if (index >= 0 && index < this.Count)
@@ -226,7 +226,7 @@ namespace System.Windows.Controls
         {
             if (!IsValidThread())
             {
-                throw new NotSupportedException(SR.Get("SRID.CalendarCollection_MultiThreadedCollectionChangeNotSupported));
+                throw new NotSupportedException(SR.Get("SRID.CalendarCollection_MultiThreadedCollectionChangeNotSupported"));
             }
 
             if (IsValid(item))
@@ -246,7 +246,7 @@ namespace System.Windows.Controls
             }
             else
             {
-                throw new ArgumentOutOfRangeException(SR.Get("SRID.Calendar_UnSelectableDates));
+                throw new ArgumentOutOfRangeException(SR.Get("SRID.Calendar_UnSelectableDates"));
             }
         }
 
@@ -291,7 +291,7 @@ namespace System.Windows.Controls
             {
                 if (!IsValid(e.Start, e.End))
                 {
-                    throw new ArgumentOutOfRangeException(SR.Get("SRID.Calendar_UnSelectableDates));
+                    throw new ArgumentOutOfRangeException(SR.Get("SRID.Calendar_UnSelectableDates"));
                 }
             }
         }

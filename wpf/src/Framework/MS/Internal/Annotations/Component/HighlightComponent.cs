@@ -233,7 +233,7 @@ namespace MS.Internal.Annotations.Component
         {
             if (_attachedAnnotation != null)
             {
-                throw new ArgumentException(SR.Get("SRID.MoreThanOneAttachedAnnotation));
+                throw new ArgumentException(SR.Get("SRID.MoreThanOneAttachedAnnotation"));
             }
 
             //fire trace event
@@ -287,7 +287,7 @@ namespace MS.Internal.Annotations.Component
 
             if (attachedAnnotation != _attachedAnnotation)
             {
-                throw new ArgumentException(SR.Get("SRID.InvalidAttachedAnnotation), "attachedAnnotation");
+                throw new ArgumentException(SR.Get("SRID.InvalidAttachedAnnotation"), "attachedAnnotation");
             }
 
             Invariant.Assert(_range != null, "null highlight range");
@@ -326,7 +326,7 @@ namespace MS.Internal.Annotations.Component
         /// <param name="previousAttachmentLevel">The previous attachment level of the attached annotation.</param>
         public void ModifyAttachedAnnotation(IAttachedAnnotation attachedAnnotation, object previousAttachedAnchor, AttachmentLevel previousAttachmentLevel)
         {
-            throw new NotSupportedException(SR.Get("SRID.NotSupported));
+            throw new NotSupportedException(SR.Get("SRID.NotSupported"));
         }
 
         /// <summary>
@@ -342,7 +342,7 @@ namespace MS.Internal.Annotations.Component
             //get the highlight layer
             if (_attachedAnnotation == null)
             {
-                throw new InvalidOperationException(SR.Get("SRID.NoAttachedAnnotationToModify));
+                throw new InvalidOperationException(SR.Get("SRID.NoAttachedAnnotationToModify"));
             }
 
             TextAnchor textAnchor = _attachedAnnotation.AttachedAnchor as TextAnchor;
@@ -543,7 +543,7 @@ namespace MS.Internal.Annotations.Component
             TextAnchor textAnchor = attachedAnnotation.AttachedAnchor as TextAnchor;
             if (textAnchor == null)
             {
-                throw new ArgumentException(SR.Get("SRID.InvalidAttachedAnchor), "attachedAnnotation");
+                throw new ArgumentException(SR.Get("SRID.InvalidAttachedAnchor"), "attachedAnnotation");
             }
 
             //this should be in a fixed or flow textcontainer
@@ -553,13 +553,13 @@ namespace MS.Internal.Annotations.Component
 
             if (attachedAnnotation.Annotation == null)
             {
-                throw new ArgumentException(SR.Get("SRID.AnnotationIsNull), "attachedAnnotation");
+                throw new ArgumentException(SR.Get("SRID.AnnotationIsNull"), "attachedAnnotation");
             }
 
             //check annotation type
             if (!_type.Equals(attachedAnnotation.Annotation.AnnotationType))
             {
-                throw new ArgumentException(SR.Get("SRID.NotHighlightAnnotationType, attachedAnnotation.Annotation.AnnotationType.ToString()), "attachedAnnotation");
+                throw new ArgumentException(SR.Get("SRID.NotHighlightAnnotationType", attachedAnnotation.Annotation.AnnotationType.ToString()), "attachedAnnotation");
             }
 
             return textContainer;
@@ -626,7 +626,7 @@ namespace MS.Internal.Annotations.Component
                 AnnotationHighlightLayer highlightLayer = textContainer.Highlights.GetLayer(typeof(HighlightComponent)) as AnnotationHighlightLayer;
                 if (highlightLayer == null)
                 {
-                    throw new InvalidDataException(SR.Get("SRID.MissingAnnotationHighlightLayer));
+                    throw new InvalidDataException(SR.Get("SRID.MissingAnnotationHighlightLayer"));
                 }
 
                 //change the colors and invalidate

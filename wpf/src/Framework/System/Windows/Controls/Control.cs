@@ -506,7 +506,7 @@ namespace System.Windows.Controls
             // If there is plain text associated with this control, show it too.
             if (!String.IsNullOrEmpty(plainText))
             {
-                return SR.Get("SRID.ToStringFormatString_Control, base.ToString(), plainText);
+                return SR.Get("SRID.ToStringFormatString_Control", base.ToString(), plainText);
             }
 
             return base.ToString();

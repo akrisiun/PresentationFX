@@ -716,7 +716,7 @@ namespace System.Windows.Input
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange));
+                    throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange"));
                 }
             }
 

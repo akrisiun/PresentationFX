@@ -102,7 +102,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             if (IsPageMissing)
             {
@@ -127,7 +127,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             if (IsPageMissing)
             {
@@ -149,7 +149,7 @@ namespace MS.Internal.Documents
             //  verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             
             Geometry geometry = null;
@@ -178,7 +178,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             if (IsPageMissing)
             {
@@ -214,7 +214,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             if (IsPageMissing)
             {
@@ -245,7 +245,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             if (IsPageMissing)
             {
@@ -262,7 +262,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             if (IsPageMissing)
             {
@@ -279,7 +279,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             if (IsPageMissing)
             {
@@ -296,7 +296,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             if (IsPageMissing)
             {
@@ -313,7 +313,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             if (IsPageMissing)
             {
@@ -330,7 +330,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             if (IsPageMissing)
             {

@@ -296,7 +296,7 @@ namespace System.Windows.Documents
                 docStream = WpfWebRequestHelper.CreateRequestAndGetResponseStream(uriToLoad, out mimeType);
                 if (docStream == null)
                 {
-                    throw new ApplicationException(SR.Get("SRID.DocumentReferenceNotFound));
+                    throw new ApplicationException(SR.Get("SRID.DocumentReferenceNotFound"));
                 }
 
                 ParserContext pc = new ParserContext();
@@ -314,7 +314,7 @@ namespace System.Windows.Documents
                 }
                 else
                 {
-                    throw new ApplicationException(SR.Get("SRID.DocumentReferenceUnsupportedMimeType));
+                    throw new ApplicationException(SR.Get("SRID.DocumentReferenceUnsupportedMimeType"));
                 }
                 idp.DocumentReference = this;
                 

@@ -174,7 +174,7 @@ namespace System.Windows.Controls
         ItemContainerGenerator IItemContainerGenerator.GetItemContainerGeneratorForPanel(Panel panel)
         {
             if (!panel.IsItemsHost)
-                throw new ArgumentException(SR.Get("SRID.PanelIsNotItemsHost), "panel");
+                throw new ArgumentException(SR.Get("SRID.PanelIsNotItemsHost"), "panel");
 
             // if panel came from an ItemsPresenter, use its generator
             ItemsPresenter ip = ItemsPresenter.FromPanel(panel);
@@ -213,7 +213,7 @@ namespace System.Windows.Controls
         IDisposable IItemContainerGenerator.StartAt(GeneratorPosition position, GeneratorDirection direction, bool allowStartAtRealizedItem)
         {
             if (_generator != null)
-                throw new InvalidOperationException(SR.Get("SRID.GenerationInProgress));
+                throw new InvalidOperationException(SR.Get("SRID.GenerationInProgress"));
 
             _generator = new Generator(this, position, direction, allowStartAtRealizedItem);
             return _generator;
@@ -222,7 +222,7 @@ namespace System.Windows.Controls
         public IDisposable GenerateBatches()
         {
             if (_isGeneratingBatches)
-                throw new InvalidOperationException(SR.Get("SRID.GenerationInProgress));
+                throw new InvalidOperationException(SR.Get("SRID.GenerationInProgress"));
 
             return new BatchGenerator(this);
         }
@@ -231,7 +231,7 @@ namespace System.Windows.Controls
         {
             bool isNewlyRealized;
             if (_generator == null)
-                throw new InvalidOperationException(SR.Get("SRID.GenerationNotInProgress));
+                throw new InvalidOperationException(SR.Get("SRID.GenerationNotInProgress"));
 
             return _generator.GenerateNext(true, out isNewlyRealized);
         }
@@ -239,7 +239,7 @@ namespace System.Windows.Controls
         DependencyObject IItemContainerGenerator.GenerateNext(out bool isNewlyRealized)
         {
             if (_generator == null)
-                throw new InvalidOperationException(SR.Get("SRID.GenerationNotInProgress));
+                throw new InvalidOperationException(SR.Get("SRID.GenerationNotInProgress"));
 
             return _generator.GenerateNext(false, out isNewlyRealized);
         }
@@ -278,9 +278,9 @@ namespace System.Windows.Controls
         private void Remove(GeneratorPosition position, int count, bool isRecycling)
         {
             if (position.Offset != 0)
-                throw new ArgumentException(SR.Get("SRID.RemoveRequiresOffsetZero, position.Index, position.Offset), "position");
+                throw new ArgumentException(SR.Get("SRID.RemoveRequiresOffsetZero", position.Index, position.Offset), "position");
             if (count <= 0)
-                throw new ArgumentException(SR.Get("SRID.RemoveRequiresPositiveCount, count), "count");
+                throw new ArgumentException(SR.Get("SRID.RemoveRequiresPositiveCount", count), "count");
 
             int index = position.Index;
             ItemBlock block;
@@ -301,7 +301,7 @@ namespace System.Windows.Controls
             for (; block != _itemMap;  block = block.Next)
             {
                 if (!(block is RealizedItemBlock))
-                    throw new InvalidOperationException(SR.Get("SRID.CannotRemoveUnrealizedItems, index, count));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotRemoveUnrealizedItems", index, count));
 
                 if (offsetR < block.ContainerCount)
                     break;
@@ -332,7 +332,7 @@ namespace System.Windows.Controls
                     }
                     else if (_containerType != container.GetType())
                     {
-                        throw new InvalidOperationException(SR.Get("SRID.CannotRecyleHeterogeneousTypes));
+                        throw new InvalidOperationException(SR.Get("SRID.CannotRecyleHeterogeneousTypes"));
                     }
 
                     _recyclableContainers.Enqueue(container);
@@ -1004,7 +1004,7 @@ namespace System.Windows.Controls
             // compare accumulated count to actual count
             if (accumulatedCount != _items.Count)
             {
-                errors.Add(SR.Get("SRID.Generator_CountIsWrong, accumulatedCount, _items.Count));
+                errors.Add(SR.Get("SRID.Generator_CountIsWrong", accumulatedCount, _items.Count));
             }
 
             // compare items
@@ -1024,7 +1024,7 @@ namespace System.Windows.Controls
                         {
                             if (reportedItems < 3)
                             {
-                                errors.Add(SR.Get("SRID.Generator_ItemIsWrong, index, genItem, actualItem));
+                                errors.Add(SR.Get("SRID.Generator_ItemIsWrong", index, genItem, actualItem));
                                 ++ reportedItems;
                             }
                             ++ badItems;
@@ -1036,7 +1036,7 @@ namespace System.Windows.Controls
 
             if (badItems > reportedItems)
             {
-                errors.Add(SR.Get("SRID.Generator_MoreErrors, badItems - reportedItems));
+                errors.Add(SR.Get("SRID.Generator_MoreErrors", badItems - reportedItems));
             }
 
             // if we found errors, throw an exception
@@ -1049,7 +1049,7 @@ namespace System.Windows.Controls
                 string name = (String)peer.GetValue(FrameworkElement.NameProperty);
                 if (String.IsNullOrWhiteSpace(name))
                 {
-                    name = SR.Get("SRID.Generator_Unnamed);
+                    name = SR.Get("SRID.Generator_Unnamed");
                 }
 
                 // get the sources involved in CollectionChanged events
@@ -1058,10 +1058,10 @@ namespace System.Windows.Controls
 
                 // describe the details of the problem
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine(SR.Get("SRID.Generator_Readme0));                          // Developer info:
-                sb.Append    (SR.Get("SRID.Generator_Readme1, peer, name));              // The exception is thrown because...
+                sb.AppendLine(SR.Get("SRID.Generator_Readme0"));                          // Developer info:
+                sb.Append    (SR.Get("SRID.Generator_Readme1", peer, name));              // The exception is thrown because...
                 sb.Append("  ");
-                sb.AppendLine(SR.Get("SRID.Generator_Readme2));                          // The following differences...
+                sb.AppendLine(SR.Get("SRID.Generator_Readme2"));                          // The following differences...
                 foreach (string s in errors)
                 {
                     sb.AppendFormat(enUS, "  {0}", s);
@@ -1069,32 +1069,32 @@ namespace System.Windows.Controls
                 }
                 sb.AppendLine();
 
-                sb.AppendLine(SR.Get("SRID.Generator_Readme3));                          // The following sources...
+                sb.AppendLine(SR.Get("SRID.Generator_Readme3"));                          // The following sources...
                 foreach (string s in sources)
                 {
                     sb.AppendFormat(enUS, "  {0}", s);
                     sb.AppendLine();
                 }
-                sb.AppendLine(SR.Get("SRID.Generator_Readme4));                          // Starred sources are considered more likely
+                sb.AppendLine(SR.Get("SRID.Generator_Readme4"));                          // Starred sources are considered more likely
                 sb.AppendLine();
 
-                sb.AppendLine(SR.Get("SRID.Generator_Readme5));                          // The most common causes...
+                sb.AppendLine(SR.Get("SRID.Generator_Readme5"));                          // The most common causes...
                 sb.AppendLine();
 
-                sb.Append    (SR.Get("SRID.Generator_Readme6)); sb.Append("  ");         // Stack trace describes detection...
-                sb.Append    (SR.Get("SRID.Generator_Readme7,                            // To get better detection...
+                sb.Append    (SR.Get("SRID.Generator_Readme6")); sb.Append("  ");         // Stack trace describes detection...
+                sb.Append    (SR.Get("SRID.Generator_Readme7",                            // To get better detection...
                                 "PresentationTraceSources.TraceLevel", "High"));
                 sb.Append    ("  ");
-                sb.AppendLine(SR.Get("SRID.Generator_Readme8,                            // One way to do this ...
+                sb.AppendLine(SR.Get("SRID.Generator_Readme8",                            // One way to do this ...
                                 "System.Diagnostics.PresentationTraceSources.SetTraceLevel(myItemsControl.ItemContainerGenerator, System.Diagnostics.PresentationTraceLevel.High)"));
-                sb.AppendLine(SR.Get("SRID.Generator_Readme9));                          // This slows down the app.
+                sb.AppendLine(SR.Get("SRID.Generator_Readme9"));                          // This slows down the app.
 
                 // use an inner exception to hold the details.  There's a lot of
                 // information, but it's only interesting to a developer.
                 Exception exception = new Exception(sb.ToString());
 
                 // throw the exception
-                throw new InvalidOperationException(SR.Get("SRID.Generator_Inconsistent), exception);
+                throw new InvalidOperationException(SR.Get("SRID.Generator_Inconsistent"), exception);
             }
         }
 
@@ -2235,7 +2235,7 @@ namespace System.Windows.Controls
             {
                 // There's no way of knowing which unrealized block it belonged to, so
                 // the data structure can't be updated correctly.  Sound the alarm.
-                throw new InvalidOperationException(SR.Get("SRID.CannotFindRemovedItem));
+                throw new InvalidOperationException(SR.Get("SRID.CannotFindRemovedItem"));
             }
         }
 
@@ -2360,7 +2360,7 @@ namespace System.Windows.Controls
             {
                 index = ItemsInternal.IndexOf(item);
                 if (index < 0)
-                    throw new InvalidOperationException(SR.Get("SRID.CollectionAddEventMissingItem, item));
+                    throw new InvalidOperationException(SR.Get("SRID.CollectionAddEventMissingItem", item));
             }
         }
 
@@ -2377,25 +2377,25 @@ namespace System.Windows.Controls
             {
                 case NotifyCollectionChangedAction.Add:
                     if (args.NewItems.Count != 1)
-                        throw new NotSupportedException(SR.Get("SRID.RangeActionsNotSupported));
+                        throw new NotSupportedException(SR.Get("SRID.RangeActionsNotSupported"));
                     OnItemAdded(args.NewItems[0], args.NewStartingIndex);
                     break;
 
                 case NotifyCollectionChangedAction.Remove:
                     if (args.OldItems.Count != 1)
-                        throw new NotSupportedException(SR.Get("SRID.RangeActionsNotSupported));
+                        throw new NotSupportedException(SR.Get("SRID.RangeActionsNotSupported"));
                     OnItemRemoved(args.OldItems[0], args.OldStartingIndex);
                     break;
 
                 case NotifyCollectionChangedAction.Replace:
                     if (args.OldItems.Count != 1)
-                        throw new NotSupportedException(SR.Get("SRID.RangeActionsNotSupported));
+                        throw new NotSupportedException(SR.Get("SRID.RangeActionsNotSupported"));
                     OnItemReplaced(args.OldItems[0], args.NewItems[0], args.NewStartingIndex);
                     break;
 
                 case NotifyCollectionChangedAction.Move:
                     if (args.OldItems.Count != 1)
-                        throw new NotSupportedException(SR.Get("SRID.RangeActionsNotSupported));
+                        throw new NotSupportedException(SR.Get("SRID.RangeActionsNotSupported"));
                     OnItemMoved(args.OldItems[0], args.OldStartingIndex, args.NewStartingIndex);
                     break;
 
@@ -2404,7 +2404,7 @@ namespace System.Windows.Controls
                     break;
 
                 default:
-                    throw new NotSupportedException(SR.Get("SRID.UnexpectedCollectionChangeAction, args.Action));
+                    throw new NotSupportedException(SR.Get("SRID.UnexpectedCollectionChangeAction", args.Action));
             }
 
             PresentationTraceLevel traceLevel = PresentationTraceSources.GetTraceLevel(this);
