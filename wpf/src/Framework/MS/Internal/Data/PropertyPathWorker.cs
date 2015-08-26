@@ -307,7 +307,7 @@ namespace MS.Internal.Data
                 }
                 else
                 {
-                    throw new NotSupportedException(SR.Get("SRID.IndexedPropDescNotImplemented));
+                    throw new NotSupportedException(SR.Get("SRID.IndexedPropDescNotImplemented"));
                 }
                 break;
 
@@ -316,20 +316,20 @@ namespace MS.Internal.Data
                 break;
             }
 
-            if (isExtendedTraceEnabled)
-            {
-                object accessor = _arySVS[level].info;
-                if (accessor == DependencyProperty.UnsetValue)
-                    accessor = null;
+            //if (isExtendedTraceEnabled)
+            //{
+            //    object accessor = _arySVS[level].info;
+            //    if (accessor == DependencyProperty.UnsetValue)
+            //        accessor = null;
 
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.GetValue(
-                                        TraceData.Identify(_host.ParentBindingExpression),
-                                        level,
-                                        TraceData.Identify(item),
-                                        TraceData.IdentifyAccessor(accessor),
-                                        TraceData.Identify(value)));
-            }
+            //    TraceData.Trace(TraceEventType.Warning,
+            //                        TraceData.GetValue(
+            //                            TraceData.Identify(_host.ParentBindingExpression),
+            //                            level,
+            //                            TraceData.Identify(item),
+            //                            TraceData.IdentifyAccessor(accessor),
+            //                            TraceData.Identify(value)));
+            //}
 
             return value;
         }
@@ -344,16 +344,16 @@ namespace MS.Internal.Data
             int level = _arySVS.Length - 1;
             SetPropertyInfo(_arySVS[level].info, out pi, out pd, out dp, out dpa);
 
-            if (isExtendedTraceEnabled)
-            {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.SetValue(
-                                        TraceData.Identify(_host.ParentBindingExpression),
-                                        level,
-                                        TraceData.Identify(item),
-                                        TraceData.IdentifyAccessor(_arySVS[level].info),
-                                        TraceData.Identify(value)));
-            }
+            //if (isExtendedTraceEnabled)
+            //{
+            //    TraceData.Trace(TraceEventType.Warning,
+            //                        TraceData.SetValue(
+            //                            TraceData.Identify(_host.ParentBindingExpression),
+            //                            level,
+            //                            TraceData.Identify(item),
+            //                            TraceData.IdentifyAccessor(_arySVS[level].info),
+            //                            TraceData.Identify(value)));
+            //}
 
             switch (SVI[level].type)
             {
@@ -392,7 +392,7 @@ namespace MS.Internal.Data
                 }
                 else
                 {
-                    throw new NotSupportedException(SR.Get("SRID.IndexedPropDescNotImplemented));
+                    throw new NotSupportedException(SR.Get("SRID.IndexedPropDescNotImplemented"));
                 }
                 break;
             }
@@ -736,14 +736,14 @@ namespace MS.Internal.Data
                     _arySVS[k].collectionView = null;
                 }
 
-                if (isExtendedTraceEnabled)
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.ReplaceItemShort(
-                                            TraceData.Identify(_host.ParentBindingExpression),
-                                            k,
-                                            TraceData.Identify(newO)));
-                }
+                //if (isExtendedTraceEnabled)
+                //{
+                //    TraceData.Trace(TraceEventType.Warning,
+                //                        TraceData.ReplaceItemShort(
+                //                            TraceData.Identify(_host.ParentBindingExpression),
+                //                            k,
+                //                            TraceData.Identify(newO)));
+                //}
 
                 return;
             }
@@ -829,15 +829,15 @@ namespace MS.Internal.Data
             _arySVS[k] = svs;
             newO = BindingExpression.GetReference(svs.item);
 
-            if (isExtendedTraceEnabled)
-            {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.ReplaceItemLong(
-                                        TraceData.Identify(_host.ParentBindingExpression),
-                                        k,
-                                        TraceData.Identify(newO),
-                                        TraceData.IdentifyAccessor(svs.info)));
-            }
+            //if (isExtendedTraceEnabled)
+            //{
+            //    TraceData.Trace(TraceEventType.Warning,
+            //                        TraceData.ReplaceItemLong(
+            //                            TraceData.Identify(_host.ParentBindingExpression),
+            //                            k,
+            //                            TraceData.Identify(newO),
+            //                            TraceData.IdentifyAccessor(svs.info)));
+            //}
 
             // start listening to new item
             if (IsDynamic && SVI[k].type != SourceValueType.Direct)
@@ -907,46 +907,46 @@ namespace MS.Internal.Data
         void ReportNoInfoError(int k, object parent)
         {
             // report cannot find info.  Ignore when in priority bindings.
-            if (TraceData.IsEnabled)
-            {
-                BindingExpression bindingExpression = (_host != null) ? _host.ParentBindingExpression : null;
-                if (bindingExpression == null || !bindingExpression.IsInPriorityBindingExpression)
-                {
-                    if (!SystemXmlHelper.IsEmptyXmlDataCollection(parent))
-                    {
-                        SourceValueInfo svi = SVI[k];
-                        string cs = (svi.type != SourceValueType.Indexer) ? svi.name : "[" + svi.name + "]";
-                        string ps = TraceData.DescribeSourceObject(parent);
-                        string os = (svi.drillIn == DrillIn.Always) ? "current item of collection" : "object";
+            //if (TraceData.IsEnabled)
+            //{
+            //    BindingExpression bindingExpression = (_host != null) ? _host.ParentBindingExpression : null;
+            //    if (bindingExpression == null || !bindingExpression.IsInPriorityBindingExpression)
+            //    {
+            //        if (!SystemXmlHelper.IsEmptyXmlDataCollection(parent))
+            //        {
+            //            SourceValueInfo svi = SVI[k];
+            //            string cs = (svi.type != SourceValueType.Indexer) ? svi.name : "[" + svi.name + "]";
+            //            string ps = TraceData.DescribeSourceObject(parent);
+            //            string os = (svi.drillIn == DrillIn.Always) ? "current item of collection" : "object";
 
-                        // if the parent is null, the path error probably only means the
-                        // data provider hasn't produced any data yet.  When it does,
-                        // the binding will try again and probably succeed.  Give milder
-                        // feedback for this special case, so as not to alarm users unduly.
-                        if (parent == null)
-                        {
-                            TraceData.Trace(TraceEventType.Information, TraceData.NullItem(cs, os), bindingExpression);
-                        }
-                        // Similarly, if the parent is the NewItemPlaceholder.
-                        else if (parent == CollectionView.NewItemPlaceholder ||
-                                parent == DataGrid.NewItemPlaceholder)
-                        {
-                            TraceData.Trace(TraceEventType.Information, TraceData.PlaceholderItem(cs, os), bindingExpression);
-                        }
-                        else
-                        {
-                            TraceEventType traceType = (bindingExpression != null) ? bindingExpression.TraceLevel : TraceEventType.Error;
-                            TraceData.Trace(traceType, TraceData.ClrReplaceItem(cs, ps, os), bindingExpression);
-                        }
-                    }
-                    else
-                    {
-                        TraceEventType traceType = (bindingExpression != null) ? bindingExpression.TraceLevel : TraceEventType.Error;
-                        _host.ReportBadXPath(traceType);
-                    }
+            //            // if the parent is null, the path error probably only means the
+            //            // data provider hasn't produced any data yet.  When it does,
+            //            // the binding will try again and probably succeed.  Give milder
+            //            // feedback for this special case, so as not to alarm users unduly.
+            //            if (parent == null)
+            //            {
+            //                TraceData.Trace(TraceEventType.Information, TraceData.NullItem(cs, os), bindingExpression);
+            //            }
+            //            // Similarly, if the parent is the NewItemPlaceholder.
+            //            else if (parent == CollectionView.NewItemPlaceholder ||
+            //                    parent == DataGrid.NewItemPlaceholder)
+            //            {
+            //                TraceData.Trace(TraceEventType.Information, TraceData.PlaceholderItem(cs, os), bindingExpression);
+            //            }
+            //            else
+            //            {
+            //                TraceEventType traceType = (bindingExpression != null) ? bindingExpression.TraceLevel : TraceEventType.Error;
+            //                TraceData.Trace(traceType, TraceData.ClrReplaceItem(cs, ps, os), bindingExpression);
+            //            }
+            //        }
+            //        else
+            //        {
+            //            TraceEventType traceType = (bindingExpression != null) ? bindingExpression.TraceLevel : TraceEventType.Error;
+            //            _host.ReportBadXPath(traceType);
+            //        }
 
-                }
-            }
+            //    }
+            //}
         }
 
         // determine if the cached state of the path is still correct.  This is
@@ -1023,14 +1023,14 @@ namespace MS.Internal.Data
                 svs = _arySVS[k];
                 svs.item = BindingExpression.ReplaceReference(svs.item, item);
 
-                if (isExtendedTraceEnabled)
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.GetInfo_Reuse(
-                                            TraceData.Identify(_host.ParentBindingExpression),
-                                            k,
-                                            TraceData.IdentifyAccessor(svs.info)));
-                }
+                //if (isExtendedTraceEnabled)
+                //{
+                //    TraceData.Trace(TraceEventType.Warning,
+                //                        TraceData.GetInfo_Reuse(
+                //                            TraceData.Identify(_host.ParentBindingExpression),
+                //                            k,
+                //                            TraceData.IdentifyAccessor(svs.info)));
+                //}
                 return;
             }
 
@@ -1042,13 +1042,13 @@ namespace MS.Internal.Data
                 svs.type = null;
                 svs.item = BindingExpression.ReplaceReference(svs.item, item);
 
-                if (isExtendedTraceEnabled)
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.GetInfo_Null(
-                                            TraceData.Identify(_host.ParentBindingExpression),
-                                            k));
-                }
+                //if (isExtendedTraceEnabled)
+                //{
+                //    TraceData.Trace(TraceEventType.Warning,
+                //                        TraceData.GetInfo_Null(
+                //                            TraceData.Identify(_host.ParentBindingExpression),
+                //                            k));
+                //}
                 return;
             }
 
@@ -1074,16 +1074,16 @@ namespace MS.Internal.Data
                         _dependencySourcesChanged = true;
                     }
 
-                    if (isExtendedTraceEnabled)
-                    {
-                        TraceData.Trace(TraceEventType.Warning,
-                                            TraceData.GetInfo_Cache(
-                                                TraceData.Identify(_host.ParentBindingExpression),
-                                                k,
-                                                newType.Name,
-                                                SVI[k].name,
-                                                TraceData.IdentifyAccessor(svs.info)));
-                    }
+                    //if (isExtendedTraceEnabled)
+                    //{
+                    //    TraceData.Trace(TraceEventType.Warning,
+                    //                        TraceData.GetInfo_Cache(
+                    //                            TraceData.Identify(_host.ParentBindingExpression),
+                    //                            k,
+                    //                            newType.Name,
+                    //                            SVI[k].name,
+                    //                            TraceData.IdentifyAccessor(svs.info)));
+                    //}
 
 #if DEBUG   // compute the answer the old-fashioned way, and compare
                     checkCacheResult = true;
@@ -1101,16 +1101,16 @@ namespace MS.Internal.Data
             case SourceValueType.Property:
                 info = _parent.ResolvePropertyName(k, item, newType, TreeContext);
 
-                if (isExtendedTraceEnabled)
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.GetInfo_Property(
-                                            TraceData.Identify(_host.ParentBindingExpression),
-                                            k,
-                                            newType.Name,
-                                            SVI[k].name,
-                                            TraceData.IdentifyAccessor(info)));
-                }
+                //if (isExtendedTraceEnabled)
+                //{
+                //    TraceData.Trace(TraceEventType.Warning,
+                //                        TraceData.GetInfo_Property(
+                //                            TraceData.Identify(_host.ParentBindingExpression),
+                //                            k,
+                //                            newType.Name,
+                //                            SVI[k].name,
+                //                            TraceData.IdentifyAccessor(info)));
+                //}
 
                 DependencyProperty dp;
                 PropertyInfo pi1;
@@ -1205,16 +1205,16 @@ namespace MS.Internal.Data
                     }
                 }
 
-                if (isExtendedTraceEnabled)
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.GetInfo_Indexer(
-                                            TraceData.Identify(_host.ParentBindingExpression),
-                                            k,
-                                            newType.Name,
-                                            SVI[k].name,
-                                            TraceData.IdentifyAccessor(info)));
-                }
+                //if (isExtendedTraceEnabled)
+                //{
+                //    TraceData.Trace(TraceEventType.Warning,
+                //                        TraceData.GetInfo_Indexer(
+                //                            TraceData.Identify(_host.ParentBindingExpression),
+                //                            k,
+                //                            newType.Name,
+                //                            SVI[k].name,
+                //                            TraceData.IdentifyAccessor(info)));
+                //}
 
                 break;
 
@@ -1518,7 +1518,7 @@ namespace MS.Internal.Data
                 catch // non CLS compliant exception
                 {
                     if (_host != null)
-                        _host.ReportGetValueError(k, item, new InvalidOperationException(SR.Get("SRID.NonCLSException, "GetValue")));
+                        _host.ReportGetValueError(k, item, new InvalidOperationException(SR.Get("SRID.NonCLSException", "GetValue")));
                 }
 
                 // catch the pseudo-exception as well
@@ -1574,22 +1574,22 @@ namespace MS.Internal.Data
             if (pi != null)
             {
                 if (IsPropertyReadOnly(item, pi))
-                    throw new InvalidOperationException(SR.Get("SRID.CannotWriteToReadOnly, item.GetType(), pi.Name));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotWriteToReadOnly", item.GetType(), pi.Name));
             }
             else if (pd != null)
             {
                 if (pd.IsReadOnly)
-                    throw new InvalidOperationException(SR.Get("SRID.CannotWriteToReadOnly, item.GetType(), pd.Name));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotWriteToReadOnly", item.GetType(), pd.Name));
             }
             else if (dp != null)
             {
                 if (dp.ReadOnly)
-                    throw new InvalidOperationException(SR.Get("SRID.CannotWriteToReadOnly, item.GetType(), dp.Name));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotWriteToReadOnly", item.GetType(), dp.Name));
             }
             else if (dpa != null)
             {
                 if (dpa.IsReadOnly)
-                    throw new InvalidOperationException(SR.Get("SRID.CannotWriteToReadOnly, item.GetType(), dpa.PropertyName));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotWriteToReadOnly", item.GetType(), dpa.PropertyName));
             }
         }
 

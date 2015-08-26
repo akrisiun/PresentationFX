@@ -242,7 +242,7 @@ namespace System.Windows.Controls
         {
             if (index != 0)
             {
-                throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange));
+                throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange"));
             }
             return InternalVisual;
         }

@@ -810,7 +810,7 @@ namespace System.Windows.Controls.Primitives
 
             if (!CanSelectMultiple)
             {
-                throw new InvalidOperationException(SR.Get("SRID.ChangingCollectionNotSupported));
+                throw new InvalidOperationException(SR.Get("SRID.ChangingCollectionNotSupported"));
             }
 
             SelectionChange.Begin();
@@ -821,14 +821,14 @@ namespace System.Windows.Controls.Primitives
                 {
                     case NotifyCollectionChangedAction.Add:
                         if (e.NewItems.Count != 1)
-                            throw new NotSupportedException(SR.Get("SRID.RangeActionsNotSupported));
+                            throw new NotSupportedException(SR.Get("SRID.RangeActionsNotSupported"));
 
                         SelectionChange.Select(NewUnresolvedItemInfo(e.NewItems[0]), false /* assumeInItemsCollection */);
                         break;
 
                     case NotifyCollectionChangedAction.Remove:
                         if (e.OldItems.Count != 1)
-                            throw new NotSupportedException(SR.Get("SRID.RangeActionsNotSupported));
+                            throw new NotSupportedException(SR.Get("SRID.RangeActionsNotSupported"));
 
                         SelectionChange.Unselect(NewUnresolvedItemInfo(e.OldItems[0]));
                         break;
@@ -850,7 +850,7 @@ namespace System.Windows.Controls.Primitives
 
                     case NotifyCollectionChangedAction.Replace:
                         if (e.NewItems.Count != 1 || e.OldItems.Count != 1)
-                            throw new NotSupportedException(SR.Get("SRID.RangeActionsNotSupported));
+                            throw new NotSupportedException(SR.Get("SRID.RangeActionsNotSupported"));
 
                         SelectionChange.Unselect(NewUnresolvedItemInfo(e.OldItems[0]));
                         SelectionChange.Select(NewUnresolvedItemInfo(e.NewItems[0]), false /* assumeInItemsCollection */);
@@ -860,7 +860,7 @@ namespace System.Windows.Controls.Primitives
                         break;  // order within SelectedItems doesn't matter
 
                     default:
-                        throw new NotSupportedException(SR.Get("SRID.UnexpectedCollectionChangeAction, e.Action));
+                        throw new NotSupportedException(SR.Get("SRID.UnexpectedCollectionChangeAction", e.Action));
                 }
 
                 SelectionChange.End();
@@ -1175,7 +1175,7 @@ namespace System.Windows.Controls.Primitives
                     break;
                 }
                 default:
-                    throw new NotSupportedException(SR.Get("SRID.UnexpectedCollectionChangeAction, e.Action));
+                    throw new NotSupportedException(SR.Get("SRID.UnexpectedCollectionChangeAction", e.Action));
             }
         }
 
@@ -1357,7 +1357,7 @@ namespace System.Windows.Controls.Primitives
 
             if (selectable == false && selected)
             {
-                throw new InvalidOperationException(SR.Get("SRID.CannotSelectNotSelectableItem));
+                throw new InvalidOperationException(SR.Get("SRID.CannotSelectNotSelectableItem"));
             }
 
             SelectionChange.Begin();
@@ -2191,7 +2191,7 @@ namespace System.Windows.Controls.Primitives
             internal void Begin()
             {
                 Debug.Assert(_owner.CheckAccess());
-                Debug.Assert(!_active, SR.Get("SRID.SelectionChangeActive));
+                Debug.Assert(!_active, SR.Get("SRID.SelectionChangeActive"));
 
                 _active = true;
                 _toSelect.Clear();
@@ -2414,7 +2414,7 @@ namespace System.Windows.Controls.Primitives
             internal bool Select(ItemInfo info, bool assumeInItemsCollection)
             {
                 Debug.Assert(_owner.CheckAccess());
-                Debug.Assert(_active, SR.Get("SRID.SelectionChangeNotActive));
+                Debug.Assert(_active, SR.Get("SRID.SelectionChangeNotActive"));
                 Debug.Assert(info != null, "parameter info should not be null");
 
                 // Disallow selecting !IsSelectable things
@@ -2471,7 +2471,7 @@ namespace System.Windows.Controls.Primitives
             internal bool Unselect(ItemInfo info)
             {
                 Debug.Assert(_owner.CheckAccess());
-                Debug.Assert(_active, SR.Get("SRID.SelectionChangeNotActive));
+                Debug.Assert(_active, SR.Get("SRID.SelectionChangeNotActive"));
                 Debug.Assert(info != null, "info should not be null");
 
                 ItemInfo key = ItemInfo.Key(info);

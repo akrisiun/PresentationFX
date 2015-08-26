@@ -281,7 +281,7 @@ namespace MS.Internal.Annotations.Anchoring
 
             IServiceProvider provider = selection as IServiceProvider;
             if (provider == null)
-                throw new ArgumentException(SR.Get("SRID.SelectionMustBeServiceProvider),"selection");
+                throw new ArgumentException(SR.Get("SRID.SelectionMustBeServiceProvider"),"selection");
 
             ITextView textView = provider.GetService(typeof(ITextView)) as ITextView;
 

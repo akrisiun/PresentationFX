@@ -179,7 +179,7 @@ namespace System.Windows.Controls.Primitives
             {
                 if (_increaseButton == value)
                 {
-                    throw new NotSupportedException(SR.Get("SRID.Track_SameButtons));
+                    throw new NotSupportedException(SR.Get("SRID.Track_SameButtons"));
                 }
                 UpdateComponent(_decreaseButton, value);
                 _decreaseButton = value;
@@ -220,7 +220,7 @@ namespace System.Windows.Controls.Primitives
             {
                 if (_decreaseButton == value)
                 {
-                    throw new NotSupportedException(SR.Get("SRID.Track_SameButtons));
+                    throw new NotSupportedException(SR.Get("SRID.Track_SameButtons"));
                 }
                 UpdateComponent(_increaseButton, value);
                 _increaseButton = value;
@@ -379,7 +379,7 @@ namespace System.Windows.Controls.Primitives
         {
             if (_visualChildren == null || _visualChildren[index] == null)
             {
-                throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange));
+                throw new ArgumentOutOfRangeException("index", index, SR.Get("SRID.Visual_ArgumentOutOfRange"));
             }
             return _visualChildren[index];
         }

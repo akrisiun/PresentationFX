@@ -237,7 +237,7 @@ namespace System.Windows.Markup
                             lineNumber = xamlNode.LineNumber;
                             linePosition = xamlNode.LinePosition;
                         }
-                        newMessage = e.Message + " " + SR.Get("SRID.ParserLineAndOffset,
+                        newMessage = e.Message + " " + SR.Get("SRID.ParserLineAndOffset",
                                                   lineNumber.ToString(CultureInfo.CurrentCulture),
                                                   linePosition.ToString(CultureInfo.CurrentCulture));
                     }
@@ -577,7 +577,7 @@ namespace System.Windows.Markup
         public virtual void WriteUnknownTagStart(XamlUnknownTagStartNode xamlUnknownTagStartNode)
         {
             // The default action for unknown tags is throw an exception.
-            ThrowException("SRID.ParserUnknownTag ,
+            ThrowException("SRID.ParserUnknownTag ",
                         xamlUnknownTagStartNode.Value,
                         xamlUnknownTagStartNode.XmlNamespace,
                         xamlUnknownTagStartNode.LineNumber,
@@ -1453,7 +1453,7 @@ namespace System.Windows.Markup
         private static void ThrowExceptionWithLine(string message, int lineNumber, int linePosition)
         {
             message += " ";
-            message += SR.Get("SRID.ParserLineAndOffset,
+            message += SR.Get("SRID.ParserLineAndOffset",
                                     lineNumber.ToString(CultureInfo.CurrentCulture),
                                     linePosition.ToString(CultureInfo.CurrentCulture));
 

@@ -139,7 +139,7 @@ namespace System.Windows.Automation.Peers
             if (    (role != MenuItemRole.TopLevelHeader && role != MenuItemRole.SubmenuHeader)
                 ||  !owner.HasItems)
             {
-                throw new InvalidOperationException(SR.Get("SRID.UIA_OperationCannotBePerformed));
+                throw new InvalidOperationException(SR.Get("SRID.UIA_OperationCannotBePerformed"));
             }
 
             owner.OpenMenu();
@@ -157,7 +157,7 @@ namespace System.Windows.Automation.Peers
             if (    (role != MenuItemRole.TopLevelHeader && role != MenuItemRole.SubmenuHeader)
                 ||  !owner.HasItems)
             {
-                throw new InvalidOperationException(SR.Get("SRID.UIA_OperationCannotBePerformed));
+                throw new InvalidOperationException(SR.Get("SRID.UIA_OperationCannotBePerformed"));
             }
 
             owner.SetCurrentValueInternal(MenuItem.IsSubmenuOpenProperty, MS.Internal.KnownBoxes.BooleanBoxes.FalseBox);
@@ -215,7 +215,7 @@ namespace System.Windows.Automation.Peers
 
             if (!owner.IsCheckable)
             {
-                throw new InvalidOperationException(SR.Get("SRID.UIA_OperationCannotBePerformed));
+                throw new InvalidOperationException(SR.Get("SRID.UIA_OperationCannotBePerformed"));
             }
 
             owner.SetCurrentValueInternal(MenuItem.IsCheckedProperty, MS.Internal.KnownBoxes.BooleanBoxes.Box(!owner.IsChecked));

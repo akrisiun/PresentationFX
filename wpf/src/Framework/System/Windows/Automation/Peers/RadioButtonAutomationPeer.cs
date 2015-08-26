@@ -69,7 +69,7 @@ namespace System.Windows.Automation.Peers
         void ISelectionItemProvider.AddToSelection()
         {
             if (((RadioButton)Owner).IsChecked != true)
-                throw new InvalidOperationException(SR.Get("SRID.UIA_OperationCannotBePerformed));
+                throw new InvalidOperationException(SR.Get("SRID.UIA_OperationCannotBePerformed"));
         }
 
 
@@ -80,7 +80,7 @@ namespace System.Windows.Automation.Peers
         {
             // If RadioButton is checked - RemoveFromSelection is invalid operation
             if (((RadioButton)Owner).IsChecked == true)
-                throw new InvalidOperationException(SR.Get("SRID.UIA_OperationCannotBePerformed));
+                throw new InvalidOperationException(SR.Get("SRID.UIA_OperationCannotBePerformed"));
         }
 
 

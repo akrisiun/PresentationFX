@@ -54,7 +54,7 @@ namespace System.Windows.Markup
                 {
                    if (!Char.IsWhiteSpace(s[i]))
                     {
-                        throw new ArgumentException(SR.Get("SRID.NonWhiteSpaceInAddText, s));
+                        throw new ArgumentException(SR.Get("SRID.NonWhiteSpaceInAddText", s));
                     }
                 }
             }

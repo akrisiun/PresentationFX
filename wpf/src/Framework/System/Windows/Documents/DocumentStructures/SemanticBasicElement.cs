@@ -89,7 +89,7 @@ namespace System.Windows.Documents.DocumentStructures
                 return;
             }
 
-            throw new ArgumentException(SR.Get("SRID.DocumentStructureUnexpectedParameterType4, value.GetType(),
+            throw new ArgumentException(SR.Get("SRID.DocumentStructureUnexpectedParameterType4", value.GetType(),
                 typeof(ParagraphStructure), typeof(FigureStructure), typeof(ListStructure), typeof(TableStructure)), 
                 "value");
         }
@@ -138,7 +138,7 @@ namespace System.Windows.Documents.DocumentStructures
                 return;
             }
 
-            throw new ArgumentException(SR.Get("SRID.DocumentStructureUnexpectedParameterType1, value.GetType(),
+            throw new ArgumentException(SR.Get("SRID.DocumentStructureUnexpectedParameterType1", value.GetType(),
                 typeof(NamedElement)),
                 "value");
         }
@@ -176,7 +176,7 @@ namespace System.Windows.Documents.DocumentStructures
                 _elementList.Add((BlockElement)value);
                 return;
             }
-            throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType, value.GetType(), typeof(NamedElement)), "value");
+            throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType", value.GetType(), typeof(NamedElement)), "value");
         }
         
         void IAddChild.AddText(string text) { }
@@ -231,7 +231,7 @@ namespace System.Windows.Documents.DocumentStructures
                 return;
             }
 
-            throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType, value.GetType(), typeof(ListItemStructure)), "value");
+            throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType", value.GetType(), typeof(ListItemStructure)), "value");
         }
         
         void IAddChild.AddText(string text) { }
@@ -276,7 +276,7 @@ namespace System.Windows.Documents.DocumentStructures
                 return;
             }
 
-            throw new ArgumentException(SR.Get("SRID.DocumentStructureUnexpectedParameterType4, value.GetType(),
+            throw new ArgumentException(SR.Get("SRID.DocumentStructureUnexpectedParameterType4", value.GetType(),
                 typeof(ParagraphStructure), typeof(TableStructure), typeof(ListStructure), typeof(FigureStructure)), "value");
         }
         void IAddChild.AddText(string text) { }
@@ -332,7 +332,7 @@ namespace System.Windows.Documents.DocumentStructures
                 _elementList.Add((TableRowGroupStructure)value);
                 return;
             }
-            throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType, value.GetType(), typeof(TableRowGroupStructure)), "value");
+            throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType", value.GetType(), typeof(TableRowGroupStructure)), "value");
         }
         
         void IAddChild.AddText(string text) { }
@@ -377,7 +377,7 @@ namespace System.Windows.Documents.DocumentStructures
                 _elementList.Add((TableRowStructure)value);
                 return;
             }
-            throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType, value.GetType(), typeof(TableRowStructure)), "value");
+            throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType", value.GetType(), typeof(TableRowStructure)), "value");
         }
 
         void IAddChild.AddText(string text) { }
@@ -423,7 +423,7 @@ namespace System.Windows.Documents.DocumentStructures
                 _elementList.Add((TableCellStructure)value);
                 return;
             }
-            throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType, value.GetType(), typeof(TableCellStructure)), "value");
+            throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType", value.GetType(), typeof(TableCellStructure)), "value");
         }
         
         void IAddChild.AddText(string text) { }
@@ -470,7 +470,7 @@ namespace System.Windows.Documents.DocumentStructures
                 _elementList.Add((BlockElement)value);
                 return;
             }
-            throw new ArgumentException(SR.Get("SRID.DocumentStructureUnexpectedParameterType4, value.GetType(),
+            throw new ArgumentException(SR.Get("SRID.DocumentStructureUnexpectedParameterType4", value.GetType(),
                 typeof(ParagraphStructure), typeof(TableStructure), typeof(ListStructure), typeof(FigureStructure)), "value");
         }
         

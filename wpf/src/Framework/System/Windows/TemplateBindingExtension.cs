@@ -61,7 +61,7 @@ namespace System.Windows
         {
             if (Property == null)
             {
-                throw new InvalidOperationException(SR.Get("SRID.MarkupExtensionProperty));
+                throw new InvalidOperationException(SR.Get("SRID.MarkupExtensionProperty"));
             }
 
             return new TemplateBindingExpression(this);

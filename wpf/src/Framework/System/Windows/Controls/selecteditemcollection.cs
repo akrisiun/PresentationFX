@@ -93,7 +93,7 @@ namespace System.Windows.Controls
                 }
                 else
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.InsertInDeferSelectionActive));
+                    throw new InvalidOperationException(SR.Get("SRID.InsertInDeferSelectionActive"));
                 }
             }
             else
@@ -112,7 +112,7 @@ namespace System.Windows.Controls
         {
             if (_updatingSelectedItems)
             {
-                throw new InvalidOperationException(SR.Get("SRID.SetInDeferSelectionActive));
+                throw new InvalidOperationException(SR.Get("SRID.SetInDeferSelectionActive"));
             }
             else
             {
@@ -134,7 +134,7 @@ namespace System.Windows.Controls
             {
                 if (_updatingSelectedItems)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.MoveInDeferSelectionActive));
+                    throw new InvalidOperationException(SR.Get("SRID.MoveInDeferSelectionActive"));
                 }
                 else
                 {
@@ -195,7 +195,7 @@ namespace System.Windows.Controls
         {
             if (_selector.SelectionChange.IsActive || _updatingSelectedItems)
             {
-                throw new InvalidOperationException(SR.Get("SRID.DeferSelectionActive));
+                throw new InvalidOperationException(SR.Get("SRID.DeferSelectionActive"));
             }
             _updatingSelectedItems = true;
             _selector.SelectionChange.Begin();
@@ -208,7 +208,7 @@ namespace System.Windows.Controls
         {
             if (!_selector.SelectionChange.IsActive || !_updatingSelectedItems)
             {
-                throw new InvalidOperationException(SR.Get("SRID.DeferSelectionNotActive));
+                throw new InvalidOperationException(SR.Get("SRID.DeferSelectionNotActive"));
             }
             _updatingSelectedItems = false;
             _selector.SelectionChange.End();
@@ -232,7 +232,7 @@ namespace System.Windows.Controls
         {
             if (!_selector.SelectionChange.IsActive || !_updatingSelectedItems)
             {
-                throw new InvalidOperationException(SR.Get("SRID.DeferSelectionNotActive));
+                throw new InvalidOperationException(SR.Get("SRID.DeferSelectionNotActive"));
             }
 
             _selector.SelectionChange.Select(info, true /* assumeInItemsCollection */);
@@ -245,7 +245,7 @@ namespace System.Windows.Controls
         {
             if (!_selector.SelectionChange.IsActive || !_updatingSelectedItems)
             {
-                throw new InvalidOperationException(SR.Get("SRID.DeferSelectionNotActive));
+                throw new InvalidOperationException(SR.Get("SRID.DeferSelectionNotActive"));
             }
 
             _selector.SelectionChange.Unselect(info);

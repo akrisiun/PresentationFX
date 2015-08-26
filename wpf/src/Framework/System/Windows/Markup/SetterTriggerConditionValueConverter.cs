@@ -112,7 +112,7 @@ namespace System.Windows.Markup
                 as IXamlSchemaContextProvider);
             if (ixsc == null)
             {
-                throw new NotSupportedException(SR.Get("SRID.ParserCannotConvertPropertyValue, "Value", typeof(Object).FullName));
+                throw new NotSupportedException(SR.Get("SRID.ParserCannotConvertPropertyValue", "Value", typeof(Object).FullName));
             }
             XamlSchemaContext schemaContext = ixsc.SchemaContext;
 
@@ -174,12 +174,12 @@ namespace System.Windows.Markup
                         }
                         else
                         {
-                            throw new NotSupportedException(SR.Get("SRID.ParserCannotConvertPropertyValue, "Value", typeof(Object).FullName));
+                            throw new NotSupportedException(SR.Get("SRID.ParserCannotConvertPropertyValue", "Value", typeof(Object).FullName));
                         }
                     }
                     else
                     {
-                        throw new NotSupportedException(SR.Get("SRID.ParserCannotConvertPropertyValue, "Value", typeof(Object).FullName));
+                        throw new NotSupportedException(SR.Get("SRID.ParserCannotConvertPropertyValue", "Value", typeof(Object).FullName));
                     }
                 }
                 else

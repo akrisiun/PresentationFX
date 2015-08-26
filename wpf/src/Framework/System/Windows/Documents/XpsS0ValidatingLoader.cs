@@ -84,7 +84,7 @@ namespace System.Windows.Documents
                     parentPackageUri = PackUriHelper.GetPackageUri(parentUri);
                     if (!parentPackageUri.Equals(packageUri))
                     {
-                        throw new FileFormatException(SR.Get("SRID.XpsValidatingLoaderUriNotInSamePackage));
+                        throw new FileFormatException(SR.Get("SRID.XpsValidatingLoaderUriNotInSamePackage"));
                     }
                 }
 
@@ -140,7 +140,7 @@ namespace System.Windows.Documents
 
                     if (!rootElement.Equals(xpsSchemaValidator.XmlReader.Name))
                     {
-                        throw new FileFormatException(SR.Get("SRID.XpsValidatingLoaderUnsupportedMimeType));
+                        throw new FileFormatException(SR.Get("SRID.XpsValidatingLoaderUnsupportedMimeType"));
                     }
 
                     while (xpsSchemaValidator.XmlReader.Read())
@@ -182,7 +182,7 @@ namespace System.Windows.Documents
                 {
                     if ((int)_uniqueUriRef[uri] != node)
                     {
-                        throw new FileFormatException(SR.Get("SRID.XpsValidatingLoaderDuplicateReference));
+                        throw new FileFormatException(SR.Get("SRID.XpsValidatingLoaderDuplicateReference"));
                     }
                 }
                 else
@@ -210,12 +210,12 @@ namespace System.Windows.Documents
 
                     if (!found)
                     {
-                        throw new FileFormatException(SR.Get("SRID.XpsValidatingLoaderUnlistedResource));
+                        throw new FileFormatException(SR.Get("SRID.XpsValidatingLoaderUnlistedResource"));
                     }
                 }
                 if (!(bool)validResources[uri])
                 {
-                    throw new FileFormatException(SR.Get("SRID.XpsValidatingLoaderUnsupportedMimeType));
+                    throw new FileFormatException(SR.Get("SRID.XpsValidatingLoaderUnsupportedMimeType"));
                 }
             }
         }

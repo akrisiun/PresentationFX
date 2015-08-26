@@ -220,7 +220,7 @@ namespace MS.Internal.Controls.StickyNote
                         rtbRange.Save(buffer, DataFormats.Xaml);
 
                         if (buffer.Length.CompareTo(MaxBufferSize) > 0)
-                            throw new InvalidOperationException(SR.Get("SRID.MaximumNoteSizeExceeded));
+                            throw new InvalidOperationException(SR.Get("SRID.MaximumNoteSizeExceeded"));
 
                         // Using GetBuffer avoids making a copy of the buffer which isn't necessary
                         // Safe cast because the array's length can never be greater than Int.MaxValue
@@ -389,7 +389,7 @@ namespace MS.Internal.Controls.StickyNote
                     strokes.Save(buffer);
                     
                     if (buffer.Length.CompareTo(MaxBufferSize) > 0)
-                        throw new InvalidOperationException(SR.Get("SRID.MaximumNoteSizeExceeded));
+                        throw new InvalidOperationException(SR.Get("SRID.MaximumNoteSizeExceeded"));
                     
                     // Using GetBuffer avoids making a copy of the buffer which isn't necessary
                     // Safe cast because the array's length can never be greater than Int.MaxValue                    
@@ -485,7 +485,7 @@ namespace MS.Internal.Controls.StickyNote
                     {
                         RichTextBox rtb = content as RichTextBox;
                         if (rtb == null)
-                            throw new InvalidOperationException(SR.Get("SRID.InvalidStickyNoteTemplate, type, typeof(RichTextBox), SNBConstants.c_ContentControlId));
+                            throw new InvalidOperationException(SR.Get("SRID.InvalidStickyNoteTemplate", type, typeof(RichTextBox), SNBConstants.c_ContentControlId));
 
                         contentControl = new StickyNoteRichTextBox(rtb);
                         break;
@@ -494,7 +494,7 @@ namespace MS.Internal.Controls.StickyNote
                     {
                         InkCanvas canvas = content as InkCanvas;
                         if (canvas == null)
-                            throw new InvalidOperationException(SR.Get("SRID.InvalidStickyNoteTemplate, type, typeof(InkCanvas), SNBConstants.c_ContentControlId));
+                            throw new InvalidOperationException(SR.Get("SRID.InvalidStickyNoteTemplate", type, typeof(InkCanvas), SNBConstants.c_ContentControlId));
 
                         contentControl = new StickyNoteInkCanvas(canvas);
                         break;

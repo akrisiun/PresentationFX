@@ -843,16 +843,16 @@ namespace System.Windows.Controls.Primitives
             get
             {
                 ContextMenu verticalContextMenu = new ContextMenu();
-                verticalContextMenu.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollHere, "ScrollHere", ScrollBar.ScrollHereCommand));
+                verticalContextMenu.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollHere", "ScrollHere", ScrollBar.ScrollHereCommand));
                 verticalContextMenu.Items.Add(new Separator());
-                verticalContextMenu.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_Top, "Top", ScrollBar.ScrollToTopCommand));
-                verticalContextMenu.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_Bottom, "Bottom", ScrollBar.ScrollToBottomCommand));
+                verticalContextMenu.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_Top", "Top", ScrollBar.ScrollToTopCommand));
+                verticalContextMenu.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_Bottom", "Bottom", ScrollBar.ScrollToBottomCommand));
                 verticalContextMenu.Items.Add(new Separator());
-                verticalContextMenu.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_PageUp, "PageUp", ScrollBar.PageUpCommand));
-                verticalContextMenu.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_PageDown, "PageDown", ScrollBar.PageDownCommand));
+                verticalContextMenu.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_PageUp", "PageUp", ScrollBar.PageUpCommand));
+                verticalContextMenu.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_PageDown", "PageDown", ScrollBar.PageDownCommand));
                 verticalContextMenu.Items.Add(new Separator());
-                verticalContextMenu.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollUp, "ScrollUp", ScrollBar.LineUpCommand));
-                verticalContextMenu.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollDown, "ScrollDown", ScrollBar.LineDownCommand));
+                verticalContextMenu.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollUp", "ScrollUp", ScrollBar.LineUpCommand));
+                verticalContextMenu.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollDown", "ScrollDown", ScrollBar.LineDownCommand));
                 return verticalContextMenu;
             }
         }
@@ -863,16 +863,16 @@ namespace System.Windows.Controls.Primitives
             get
             {
                 ContextMenu horizontalContextMenuLeftToRight = new ContextMenu();
-                horizontalContextMenuLeftToRight.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollHere, "ScrollHere", ScrollBar.ScrollHereCommand));
+                horizontalContextMenuLeftToRight.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollHere", "ScrollHere", ScrollBar.ScrollHereCommand));
                 horizontalContextMenuLeftToRight.Items.Add(new Separator());
-                horizontalContextMenuLeftToRight.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_LeftEdge, "LeftEdge", ScrollBar.ScrollToLeftEndCommand));
-                horizontalContextMenuLeftToRight.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_RightEdge, "RightEdge", ScrollBar.ScrollToRightEndCommand));
+                horizontalContextMenuLeftToRight.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_LeftEdge", "LeftEdge", ScrollBar.ScrollToLeftEndCommand));
+                horizontalContextMenuLeftToRight.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_RightEdge", "RightEdge", ScrollBar.ScrollToRightEndCommand));
                 horizontalContextMenuLeftToRight.Items.Add(new Separator());
-                horizontalContextMenuLeftToRight.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_PageLeft, "PageLeft", ScrollBar.PageLeftCommand));
-                horizontalContextMenuLeftToRight.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_PageRight, "PageRight", ScrollBar.PageRightCommand));
+                horizontalContextMenuLeftToRight.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_PageLeft", "PageLeft", ScrollBar.PageLeftCommand));
+                horizontalContextMenuLeftToRight.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_PageRight", "PageRight", ScrollBar.PageRightCommand));
                 horizontalContextMenuLeftToRight.Items.Add(new Separator());
-                horizontalContextMenuLeftToRight.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollLeft, "ScrollLeft", ScrollBar.LineLeftCommand));
-                horizontalContextMenuLeftToRight.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollRight, "ScrollRight", ScrollBar.LineRightCommand));
+                horizontalContextMenuLeftToRight.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollLeft", "ScrollLeft", ScrollBar.LineLeftCommand));
+                horizontalContextMenuLeftToRight.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollRight", "ScrollRight", ScrollBar.LineRightCommand));
                 return horizontalContextMenuLeftToRight;
             }
         }
@@ -883,16 +883,16 @@ namespace System.Windows.Controls.Primitives
             get
             {
                 ContextMenu horizontalContextMenuRightToLeft = new ContextMenu();
-                horizontalContextMenuRightToLeft.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollHere, "ScrollHere", ScrollBar.ScrollHereCommand));
+                horizontalContextMenuRightToLeft.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollHere", "ScrollHere", ScrollBar.ScrollHereCommand));
                 horizontalContextMenuRightToLeft.Items.Add(new Separator());
-                horizontalContextMenuRightToLeft.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_LeftEdge, "LeftEdge", ScrollBar.ScrollToRightEndCommand));
-                horizontalContextMenuRightToLeft.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_RightEdge, "RightEdge", ScrollBar.ScrollToLeftEndCommand));
+                horizontalContextMenuRightToLeft.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_LeftEdge", "LeftEdge", ScrollBar.ScrollToRightEndCommand));
+                horizontalContextMenuRightToLeft.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_RightEdge", "RightEdge", ScrollBar.ScrollToLeftEndCommand));
                 horizontalContextMenuRightToLeft.Items.Add(new Separator());
-                horizontalContextMenuRightToLeft.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_PageLeft, "PageLeft", ScrollBar.PageRightCommand));
-                horizontalContextMenuRightToLeft.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_PageRight, "PageRight", ScrollBar.PageLeftCommand));
+                horizontalContextMenuRightToLeft.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_PageLeft", "PageLeft", ScrollBar.PageRightCommand));
+                horizontalContextMenuRightToLeft.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_PageRight", "PageRight", ScrollBar.PageLeftCommand));
                 horizontalContextMenuRightToLeft.Items.Add(new Separator());
-                horizontalContextMenuRightToLeft.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollLeft, "ScrollLeft", ScrollBar.LineRightCommand));
-                horizontalContextMenuRightToLeft.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollRight, "ScrollRight", ScrollBar.LineLeftCommand));
+                horizontalContextMenuRightToLeft.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollLeft", "ScrollLeft", ScrollBar.LineRightCommand));
+                horizontalContextMenuRightToLeft.Items.Add(CreateMenuItem("SRID.ScrollBar_ContextMenu_ScrollRight", "ScrollRight", ScrollBar.LineLeftCommand));
                 return horizontalContextMenuRightToLeft;
             }
         }

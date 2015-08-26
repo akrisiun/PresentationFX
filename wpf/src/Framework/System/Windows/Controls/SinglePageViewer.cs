@@ -521,7 +521,7 @@ namespace System.Windows.Controls
                 // Undo new document assignment.
                 Document = null;
                 // Throw exception.
-                throw new NotSupportedException(SR.Get("SRID.FlowDocumentPageViewerOnlySupportsFlowDocument));
+                throw new NotSupportedException(SR.Get("SRID.FlowDocumentPageViewerOnlySupportsFlowDocument"));
             }
 
             if(Document != null)

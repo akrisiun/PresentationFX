@@ -85,7 +85,7 @@ namespace System.Windows
         {
             if( IsSealed && containingTrigger != _containingTrigger )
             {
-                throw new InvalidOperationException(SR.Get("SRID.TriggerActionMustBelongToASingleTrigger));
+                throw new InvalidOperationException(SR.Get("SRID.TriggerActionMustBelongToASingleTrigger"));
             }
             _containingTrigger = containingTrigger;
             Seal();
@@ -100,7 +100,7 @@ namespace System.Windows
         {
             if( IsSealed )
             {
-                throw new InvalidOperationException(SR.Get("SRID.TriggerActionAlreadySealed));
+                throw new InvalidOperationException(SR.Get("SRID.TriggerActionAlreadySealed"));
             }
             base.Seal();
         }
@@ -112,7 +112,7 @@ namespace System.Windows
         {
             if( IsSealed )
             {
-                throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed, "TriggerAction"));
+                throw new InvalidOperationException(SR.Get("SRID.CannotChangeAfterSealed", "TriggerAction"));
             }
         }
 

@@ -71,7 +71,7 @@ namespace System.Windows.Documents
 
             if (textPointer.TextContainer != thisRange.Start.TextContainer)
             {
-                throw new ArgumentException(SR.Get("SRID.NotInAssociatedTree), "textPointer");
+                throw new ArgumentException(SR.Get("SRID.NotInAssociatedTree"), "textPointer");
             }
 
             // Correct position normalization on range boundary so that
@@ -1561,7 +1561,7 @@ namespace System.Windows.Documents
             else
             {
                 // Unsupported format - thows exception
-                throw new ArgumentException(SR.Get("SRID.TextRange_UnsupportedDataFormat, dataFormat), "dataFormat");
+                throw new ArgumentException(SR.Get("SRID.TextRange_UnsupportedDataFormat", dataFormat), "dataFormat");
             }
         }
 
@@ -1601,7 +1601,7 @@ namespace System.Windows.Documents
                 object element = WpfPayload.LoadElement(stream);
                 if (!(element is Section) && !(element is Span))
                 {
-                    throw new ArgumentException(SR.Get("SRID.TextRange_UnrecognizedStructureInDataFormat, dataFormat), "stream");
+                    throw new ArgumentException(SR.Get("SRID.TextRange_UnrecognizedStructureInDataFormat", dataFormat), "stream");
                 }
                 thisRange.SetXmlVirtual((TextElement)element);
             }
@@ -1613,19 +1613,19 @@ namespace System.Windows.Documents
                 MemoryStream memoryStream = TextEditorCopyPaste.ConvertRtfToXaml(rtfText);
                 if (memoryStream == null)
                 {
-                    throw new ArgumentException(SR.Get("SRID.TextRange_UnrecognizedStructureInDataFormat, dataFormat), "stream");
+                    throw new ArgumentException(SR.Get("SRID.TextRange_UnrecognizedStructureInDataFormat", dataFormat), "stream");
                 }
                 TextElement textElement = WpfPayload.LoadElement(memoryStream) as TextElement;
                 if (!(textElement is Section) && !(textElement is Span))
                 {
-                    throw new ArgumentException(SR.Get("SRID.TextRange_UnrecognizedStructureInDataFormat, dataFormat), "stream");
+                    throw new ArgumentException(SR.Get("SRID.TextRange_UnrecognizedStructureInDataFormat", dataFormat), "stream");
                 }
                 thisRange.SetXmlVirtual(textElement);
             }
             else
             {
                 // Unsupported format - thows exception
-                throw new ArgumentException(SR.Get("SRID.TextRange_UnsupportedDataFormat, dataFormat), "dataFormat");
+                throw new ArgumentException(SR.Get("SRID.TextRange_UnsupportedDataFormat", dataFormat), "dataFormat");
             }
         }
 

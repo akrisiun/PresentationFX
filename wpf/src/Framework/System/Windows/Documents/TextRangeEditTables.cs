@@ -870,7 +870,7 @@ namespace System.Windows.Documents
             {
                 //
 
-                throw new InvalidOperationException(SR.Get("SRID.TextSchema_CannotInsertContentInThisPosition));
+                throw new InvalidOperationException(SR.Get("SRID.TextSchema_CannotInsertContentInThisPosition"));
             }
 
             TextPointer insertionPosition;

@@ -424,7 +424,7 @@ namespace System.Windows.Controls.Primitives
         {
             if (this.TextEditor.Selection.ChangeBlockLevel == 0)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextBoxBase_UnmatchedEndChange));
+                throw new InvalidOperationException(SR.Get("SRID.TextBoxBase_UnmatchedEndChange"));
             }
 
             this.TextEditor.Selection.EndChange();
@@ -1698,7 +1698,7 @@ namespace System.Windows.Controls.Primitives
 
             if (this.TextSelectionInternal.ChangeBlockLevel > 0)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextBoxBase_CantSetIsUndoEnabledInsideChangeBlock));
+                throw new InvalidOperationException(SR.Get("SRID.TextBoxBase_CantSetIsUndoEnabledInsideChangeBlock"));
             }
 
             UndoManager undoManager = UndoManager.GetUndoManager(this);
@@ -1729,7 +1729,7 @@ namespace System.Windows.Controls.Primitives
                 {
                     // 
 
-                    throw new InvalidOperationException(SR.Get("SRID.TextBoxBase_CantSetIsUndoEnabledInsideChangeBlock));
+                    throw new InvalidOperationException(SR.Get("SRID.TextBoxBase_CantSetIsUndoEnabledInsideChangeBlock"));
                 }
 
                 int limit;
@@ -1975,7 +1975,7 @@ namespace System.Windows.Controls.Primitives
                     _renderScope = null;
                     _textBoxContentHost = null;
                     // 
-                    throw new NotSupportedException(SR.Get("SRID.TextBoxScrollViewerMarkedAsTextBoxContentMustHaveNoContent));
+                    throw new NotSupportedException(SR.Get("SRID.TextBoxScrollViewerMarkedAsTextBoxContentMustHaveNoContent"));
                 }
                 else
                 {
@@ -1990,7 +1990,7 @@ namespace System.Windows.Controls.Primitives
                     _renderScope = null;
                     _textBoxContentHost = null;
                     // 
-                    throw new NotSupportedException(SR.Get("SRID.TextBoxDecoratorMarkedAsTextBoxContentMustHaveNoContent));
+                    throw new NotSupportedException(SR.Get("SRID.TextBoxDecoratorMarkedAsTextBoxContentMustHaveNoContent"));
                 }
                 else
                 {
@@ -2009,7 +2009,7 @@ namespace System.Windows.Controls.Primitives
                 {
                     _textBoxContentHost = null;
                     // 
-                    throw new NotSupportedException(SR.Get("SRID.TextBoxInvalidTextContainer));
+                    throw new NotSupportedException(SR.Get("SRID.TextBoxInvalidTextContainer"));
                 }
             }
 

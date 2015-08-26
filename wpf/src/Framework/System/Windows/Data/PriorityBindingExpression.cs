@@ -155,7 +155,7 @@ public sealed class PriorityBindingExpression : BindingExpressionBase
         FrameworkPropertyMetadata fwMetaData = dp.GetMetadata(d.DependencyObjectType) as FrameworkPropertyMetadata;
 
         if ((fwMetaData != null && !fwMetaData.IsDataBindingAllowed) || dp.ReadOnly)
-            throw new ArgumentException(SR.Get("SRID.PropertyNotBindable, dp.Name), "dp");
+            throw new ArgumentException(SR.Get("SRID.PropertyNotBindable", dp.Name), "dp");
 
         // create the BindingExpression
         PriorityBindingExpression bindExpr = new PriorityBindingExpression(binding, owner);
@@ -259,15 +259,15 @@ public sealed class PriorityBindingExpression : BindingExpressionBase
             object newValue = (bindExpr != null) ? bindExpr.GetValue(target, TargetProperty) : UseFallbackValue();
             ChangeValue(newValue, true);
 
-            if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.Transfer))
-            {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.PriorityTransfer(
-                                        TraceData.Identify(this),
-                                        TraceData.Identify(newValue),
-                                        _activeIndex,
-                                        TraceData.Identify(bindExpr)));
-            }
+            //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.Transfer))
+            //{
+            //    TraceData.Trace(TraceEventType.Warning,
+            //                        TraceData.PriorityTransfer(
+            //                            TraceData.Identify(this),
+            //                            TraceData.Identify(newValue),
+            //                            _activeIndex,
+            //                            TraceData.Identify(bindExpr)));
+            //}
 
             // don't invalidate during Attach.  The property engine does it
             // already, and it would interfere with the on-demand activation

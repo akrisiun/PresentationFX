@@ -274,13 +274,13 @@ namespace System.Windows.Data
         /// </summary>
         protected override void BeginQuery()
         {
-            if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ProviderQuery))
-            {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.BeginQuery(
-                                        TraceData.Identify(this),
-                                        IsAsynchronous ? "asynchronous" : "synchronous"));
-            }
+            //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ProviderQuery))
+            //{
+            //    TraceData.Trace(TraceEventType.Warning,
+            //                        TraceData.BeginQuery(
+            //                            TraceData.Identify(this),
+            //                            IsAsynchronous ? "asynchronous" : "synchronous"));
+            //}
 
             if (_source != null)
             {
@@ -374,7 +374,7 @@ namespace System.Windows.Data
 
             if (request == null)
             {
-                throw new Exception(SR.Get("SRID.WebRequestCreationFailed));
+                throw new Exception(SR.Get("SRID.WebRequestCreationFailed"));
             }
 
             // load it on a worker thread ?
@@ -481,21 +481,21 @@ namespace System.Windows.Data
                 doc = new XmlDocument();
                 try
                 {
-                    if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.XmlProvider))
-                    {
-                        TraceData.Trace(TraceEventType.Warning,
-                                            TraceData.XmlLoadInline(
-                                                TraceData.Identify(this),
-                                                Dispatcher.CheckAccess() ? "synchronous" : "asynchronous"));
-                    }
+                    //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.XmlProvider))
+                    //{
+                    //    TraceData.Trace(TraceEventType.Warning,
+                    //                        TraceData.XmlLoadInline(
+                    //                            TraceData.Identify(this),
+                    //                            Dispatcher.CheckAccess() ? "synchronous" : "asynchronous"));
+                    //}
 
                     // Load the inline doc from the reader
                     doc.Load(xmlReader);
                 }
                 catch (XmlException xmle)
                 {
-                    if (TraceData.IsEnabled)
-                        TraceData.Trace(TraceEventType.Error, TraceData.XmlDPInlineDocError, xmle);
+                    //if (TraceData.IsEnabled)
+                    //    TraceData.Trace(TraceEventType.Error, TraceData.XmlDPInlineDocError, xmle);
                     ex = xmle;
                 }
 
@@ -535,15 +535,15 @@ namespace System.Windows.Data
             }
             else
             {
-                if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ProviderQuery))
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.QueryFinished(
-                                            TraceData.Identify(this),
-                                            Dispatcher.CheckAccess() ? "synchronous" : "asynchronous",
-                                            TraceData.Identify(null),
-                                            TraceData.IdentifyException(ex)));
-                }
+                //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ProviderQuery))
+                //{
+                //    TraceData.Trace(TraceEventType.Warning,
+                //                        TraceData.QueryFinished(
+                //                            TraceData.Identify(this),
+                //                            Dispatcher.CheckAccess() ? "synchronous" : "asynchronous",
+                //                            TraceData.Identify(null),
+                //                            TraceData.IdentifyException(ex)));
+                //}
 
                 // Load failed.  Report the error, and reset
                 // Data and Document properties to null.
@@ -568,30 +568,30 @@ namespace System.Windows.Data
             // request the content from the URI
             try
             {
-                if (isExtendedTraceEnabled)
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.XmlLoadSource(
-                                            TraceData.Identify(this),
-                                            Dispatcher.CheckAccess() ? "synchronous" : "asynchronous",
-                                            TraceData.Identify(request.RequestUri.ToString())));
-                }
+                //if (isExtendedTraceEnabled)
+                //{
+                //    TraceData.Trace(TraceEventType.Warning,
+                //                        TraceData.XmlLoadSource(
+                //                            TraceData.Identify(this),
+                //                            Dispatcher.CheckAccess() ? "synchronous" : "asynchronous",
+                //                            TraceData.Identify(request.RequestUri.ToString())));
+                //}
 
                 WebResponse response = WpfWebRequestHelper.GetResponse(request);
                 if (response == null)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.GetResponseFailed));
+                    throw new InvalidOperationException(SR.Get("SRID.GetResponseFailed"));
                 }
 
                 // Get Stream and content type from WebResponse.
                 Stream stream = response.GetResponseStream();
 
-                if (isExtendedTraceEnabled)
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.XmlLoadDoc(
-                                            TraceData.Identify(this)));
-                }
+                //if (isExtendedTraceEnabled)
+                //{
+                //    TraceData.Trace(TraceEventType.Warning,
+                //                        TraceData.XmlLoadDoc(
+                //                            TraceData.Identify(this)));
+                //}
 
                 // load the XML from the stream
                 doc.Load(stream);
@@ -604,10 +604,10 @@ namespace System.Windows.Data
                     throw;
                 }
                 ex = e;
-                if (TraceData.IsEnabled)
-                {
-                    TraceData.Trace(TraceEventType.Error, TraceData.XmlDPAsyncDocError, Source, ex);
-                }
+                //if (TraceData.IsEnabled)
+                //{
+                //    TraceData.Trace(TraceEventType.Error, TraceData.XmlDPAsyncDocError, Source, ex);
+                //}
             }
             //FXCop Fix: CatchNonClsCompliantExceptionsInGeneralHandlers
             catch
@@ -617,15 +617,15 @@ namespace System.Windows.Data
 
             if (ex != null)
             {
-                if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ProviderQuery))
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.QueryFinished(
-                                            TraceData.Identify(this),
-                                            Dispatcher.CheckAccess() ? "synchronous" : "asynchronous",
-                                            TraceData.Identify(null),
-                                            TraceData.IdentifyException(ex)));
-                }
+                //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ProviderQuery))
+                //{
+                //    TraceData.Trace(TraceEventType.Warning,
+                //                        TraceData.QueryFinished(
+                //                            TraceData.Identify(this),
+                //                            Dispatcher.CheckAccess() ? "synchronous" : "asynchronous",
+                //                            TraceData.Identify(null),
+                //                            TraceData.IdentifyException(ex)));
+                //}
 
                 // we're done if we got an error up to this point
                 // both .Data and .Document properties will be reset to null

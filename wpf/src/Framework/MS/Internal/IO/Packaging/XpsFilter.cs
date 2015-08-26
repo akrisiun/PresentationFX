@@ -61,14 +61,14 @@ namespace MS.Internal.IO.Packaging
         {
             if (_filter == null)
             {
-                throw new COMException(SR.Get("SRID.FileToFilterNotLoaded),
+                throw new COMException(SR.Get("SRID.FileToFilterNotLoaded"),
                     (int)NativeMethods.E_FAIL);
             }
 
             if (cAttributes > 0 && aAttributes == null)
             {
                 // Attributes count and array do not match.
-                throw new COMException(SR.Get("SRID.FilterInitInvalidAttributes),
+                throw new COMException(SR.Get("SRID.FilterInitInvalidAttributes"),
                     (int)NativeMethods.E_INVALIDARG);
             }
 
@@ -83,7 +83,7 @@ namespace MS.Internal.IO.Packaging
         {
             if (_filter == null)
             {
-                throw new COMException(SR.Get("SRID.FileToFilterNotLoaded),
+                throw new COMException(SR.Get("SRID.FileToFilterNotLoaded"),
                     (int)FilterErrorCode.FILTER_E_ACCESS);
             }
 
@@ -118,14 +118,14 @@ namespace MS.Internal.IO.Packaging
         {
             if (_filter == null)
             {
-                throw new COMException(SR.Get("SRID.FileToFilterNotLoaded),
+                throw new COMException(SR.Get("SRID.FileToFilterNotLoaded"),
                     (int)FilterErrorCode.FILTER_E_ACCESS);
             }
 
             // NULL is not an acceptable value for pBuffer
             if (pBuffer == IntPtr.Zero)
             {
-                throw new NullReferenceException(SR.Get("SRID.FilterNullGetTextBufferPointer));
+                throw new NullReferenceException(SR.Get("SRID.FilterNullGetTextBufferPointer"));
             }
 
             // If there is 0 byte to write, this is a no-op.
@@ -165,7 +165,7 @@ namespace MS.Internal.IO.Packaging
             // An increase in the in/out size parameter would be anomalous, and could be ill-intentioned.
             if (bufCharacterCount > maxSpaceForContent)
             {
-                throw new COMException(SR.Get("SRID.AuxiliaryFilterReturnedAnomalousCountOfCharacters),
+                throw new COMException(SR.Get("SRID.AuxiliaryFilterReturnedAnomalousCountOfCharacters"),
                     (int)FilterErrorCode.FILTER_E_ACCESS);
             }
 
@@ -204,7 +204,7 @@ namespace MS.Internal.IO.Packaging
                     // An increase in the in/out size parameter would be anomalous, and could be ill-intentioned.
                     if (bufCharacterCount > 2)
                     {
-                        throw new COMException(SR.Get("SRID.AuxiliaryFilterReturnedAnomalousCountOfCharacters),
+                        throw new COMException(SR.Get("SRID.AuxiliaryFilterReturnedAnomalousCountOfCharacters"),
                             (int)FilterErrorCode.FILTER_E_ACCESS);
                     }
 
@@ -289,7 +289,7 @@ namespace MS.Internal.IO.Packaging
         {
             if (_filter == null)
             {
-                throw new COMException(SR.Get("SRID.FileToFilterNotLoaded),
+                throw new COMException(SR.Get("SRID.FileToFilterNotLoaded"),
                     (int)FilterErrorCode.FILTER_E_ACCESS);
             }
 
@@ -305,7 +305,7 @@ namespace MS.Internal.IO.Packaging
         IntPtr IFilter.BindRegion([In] FILTERREGION origPos, [In] ref Guid riid)
         {
             // The following exception maps to E_NOTIMPL.
-            throw new NotImplementedException(SR.Get("SRID.FilterBindRegionNotImplemented));
+            throw new NotImplementedException(SR.Get("SRID.FilterBindRegionNotImplemented"));
         }
 
         #endregion IFilter methods
@@ -373,14 +373,14 @@ namespace MS.Internal.IO.Packaging
             // Check argument.
             if (pszFileName == null || pszFileName == String.Empty)
             {
-                throw new ArgumentException(SR.Get("SRID.FileNameNullOrEmpty), "pszFileName");
+                throw new ArgumentException(SR.Get("SRID.FileNameNullOrEmpty"), "pszFileName");
             }
 
             // Convert mode information in flag.
             switch ((STGM_FLAGS)(dwMode & (int)STGM_FLAGS.MODE))
             {
                 case STGM_FLAGS.CREATE:
-                    throw new ArgumentException(SR.Get("SRID.FilterLoadInvalidModeFlag), "dwMode");
+                    throw new ArgumentException(SR.Get("SRID.FilterLoadInvalidModeFlag"), "dwMode");
 
                 default:
                     fileMode = FileMode.Open;
@@ -396,7 +396,7 @@ namespace MS.Internal.IO.Packaging
                     break;
 
                 default:
-                    throw new ArgumentException(SR.Get("SRID.FilterLoadInvalidModeFlag), "dwMode");
+                    throw new ArgumentException(SR.Get("SRID.FilterLoadInvalidModeFlag"), "dwMode");
             }
 
             // Sharing flags are ignored. Since managed filters do not have the equivalent
@@ -474,7 +474,7 @@ namespace MS.Internal.IO.Packaging
         /// </remarks>
         void IPersistFile.Save(string pszFileName, bool fRemember)
         {
-            throw new COMException(SR.Get("SRID.FilterIPersistFileIsReadOnly), NativeMethods.STG_E_CANTSAVE);
+            throw new COMException(SR.Get("SRID.FilterIPersistFileIsReadOnly"), NativeMethods.STG_E_CANTSAVE);
         }
 
         /// <summary>
@@ -605,7 +605,7 @@ namespace MS.Internal.IO.Packaging
         /// </remarks>
         void IPersistStream.Save(MS.Internal.Interop.IStream stream, bool fClearDirty)
         {
-            throw new COMException(SR.Get("SRID.FilterIPersistStreamIsReadOnly), NativeMethods.STG_E_CANTSAVE);
+            throw new COMException(SR.Get("SRID.FilterIPersistStreamIsReadOnly"), NativeMethods.STG_E_CANTSAVE);
         }
 
         /// <summary>
@@ -615,7 +615,7 @@ namespace MS.Internal.IO.Packaging
         /// </summary>
         void IPersistStream.GetSizeMax(out Int64 pcbSize)
         {
-            throw new NotSupportedException(SR.Get("SRID.FilterIPersistFileIsReadOnly));
+            throw new NotSupportedException(SR.Get("SRID.FilterIPersistFileIsReadOnly"));
         }
 
         #endregion IPersistStream methods

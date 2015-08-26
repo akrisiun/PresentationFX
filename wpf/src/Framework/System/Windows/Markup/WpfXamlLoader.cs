@@ -324,7 +324,7 @@ namespace System.Windows.Markup
                             {
                                 if (!(xamlReader is Baml2006Reader))
                                 {
-                                    throw new XamlParseException(SR.Get("SRID.SharedAttributeInLooseXaml));
+                                    throw new XamlParseException(SR.Get("SRID.SharedAttributeInLooseXaml"));
                                 }
                             }
                         }

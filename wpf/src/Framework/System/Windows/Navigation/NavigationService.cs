@@ -134,7 +134,7 @@ namespace System.Windows.Navigation
 
                 //Throw an exception if IUriContext is not implemented, any element can raise this event since it is public.
                 if (uc == null)
-                    throw new Exception(SR.Get("SRID.MustImplementIUriContext, typeof(IUriContext)));
+                    throw new Exception(SR.Get("SRID.MustImplementIUriContext", typeof(IUriContext)));
 
                 bpu = BindUriHelper.GetUriToNavigate(dobj, uc.BaseUri, e.Uri);
             }
@@ -228,12 +228,12 @@ namespace System.Windows.Navigation
 
                     if (launched == LaunchResult.NotLaunched)
                     {
-                        throw new System.Exception(SR.Get("SRID.FailToNavigateUsingHyperlinkTarget));
+                        throw new System.Exception(SR.Get("SRID.FailToNavigateUsingHyperlinkTarget"));
                     }
                 }
                 else
                 {
-                    throw new System.ArgumentException(SR.Get("SRID.HyperLinkTargetNotFound));
+                    throw new System.ArgumentException(SR.Get("SRID.HyperLinkTargetNotFound"));
                 }
             }
         }
@@ -695,7 +695,7 @@ namespace System.Windows.Navigation
             // _navStatus or _navigateQueueItem are not checked here, because they are set only after
             // raising the Navigating event, while an event handler might cause journal ownership to change.
             if (_journalScope != null && _journalScope.Journal.HasUncommittedNavigation)
-                throw new InvalidOperationException(SR.Get("SRID.InvalidOperation_CantChangeJournalOwnership));
+                throw new InvalidOperationException(SR.Get("SRID.InvalidOperation_CantChangeJournalOwnership"));
 
             _journalScope = null;
 
@@ -731,7 +731,7 @@ namespace System.Windows.Navigation
         {
             // This can happen when a Frame is navigated to the page containing it (object navigation).
             if (ncChild == this)
-                throw new Exception(SR.Get("SRID.LoopDetected, _currentCleanSource));
+                throw new Exception(SR.Get("SRID.LoopDetected", _currentCleanSource));
 
             Invariant.Assert(ncChild.ParentNavigationService == null);
             Invariant.Assert(ncChild.JournalScope == null || ncChild.IsJournalLevelContainer,
@@ -1282,7 +1282,7 @@ namespace System.Windows.Navigation
             // If an invalid root element is passed to Navigation Service, throw exception here.
             if (IsValidRootElement(bp) == false)
             {
-                throw new InvalidOperationException(SR.Get("SRID.WrongNavigateRootElement, bp.ToString()));
+                throw new InvalidOperationException(SR.Get("SRID.WrongNavigateRootElement", bp.ToString()));
             }
 
             /*
@@ -1594,7 +1594,7 @@ namespace System.Windows.Navigation
                 return;
             }
             if (_bp == null)
-                throw new InvalidOperationException(SR.Get("SRID.InvalidOperation_AddBackEntryNoContent));
+                throw new InvalidOperationException(SR.Get("SRID.InvalidOperation_AddBackEntryNoContent"));
 
             _customContentStateToSave = state;
             JournalEntry je = UpdateJournal(NavigationMode.New, JournalReason.AddBackEntry, null);
@@ -1611,7 +1611,7 @@ namespace System.Windows.Navigation
             {
                 RemoveBackEntry();
                 throw new InvalidOperationException(
-                    SR.Get("SRID.InvalidOperation_MustImplementIPCCSOrHandleNavigating,
+                    SR.Get("SRID.InvalidOperation_MustImplementIPCCSOrHandleNavigating",
                             _bp != null ? _bp.GetType().ToString() : "null"));
             }
         }
@@ -1837,7 +1837,7 @@ namespace System.Windows.Navigation
                 // This won't detect the case when no Return event handler was attached, but then
                 // we don't run the risk of overwriting the ReturnEventSaver.
                 if (pf != null && (pf._Resume || pf._Saver != null))
-                    throw new InvalidOperationException(SR.Get("SRID.InvalidOperation_CannotReenterPageFunction));
+                    throw new InvalidOperationException(SR.Get("SRID.InvalidOperation_CannotReenterPageFunction"));
             }
 
             Uri source = navigateInfo == null ? null : navigateInfo.Source;
@@ -1918,7 +1918,7 @@ namespace System.Windows.Navigation
         public void GoForward()
         {
             if (JournalScope == null)
-                throw new InvalidOperationException(SR.Get("SRID.NoForwardEntry));
+                throw new InvalidOperationException(SR.Get("SRID.NoForwardEntry"));
             JournalScope.GoForward();
         }
 
@@ -1932,7 +1932,7 @@ namespace System.Windows.Navigation
         public void GoBack()
         {
             if (JournalScope == null)
-                throw new InvalidOperationException(SR.Get("SRID.NoBackEntry));
+                throw new InvalidOperationException(SR.Get("SRID.NoBackEntry"));
             JournalScope.GoBack();
         }
 
@@ -2868,7 +2868,7 @@ namespace System.Windows.Navigation
                     if (response == null)
                     {
                         Uri requestUri = BindUriHelper.GetUriRelativeToPackAppBase(_request.RequestUri);
-                        throw new Exception(SR.Get("SRID.GetResponseFailed, requestUri.ToString()));
+                        throw new Exception(SR.Get("SRID.GetResponseFailed", requestUri.ToString()));
                     }
 
                     // Have to use source instead of _request.RequestUri because the work around we put in
@@ -3142,7 +3142,7 @@ namespace System.Windows.Navigation
                 {
                     Uri requestUri = BindUriHelper.GetUriRelativeToPackAppBase(_request.RequestUri);
 
-                    throw new Exception(SR.Get("SRID.GetStreamFailed, requestUri.ToString()));
+                    throw new Exception(SR.Get("SRID.GetStreamFailed", requestUri.ToString()));
                 }
 
                 long contentLength = response.ContentLength;
@@ -3201,7 +3201,7 @@ namespace System.Windows.Navigation
                         // it appears that UrlMon looks at the Content-Disposition HTTP header, but we don't.
                         if (!IsTopLevelContainer || BrowserInteropHelper.IsInitialViewerNavigation)
                         {
-                            throw new InvalidOperationException(SR.Get("SRID.FailedToConvertResource));
+                            throw new InvalidOperationException(SR.Get("SRID.FailedToConvertResource"));
                         }
 
                         DelegateToBrowser(response is PackWebResponse, destinationUri);
@@ -3528,7 +3528,7 @@ namespace System.Windows.Navigation
                 Type type = ccs.GetType();
                 if (!type.IsSerializable)
                 {
-                    throw new SystemException(SR.Get("SRID.CustomContentStateMustBeSerializable, type));
+                    throw new SystemException(SR.Get("SRID.CustomContentStateMustBeSerializable", type));
                 }
                 journalEntry.CustomContentState = ccs;
             }
@@ -3607,7 +3607,7 @@ namespace System.Windows.Navigation
                         }
                         else
                         {
-                            name = SR.Get("SRID.Untitled);
+                            name = SR.Get("SRID.Untitled");
                         }
                     }
                 }
@@ -4010,7 +4010,7 @@ namespace System.Windows.Navigation
 
             if (JournalScope == null)
             {
-                throw new InvalidOperationException(SR.Get("SRID.WindowAlreadyClosed));
+                throw new InvalidOperationException(SR.Get("SRID.WindowAlreadyClosed"));
             }
 
             Journal journal = JournalScope.Journal;
@@ -4213,7 +4213,7 @@ namespace System.Windows.Navigation
                 // We shouldn't be navigating to a PageFunction that's UiLess at this stage.
                 // By now it should have started another navigation it was delegating to a child PF.
                 if (parentEntry.EntryType == JournalEntryType.UiLess)
-                    throw new InvalidOperationException(SR.Get("SRID.UiLessPageFunctionNotCallingOnReturn));
+                    throw new InvalidOperationException(SR.Get("SRID.UiLessPageFunctionNotCallingOnReturn"));
 
                 NavigateInfo navInfo = finishingChildPageFunction.RemoveFromJournal ?
                     new NavigateInfo(parentEntry.Source, NavigationMode.Back, parentEntry) :

@@ -122,7 +122,7 @@ namespace System.Windows.Controls.Primitives
                     }
                     else
                     {
-                        throw new InvalidOperationException(SR.Get("SRID.InvalidItemContainer, this.GetType().Name, typeof(StatusBarItem).Name, typeof(Separator).Name, itemContainer));
+                        throw new InvalidOperationException(SR.Get("SRID.InvalidItemContainer", this.GetType().Name, typeof(StatusBarItem).Name, typeof(Separator).Name, itemContainer));
                     }
                 }
             }

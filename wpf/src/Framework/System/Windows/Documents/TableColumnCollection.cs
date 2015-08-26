@@ -281,7 +281,7 @@ namespace System.Windows.Documents
 
             if (item == null)
             {
-                throw new ArgumentException(SR.Get("SRID.TableCollectionElementTypeExpected, typeof(TableColumn).Name), "value");
+                throw new ArgumentException(SR.Get("SRID.TableCollectionElementTypeExpected", typeof(TableColumn).Name), "value");
             }
 
             return ((IList)_columnCollection).Add(value);

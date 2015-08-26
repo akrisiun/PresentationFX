@@ -135,7 +135,7 @@ namespace System.Windows.Markup
                             Exception ex = TemplateKey.ValidateDataType(dataType, null);
                             if (ex != null)
                             {
-                                ThrowException("SRID.TemplateBadDictionaryKey,
+                                ThrowException("SRID.TemplateBadDictionaryKey",
                                                parserContext.LineNumber,
                                                parserContext.LinePosition,
                                                ex);
@@ -159,7 +159,7 @@ namespace System.Windows.Markup
 
             if (key == null)
             {
-                ThrowException("SRID.StyleNoDictionaryKey,
+                ThrowException("SRID.StyleNoDictionaryKey",
                                parserContext.LineNumber,
                                parserContext.LinePosition,
                                null);
@@ -184,7 +184,7 @@ namespace System.Windows.Markup
             if (lineNumber > 0)
             {
                 message += " ";
-                message += SR.Get("SRID.ParserLineAndOffset,
+                message += SR.Get("SRID.ParserLineAndOffset",
                                   lineNumber.ToString(CultureInfo.CurrentUICulture),
                                   linePosition.ToString(CultureInfo.CurrentUICulture));
                 parseException = new XamlParseException(message, lineNumber, linePosition);

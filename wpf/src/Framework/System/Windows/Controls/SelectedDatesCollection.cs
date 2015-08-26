@@ -136,7 +136,7 @@ namespace System.Windows.Controls
         {
             if (!IsValidThread())
             {
-                throw new NotSupportedException(SR.Get("SRID.CalendarCollection_MultiThreadedCollectionChangeNotSupported));
+                throw new NotSupportedException(SR.Get("SRID.CalendarCollection_MultiThreadedCollectionChangeNotSupported"));
             }
 
             // Turn off highlight
@@ -154,7 +154,7 @@ namespace System.Windows.Controls
         {
             if (!IsValidThread())
             {
-                throw new NotSupportedException(SR.Get("SRID.CalendarCollection_MultiThreadedCollectionChangeNotSupported));
+                throw new NotSupportedException(SR.Get("SRID.CalendarCollection_MultiThreadedCollectionChangeNotSupported"));
             }
 
             if (!this.Contains(item))
@@ -202,7 +202,7 @@ namespace System.Windows.Controls
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException(SR.Get("SRID.Calendar_OnSelectedDateChanged_InvalidValue));
+                    throw new ArgumentOutOfRangeException(SR.Get("SRID.Calendar_OnSelectedDateChanged_InvalidValue"));
                 }
             }
         }
@@ -215,7 +215,7 @@ namespace System.Windows.Controls
         {
             if (!IsValidThread())
             {
-                throw new NotSupportedException(SR.Get("SRID.CalendarCollection_MultiThreadedCollectionChangeNotSupported));
+                throw new NotSupportedException(SR.Get("SRID.CalendarCollection_MultiThreadedCollectionChangeNotSupported"));
             }
 
             if (index >= this.Count)
@@ -264,7 +264,7 @@ namespace System.Windows.Controls
         {
             if (!IsValidThread())
             {
-                throw new NotSupportedException(SR.Get("SRID.CalendarCollection_MultiThreadedCollectionChangeNotSupported));
+                throw new NotSupportedException(SR.Get("SRID.CalendarCollection_MultiThreadedCollectionChangeNotSupported"));
             }
 
             if (!this.Contains(item))
@@ -449,12 +449,12 @@ namespace System.Windows.Controls
         {
             if (this._owner.SelectionMode == CalendarSelectionMode.None)
             {
-                throw new InvalidOperationException(SR.Get("SRID.Calendar_OnSelectedDateChanged_InvalidOperation));
+                throw new InvalidOperationException(SR.Get("SRID.Calendar_OnSelectedDateChanged_InvalidOperation"));
             }
 
             if (this._owner.SelectionMode == CalendarSelectionMode.SingleDate && this.Count > 0)
             {
-                throw new InvalidOperationException(SR.Get("SRID.Calendar_CheckSelectionMode_InvalidOperation));
+                throw new InvalidOperationException(SR.Get("SRID.Calendar_CheckSelectionMode_InvalidOperation"));
             }
 
             // if user tries to add an item into the SelectedDates in SingleRange mode, we throw away the old range and replace it with the new one

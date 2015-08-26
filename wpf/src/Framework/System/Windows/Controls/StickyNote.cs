@@ -1761,7 +1761,7 @@ namespace System.Windows.Controls
 
                 if (content == null || content.Type != StickyNoteType.Ink)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.CannotProcessInkCommand));
+                    throw new InvalidOperationException(SR.Get("SRID.CannotProcessInkCommand"));
                 }
 
                 // Set the StickyNoteControl's ink editing mode to the command's parameter
@@ -1823,7 +1823,7 @@ namespace System.Windows.Controls
             // Make sure the foreground is type of SolidColorBrush.
             if ( foreground == null )
             {
-                throw new ArgumentException(SR.Get("SRID.InvalidInkForeground));
+                throw new ArgumentException(SR.Get("SRID.InvalidInkForeground"));
             }
 
             da.StylusTip = StylusTip.Ellipse;

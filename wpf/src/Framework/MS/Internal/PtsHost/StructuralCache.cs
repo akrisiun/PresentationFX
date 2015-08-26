@@ -121,7 +121,7 @@ namespace MS.Internal.PtsHost
         {
             if (_illegalTreeChangeDetected)
             {
-                throw new InvalidOperationException(SR.Get("SRID.IllegalTreeChangeDetectedPostAction));
+                throw new InvalidOperationException(SR.Get("SRID.IllegalTreeChangeDetectedPostAction"));
             }
         }
 

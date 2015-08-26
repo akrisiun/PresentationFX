@@ -260,7 +260,7 @@ namespace System.Windows.Markup
                 else if (i == 1)
                     clrns = tca.Value as String;
                 else
-                    throw new ArgumentException(SR.Get("SRID.ParserAttributeArgsHigh, "XmlnsDefinitionAttribute"));
+                    throw new ArgumentException(SR.Get("SRID.ParserAttributeArgsHigh", "XmlnsDefinitionAttribute"));
             }
         }
 
@@ -367,7 +367,7 @@ namespace System.Windows.Markup
 
                     if (String.IsNullOrEmpty(xmlns) || String.IsNullOrEmpty(clrns) )
                     {
-                        throw new ArgumentException(SR.Get("SRID.ParserAttributeArgsLow, "XmlnsDefinitionAttribute"));
+                        throw new ArgumentException(SR.Get("SRID.ParserAttributeArgsLow", "XmlnsDefinitionAttribute"));
                     }
 
                     if (0 == String.CompareOrdinal(xmlnsRequested, xmlns))
@@ -402,13 +402,13 @@ namespace System.Windows.Markup
 
                     if (String.IsNullOrEmpty(oldXmlns) || String.IsNullOrEmpty(newXmlns))
                     {
-                        throw new ArgumentException(SR.Get("SRID.ParserAttributeArgsLow, "XmlnsCompatibleWithAttribute"));
+                        throw new ArgumentException(SR.Get("SRID.ParserAttributeArgsLow", "XmlnsCompatibleWithAttribute"));
                     }
 
                     if (_compatTable.ContainsKey(oldXmlns) &&
                         _compatTable[oldXmlns] != newXmlns)
                     {
-                        throw new InvalidOperationException(SR.Get("SRID.ParserCompatDuplicate, oldXmlns,
+                        throw new InvalidOperationException(SR.Get("SRID.ParserCompatDuplicate", oldXmlns,
                                                                    _compatTable[oldXmlns]));
                     }
                     _compatTable[oldXmlns] = newXmlns;

@@ -387,7 +387,7 @@ namespace System.Windows.Documents
             PackagePart xamlEntryPart = this.GetWpfEntryPart();
             if (xamlEntryPart == null)
             {
-                throw new XamlParseException(SR.Get("SRID.TextEditorCopyPaste_EntryPartIsMissingInXamlPackage));
+                throw new XamlParseException(SR.Get("SRID.TextEditorCopyPaste_EntryPartIsMissingInXamlPackage"));
             }
 
             // 
@@ -521,7 +521,7 @@ namespace System.Windows.Documents
 
             if (string.IsNullOrEmpty(image.Source.ToString()))
             {
-                throw new ArgumentException(SR.Get("SRID.WpfPayload_InvalidImageSource));
+                throw new ArgumentException(SR.Get("SRID.WpfPayload_InvalidImageSource"));
             }
 
             if (_images == null)

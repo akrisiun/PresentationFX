@@ -99,7 +99,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
 
             pageTextView = GetTextViewFromPoint(point, false);
@@ -127,7 +127,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
 
             pageTextView = GetTextViewFromPosition(position);
@@ -150,7 +150,7 @@ namespace MS.Internal.Documents
             //  verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             
             Geometry geometry = null;
@@ -195,7 +195,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             return GetPositionAtNextLineCore(position, suggestedX, count, out newSuggestedX, out linesMoved, out pageNumber);
         }
@@ -208,7 +208,7 @@ namespace MS.Internal.Documents
             int pageNumber;             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             return GetPositionAtNextPageCore(position, suggestedOffset, count, out newSuggestedOffset, out pagesMoved, out pageNumber);
         }
@@ -224,7 +224,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
 
             pageTextView = GetTextViewFromPosition(position);
@@ -246,7 +246,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
 
             pageTextView = GetTextViewFromPosition(position);
@@ -268,7 +268,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
 
             pageTextView = GetTextViewFromPosition(position);
@@ -290,7 +290,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             
             pageTextView = GetTextViewFromPosition(position);
@@ -309,7 +309,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             return (GetTextViewFromPosition(position) != null);
         }
@@ -326,7 +326,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             if (_pendingRequest != null)
             {
@@ -388,7 +388,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             if (_pendingRequest != null)
             {
@@ -485,7 +485,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             if (_pendingRequest != null)
             {
@@ -509,7 +509,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             if (_pendingRequest != null)
             {
@@ -610,7 +610,7 @@ namespace MS.Internal.Documents
             // Verify that layout information is valid. Cannot continue if not valid.
             if (!IsValid)
             {
-                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout));
+                throw new InvalidOperationException(SR.Get("SRID.TextViewInvalidLayout"));
             }
             return GetTextViewFromPosition(position);
         }

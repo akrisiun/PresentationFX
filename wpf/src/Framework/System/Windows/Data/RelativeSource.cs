@@ -88,9 +88,9 @@ namespace System.Windows.Data
         void ISupportInitialize.EndInit()
         {
             if (IsUninitialized)
-                throw new InvalidOperationException(SR.Get("SRID.RelativeSourceNeedsMode));
+                throw new InvalidOperationException(SR.Get("SRID.RelativeSourceNeedsMode"));
             if (_mode == RelativeSourceMode.FindAncestor && (AncestorType == null))
-                throw new InvalidOperationException(SR.Get("SRID.RelativeSourceNeedsAncestorType));
+                throw new InvalidOperationException(SR.Get("SRID.RelativeSourceNeedsAncestorType"));
         }
 
 #endregion ISupportInitialize
@@ -157,7 +157,7 @@ namespace System.Windows.Data
                 }
                 else if (value != _mode)    // mode changes are not allowed
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.RelativeSourceModeIsImmutable));
+                    throw new InvalidOperationException(SR.Get("SRID.RelativeSourceModeIsImmutable"));
                 }
             }
         }
@@ -181,7 +181,7 @@ namespace System.Windows.Data
                 {
                     // in all other modes, AncestorType should not get set to a non-null value
                     if (value != null)
-                        throw new InvalidOperationException(SR.Get("SRID.RelativeSourceNotInFindAncestorMode));
+                        throw new InvalidOperationException(SR.Get("SRID.RelativeSourceNotInFindAncestorMode"));
                 }
                 else
                 {
@@ -217,11 +217,11 @@ namespace System.Windows.Data
                 {
                     // in all other modes, AncestorLevel should not get set to a non-zero value
                     if (value != 0)
-                        throw new InvalidOperationException(SR.Get("SRID.RelativeSourceNotInFindAncestorMode));
+                        throw new InvalidOperationException(SR.Get("SRID.RelativeSourceNotInFindAncestorMode"));
                 }
                 else if (value < 1)
                 {
-                    throw new ArgumentOutOfRangeException(SR.Get("SRID.RelativeSourceInvalidAncestorLevel));
+                    throw new ArgumentOutOfRangeException(SR.Get("SRID.RelativeSourceInvalidAncestorLevel"));
                 }
                 else
                 {
@@ -292,7 +292,7 @@ namespace System.Windows.Data
             }
             else
             {
-                throw new ArgumentException(SR.Get("SRID.RelativeSourceModeInvalid), "mode");
+                throw new ArgumentException(SR.Get("SRID.RelativeSourceModeInvalid"), "mode");
             }
         }
 #endregion private methods

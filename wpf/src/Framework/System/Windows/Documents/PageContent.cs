@@ -196,12 +196,12 @@ namespace System.Windows.Documents
             FixedPage fp = value as FixedPage;
             if (fp == null)
             {
-                throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType, value.GetType(), typeof(FixedPage)), "value");
+                throw new ArgumentException(SR.Get("SRID.UnexpectedParameterType", value.GetType(), typeof(FixedPage)), "value");
             }
 
             if (_child != null)
             {
-                throw new InvalidOperationException(SR.Get("SRID.CanOnlyHaveOneChild, typeof(PageContent), value));
+                throw new InvalidOperationException(SR.Get("SRID.CanOnlyHaveOneChild", typeof(PageContent), value));
             }
 
             _pageRef = null;
@@ -298,7 +298,7 @@ namespace System.Windows.Documents
 
                 if (_child != null)
                 {
-                    throw new InvalidOperationException(SR.Get("SRID.CanOnlyHaveOneChild, typeof(PageContent), value));
+                    throw new InvalidOperationException(SR.Get("SRID.CanOnlyHaveOneChild", typeof(PageContent), value));
                 }
 
                 _pageRef = null;
@@ -401,7 +401,7 @@ namespace System.Windows.Documents
                 pageStream = WpfWebRequestHelper.CreateRequestAndGetResponseStream(uriToLoad);
                 if (pageStream == null)
                 {
-                    throw new ApplicationException(SR.Get("SRID.PageContentNotFound));
+                    throw new ApplicationException(SR.Get("SRID.PageContentNotFound"));
                 }
             }
 
@@ -617,7 +617,7 @@ namespace System.Windows.Documents
             object o = null;
             if (pageStream == null)
             {
-                throw new ApplicationException(SR.Get("SRID.PageContentNotFound));
+                throw new ApplicationException(SR.Get("SRID.PageContentNotFound"));
             }
 
             ParserContext pc = new ParserContext();
@@ -634,12 +634,12 @@ namespace System.Windows.Documents
             }
             else
             {
-                throw new ApplicationException(SR.Get("SRID.PageContentUnsupportedMimeType));
+                throw new ApplicationException(SR.Get("SRID.PageContentUnsupportedMimeType"));
             }
 
             if (o != null && !(o is FixedPage))
             {
-                throw new ApplicationException(SR.Get("SRID.PageContentUnsupportedPageType, o.GetType()));
+                throw new ApplicationException(SR.Get("SRID.PageContentUnsupportedPageType", o.GetType()));
             }
 
             fixedPage =  (FixedPage)o;

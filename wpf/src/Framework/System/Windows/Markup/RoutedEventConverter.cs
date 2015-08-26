@@ -171,7 +171,7 @@ namespace System.Windows.Markup
             string namespaceURI = parserContext.XmlnsDictionary[nsPrefix];
             if (namespaceURI == null)
             {
-                throw new ArgumentException(SR.Get("SRID.ParserPrefixNSProperty, nsPrefix, nameString));
+                throw new ArgumentException(SR.Get("SRID.ParserPrefixNSProperty", nsPrefix, nameString));
             }
 
             return namespaceURI;

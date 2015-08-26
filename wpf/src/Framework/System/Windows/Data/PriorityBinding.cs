@@ -58,7 +58,7 @@ public class PriorityBinding : BindingBase, IAddChild
         if (binding != null)
             Bindings.Add(binding);
         else
-            throw new ArgumentException(SR.Get("SRID.ChildHasWrongType, this.GetType().Name, "BindingBase", value.GetType().FullName), "value");
+            throw new ArgumentException(SR.Get("SRID.ChildHasWrongType", this.GetType().Name, "BindingBase", value.GetType().FullName), "value");
     }
 
     ///<summary>
