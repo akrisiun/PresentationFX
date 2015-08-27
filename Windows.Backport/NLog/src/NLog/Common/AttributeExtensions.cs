@@ -1,4 +1,5 @@
 ﻿using System;
+
 #if NETFX_CORE
 using System.Collections.Generic;
 using System.Linq;

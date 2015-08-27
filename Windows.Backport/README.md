@@ -1,14 +1,23 @@
-Back to the Future - WinRT.Backport
-=======================
+### Core .NET 5 start
 
-First off, here's a puppy with a warning:
+http://www.dotnetfoundation.org/projects
+.NET core: http://dotnet.readthedocs.org/en/latest/
 
-![](https://github.com/shiftkey/winrt-backport-hilarity/raw/master/intro.jpg)
+http://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api/odata-v4/create-an-odata-v4-endpoint
 
-This could be nothing, or people might be interested in it.
+### Issues for UAP
 
+http://stackoverflow.com/questions/28153809/asp-net-vnext-class-library-system-runtime-serialization
+
+        "dependencies": {
+            "System.Linq.Expressions": "4.0.0-beta-22526",
+            "System.Linq.Queryable": "4.0.0-beta-22526",
+
+
+### Back to the Future - WinRT.Backport
+
+First off, puppy with a warning. This could be nothing, or people might be interested in it.
 I was skimming over some old Win8 posts today, and got to thinking "What other crazy things could I start up?"
-
 So I tweeted something:
 
 <blockquote class="twitter-tweet"><p>an experiment in crowd-sourcing - what problems would you like to see me tackle for WinRT dev? add your ideas here <a href="https://t.co/d0kwKJbf" title="https://github.com/shiftkey/winrt-blogsamples/blob/master/README.md">github.com/shiftkey/winrt…</a></p>&mdash; Brendan Forster (@shiftkey) <a href="https://twitter.com/shiftkey/status/220014393159712772" data-datetime="2012-07-03T04:41:33+00:00">July 3, 2012</a></blockquote>

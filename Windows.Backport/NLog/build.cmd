@@ -289,7 +289,8 @@ echo  tools              Tools
 echo  label {suffix}     Define build label (defaults to 'PrivateBuild')
 echo  ccnetlabel {label} Override CCNetLabel
 echo  buildpath {dir}    Set build directory.
-exit /b 1
+@REM exit /b 1
+@PAUSE
 
 :build
 echo MSBUILD: %MSBUILD%
@@ -297,4 +298,6 @@ echo MSBUILD_SCRIPT: %MSBUILD_SCRIPT%
 echo MSBUILD_ARGUMENTS: %MSBUILD_ARGUMENTS%
 %MSBUILD% /nologo /fl %MSBUILD_SCRIPT% %MSBUILD_ARGUMENTS%
 %POST_BUILD_COMMAND%
-exit /b 0
+
+@REM exit /b 0
+@PAUSE

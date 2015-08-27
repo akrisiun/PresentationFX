@@ -50,6 +50,7 @@ namespace NLog.Config
     using NLog.Targets.Wrappers;
 #if NETFX_CORE
     using Windows.Adapters;
+    using System.Xml.Linq;
 #endif
 
     /// <summary>
@@ -116,11 +117,12 @@ namespace NLog.Config
         /// </summary>
         /// <param name="element">The XML element.</param>
         /// <param name="fileName">Name of the XML file.</param>
-        internal XmlLoggingConfiguration(XmlElement element, string fileName)
+        internal XmlLoggingConfiguration(// XmlElement 
+            XElement element, string fileName)
         {
-            using (var stringReader = new StringReader(element.OuterXml))
+            // using (var stringReader = new StringReader(element.ToString()) // .OuterXml))
             {
-                XmlReader reader = XmlReader.Create(stringReader);
+                XmlReader reader = element.CreateReader();
 
                 this.Initialize(reader, fileName, false);
             }
@@ -132,14 +134,15 @@ namespace NLog.Config
         /// <param name="element">The XML element.</param>
         /// <param name="fileName">Name of the XML file.</param>
         /// <param name="ignoreErrors">If set to <c>true</c> errors will be ignored during file processing.</param>
-        internal XmlLoggingConfiguration(XmlElement element, string fileName, bool ignoreErrors)
+        internal XmlLoggingConfiguration(XElement element, string fileName, bool ignoreErrors)
         {
-            using (var stringReader = new StringReader(element.OuterXml))
-            {
-                XmlReader reader = XmlReader.Create(stringReader);
+            //using (var stringReader = new StringReader(element.OuterXml))
+            //{
+            //    XmlReader reader = XmlReader.Create(stringReader);
 
-                this.Initialize(reader, fileName, ignoreErrors);
-            }
+            //    this.Initialize(reader, fileName, ignoreErrors);
+            //}
+            this.Initialize(null, fileName, ignoreErrors);
         }
 #endif
 
@@ -177,7 +180,7 @@ namespace NLog.Config
                 {
                     return this.visitedFile.Keys;
                 }
-                
+
                 return new string[0];
             }
         }
