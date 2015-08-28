@@ -30,7 +30,7 @@ namespace MetroDemo
         {
             // InitializeComponent();
             
-            this.StartupUri = new System.Uri("Wpf.MainWindow.xaml", System.UriKind.Relative);
+            // this.StartupUri = new System.Uri("Wpf.MainWindow.xaml", System.UriKind.Relative);
             _contentLoaded = true;
             System.Uri resourceLocater = new System.Uri("/WpfMetro;component/wpfapp.xaml", System.UriKind.Relative);
             System.Windows.ApplicationX.LoadComponent(this, resourceLocater);
@@ -59,6 +59,11 @@ namespace MetroDemo
             //testWindow.EnableDWMDropShadow = true;
             //testWindow.Show();
 
+        }
+
+        public void Show()
+        {
+            this.MainWindow.Show();
         }
 
         //void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target)

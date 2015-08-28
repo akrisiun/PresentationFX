@@ -23,13 +23,6 @@ namespace MetroConsole
 
                 //Quick fix use C:\Program Files\Microsoft SDKs\Windows\v6.0A\Bin\x64\sn.exe -Vr <dll>
                 //    d:\Beta\Owin\refsource\presentation\lib\PresentationFramework.dll
-
-                //Verification entry added for assembly 'PresentationFramework,31BF3856AD364E35'
-                //Press any key to continue . . .
-    
-                // var asm = Assembly.Load("PresentationFramework.dll"); // , Version=4.0.0.1, PublicKeyToken=b03f5f7f11d50a3a");
-                // 31bf3856ad364e35
-
                 //HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\StrongName\Verification\PresentationFramework,31BF3856AD364E35
                 //PresentationFramework,31BF3856AD364E35
 
@@ -52,7 +45,9 @@ namespace MetroConsole
             var app = new MetroDemo.WpfApp();
 
             // app.MainWindow = new MetroDemo.MainWindow();
-            app.MainWindow = new MetroDemo.Window2();
+            //if (app.MainWindow == null)
+            //    app.MainWindow = new MetroDemo.Window2();
+            app.Show();
             app.Run();
         }
     }

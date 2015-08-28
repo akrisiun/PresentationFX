@@ -6,6 +6,7 @@ namespace System.Windows.Controls
 {
     public class ColumnDefinition : DefinitionBase
     {
+        static ColumnDefinition() { }
         public ColumnDefinition() : base(true)
         {
         }
@@ -27,7 +28,8 @@ namespace System.Windows.Controls
         //     The identifier for the System.Windows.Controls.ColumnDefinition.Width dependency
         //     property.
         [CommonDependencyPropertyAttribute]
-        public static readonly DependencyProperty WidthProperty;
+        public static readonly DependencyProperty WidthProperty = 
+            DependencyProperty.Register("Width", typeof(GridLength), typeof(ColumnDefinition), null); // new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyRowAndRowHeaderPropertyChanged)));
 
     
         //     A System.Double that represents the actual calculated width in device independent
@@ -64,8 +66,9 @@ namespace System.Windows.Controls
         //     The identifier for the System.Windows.Controls.RowDefinition.Height dependency
         //     property.
         [CommonDependencyPropertyAttribute]
-        public static readonly DependencyProperty HeightProperty;
-       
+        public static readonly DependencyProperty HeightProperty = 
+                DependencyProperty.Register("Height", typeof(GridLength), typeof(RowDefinition), null);
+
         //     The identifier for the System.Windows.Controls.RowDefinition.MaxHeight dependency
         //     property.
         [CommonDependencyPropertyAttribute]
