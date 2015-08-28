@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
@@ -19,6 +20,7 @@ namespace MetroDemo
         static WpfApp()
         {
             // App entry point for debugger
+            var asm = Assembly.Load("PresentationFramework, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31BF3856AD364E35");
         }
 
         //internal MetroDemo.WpfApp App;
@@ -33,6 +35,8 @@ namespace MetroDemo
             System.Uri resourceLocater = new System.Uri("/WpfMetro;component/wpfapp.xaml", System.UriKind.Relative);
             System.Windows.ApplicationX.LoadComponent(this, resourceLocater);
 
+
+            this.MainWindow = new Window2();
 
             //var testWindow = new MetroWindow()
             //{

@@ -1,3 +1,17 @@
+### PresentationFramework test build v 4.0.0.1
+
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <runtime>
+      <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+        <dependentAssembly>
+          <assemblyIdentity name="PresentationFramework" publicKeyToken="31BF3856AD364E35" culture="neutral"/>
+          <bindingRedirect oldVersion="0.0.0.0-4.0.0.1" newVersion="4.0.0.1"/>
+        </dependentAssembly>
+      </assemblyBinding>
+  </runtime>
+</configuration>
+
 # .NET Reference Source
 
 The referencesource repository contains sources from [Microsoft .NET Reference Source](http://referencesource.microsoft.com/)

@@ -973,6 +973,10 @@ namespace System.Windows.Markup
                     {
                         root = WpfXamlLoader.LoadBaml(reader, parserContext.SkipJournaledProperties, parent, accessLevel, parserContext.BaseUri);
                     }
+                    catch (Exception )
+                    {
+
+                    }
                     finally
                     {
                         CodeAccessPermission.RevertAssert();

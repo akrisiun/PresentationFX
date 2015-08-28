@@ -386,11 +386,11 @@ namespace MetroDemo
 
         private IEnumerable<string> FindBrushResources()
         {
-            var rd = new ResourceDictionary
-                {
-                    Source = new Uri(@"/" + MainWindow.LIB + // Wpf.MetroLib
-                                    ";component/Wpf.Styles/Colors.xaml", UriKind.RelativeOrAbsolute)
-                };
+            var rd = new ResourceDictionary();
+                //{
+                //    Source = new Uri(@"/" + MainWindow.LIB + // Wpf.MetroLib
+                //                    ";component/Wpf.Styles/Colors.xaml", UriKind.RelativeOrAbsolute)
+                //};
 
             var resources = rd.Keys.Cast<object>()
                     .Where(key => rd[key] is Brush)

@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:cw="clr-namespace:System.Windows;assembly=PresentationFramework"
              xmlns:c="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
-             StartupUri="Wpf.MainWindow.xaml"
+             
              >
-    <!---->
+    <!--
+    StartupUri="Wpf.MainWindow.xaml"
+    -->
 
     <cw:ApplicationX.Resources>
         <cw:ResourceDictionary>

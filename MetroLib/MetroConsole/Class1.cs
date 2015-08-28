@@ -47,16 +47,12 @@ namespace MetroConsole
         public static void Main()
         {
             Console.WriteLine("Hello world");
-
-            Load();
-        }
-
-        
-        public static void Load()
-        {
             System.Windows.ApplicationX.Check();
 
             var app = new MetroDemo.WpfApp();
+
+            // app.MainWindow = new MetroDemo.MainWindow();
+            app.MainWindow = new MetroDemo.Window2();
             app.Run();
         }
     }

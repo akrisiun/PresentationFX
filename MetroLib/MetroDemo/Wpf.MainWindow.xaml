@@ -3,6 +3,12 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      
+                      xmlns:c="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+                      xmlns:cw="clr-namespace:System.Windows;assembly=PresentationFramework"
+                      xmlns:cs="clr-namespace:System.Windows.Shapes;assembly=PresentationFramework"
+                      xmlns:cd="clr-namespace:System.Windows.Data;assembly=PresentationFramework"
+                      xmlns:cm="clr-namespace:System.Windows.Media;assembly=PresentationCore"
                       Title="MahApps.Metro - Demo Application"
                       Width="960"
                       Height="600"
@@ -10,9 +16,9 @@
                       ShowIconOnTitleBar="True"
                       ShowTitleBar="True"
                       WindowStartupLocation="CenterScreen"
-                      GlowBrush="{DynamicResource AccentColorBrush}" NonActiveGlowBrush="Red"
+                      NonActiveGlowBrush="Red"
                       mc:Ignorable="d" 
-                      d:DesignHeight="600" d:DesignWidth="800"
+                      
                       d:DataContext="{d:DesignInstance MetroDemo:MainWindowViewModel}"
                       Closing="MetroWindow_Closing"
                       xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=Wpf.MetroLib"
@@ -25,65 +31,66 @@
                       xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=Wpf.MetroLib"
                       xmlns:Interaction="clr-namespace:Interaction.Helper;assembly=Wpf.MetroLib"
                       >
-    <!--Dialog:DialogParticipation.Register="{Binding}"-->
+    <!--
+    GlowBrush="{DynamicResource AccentColorBrush}" 
+    Dialog:DialogParticipation.Register="{cd:Binding}"
+    d:DesignHeight="600" d:DesignWidth="800"
+    -->
     
     <Controls:MetroWindow.Behaviors>
         <Interaction:MetroBehaviors BorderlessWindowBehavior="True" />
     </Controls:MetroWindow.Behaviors>
-        
     <!--xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"-->
-    <!--<i:Interaction.Behaviors>
-        <behaviours:BorderlessWindowBehavior EnableDWMDropShadow="True" />
-    </i:Interaction.Behaviors>-->
-    <!--ResizeWithGrip="True" AllowsTransparency="False" />-->
 
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
+    <cw:Window.Resources>
+        <cw:ResourceDictionary>
+            <cw:ResourceDictionary.MergedDictionaries>
                 <!--<ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib.Resources;component/Icons.xaml" />-->
-                <ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/FlatSlider.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
+                <cw:ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/FlatSlider.xaml"/>
+            </cw:ResourceDictionary.MergedDictionaries>
 
-            <Ellipse x:Key="AppThemeMenuIcon"
+            <cs:Ellipse x:Key="AppThemeMenuIcon"
                      x:Shared="False"
                      Width="16"
                      Height="16"
                      StrokeThickness="1"
-                     Stroke="{Binding BorderColorBrush, Mode=OneWay}"
-                     Fill="{Binding ColorBrush, Mode=OneWay}" />
-            <Ellipse x:Key="AccentMenuIcon"
+                     Stroke="{cd:Binding BorderColorBrush, Mode=OneWay}"
+                     Fill="{cd:Binding ColorBrush, Mode=OneWay}" />
+            <cs:Ellipse x:Key="AccentMenuIcon"
                      x:Shared="False"
                      Width="16"
                      Height="16"
-                     Fill="{Binding ColorBrush, Mode=OneWay}" />
+                     Fill="{cd:Binding ColorBrush, Mode=OneWay}" />
 
-            <Style x:Key="AppThemeMenuItemStyle"
+            <cw:Style x:Key="AppThemeMenuItemStyle"
                    TargetType="{x:Type MenuItem}"
-                   BasedOn="{StaticResource MetroMenuItem}">
-                <Setter Property="Command"
-                        Value="{Binding ChangeAccentCommand}" />
-                <Setter Property="Icon"
+                   >
+                <!--BasedOn="{StaticResource MetroMenuItem}"-->
+                <cw:Setter Property="Command"
+                        Value="{cd:Binding ChangeAccentCommand}" />
+                <cw:Setter Property="Icon"
                         Value="{StaticResource AppThemeMenuIcon}" />
-                <Setter Property="Header"
-                        Value="{Binding Name, Mode=OneWay}" />
-            </Style>
+                <cw:Setter Property="Header"
+                        Value="{cd:Binding Name, Mode=OneWay}" />
+            </cw:Style>
 
-            <Style x:Key="AccentColorMenuItemStyle"
+            <cw:Style x:Key="AccentColorMenuItemStyle"
                    TargetType="{x:Type MenuItem}"
-                   BasedOn="{StaticResource MetroMenuItem}">
+                   >
+                <!--BasedOn="{StaticResource MetroMenuItem}"-->
                 <Setter Property="Command"
-                        Value="{Binding ChangeAccentCommand}" />
+                        Value="{cd:Binding ChangeAccentCommand}" />
                 <Setter Property="Icon"
                         Value="{StaticResource AccentMenuIcon}" />
                 <Setter Property="Header"
-                        Value="{Binding Name, Mode=OneWay}" />
-            </Style>
+                        Value="{cd:Binding Name, Mode=OneWay}" />
+            </cw:Style>
 
             <!--
             <Dialog:CustomDialog x:Key="CustomDialogTest"
                                  Title="This dialog allows arbitrary content."
                                  x:Name="CustomTestDialog">
-                <TextBlock Height="200" x:Name="MessageTextBlock" Text="{Binding Artists[0].Name}" Foreground="{DynamicResource AccentColorBrush}" />
+                <TextBlock Height="200" x:Name="MessageTextBlock" Text="{cd:Binding Artists[0].Name}" Foreground="{DynamicResource AccentColorBrush}" />
             </Dialog:CustomDialog>
 
             <Dialog:CustomDialog x:Key="CustomCloseDialogTest"
@@ -101,85 +108,49 @@
             </Dialog:CustomDialog>
             -->
 
-        </ResourceDictionary>
-    </Window.Resources>
+        </cw:ResourceDictionary>
+    </cw:Window.Resources>
 
 
     <Controls:MetroWindow.LeftWindowCommands>
         <Controls:WindowCommands>
-            <Button Click="LaunchMahAppsOnGitHub"
-                    ToolTip="MahApps.Metro on GitHub">
-                <Rectangle Width="22"
-                           Height="22"
-                           Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
-                    <Rectangle.OpacityMask>
-                        <VisualBrush Stretch="Uniform"
-                                      />
-                        <!--Visual="{StaticResource appbar_github}"-->
-
-                    </Rectangle.OpacityMask>
-                </Rectangle>
-            </Button>
+            <c:Button Click="LaunchMahAppsOnGitHub"
+                      ToolTip="MahApps.Metro on GitHub" Content="GitHub">
+            </c:Button>
         </Controls:WindowCommands>
     </Controls:MetroWindow.LeftWindowCommands>
 
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <Button Click="LaunchSizeToContentDemo"
+            <c:Button Click="LaunchSizeToContentDemo"
                     ToolTip="SizeToContent demo"
                     Content="STC" />
-            <!--<Button Click="LaunchVisualStudioDemo"
-                    ToolTip="Visual Studio style demo"
-                    Content="VS" />
-            <Button Click="LaunchFlyoutDemo"
-                    ToolTip="Flyouts demo window"
-                    Content="Flyouts" />
-            <Button Click="LaunchIcons"
-                    ToolTip="All MahApp icons"
-                    Content="Icons" />
-            <Button Click="LauchCleanDemo"
-                    ToolTip="Clean window style demo"
-                    Content="Clean" />-->
-            <!--<Button Click="LaunchRibbonDemo" Content="Ribbon Demo (.NET 4.5)" />-->
-            <Button Click="InteropDemo"
-                    ToolTip="The interop demo"
-                    Content="Interop" />
-            <!--<Button Click="LaunchNavigationDemo"
-                    ToolTip="Window navigation demo"
-                    Content="Navigation" />-->
-
-            <ToggleButton Content="ToggleButton"
-                          ToolTip="Shows the toggle button magic"
-                          x:Name="MagicToggleButton"
-                          IsChecked="{Binding MagicToggleButtonIsChecked}" />
-            <ToggleButton Content="Confirm quit"
-                          ToolTip="Enable quit confirmation dialog on exit"
-                          IsChecked="{Binding QuitConfirmationEnabled}" />
+             
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
 
     <Controls:MetroContentControl>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+        <c:Grid>
+            <c:Grid.RowDefinitions>
+                <c:RowDefinition Height="Auto" />
+                <c:RowDefinition Height="*" />
+                <c:RowDefinition Height="Auto" />
+            </c:Grid.RowDefinitions>
 
-            <Menu Grid.Row="0"
+            <c:Menu Grid.Row="0"
                   Margin="5"
                   VerticalAlignment="Stretch"
                   HorizontalAlignment="Left">
                 <MenuItem Header="Theme"
-                          ItemsSource="{Binding AppThemes, Mode=OneWay}"
+                          ItemsSource="{cd:Binding AppThemes, Mode=OneWay}"
                           ItemContainerStyle="{StaticResource AppThemeMenuItemStyle}" />
                 <MenuItem Header="Accent"
-                          ItemsSource="{Binding AccentColors, Mode=OneWay}"
+                          ItemsSource="{cd:Binding AccentColors, Mode=OneWay}"
                           ItemContainerStyle="{StaticResource AccentColorMenuItemStyle}" />
                 <MenuItem Header="Dialogs">
                     <MenuItem Header="Use Accent?"
                               x:Name="UseAccentForDialogsMenuItem"
-                              IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=UseAccentForDialogs}"
+                              IsChecked="{cd:Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=UseAccentForDialogs}"
                               IsCheckable="True" />
                     <Separator />
                     <MenuItem Click="ShowInputDialog"
@@ -194,45 +165,30 @@
                               Header="Show MessageDialog" />
                     <MenuItem Click="ShowLimitedMessageDialog"
                               Header="Show MessageDialog (Limited Size)" />
-                    <!--<MenuItem Click="ShowProgressDialog"
-                              Header="Show ProgressDialog" />-->
-
-                    <!--<MenuItem Click="ShowCustomDialog"
-                              Header="Show CustomDialog" />
-                    <MenuItem Click="ShowDialogOutside"
-                              Header="Show CustomDialog Externally" />
-                    <MenuItem Click="ShowAwaitCustomDialog"
-                              Header="Await CustomDialog" />-->
+                    
 
                     <Separator />
-                    <MenuItem Command="{Binding ShowInputDialogCommand}"
+                    <MenuItem Command="{cd:Binding ShowInputDialogCommand}"
                               Header="Show InputDialog via VM" />
 
-                    <!--
-                    <MenuItem Command="{Binding ShowLoginDialogCommand}"
-                              Header="Show LoginDialog via VM" />
-                    <MenuItem Command="{Binding ShowMessageDialogCommand}"
-                              Header="Show MessageDialog via VM" />
-                    <MenuItem Command="{Binding ShowProgressDialogCommand}"
-                              Header="Show ProgressDialog via VM" />-->
-                    <MenuItem Command="{Binding ShowCustomDialogCommand}"
+                    <MenuItem Command="{cd:Binding ShowCustomDialogCommand}"
                               Header="Show CustomDialog via VM" />
                 </MenuItem>
                 <MenuItem Header="Window">
                     <MenuItem IsCheckable="True" Header="ShowInTaskbar"
-                              IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=ShowInTaskbar}" />
+                              IsChecked="{cd:Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=ShowInTaskbar}" />
                     <MenuItem IsCheckable="True" Header="Topmost"
-                              IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=Topmost}" />
+                              IsChecked="{cd:Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=Topmost}" />
                     <MenuItem IsCheckable="True" Header="Ignore taskbar on maximize"
-                              IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=IgnoreTaskbarOnMaximize}" />
+                              IsChecked="{cd:Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=IgnoreTaskbarOnMaximize}" />
                     <MenuItem IsCheckable="True" Header="Toggle FullScreen (no taskbar, window style = none)"
-                              IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=ToggleFullScreen}" />
+                              IsChecked="{cd:Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=ToggleFullScreen}" />
                     <Separator />
                     <MenuItem Header="Window with a Border" Click="MenuWindowWithBorderOnClick" />
                     <MenuItem Header="Window with a Glow" Click="MenuWindowWithGlowOnClick" />
                     <MenuItem Header="Window with drop shadow" Click="MenuWindowWithShadowOnClick" />
                 </MenuItem>
-            </Menu>
+            </c:Menu>
 
             <!--MetroAnimatedSingleRowTabControl-->
             <Controls:MetroTabControl Grid.Row="1" x:Name="MainTabControl" Style="{StaticResource MetroTabControl}">
@@ -242,47 +198,26 @@
                 
                 <Controls:MetroTabItem Header="buttons" Style="{StaticResource ResourceKey=MetroTabItem}">
 
-                    <exampleViews:ButtonsExample DataContext="{Binding}" />
+                    <exampleViews:ButtonsExample DataContext="{cd:Binding}" />
                 </Controls:MetroTabItem>
-                <!--
-                <Controls:MetroTabItem  Header="text">
-                    <exampleViews:TextExamples DataContext="{Binding}" />--><!--
-                </TabItem>
-                <TabItem Header="dates">
-                    --><!--<exampleViews:DateExamples DataContext="{Binding}" />--><!--
-                </TabItem>
-                --><!--<TabItem Header="selection">
-                    <exampleViews:SelectionExamples DataContext="{Binding}" />
-                </TabItem>
-                <TabItem Header="sliders and progress">
-                    <exampleViews:SliderProgressExamples DataContext="{Binding}" />
-                </TabItem>
                 
-                <TabItem Header="tabcontrol">
-                    <exampleViews:TabControlExamples DataContext="{Binding}" />
-                </TabItem>
-                -->
                 <Controls:MetroTabItem  Header="datagrid"  Style="{StaticResource ResourceKey=MetroTabItem}">
-                    <exampleViews:DataGridExamples DataContext="{Binding}" />
+                    <exampleViews:DataGridExamples DataContext="{cd:Binding}" />
                 </Controls:MetroTabItem>
                 <Controls:MetroTabItem  Header="colors"  Style="{StaticResource ResourceKey=MetroTabItem}">
-                    <exampleViews:ColorExample DataContext="{Binding}" />
+                    <exampleViews:ColorExample DataContext="{cd:Binding}" />
                 </Controls:MetroTabItem>
-                <!-- 
-                <TabItem Header="others">
-                    <exampleViews:OtherExamples DataContext="{Binding}" />
-                </TabItem>
-                -->
+             
             </Controls:MetroTabControl>
             
 
             <StatusBar Grid.Row="2">
                 <StatusBarItem>MahApps.Metro DEMO Application</StatusBarItem>
-                <Separator Style="{StaticResource MetroStatusBarSeparator}" />
+                
                 <StatusBarItem>Selected Tab:</StatusBarItem>
-                <StatusBarItem Content="{Binding ElementName=MainTabControl, Path=SelectedItem.Header, Mode=OneWay}" />
+                <StatusBarItem Content="{cd:Binding ElementName=MainTabControl, Path=SelectedItem.Header, Mode=OneWay}" />
             </StatusBar>
 
-        </Grid>
+        </c:Grid>
     </Controls:MetroContentControl>
 </Controls:MetroWindow>

@@ -78,7 +78,7 @@
     <Style TargetType="DatePicker" BasedOn="{StaticResource MetroDatePicker}" />
     <Style TargetType="DatePickerTextBox" BasedOn="{StaticResource MetroDatePickerTextBox}" />
     <Style TargetType="Calendar" BasedOn="{StaticResource MetroCalendar}" />
-    <Style TargetType="c:DataGridX" BasedOn="{StaticResource MetroDataGrid}" />
+    <cw:Style TargetType="c:DataGridX" BasedOn="{StaticResource MetroDataGrid}" />
 
     <Style TargetType="StatusBar" BasedOn="{StaticResource MetroStatusBar}" />
     <Style TargetType="StatusBarItem" BasedOn="{StaticResource MetroStatusBarItem}" />
