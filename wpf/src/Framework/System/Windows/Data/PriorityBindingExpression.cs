@@ -571,14 +571,14 @@ public sealed class PriorityBindingExpression : BindingExpressionBase
     {
         DependencyProperty dp = args.Property;
 
-        if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.Events))
-        {
-            TraceData.Trace(TraceEventType.Warning,
-                                TraceData.GotPropertyChanged(
-                                    TraceData.Identify(this),
-                                    TraceData.Identify(d),
-                                    dp.Name));
-        }
+        //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.Events))
+        //{
+        //    TraceData.Trace(TraceEventType.Warning,
+        //                        TraceData.GotPropertyChanged(
+        //                            TraceData.Identify(this),
+        //                            TraceData.Identify(d),
+        //                            dp.Name));
+        //}
 
         for (int i=0; i<AttentiveBindingExpressions; ++i)
         {

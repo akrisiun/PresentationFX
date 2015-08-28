@@ -79,40 +79,41 @@ namespace System.Runtime.Versioning
     //  As such, your test code should define the TargetFrameworkAttribute (which VS does for you)
     //  if you want to see the new behavior!
     [FriendAccessAllowed]
-    internal static class BinaryCompatibility
+    // internal
+        public static class BinaryCompatibility
     {
         // Use this for new behavior introduced in the phone branch.  It will do the right thing for desktop & SL.
         [FriendAccessAllowed]
-        internal static bool TargetsAtLeast_Phone_V7_1 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Phone_V7_1; } }
+        public static bool TargetsAtLeast_Phone_V7_1 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Phone_V7_1; } }
 
         [FriendAccessAllowed]
-        internal static bool TargetsAtLeast_Phone_V8_0 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Phone_V8_0; } }
+        public static bool TargetsAtLeast_Phone_V8_0 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Phone_V8_0; } }
 
         // Use this for new behavior introduced in the Desktop branch.  It will do the right thing for Phone & SL.
         [FriendAccessAllowed]
-        internal static bool TargetsAtLeast_Desktop_V4_5 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Desktop_V4_5; } }
+        public static bool TargetsAtLeast_Desktop_V4_5 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Desktop_V4_5; } }
         [FriendAccessAllowed]
-        internal static bool TargetsAtLeast_Desktop_V4_5_1 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Desktop_V4_5_1; } }
+        public static bool TargetsAtLeast_Desktop_V4_5_1 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Desktop_V4_5_1; } }
         [FriendAccessAllowed]
-        internal static bool TargetsAtLeast_Desktop_V4_5_2 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Desktop_V4_5_2; } }
+        public static bool TargetsAtLeast_Desktop_V4_5_2 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Desktop_V4_5_2; } }
         [FriendAccessAllowed]
-        internal static bool TargetsAtLeast_Desktop_V4_5_3 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Desktop_V4_5_3; } }
+        public static bool TargetsAtLeast_Desktop_V4_5_3 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Desktop_V4_5_3; } }
         [FriendAccessAllowed]
-        internal static bool TargetsAtLeast_Desktop_V4_5_4 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Desktop_V4_5_4; } }
+        public static bool TargetsAtLeast_Desktop_V4_5_4 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Desktop_V4_5_4; } }
 
         [FriendAccessAllowed]
-        internal static bool TargetsAtLeast_Desktop_V5_0 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Desktop_V5_0; } }
+        public static bool TargetsAtLeast_Desktop_V5_0 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Desktop_V5_0; } }
 
         // Use this for new behavior introduced in the Silverlight branch.  It will do the right thing for desktop & Phone.
         [FriendAccessAllowed]
-        internal static bool TargetsAtLeast_Silverlight_V4 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Silverlight_V4; } }
+        public static bool TargetsAtLeast_Silverlight_V4 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Silverlight_V4; } }
         [FriendAccessAllowed]
-        internal static bool TargetsAtLeast_Silverlight_V5 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Silverlight_V5; } }
+        public static bool TargetsAtLeast_Silverlight_V5 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Silverlight_V5; } }
         [FriendAccessAllowed]
-        internal static bool TargetsAtLeast_Silverlight_V6 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Silverlight_V6; } }
+        public static bool TargetsAtLeast_Silverlight_V6 { [FriendAccessAllowed] get { return s_map.TargetsAtLeast_Silverlight_V6; } }
 
         [FriendAccessAllowed]
-        internal static TargetFrameworkId AppWasBuiltForFramework {
+        public static TargetFrameworkId AppWasBuiltForFramework {
             [FriendAccessAllowed]
             get {
                 Contract.Ensures(Contract.Result<TargetFrameworkId>() > TargetFrameworkId.NotYetChecked);
@@ -126,7 +127,7 @@ namespace System.Runtime.Versioning
 
         // Version number is major * 10000 + minor * 100 + build  (ie, 4.5.1.0 would be version 40501).
         [FriendAccessAllowed]
-        internal static int AppWasBuiltForVersion {
+        public static int AppWasBuiltForVersion {
             [FriendAccessAllowed]
             get {
                 Contract.Ensures(Contract.Result<int>() > 0 || s_AppWasBuiltForFramework == TargetFrameworkId.Unspecified);

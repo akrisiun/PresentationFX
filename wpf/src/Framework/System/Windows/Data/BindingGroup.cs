@@ -579,13 +579,13 @@ namespace System.Windows.Data
         // Receive a new inheritance context (this will be a FE/FCE)
         internal override void AddInheritanceContext(DependencyObject context, DependencyProperty property)
         {
-            if (property != null && property.PropertyType != typeof(BindingGroup) &&
-                TraceData.IsEnabled)
-            {
-                string name = (property != null) ? property.Name : "(null)";
-                TraceData.Trace(TraceEventType.Warning,
-                        TraceData.BindingGroupWrongProperty(name, context.GetType().FullName));
-            }
+            //if (property != null && property.PropertyType != typeof(BindingGroup) &&
+            //    TraceData.IsEnabled)
+            //{
+            //    string name = (property != null) ? property.Name : "(null)";
+            //    //TraceData.Trace(TraceEventType.Warning,
+            //    //        TraceData.BindingGroupWrongProperty(name, context.GetType().FullName));
+            //}
 
             DependencyObject inheritanceContext;
             _inheritanceContext.TryGetTarget(out inheritanceContext);
@@ -615,11 +615,11 @@ namespace System.Windows.Data
             // expected - this is what happens normally in a hierarchical control like TreeView.
             // The following code tries to detect the bad case and warn the user that something
             // is amiss.
-            if (_hasMultipleInheritanceContexts && property != ItemsControl.ItemBindingGroupProperty && TraceData.IsEnabled)
-            {
-                TraceData.Trace(TraceEventType.Warning,
-                        TraceData.BindingGroupMultipleInheritance);
-            }
+            //if (_hasMultipleInheritanceContexts && property != ItemsControl.ItemBindingGroupProperty && TraceData.IsEnabled)
+            //{
+            //    TraceData.Trace(TraceEventType.Warning,
+            //            TraceData.BindingGroupMultipleInheritance);
+            //}
         }
 
         // Remove an inheritance context (this will be a FE/FCE)

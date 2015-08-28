@@ -305,14 +305,14 @@ namespace MS.Internal.PtsHost
         {
             OnBeforeFormatPage(false, false);
 
-            if (TracePageFormatting.IsEnabled)
-            {
-                TracePageFormatting.Trace(
-                    TraceEventType.Start,
-                    TracePageFormatting.FormatPage,
-                    PageContext,
-                    PtsContext);
-            }
+            //if (TracePageFormatting.IsEnabled)
+            //{
+            //    TracePageFormatting.Trace(
+            //        TraceEventType.Start,
+            //        TracePageFormatting.FormatPage,
+            //        PageContext,
+            //        PtsContext);
+            //}
 
             PTS.FSFMTRBL formattingResult;
             IntPtr ptsPage;
@@ -329,14 +329,14 @@ namespace MS.Internal.PtsHost
                 _ptsPage.Value = ptsPage;
             }
 
-            if (TracePageFormatting.IsEnabled)
-            {
-                TracePageFormatting.Trace(
-                    TraceEventType.Stop,
-                    TracePageFormatting.FormatPage,
-                    PageContext,
-                    PtsContext);
-            }
+            //if (TracePageFormatting.IsEnabled)
+            //{
+            //    TracePageFormatting.Trace(
+            //        TraceEventType.Stop,
+            //        TracePageFormatting.FormatPage,
+            //        PageContext,
+            //        PtsContext);
+            //}
 
             OnAfterFormatPage(true, false);
 
@@ -364,14 +364,14 @@ namespace MS.Internal.PtsHost
 
             OnBeforeFormatPage(false, true);
 
-            if (TracePageFormatting.IsEnabled)
-            {
-                TracePageFormatting.Trace(
-                    TraceEventType.Start,
-                    TracePageFormatting.FormatPage,
-                    PageContext,
-                    PtsContext);
-            }
+            //if (TracePageFormatting.IsEnabled)
+            //{
+            //    TracePageFormatting.Trace(
+            //        TraceEventType.Start,
+            //        TracePageFormatting.FormatPage,
+            //        PageContext,
+            //        PtsContext);
+            //}
 
             PTS.FSFMTRBL formattingResult;
             int fserr = PTS.FsUpdateBottomlessPage(PtsContext.Context, _ptsPage.Value, _section.Handle, out formattingResult);
@@ -384,14 +384,14 @@ namespace MS.Internal.PtsHost
                 PTS.ValidateAndTrace(fserr, PtsContext);
             }
 
-            if (TracePageFormatting.IsEnabled)
-            {
-                TracePageFormatting.Trace(
-                    TraceEventType.Stop,
-                    TracePageFormatting.FormatPage,
-                    PageContext,
-                    PtsContext);
-            }
+            //if (TracePageFormatting.IsEnabled)
+            //{
+            //    TracePageFormatting.Trace(
+            //        TraceEventType.Stop,
+            //        TracePageFormatting.FormatPage,
+            //        PageContext,
+            //        PtsContext);
+            //}
 
             OnAfterFormatPage(true, true);
 
@@ -417,14 +417,14 @@ namespace MS.Internal.PtsHost
         {
             OnBeforeFormatPage(true, false);
 
-            if (TracePageFormatting.IsEnabled)
-            {
-                TracePageFormatting.Trace(
-                    TraceEventType.Start,
-                    TracePageFormatting.FormatPage,
-                    PageContext,
-                    PtsContext);
-            }
+            //if (TracePageFormatting.IsEnabled)
+            //{
+            //    TracePageFormatting.Trace(
+            //        TraceEventType.Start,
+            //        TracePageFormatting.FormatPage,
+            //        PageContext,
+            //        PtsContext);
+            //}
 
             // Retrieve PTS break record
             IntPtr brIn = (breakRecord != null) ? breakRecord.BreakRecord : IntPtr.Zero;
@@ -454,14 +454,14 @@ namespace MS.Internal.PtsHost
                 }
             }
 
-            if (TracePageFormatting.IsEnabled)
-            {
-                TracePageFormatting.Trace(
-                    TraceEventType.Stop,
-                    TracePageFormatting.FormatPage,
-                    PageContext,
-                    PtsContext);
-            }
+            //if (TracePageFormatting.IsEnabled)
+            //{
+            //    TracePageFormatting.Trace(
+            //        TraceEventType.Stop,
+            //        TracePageFormatting.FormatPage,
+            //        PageContext,
+            //        PtsContext);
+            //}
 
             OnAfterFormatPage(true, false);
         }
@@ -487,14 +487,14 @@ namespace MS.Internal.PtsHost
 
             OnBeforeFormatPage(true, true);
 
-            if (TracePageFormatting.IsEnabled)
-            {
-                TracePageFormatting.Trace(
-                    TraceEventType.Start,
-                    TracePageFormatting.FormatPage,
-                    PageContext,
-                    PtsContext);
-            }
+            //if (TracePageFormatting.IsEnabled)
+            //{
+            //    TracePageFormatting.Trace(
+            //        TraceEventType.Start,
+            //        TracePageFormatting.FormatPage,
+            //        PageContext,
+            //        PtsContext);
+            //}
 
             // Retrieve PTS break record
             IntPtr brIn = (breakRecord != null) ? breakRecord.BreakRecord : IntPtr.Zero;
@@ -522,14 +522,14 @@ namespace MS.Internal.PtsHost
                 }
             }
 
-            if (TracePageFormatting.IsEnabled)
-            {
-                TracePageFormatting.Trace(
-                    TraceEventType.Stop,
-                    TracePageFormatting.FormatPage,
-                    PageContext,
-                    PtsContext);
-            }
+            //if (TracePageFormatting.IsEnabled)
+            //{
+            //    TracePageFormatting.Trace(
+            //        TraceEventType.Stop,
+            //        TracePageFormatting.FormatPage,
+            //        PageContext,
+            //        PtsContext);
+            //}
 
             OnAfterFormatPage(true, true);
         }

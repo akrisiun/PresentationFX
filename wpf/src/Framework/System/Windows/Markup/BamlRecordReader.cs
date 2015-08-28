@@ -1002,15 +1002,15 @@ namespace System.Windows.Markup
             {
                 returnValue = markupExtension.ProvideValue(serviceProvider);
 
-                if( TraceMarkup.IsEnabled )
-                {
-                    TraceMarkup.TraceActivityItem(
-                                          TraceMarkup.ProvideValue,
-                                          markupExtension,
-                                          obj,
-                                          member,
-                                          returnValue );
-                }
+                //if( TraceMarkup.IsEnabled )
+                //{
+                //    TraceMarkup.TraceActivityItem(
+                //                          TraceMarkup.ProvideValue,
+                //                          markupExtension,
+                //                          obj,
+                //                          member,
+                //                          returnValue );
+                //}
             }
             finally
             {
@@ -1430,12 +1430,12 @@ namespace System.Windows.Markup
             object instance = null;
             bool foundInstance = false;
 
-            if( TraceMarkup.IsEnabled )
-            {
-                TraceMarkup.Trace( TraceEventType.Start,
-                                 TraceMarkup.CreateMarkupExtension,
-                                 elementType );
-            }
+            //if( TraceMarkup.IsEnabled )
+            //{
+            //    TraceMarkup.Trace( TraceEventType.Start,
+            //                     TraceMarkup.CreateMarkupExtension,
+            //                     elementType );
+            //}
 
             if (CurrentContext.CheckFlag(ReaderFlags.SingletonConstructorParam))
             {
@@ -1608,13 +1608,13 @@ namespace System.Windows.Markup
                 ThrowException("SRID.ParserBadConstructorParams", elementType.Name, paramCount.ToString(CultureInfo.CurrentCulture));
             }
 
-            if( TraceMarkup.IsEnabled )
-            {
-                TraceMarkup.Trace( TraceEventType.Stop,
-                                 TraceMarkup.CreateMarkupExtension,
-                                 elementType,
-                                 instance );
-            }
+            //if( TraceMarkup.IsEnabled )
+            //{
+            //    TraceMarkup.Trace( TraceEventType.Stop,
+            //                     TraceMarkup.CreateMarkupExtension,
+            //                     elementType,
+            //                     instance );
+            //}
 
         }
 
@@ -1639,14 +1639,14 @@ namespace System.Windows.Markup
                 TypeConverter converter = XamlTypeMapper.GetTypeConverter(paramInfo.ParameterType);
 
 
-                if( TraceMarkup.IsEnabled )
-                {
-                    TraceMarkup.Trace( TraceEventType.Start,
-                                     TraceMarkup.ProcessConstructorParameter,
-                                     paramInfo.ParameterType,
-                                     converter.GetType(),
-                                     param );
-                }
+                //if( TraceMarkup.IsEnabled )
+                //{
+                //    TraceMarkup.Trace( TraceEventType.Start,
+                //                     TraceMarkup.ProcessConstructorParameter,
+                //                     paramInfo.ParameterType,
+                //                     converter.GetType(),
+                //                     param );
+                //}
 
 #if !STRESS
                 try
@@ -1694,14 +1694,14 @@ namespace System.Windows.Markup
                 }
 #endif
 
-                if( TraceMarkup.IsEnabled )
-                {
-                    TraceMarkup.Trace( TraceEventType.Stop,
-                                     TraceMarkup.ProcessConstructorParameter,
-                                     paramInfo.ParameterType,
-                                     converter.GetType(),
-                                     param );
-                }
+                //if( TraceMarkup.IsEnabled )
+                //{
+                //    TraceMarkup.Trace( TraceEventType.Stop,
+                //                     TraceMarkup.ProcessConstructorParameter,
+                //                     paramInfo.ParameterType,
+                //                     converter.GetType(),
+                //                     param );
+                //}
 
             }
 
@@ -2506,15 +2506,15 @@ namespace System.Windows.Markup
                 {
                     value = ProvideValueFromMarkupExtension(me, element, propertyDefinition.DpOrPiOrMi);
 
-                    if( TraceMarkup.IsEnabled )
-                    {
-                        TraceMarkup.TraceActivityItem(
-                                              TraceMarkup.ProvideValue,
-                                              me,
-                                              element,
-                                              propertyDefinition.DpOrPiOrMi,
-                                              value );
-                    }
+                    //if( TraceMarkup.IsEnabled )
+                    //{
+                    //    TraceMarkup.TraceActivityItem(
+                    //                          TraceMarkup.ProvideValue,
+                    //                          me,
+                    //                          element,
+                    //                          propertyDefinition.DpOrPiOrMi,
+                    //                          value );
+                    //}
                 }
 
                 if( !SetPropertyValue( element, propertyDefinition, value ))
@@ -2560,26 +2560,26 @@ namespace System.Windows.Markup
 
             if (propertyDefinition.DependencyProperty != null)
             {
-                if( TraceMarkup.IsEnabled )
-                {
-                    TraceMarkup.Trace( TraceEventType.Start,
-                                     TraceMarkup.SetPropertyValue,
-                                     o,
-                                     propertyDefinition.DependencyProperty.Name,
-                                     value);
-                }
+                //if( TraceMarkup.IsEnabled )
+                //{
+                //    TraceMarkup.Trace( TraceEventType.Start,
+                //                     TraceMarkup.SetPropertyValue,
+                //                     o,
+                //                     propertyDefinition.DependencyProperty.Name,
+                //                     value);
+                //}
 
                 Debug.Assert(o is DependencyObject);
                 SetDependencyValue((DependencyObject)o, propertyDefinition.DependencyProperty, value);
 
-                if( TraceMarkup.IsEnabled )
-                {
-                    TraceMarkup.Trace( TraceEventType.Stop,
-                                     TraceMarkup.SetPropertyValue,
-                                     o,
-                                     propertyDefinition.DependencyProperty.Name,
-                                     value);
-                }
+                //if( TraceMarkup.IsEnabled )
+                //{
+                //    TraceMarkup.Trace( TraceEventType.Stop,
+                //                     TraceMarkup.SetPropertyValue,
+                //                     o,
+                //                     propertyDefinition.DependencyProperty.Name,
+                //                     value);
+                //}
             }
 
             //
@@ -2588,14 +2588,14 @@ namespace System.Windows.Markup
 
             else if (propertyDefinition.PropertyInfo != null)
             {
-                if( TraceMarkup.IsEnabled )
-                {
-                    TraceMarkup.Trace( TraceEventType.Start,
-                                     TraceMarkup.SetPropertyValue,
-                                     o,
-                                     propertyDefinition.PropertyInfo.Name,
-                                     value);
-                }
+                //if( TraceMarkup.IsEnabled )
+                //{
+                //    TraceMarkup.Trace( TraceEventType.Start,
+                //                     TraceMarkup.SetPropertyValue,
+                //                     o,
+                //                     propertyDefinition.PropertyInfo.Name,
+                //                     value);
+                //}
 
                 if (propertyDefinition.IsInternal)
                 {
@@ -2614,14 +2614,14 @@ namespace System.Windows.Markup
                     propertyDefinition.PropertyInfo.SetValue(o, value, BindingFlags.Default, null, null, TypeConverterHelper.InvariantEnglishUS);
                 }
 
-                if( TraceMarkup.IsEnabled )
-                {
-                    TraceMarkup.Trace( TraceEventType.Stop,
-                                     TraceMarkup.SetPropertyValue,
-                                     o,
-                                     propertyDefinition.PropertyInfo.Name,
-                                     value);
-                }
+                //if( TraceMarkup.IsEnabled )
+                //{
+                //    TraceMarkup.Trace( TraceEventType.Stop,
+                //                     TraceMarkup.SetPropertyValue,
+                //                     o,
+                //                     propertyDefinition.PropertyInfo.Name,
+                //                     value);
+                //}
 
             }
 
@@ -2631,25 +2631,25 @@ namespace System.Windows.Markup
 
             else if (propertyDefinition.AttachedPropertySetter != null)
             {
-                if( TraceMarkup.IsEnabled )
-                {
-                    TraceMarkup.Trace( TraceEventType.Start,
-                                     TraceMarkup.SetPropertyValue,
-                                     o,
-                                     propertyDefinition.AttachedPropertySetter.Name,
-                                     value);
-                }
+                //if( TraceMarkup.IsEnabled )
+                //{
+                //    TraceMarkup.Trace( TraceEventType.Start,
+                //                     TraceMarkup.SetPropertyValue,
+                //                     o,
+                //                     propertyDefinition.AttachedPropertySetter.Name,
+                //                     value);
+                //}
 
                 propertyDefinition.AttachedPropertySetter.Invoke(null, new object[] { o, value });
 
-                if( TraceMarkup.IsEnabled )
-                {
-                    TraceMarkup.Trace( TraceEventType.Stop,
-                                     TraceMarkup.SetPropertyValue,
-                                     o,
-                                     propertyDefinition.AttachedPropertySetter.Name,
-                                     value);
-                }
+                //if( TraceMarkup.IsEnabled )
+                //{
+                //    TraceMarkup.Trace( TraceEventType.Stop,
+                //                     TraceMarkup.SetPropertyValue,
+                //                     o,
+                //                     propertyDefinition.AttachedPropertySetter.Name,
+                //                     value);
+                //}
             }
 
             //
@@ -4441,22 +4441,22 @@ namespace System.Windows.Markup
             ISupportInitialize supportInitializeElement = element as ISupportInitialize;
             if (supportInitializeElement != null)
             {
-                if( TraceMarkup.IsEnabled )
-                {
-                    TraceMarkup.Trace( TraceEventType.Start,
-                                     TraceMarkup.BeginInit,
-                                     supportInitializeElement );
-                }
+                //if( TraceMarkup.IsEnabled )
+                //{
+                //    TraceMarkup.Trace( TraceEventType.Start,
+                //                     TraceMarkup.BeginInit,
+                //                     supportInitializeElement );
+                //}
 
                 supportInitializeElement.BeginInit();
                 result = true;
 
-                if( TraceMarkup.IsEnabled )
-                {
-                    TraceMarkup.Trace( TraceEventType.Stop,
-                                     TraceMarkup.BeginInit,
-                                     supportInitializeElement );
-                }
+                //if( TraceMarkup.IsEnabled )
+                //{
+                //    TraceMarkup.Trace( TraceEventType.Stop,
+                //                     TraceMarkup.BeginInit,
+                //                     supportInitializeElement );
+                //}
 
             }
 
@@ -4549,21 +4549,21 @@ namespace System.Windows.Markup
                 ISupportInitialize supportInitializeElement = element as ISupportInitialize;
                 if (supportInitializeElement != null)
                 {
-                    if( TraceMarkup.IsEnabled )
-                    {
-                        TraceMarkup.Trace( TraceEventType.Start,
-                                         TraceMarkup.EndInit,
-                                         supportInitializeElement );
-                    }
+                    //if( TraceMarkup.IsEnabled )
+                    //{
+                    //    TraceMarkup.Trace( TraceEventType.Start,
+                    //                     TraceMarkup.EndInit,
+                    //                     supportInitializeElement );
+                    //}
 
                     supportInitializeElement.EndInit();
 
-                    if( TraceMarkup.IsEnabled )
-                    {
-                        TraceMarkup.Trace( TraceEventType.Stop,
-                                         TraceMarkup.EndInit,
-                                         supportInitializeElement );
-                    }
+                    //if( TraceMarkup.IsEnabled )
+                    //{
+                    //    TraceMarkup.Trace( TraceEventType.Stop,
+                    //                     TraceMarkup.EndInit,
+                    //                     supportInitializeElement );
+                    //}
                 }
             }
             catch( Exception e )
@@ -4740,14 +4740,14 @@ namespace System.Windows.Markup
 
                     arrayExt.AddChild(currentObject);
 
-                    if( TraceMarkup.IsEnabled )
-                    {
-                        TraceMarkup.Trace( TraceEventType.Stop,
-                                         TraceMarkup.AddValueToArray,
-                                         traceCurrentObject,
-                                         parentContext.ElementNameOrPropertyName,
-                                         currentObject );
-                    }
+                    //if( TraceMarkup.IsEnabled )
+                    //{
+                    //    TraceMarkup.Trace( TraceEventType.Stop,
+                    //                     TraceMarkup.AddValueToArray,
+                    //                     traceCurrentObject,
+                    //                     parentContext.ElementNameOrPropertyName,
+                    //                     currentObject );
+                    //}
 
                     currentContext.MarkAddedToTree();
                     return;
@@ -4774,13 +4774,13 @@ namespace System.Windows.Markup
                         iac.AddChild(currentObject);
                     }
 
-                    if( TraceMarkup.IsEnabled )
-                    {
-                        TraceMarkup.Trace( TraceEventType.Stop,
-                                         TraceMarkup.AddValueToAddChild,
-                                         traceCurrentObject,
-                                         currentObject );
-                    }
+                    //if( TraceMarkup.IsEnabled )
+                    //{
+                    //    TraceMarkup.Trace( TraceEventType.Stop,
+                    //                     TraceMarkup.AddValueToAddChild,
+                    //                     traceCurrentObject,
+                    //                     currentObject );
+                    //}
 
                     currentContext.MarkAddedToTree();
                     return;
@@ -4826,9 +4826,9 @@ namespace System.Windows.Markup
                 string typeName = parentType == null ? String.Empty : parentType.FullName;
 
                 if( currentObject == null )
-                    ThrowException( SRID.ParserCannotAddAnyChildren, typeName );
+                    ThrowException( "SRID.ParserCannotAddAnyChildren", typeName );
                 else
-                    ThrowException( SRID.ParserCannotAddAnyChildren2, typeName, currentObject.GetType().FullName );
+                    ThrowException( "SRID.ParserCannotAddAnyChildren2", typeName, currentObject.GetType().FullName );
 
 #if !STRESS
             }
@@ -4844,9 +4844,9 @@ namespace System.Windows.Markup
                 string typeName = parentType == null ? String.Empty : parentType.FullName;
 
                 if( currentObject == null )
-                    ThrowException( SRID.ParserCannotAddAnyChildren, typeName );
+                    ThrowException( "SRID.ParserCannotAddAnyChildren", typeName );
                 else
-                    ThrowException( SRID.ParserCannotAddAnyChildren2, typeName, currentObject.GetType().FullName );
+                    ThrowException( "SRID.ParserCannotAddAnyChildren2", typeName, currentObject.GetType().FullName );
 
             }
 #endif
@@ -4965,25 +4965,25 @@ namespace System.Windows.Markup
 
                 if (contentList != null)
                 {
-                    if( TraceMarkup.IsEnabled )
-                    {
-                        TraceMarkup.Trace( TraceEventType.Start,
-                                         TraceMarkup.AddValueToList,
-                                         traceCurrentObject,
-                                         String.Empty,
-                                         value);
-                    }
+                    //if( TraceMarkup.IsEnabled )
+                    //{
+                    //    TraceMarkup.Trace( TraceEventType.Start,
+                    //                     TraceMarkup.AddValueToList,
+                    //                     traceCurrentObject,
+                    //                     String.Empty,
+                    //                     value);
+                    //}
 
                     contentList.Add(value);
 
-                    if( TraceMarkup.IsEnabled )
-                    {
-                        TraceMarkup.Trace( TraceEventType.Stop,
-                                         TraceMarkup.AddValueToList,
-                                         traceCurrentObject,
-                                         String.Empty,
-                                         value);
-                    }
+                    //if( TraceMarkup.IsEnabled )
+                    //{
+                    //    TraceMarkup.Trace( TraceEventType.Stop,
+                    //                     TraceMarkup.AddValueToList,
+                    //                     traceCurrentObject,
+                    //                     String.Empty,
+                    //                     value);
+                    //}
                 }
                 else
                 {
@@ -4999,25 +4999,25 @@ namespace System.Windows.Markup
                             ThrowException("SRID.ParserParentDO", value.ToString());
                         }
 
-                        if( TraceMarkup.IsEnabled )
-                        {
-                            TraceMarkup.Trace( TraceEventType.Start,
-                                             TraceMarkup.SetPropertyValue,
-                                             traceCurrentObject,
-                                             dp.Name,
-                                             value);
-                        }
+                        //if( TraceMarkup.IsEnabled )
+                        //{
+                        //    TraceMarkup.Trace( TraceEventType.Start,
+                        //                     TraceMarkup.SetPropertyValue,
+                        //                     traceCurrentObject,
+                        //                     dp.Name,
+                        //                     value);
+                        //}
 
                         SetDependencyValue(dpo, dp, value);
 
-                        if( TraceMarkup.IsEnabled )
-                        {
-                            TraceMarkup.Trace( TraceEventType.Stop,
-                                             TraceMarkup.SetPropertyValue,
-                                             traceCurrentObject,
-                                             dp.Name,
-                                             value);
-                        }
+                        //if( TraceMarkup.IsEnabled )
+                        //{
+                        //    TraceMarkup.Trace( TraceEventType.Stop,
+                        //                     TraceMarkup.SetPropertyValue,
+                        //                     traceCurrentObject,
+                        //                     dp.Name,
+                        //                     value);
+                        //}
 
                     }
                     else
@@ -5027,14 +5027,14 @@ namespace System.Windows.Markup
                         PropertyInfo pi = contentProperty as PropertyInfo;
                         if (pi != null)
                         {
-                            if( TraceMarkup.IsEnabled )
-                            {
-                                TraceMarkup.Trace( TraceEventType.Start,
-                                                 TraceMarkup.SetPropertyValue,
-                                                 traceCurrentObject,
-                                                 pi.Name,
-                                                 value);
-                            }
+                            //if( TraceMarkup.IsEnabled )
+                            //{
+                            //    TraceMarkup.Trace( TraceEventType.Start,
+                            //                     TraceMarkup.SetPropertyValue,
+                            //                     traceCurrentObject,
+                            //                     pi.Name,
+                            //                     value);
+                            //}
 
 
                             bool set = XamlTypeMapper.SetInternalPropertyValue(ParserContext,
@@ -5047,14 +5047,14 @@ namespace System.Windows.Markup
                                 ThrowException("SRID.ParserCantSetContentProperty", pi.Name, pi.ReflectedType.Name);
                             }
 
-                            if( TraceMarkup.IsEnabled )
-                            {
-                                TraceMarkup.Trace( TraceEventType.Stop,
-                                                 TraceMarkup.SetPropertyValue,
-                                                 traceCurrentObject,
-                                                 pi.Name,
-                                                 value);
-                            }
+                            //if( TraceMarkup.IsEnabled )
+                            //{
+                            //    TraceMarkup.Trace( TraceEventType.Stop,
+                            //                     TraceMarkup.SetPropertyValue,
+                            //                     traceCurrentObject,
+                            //                     pi.Name,
+                            //                     value);
+                            //}
 
 
                         }
@@ -5081,13 +5081,13 @@ namespace System.Windows.Markup
             }
 #endif
 
-            if( TraceMarkup.IsEnabled )
-            {
-                TraceMarkup.Trace( TraceEventType.Stop,
-                                 TraceMarkup.SetCPA,
-                                 traceCurrentObject,
-                                 value);
-            }
+            //if( TraceMarkup.IsEnabled )
+            //{
+            //    TraceMarkup.Trace( TraceEventType.Stop,
+            //                     TraceMarkup.SetCPA,
+            //                     traceCurrentObject,
+            //                     value);
+            //}
 
 
         }
@@ -5320,12 +5320,12 @@ namespace System.Windows.Markup
                 object instance = null;
                 try
                 {
-                    if (TraceMarkup.IsEnabled)
-                    {
-                        TraceMarkup.Trace(TraceEventType.Start,
-                                         TraceMarkup.CreateObject,
-                                         type);
-                    }
+                    //if (TraceMarkup.IsEnabled)
+                    //{
+                    //    TraceMarkup.Trace(TraceEventType.Start,
+                    //                     TraceMarkup.CreateObject,
+                    //                     type);
+                    //}
 
                     // String is a very common object that we can try to create, but it will always
                     // fail since it has no default constructor.  Check for this case to avoid throwing
@@ -5351,13 +5351,13 @@ namespace System.Windows.Markup
                         }
                     }
 
-                    if (TraceMarkup.IsEnabled)
-                    {
-                        TraceMarkup.Trace(TraceEventType.Stop,
-                                         TraceMarkup.CreateObject,
-                                         type,
-                                         instance);
-                    }
+                    //if (TraceMarkup.IsEnabled)
+                    //{
+                    //    TraceMarkup.Trace(TraceEventType.Stop,
+                    //                     TraceMarkup.CreateObject,
+                    //                     type,
+                    //                     instance);
+                    //}
                 }
                 finally
                 {

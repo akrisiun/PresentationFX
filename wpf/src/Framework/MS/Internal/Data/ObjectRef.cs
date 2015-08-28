@@ -157,13 +157,13 @@ namespace MS.Internal.Data
                 {
                     o = Helper.FindNameInTemplate(_name, d);
 
-                    if (args.IsTracing)
-                    {
-                        TraceData.Trace(TraceEventType.Warning,
-                                            TraceData.ElementNameQueryTemplate(
-                                                _name,
-                                                TraceData.Identify(d)));
-                    }
+                    //if (args.IsTracing)
+                    //{
+                    //    TraceData.Trace(TraceEventType.Warning,
+                    //                        TraceData.ElementNameQueryTemplate(
+                    //                            _name,
+                    //                            TraceData.Identify(d)));
+                    //}
                 }
 
                 if (o == null)
@@ -203,13 +203,13 @@ namespace MS.Internal.Data
                     }
                 }
 
-                if (args.IsTracing)
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.ElementNameQuery(
-                                            _name,
-                                            TraceData.Identify(fo.DO)));
-                }
+                //if (args.IsTracing)
+                //{
+                //    TraceData.Trace(TraceEventType.Warning,
+                //                        TraceData.ElementNameQuery(
+                //                            _name,
+                //                            TraceData.Identify(fo.DO)));
+                //}
 
                 if (o == null)
                 {
@@ -419,10 +419,10 @@ namespace MS.Internal.Data
 
             if (args.IsTracing)
             {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.RelativeSource(
-                                        _relativeSource.Mode,
-                                        TraceData.Identify(d)));
+                //TraceData.Trace(TraceEventType.Warning,
+                //                    TraceData.RelativeSource(
+                //                        _relativeSource.Mode,
+                //                        TraceData.Identify(d)));
             }
 
             return d;
@@ -529,8 +529,8 @@ namespace MS.Internal.Data
             ItemsControl ic = ItemsControl.GetItemsOwner(layout);
             if (ic == null)
             {
-                if (TraceData.IsEnabled)
-                    TraceData.Trace(TraceEventType.Error, TraceData.RefPreviousNotInContext);
+                //if (TraceData.IsEnabled)
+                //    TraceData.Trace(TraceEventType.Error, TraceData.RefPreviousNotInContext);
                 return null;
             }
 
@@ -551,8 +551,8 @@ namespace MS.Internal.Data
             else
             {
                 d = null;
-                if ((j < 0) && TraceData.IsEnabled)
-                    TraceData.Trace(TraceEventType.Error, TraceData.RefNoWrapperInChildren);
+                //if ((j < 0) && TraceData.IsEnabled)
+                //    TraceData.Trace(TraceEventType.Error, TraceData.RefNoWrapperInChildren);
             }
             return d;
         }
@@ -561,14 +561,14 @@ namespace MS.Internal.Data
         {
             if (type == null)
             {
-                if (TraceData.IsEnabled)
-                    TraceData.Trace(TraceEventType.Error, TraceData.RefAncestorTypeNotSpecified);
+                //if (TraceData.IsEnabled)
+                //    TraceData.Trace(TraceEventType.Error, TraceData.RefAncestorTypeNotSpecified);
                 return null;
             }
             if (level < 1)
             {
-                if (TraceData.IsEnabled)
-                    TraceData.Trace(TraceEventType.Error, TraceData.RefAncestorLevelInvalid);
+                //if (TraceData.IsEnabled)
+                //    TraceData.Trace(TraceEventType.Error, TraceData.RefAncestorLevelInvalid);
                 return null;
             }
 
@@ -578,13 +578,13 @@ namespace MS.Internal.Data
 
             while (fo.DO != null)
             {
-                if (isTracing)
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.AncestorLookup(
-                                            type.Name,
-                                            TraceData.Identify(fo.DO)));
-                }
+                //if (isTracing)
+                //{
+                //    TraceData.Trace(TraceEventType.Warning,
+                //                        TraceData.AncestorLookup(
+                //                            type.Name,
+                //                            TraceData.Identify(fo.DO)));
+                //}
 
                 if (type.IsInstanceOfType(fo.DO))   // found it!
                 {

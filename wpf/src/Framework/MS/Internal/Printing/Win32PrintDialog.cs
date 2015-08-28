@@ -134,8 +134,10 @@ namespace MS.Internal.Printing
             {
                 if (String.Equals(e.GetType().FullName, "System.Printing.PrintingNotSupportedException", StringComparison.Ordinal))
                 {
-                    string message = System.Windows.SR.Get(System.Windows.SRID.PrintDialogInstallPrintSupportMessageBox);
-                    string caption = System.Windows.SR.Get(System.Windows.SRID.PrintDialogInstallPrintSupportCaption);
+                    string message = System.Windows.SR.Get( // System.Windows.
+                        "SRID.PrintDialogInstallPrintSupportMessageBox");
+                    string caption = System.Windows.SR.Get( // System.Windows.
+                        "SRID.PrintDialogInstallPrintSupportCaption");
 
                     bool isRtlCaption = caption != null && caption.Length > 0 && caption[0] == RightToLeftMark;
                     System.Windows.MessageBoxOptions mbOptions = isRtlCaption ? System.Windows.MessageBoxOptions.RtlReading : System.Windows.MessageBoxOptions.None;

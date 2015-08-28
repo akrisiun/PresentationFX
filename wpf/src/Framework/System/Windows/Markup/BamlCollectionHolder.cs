@@ -30,7 +30,9 @@ namespace System.Windows.Markup
         {
             _reader      = reader;
             _parent      = parent;
-            _propDef     = new sWpfPropertyDefinition(reader, attributeId, parent is DependencyObject);
+
+            // ankr TODO
+            // _propDef     = new sWpfPropertyDefinition(reader, attributeId, parent is DependencyObject);
             _attributeId = attributeId;
 
             if (needDefault)

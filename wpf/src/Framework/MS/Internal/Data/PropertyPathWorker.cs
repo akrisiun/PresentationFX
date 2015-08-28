@@ -1675,9 +1675,9 @@ namespace MS.Internal.Data
                             if (CriticalExceptions.IsCriticalApplicationException(ex3))
                                 throw;
                         }
-                        TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.DisallowTwoWay(typeName, propertyName),
-                                        _host.ParentBindingExpression);
+                        //TraceData.Trace(TraceEventType.Warning,
+                        //                TraceData.DisallowTwoWay(typeName, propertyName),
+                        //                _host.ParentBindingExpression);
                         _host.ParentBindingExpression.IsReflective = false; // turn off updates
                     }
                     return false;                                       // don't throw
@@ -1734,11 +1734,11 @@ namespace MS.Internal.Data
         {
             if (IsExtendedTraceEnabled(TraceDataLevel.Events))
             {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.GotEvent(
-                                        TraceData.Identify(_host.ParentBindingExpression),
-                                        "PropertyChanged",
-                                        TraceData.Identify(sender)));
+                //TraceData.Trace(TraceEventType.Warning,
+                //                    TraceData.GotEvent(
+                //                        TraceData.Identify(_host.ParentBindingExpression),
+                //                        "PropertyChanged",
+                //                        TraceData.Identify(sender)));
             }
 
             _host.OnSourcePropertyChanged(sender, e.PropertyName);
@@ -1746,14 +1746,14 @@ namespace MS.Internal.Data
 
         void OnValueChanged(object sender, ValueChangedEventArgs e)
         {
-            if (IsExtendedTraceEnabled(TraceDataLevel.Events))
-            {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.GotEvent(
-                                        TraceData.Identify(_host.ParentBindingExpression),
-                                        "ValueChanged",
-                                        TraceData.Identify(sender)));
-            }
+            //if (IsExtendedTraceEnabled(TraceDataLevel.Events))
+            //{
+            //    TraceData.Trace(TraceEventType.Warning,
+            //                        TraceData.GotEvent(
+            //                            TraceData.Identify(_host.ParentBindingExpression),
+            //                            "ValueChanged",
+            //                            TraceData.Identify(sender)));
+            //}
 
             _host.OnSourcePropertyChanged(sender, e.PropertyDescriptor.Name);
         }
@@ -1768,14 +1768,14 @@ namespace MS.Internal.Data
 
         void OnStaticPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (IsExtendedTraceEnabled(TraceDataLevel.Events))
-            {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.GotEvent(
-                                        TraceData.Identify(_host.ParentBindingExpression),
-                                        "PropertyChanged",
-                                        "(static)"));
-            }
+            //if (IsExtendedTraceEnabled(TraceDataLevel.Events))
+            //{
+            //    TraceData.Trace(TraceEventType.Warning,
+            //                        TraceData.GotEvent(
+            //                            TraceData.Identify(_host.ParentBindingExpression),
+            //                            "PropertyChanged",
+            //                            "(static)"));
+            //}
 
             _host.OnSourcePropertyChanged(sender, e.PropertyName);
         }

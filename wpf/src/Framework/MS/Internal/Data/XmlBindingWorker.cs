@@ -156,13 +156,13 @@ namespace MS.Internal.Data
 
         internal void ReportBadXPath(TraceEventType traceType)
         {
-            if (TraceData.IsEnabled)
-            {
-                TraceData.Trace(traceType,
-                                    TraceData.BadXPath(
-                                        XPath,
-                                        IdentifyNode(ContextNode)));
-            }
+            //if (TraceData.IsEnabled)
+            //{
+            //    TraceData.Trace(traceType,
+            //                        TraceData.BadXPath(
+            //                            XPath,
+            //                            IdentifyNode(ContextNode)));
+            //}
         }
 
         //------------------------------------------------------
@@ -188,13 +188,13 @@ namespace MS.Internal.Data
             get { return _contextNode; }
             set
             {
-                if (_contextNode != value && TraceData.IsExtendedTraceEnabled(ParentBindingExpression, TraceDataLevel.ReplaceItem))
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.XmlContextNode(
-                                            TraceData.Identify(ParentBindingExpression),
-                                            IdentifyNode(value)));
-                }
+                //if (_contextNode != value && TraceData.IsExtendedTraceEnabled(ParentBindingExpression, TraceDataLevel.ReplaceItem))
+                //{
+                //    TraceData.Trace(TraceEventType.Warning,
+                //                        TraceData.XmlContextNode(
+                //                            TraceData.Identify(ParentBindingExpression),
+                //                            IdentifyNode(value)));
+                //}
 
                 _contextNode = value;
             }
@@ -313,21 +313,21 @@ namespace MS.Internal.Data
             {
                 ContextNode = CollectionView.CurrentItem as XmlNode;
 
-                if (ContextNode != CollectionView.CurrentItem && TraceData.IsEnabled)
-                {
-                    TraceData.Trace(TraceEventType.Error, TraceData.XmlBindingToNonXmlCollection, XPath,
-                            ParentBindingExpression, DataItem);
-                }
+                //if (ContextNode != CollectionView.CurrentItem && TraceData.IsEnabled)
+                //{
+                //    TraceData.Trace(TraceEventType.Error, TraceData.XmlBindingToNonXmlCollection, XPath,
+                //            ParentBindingExpression, DataItem);
+                //}
             }
             else
             {
                 ContextNode = DataItem as XmlNode;
 
-                if (ContextNode != DataItem && TraceData.IsEnabled)
-                {
-                    TraceData.Trace(TraceEventType.Error, TraceData.XmlBindingToNonXml, XPath,
-                            ParentBindingExpression, DataItem);
-                }
+                //if (ContextNode != DataItem && TraceData.IsEnabled)
+                //{
+                //    TraceData.Trace(TraceEventType.Error, TraceData.XmlBindingToNonXml, XPath,
+                //            ParentBindingExpression, DataItem);
+                //}
             }
 
             if (hookNotifications)
@@ -392,13 +392,13 @@ namespace MS.Internal.Data
 
         XmlDataCollection BuildQueriedCollection(XmlNodeList nodes)
         {
-            if (TraceData.IsExtendedTraceEnabled(ParentBindingExpression, TraceDataLevel.GetValue))
-            {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.XmlNewCollection(
-                                        TraceData.Identify(ParentBindingExpression),
-                                        IdentifyNodeList(nodes)));
-            }
+            //if (TraceData.IsExtendedTraceEnabled(ParentBindingExpression, TraceDataLevel.GetValue))
+            //{
+            //    TraceData.Trace(TraceEventType.Warning,
+            //                        TraceData.XmlNewCollection(
+            //                            TraceData.Identify(ParentBindingExpression),
+            //                            IdentifyNodeList(nodes)));
+            //}
 
             QueriedCollection = new XmlDataCollection(XmlDataProvider);
             QueriedCollection.XmlNamespaceManager = NamespaceManager;
@@ -413,14 +413,14 @@ namespace MS.Internal.Data
 
         void OnXmlNodeChanged(object sender, XmlNodeChangedEventArgs e)
         {
-            if (TraceData.IsExtendedTraceEnabled(ParentBindingExpression, TraceDataLevel.Events))
-            {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.GotEvent(
-                                        TraceData.Identify(ParentBindingExpression),
-                                        "XmlNodeChanged",
-                                        TraceData.Identify(sender)));
-            }
+            //if (TraceData.IsExtendedTraceEnabled(ParentBindingExpression, TraceDataLevel.Events))
+            //{
+            //    TraceData.Trace(TraceEventType.Warning,
+            //                        TraceData.GotEvent(
+            //                            TraceData.Identify(ParentBindingExpression),
+            //                            "XmlNodeChanged",
+            //                            TraceData.Identify(sender)));
+            //}
 
             ProcessXmlNodeChanged(e);
         }
@@ -473,13 +473,13 @@ namespace MS.Internal.Data
                 }
                 else if (_collectionMode)
                 {
-                    if (TraceData.IsExtendedTraceEnabled(ParentBindingExpression, TraceDataLevel.GetValue))
-                    {
-                        TraceData.Trace(TraceEventType.Warning,
-                                            TraceData.XmlSynchronizeCollection(
-                                                TraceData.Identify(ParentBindingExpression),
-                                                IdentifyNodeList(nodes)));
-                    }
+                    //if (TraceData.IsExtendedTraceEnabled(ParentBindingExpression, TraceDataLevel.GetValue))
+                    //{
+                    //    TraceData.Trace(TraceEventType.Warning,
+                    //                        TraceData.XmlSynchronizeCollection(
+                    //                            TraceData.Identify(ParentBindingExpression),
+                    //                            IdentifyNodeList(nodes)));
+                    //}
 
                     // Any xml change action, doesn't matter if it's an insert,
                     // remove, or change, can result in any number of changes
@@ -522,23 +522,23 @@ namespace MS.Internal.Data
             catch (XPathException xe)
             {
                 Status = BindingStatusInternal.PathError;
-                if (TraceData.IsEnabled)
-                {
-                    TraceData.Trace(TraceEventType.Error, TraceData.CannotGetXmlNodeCollection,
-                            (ContextNode != null) ? ContextNode.Name : null, XPath,
-                            ParentBindingExpression, xe);
-                }
+                //if (TraceData.IsEnabled)
+                //{
+                //    TraceData.Trace(TraceEventType.Error, TraceData.CannotGetXmlNodeCollection,
+                //            (ContextNode != null) ? ContextNode.Name : null, XPath,
+                //            ParentBindingExpression, xe);
+                //}
             }
 
-            if (TraceData.IsExtendedTraceEnabled(ParentBindingExpression, TraceDataLevel.GetValue))
-            {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.SelectNodes(
-                                        TraceData.Identify(ParentBindingExpression),
-                                        IdentifyNode(ContextNode),
-                                        TraceData.Identify(XPath),
-                                        IdentifyNodeList(nodes)));
-            }
+            //if (TraceData.IsExtendedTraceEnabled(ParentBindingExpression, TraceDataLevel.GetValue))
+            //{
+            //    TraceData.Trace(TraceEventType.Warning,
+            //                        TraceData.SelectNodes(
+            //                            TraceData.Identify(ParentBindingExpression),
+            //                            IdentifyNode(ContextNode),
+            //                            TraceData.Identify(XPath),
+            //                            IdentifyNodeList(nodes)));
+            //}
 
             return nodes;
         }

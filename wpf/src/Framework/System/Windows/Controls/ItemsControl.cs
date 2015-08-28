@@ -1392,15 +1392,15 @@ namespace System.Windows.Controls
                 container.SetValue(FrameworkElement.BindingGroupProperty, containerBindingGroup);
             }
 
-            if (container == item && TraceData.IsEnabled)
-            {
-                // issue a message if there's an ItemTemplate(Selector) for "direct" items
-                // The ItemTemplate isn't used, which may confuse the user (bug 991101).
-                if (ItemTemplate != null || ItemTemplateSelector != null)
-                {
-                    TraceData.Trace(TraceEventType.Error, TraceData.ItemTemplateForDirectItem, AvTrace.TypeName(item));
-                }
-            }
+            //if (container == item && TraceData.IsEnabled)
+            //{
+            //    // issue a message if there's an ItemTemplate(Selector) for "direct" items
+            //    // The ItemTemplate isn't used, which may confuse the user (bug 991101).
+            //    if (ItemTemplate != null || ItemTemplateSelector != null)
+            //    {
+            //        TraceData.Trace(TraceEventType.Error, TraceData.ItemTemplateForDirectItem, AvTrace.TypeName(item));
+            //    }
+            //}
 
             TreeViewItem treeViewItem = container as TreeViewItem;
             if (treeViewItem != null)

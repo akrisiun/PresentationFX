@@ -30,7 +30,8 @@ namespace MS.Internal.Data
 
         public static string MissingMemberErrorString(object target, string name)
         {
-            return SW.SR.Get(SW.SRID.PropertyPathNoProperty, target, "Items");
+            return SW.SR.Get(// SW.
+                "SRID.PropertyPathNoProperty", target, "Items");
         }
 
         Type _ownerType;

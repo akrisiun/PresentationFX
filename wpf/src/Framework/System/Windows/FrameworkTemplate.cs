@@ -909,10 +909,10 @@ namespace System.Windows
             }
             DependencyObject rootObject = null;
 
-            if (TraceMarkup.IsEnabled)
-            {
-                TraceMarkup.Trace(TraceEventType.Start, TraceMarkup.Load);
-            }
+            //if (TraceMarkup.IsEnabled)
+            //{
+            //    TraceMarkup.Trace(TraceEventType.Start, TraceMarkup.Load);
+            //}
 
             FrameworkElement feContainer = container as FrameworkElement;
             bool isTemplatedParentAnFE = feContainer != null;
@@ -951,10 +951,10 @@ namespace System.Windows
             }
             finally
             {
-                if (TraceMarkup.IsEnabled)
-                {
-                    TraceMarkup.Trace(TraceEventType.Stop, TraceMarkup.Load, rootObject);
-                }
+                //if (TraceMarkup.IsEnabled)
+                //{
+                //    TraceMarkup.Trace(TraceEventType.Stop, TraceMarkup.Load, rootObject);
+                //}
             }
             return rootObject;
         }

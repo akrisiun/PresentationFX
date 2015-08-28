@@ -18,6 +18,8 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <Prefer32Bit>false</Prefer32Bit>
+    <DefineConstants>DEBUG;CODE_ANALYSIS_BASELINE;FRAMEWORK_NATIVEMETHODS;COMMONDPS;PRESENTATIONFRAMEWORK_ONLY;PRESENTATIONFRAMEWORK;RIBBON_IN_FRAMEWORK;TRACE;RETAIL;WIN32</DefineConstants>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Prefer32Bit>false</Prefer32Bit>
@@ -27,6 +29,12 @@
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>35MSSharedLib1024.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>System.Windows</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>true</DelaySign>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\MscorLib\mscorlib.csproj">
@@ -55,6 +63,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\Framework\ColumnDefinition.cs" />
+    <Compile Include="src\Framework\ColumnDefinitionCollection.cs" />
     <Compile Include="src\Shared\RefAssemblyAttrs.cs" />
     <Compile Include="src\Shared\MS\Internal\CommonDependencyPropertyAttribute.cs" />
     <Compile Include="src\Shared\MS\Internal\FixedPageInfo.cs" />

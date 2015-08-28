@@ -468,65 +468,65 @@ namespace MS.Internal.Data
 
         internal void ReportGetValueError(int k, object item, Exception ex)
         {
-            if (TraceData.IsEnabled)
-            {
-                SourceValueInfo svi = PW.GetSourceValueInfo(k);
-                Type type = PW.GetType(k);
-                string parentName = (k>0)? PW.GetSourceValueInfo(k-1).name : String.Empty;
-                TraceData.Trace(ParentBindingExpression.TraceLevel,
-                        TraceData.CannotGetClrRawValue(
-                            svi.propertyName, type.Name,
-                            parentName, AvTrace.TypeName(item)),
-                        ParentBindingExpression, ex);
-            }
+            //if (TraceData.IsEnabled)
+            //{
+            //    SourceValueInfo svi = PW.GetSourceValueInfo(k);
+            //    Type type = PW.GetType(k);
+            //    string parentName = (k>0)? PW.GetSourceValueInfo(k-1).name : String.Empty;
+            //    TraceData.Trace(ParentBindingExpression.TraceLevel,
+            //            TraceData.CannotGetClrRawValue(
+            //                svi.propertyName, type.Name,
+            //                parentName, AvTrace.TypeName(item)),
+            //            ParentBindingExpression, ex);
+            //}
         }
 
         internal void ReportSetValueError(int k, object item, object value, Exception ex)
         {
-            if (TraceData.IsEnabled)
-            {
-                SourceValueInfo svi = PW.GetSourceValueInfo(k);
-                Type type = PW.GetType(k);
-                TraceData.Trace(TraceEventType.Error,
-                        TraceData.CannotSetClrRawValue(
-                            svi.propertyName, type.Name,
-                            AvTrace.TypeName(item),
-                            AvTrace.ToStringHelper(value),
-                            AvTrace.TypeName(value)),
-                        ParentBindingExpression, ex);
-            }
+            //if (TraceData.IsEnabled)
+            //{
+            //    SourceValueInfo svi = PW.GetSourceValueInfo(k);
+            //    Type type = PW.GetType(k);
+            //    TraceData.Trace(TraceEventType.Error,
+            //            TraceData.CannotSetClrRawValue(
+            //                svi.propertyName, type.Name,
+            //                AvTrace.TypeName(item),
+            //                AvTrace.ToStringHelper(value),
+            //                AvTrace.TypeName(value)),
+            //            ParentBindingExpression, ex);
+            //}
         }
 
         internal void ReportRawValueErrors(int k, object item, object info)
         {
-            if (TraceData.IsEnabled)
-            {
-                if (item == null)
-                {
-                    // There is probably no data item; e.g. we've moved currency off of a list.
-                    // the type of the missing item is supposed to be _arySVS[k].info.DeclaringType
-                    // the property we're looking for is named _arySVS[k].name
-                    TraceData.Trace(TraceEventType.Information, TraceData.MissingDataItem, ParentBindingExpression);
-                }
+            //if (TraceData.IsEnabled)
+            //{
+            //    if (item == null)
+            //    {
+            //        // There is probably no data item; e.g. we've moved currency off of a list.
+            //        // the type of the missing item is supposed to be _arySVS[k].info.DeclaringType
+            //        // the property we're looking for is named _arySVS[k].name
+            //        TraceData.Trace(TraceEventType.Information, TraceData.MissingDataItem, ParentBindingExpression);
+            //    }
 
-                if (info == null)
-                {
-                    // this no info problem should have been error reported at ReplaceItem already.
+            //    if (info == null)
+            //    {
+            //        // this no info problem should have been error reported at ReplaceItem already.
 
-                    // this can happen when parent is Nullable with no value
-                    // check _arySVS[k-1].info.ComponentType
-                    //if (!IsNullableType(_arySVS[k-1].info.ComponentType))
-                    TraceData.Trace(TraceEventType.Information, TraceData.MissingInfo, ParentBindingExpression);
-                }
+            //        // this can happen when parent is Nullable with no value
+            //        // check _arySVS[k-1].info.ComponentType
+            //        //if (!IsNullableType(_arySVS[k-1].info.ComponentType))
+            //        TraceData.Trace(TraceEventType.Information, TraceData.MissingInfo, ParentBindingExpression);
+            //    }
 
-                if (item == BindingExpression.NullDataItem)
-                {
-                    // this is OK, not an error.
-                    // this can happen when detaching bindings.
-                    // this can happen when binding has a Nullable data item with no value
-                    TraceData.Trace(TraceEventType.Information, TraceData.NullDataItem, ParentBindingExpression);
-                }
-            }
+            //    if (item == BindingExpression.NullDataItem)
+            //    {
+            //        // this is OK, not an error.
+            //        // this can happen when detaching bindings.
+            //        // this can happen when binding has a Nullable data item with no value
+            //        TraceData.Trace(TraceEventType.Information, TraceData.NullDataItem, ParentBindingExpression);
+            //    }
+            //}
         }
 
         internal void ReportBadXPath(TraceEventType traceType)
@@ -763,12 +763,12 @@ namespace MS.Internal.Data
 
                     if (exception != null)
                     {
-                        if (TraceData.IsEnabled)
-                        {
-                            int k = PW.Length - 1;
-                            object value = request.Value;
-                            ReportSetValueError(k, request.TargetItem, request.Value, exception);
-                        }
+                        //if (TraceData.IsEnabled)
+                        //{
+                        //    int k = PW.Length - 1;
+                        //    object value = request.Value;
+                        //    ReportSetValueError(k, request.TargetItem, request.Value, exception);
+                        //}
                     }
                     else if ( (validationError = filteredException as ValidationError) != null )
                     {

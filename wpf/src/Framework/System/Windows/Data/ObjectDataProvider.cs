@@ -293,13 +293,13 @@ namespace System.Windows.Data
         /// </summary>
         protected override void BeginQuery()
         {
-            if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ProviderQuery))
-            {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.BeginQuery(
-                                        TraceData.Identify(this),
-                                        IsAsynchronous ? "asynchronous" : "synchronous"));
-            }
+            //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ProviderQuery))
+            //{
+            //    TraceData.Trace(TraceEventType.Warning,
+            //                        TraceData.BeginQuery(
+            //                            TraceData.Identify(this),
+            //                            IsAsynchronous ? "asynchronous" : "synchronous"));
+            //}
 
             if (IsAsynchronous)
             {
@@ -386,8 +386,8 @@ namespace System.Windows.Data
 
             if (_mode == SourceMode.NoSource || _objectType == null)
             {
-                if (TraceData.IsEnabled)
-                    TraceData.Trace(TraceEventType.Error, TraceData.ObjectDataProviderHasNoSource);
+                //if (TraceData.IsEnabled)
+                //    TraceData.Trace(TraceEventType.Error, TraceData.ObjectDataProviderHasNoSource);
                 e = new InvalidOperationException(SR.Get("SRID.ObjectDataProviderHasNoSource"));
             }
             else
@@ -425,15 +425,16 @@ namespace System.Windows.Data
                 }
             }
 
-            if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ProviderQuery))
-            {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.QueryFinished(
-                                        TraceData.Identify(this),
-                                        Dispatcher.CheckAccess() ? "synchronous" : "asynchronous",
-                                        TraceData.Identify(data),
-                                        TraceData.IdentifyException(e)));
-            }
+            //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ProviderQuery))
+            //{
+            //    TraceData.Trace(TraceEventType.Warning,
+            //                        TraceData.QueryFinished(
+            //                            TraceData.Identify(this),
+            //                            Dispatcher.CheckAccess() ? "synchronous" : "asynchronous",
+            //                            TraceData.Identify(data),
+            //                            TraceData.IdentifyException(e)));
+            //}
+
             OnQueryFinished(data, e, null, null);
         }
 
@@ -502,8 +503,8 @@ namespace System.Windows.Data
             if (e != null || error != null)
             {
                 // report known errors through TraceData (instead of throwing exceptions)
-                if (TraceData.IsEnabled)
-                    TraceData.Trace(TraceEventType.Error, TraceData.ObjDPCreateFailed, _objectType.Name, error, e);
+                //if (TraceData.IsEnabled)
+                //    TraceData.Trace(TraceEventType.Error, TraceData.ObjDPCreateFailed, _objectType.Name, error, e);
 
                 // in async mode we pass all exceptions to main thread;
                 // in [....] mode we don't handle unknown exceptions.
@@ -588,8 +589,8 @@ namespace System.Windows.Data
             if (e != null || error != null)
             {
                 // report known errors through TraceData (instead of throwing exceptions)
-                if (TraceData.IsEnabled)
-                    TraceData.Trace(TraceEventType.Error, TraceData.ObjDPInvokeFailed, MethodName, _objectType.Name, error, e);
+                //if (TraceData.IsEnabled)
+                //    TraceData.Trace(TraceEventType.Error, TraceData.ObjDPInvokeFailed, MethodName, _objectType.Name, error, e);
 
                 // in async mode we pass all exceptions to main thread;
                 // in [....] mode we don't handle unknown exceptions.

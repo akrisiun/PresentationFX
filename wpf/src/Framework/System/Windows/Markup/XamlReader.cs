@@ -775,10 +775,10 @@ namespace System.Windows.Markup
             }
             finally
             {
-                if (TraceMarkup.IsEnabled)
-                {
-                    TraceMarkup.Trace(TraceEventType.Stop, TraceMarkup.Load, root);
-                }
+                //if (TraceMarkup.IsEnabled)
+                //{
+                //    TraceMarkup.Trace(TraceEventType.Stop, TraceMarkup.Load, root);
+                //}
 
                 EventTrace.EasyTraceEvent(EventTrace.Keyword.KeywordXamlBaml, EventTrace.Event.WClientParseXmlEnd, parserContext.BaseUri);
 
@@ -853,10 +853,10 @@ namespace System.Windows.Markup
             }
             finally
             {
-                if (TraceMarkup.IsEnabled)
-                {
-                    TraceMarkup.Trace(TraceEventType.Stop, TraceMarkup.Load, root);
-                }
+                //if (TraceMarkup.IsEnabled)
+                //{
+                //    TraceMarkup.Trace(TraceEventType.Stop, TraceMarkup.Load, root);
+                //}
 
                 EventTrace.EasyTraceEvent(EventTrace.Keyword.KeywordXamlBaml, EventTrace.Event.WClientParseXmlEnd);
 
@@ -912,10 +912,10 @@ namespace System.Windows.Markup
 
             EventTrace.EasyTraceEvent(EventTrace.Keyword.KeywordXamlBaml | EventTrace.Keyword.KeywordPerf, EventTrace.Event.WClientParseBamlBegin, parserContext.BaseUri);
 
-            if (TraceMarkup.IsEnabled)
-            {
-                TraceMarkup.Trace(TraceEventType.Start, TraceMarkup.Load);
-            }
+            //if (TraceMarkup.IsEnabled)
+            //{
+            //    TraceMarkup.Trace(TraceEventType.Start, TraceMarkup.Load);
+            //}
 
             try
             {
@@ -997,10 +997,10 @@ namespace System.Windows.Markup
 
             finally
             {
-                if (TraceMarkup.IsEnabled)
-                {
-                    TraceMarkup.Trace(TraceEventType.Stop, TraceMarkup.Load, root);
-                }
+                //if (TraceMarkup.IsEnabled)
+                //{
+                //    TraceMarkup.Trace(TraceEventType.Stop, TraceMarkup.Load, root);
+                //}
 
                 EventTrace.EasyTraceEvent(EventTrace.Keyword.KeywordXamlBaml | EventTrace.Keyword.KeywordPerf, EventTrace.Event.WClientParseBamlEnd, parserContext.BaseUri);
 

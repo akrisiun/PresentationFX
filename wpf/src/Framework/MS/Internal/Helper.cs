@@ -333,22 +333,22 @@ namespace MS.Internal
             // references count;  data-bound or styled values don't count.
             // Do not throw here (bug 1434271), because it's very confusing if the
             // user tries to continue from this exception.
-            if (TraceData.IsEnabled)
-            {
-                object styleSelector = d.ReadLocalValue(styleSelectorProperty);
+            //if (TraceData.IsEnabled)
+            //{
+            //    object styleSelector = d.ReadLocalValue(styleSelectorProperty);
 
-                if (styleSelector != DependencyProperty.UnsetValue &&
-                    (styleSelector is System.Windows.Controls.StyleSelector || styleSelector is ResourceReferenceExpression))
-                {
-                    object style = d.ReadLocalValue(styleProperty);
+            //    if (styleSelector != DependencyProperty.UnsetValue &&
+            //        (styleSelector is System.Windows.Controls.StyleSelector || styleSelector is ResourceReferenceExpression))
+            //    {
+            //        object style = d.ReadLocalValue(styleProperty);
 
-                    if (style != DependencyProperty.UnsetValue &&
-                        (style is Style || style is ResourceReferenceExpression))
-                    {
-                        TraceData.Trace(TraceEventType.Error, TraceData.StyleAndStyleSelectorDefined(name), d);
-                    }
-                }
-            }
+            //        if (style != DependencyProperty.UnsetValue &&
+            //            (style is Style || style is ResourceReferenceExpression))
+            //        {
+            //            TraceData.Trace(TraceEventType.Error, TraceData.StyleAndStyleSelectorDefined(name), d);
+            //        }
+            //    }
+            //}
         }
 
         /// <summary>
@@ -365,16 +365,16 @@ namespace MS.Internal
             // references count;  data-bound or templated values don't count.
             // Do not throw here (bug 1434271), because it's very confusing if the
             // user tries to continue from this exception.
-            if (TraceData.IsEnabled)
-            {
-                if (IsTemplateSelectorDefined(templateSelectorProperty, d))
-                {
-                    if (IsTemplateDefined(templateProperty, d))
-                    {
-                        TraceData.Trace(TraceEventType.Error, TraceData.TemplateAndTemplateSelectorDefined(name), d);
-                    }
-                }
-            }
+            //if (TraceData.IsEnabled)
+            //{
+            //    if (IsTemplateSelectorDefined(templateSelectorProperty, d))
+            //    {
+            //        if (IsTemplateDefined(templateProperty, d))
+            //        {
+            //            TraceData.Trace(TraceEventType.Error, TraceData.TemplateAndTemplateSelectorDefined(name), d);
+            //        }
+            //    }
+            //}
         }
 
         /// <summary>

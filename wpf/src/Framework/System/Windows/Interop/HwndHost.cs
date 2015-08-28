@@ -1090,10 +1090,10 @@ namespace System.Windows.Interop
                 PresentationSource goingThrough3DSource = PresentationSource.CriticalFromVisual(this, true /* enable2DTo3DTransition */);
                 if (goingThrough3DSource != null)
                 {
-                    if (TraceHwndHost.IsEnabled)
-                    {
-                        TraceHwndHost.Trace(TraceEventType.Warning, TraceHwndHost.HwndHostIn3D);
-                    }
+                    //if (TraceHwndHost.IsEnabled)
+                    //{
+                    //    TraceHwndHost.Trace(TraceEventType.Warning, TraceHwndHost.HwndHostIn3D);
+                    //}
                 }
             }
 

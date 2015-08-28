@@ -41,7 +41,8 @@ namespace MS.Internal
             // This tells tracing that IsEnabled should be true if we're in the debugger,
             // even if the registry flag isn't turned on.  By default, IsEnabled is only
             // true if the registry is set.
-            _avTrace.EnabledByDebugger = true;
+
+            //_avTrace.EnabledByDebugger = true;
         }
     }
 }

@@ -26,7 +26,8 @@ using MS.Win32;
 namespace MS.Internal
 {
     // levels for the various extended traces
-    internal enum TraceDataLevel
+    // internal 
+        public enum TraceDataLevel
     {
         // Binding and friends
         CreateExpression    = PresentationTraceLevel.High, // 10,
@@ -56,7 +57,9 @@ namespace MS.Internal
     /// Helpers are defined here.
     /// The rest of the class is generated; see also: AvTraceMessage.txt and genTraceStrings.pl
     /// </summary>
-    internal static partial class TraceData
+    
+    // internal 
+        public static partial class TraceData
     {
         // ------------------------------------------------------------------
         // Constructors
@@ -64,16 +67,16 @@ namespace MS.Internal
 
         static TraceData()
         {
-            _avTrace.TraceExtraMessages += new AvTraceEventHandler(OnTrace);
+            //_avTrace.TraceExtraMessages += new AvTraceEventHandler(OnTrace);
 
             // This tells tracing that IsEnabled should be true if we're in the debugger,
             // even if the registry flag isn't turned on.  By default, IsEnabled is only
             // true if the registry is set.
-            _avTrace.EnabledByDebugger = true;
+            //_avTrace.EnabledByDebugger = true;
 
             // This tells the tracing code not to automatically generate the .GetType
             // and .HashCode in the trace strings.
-            _avTrace.SuppressGeneratedParameters = true;
+            //_avTrace.SuppressGeneratedParameters = true;
         }
 
         // ------------------------------------------------------------------
@@ -84,38 +87,39 @@ namespace MS.Internal
         // object
         static public bool IsExtendedTraceEnabled(object element, TraceDataLevel level)
         {
-            if (TraceData.IsEnabled)
-            {
-                PresentationTraceLevel traceLevel = PresentationTraceSources.GetTraceLevel(element);
-                return (traceLevel >= (PresentationTraceLevel)level);
-            }
-            else
+            //if (TraceData.IsEnabled)
+            //{
+            //    PresentationTraceLevel traceLevel = PresentationTraceSources.GetTraceLevel(element);
+            //    return (traceLevel >= (PresentationTraceLevel)level);
+            //}
+            //else
                 return false;
         }
 
         // report/describe any additional parameters passed to TraceData.Trace()
-        static public void OnTrace( AvTraceBuilder traceBuilder, object[] parameters, int start )
+        static public void OnTrace( object // AvTraceBuilder 
+            traceBuilder, object[] parameters, int start )
         {
-            for( int i = start; i < parameters.Length; i++ )
-            {
-                object o = parameters[i];
-                string s = o as string;
-                traceBuilder.Append(" ");
-                if (s != null)
-                {
-                    traceBuilder.Append(s);
-                }
-                else if (o != null)
-                {
-                    traceBuilder.Append(o.GetType().Name);
-                    traceBuilder.Append(":");
-                    Describe(traceBuilder, o);
-                }
-                else
-                {
-                    traceBuilder.Append("null");
-                }
-            }
+            //for( int i = start; i < parameters.Length; i++ )
+            //{
+            //    object o = parameters[i];
+            //    string s = o as string;
+            //    //traceBuilder.Append(" ");
+            //    //if (s != null)
+            //    //{
+            //    //    traceBuilder.Append(s);
+            //    //}
+            //    else if (o != null)
+            //    {
+            //        traceBuilder.Append(o.GetType().Name);
+            //        traceBuilder.Append(":");
+            //        Describe(traceBuilder, o);
+            //    }
+            //    else
+            //    {
+            //        traceBuilder.Append("null");
+            //    }
+            //}
         }
 
         // ------------------------------------------------------------------
@@ -131,11 +135,12 @@ namespace MS.Internal
         /// <param name="o">object to be described;
         /// currently recognized types: BindingExpression, Binding, DependencyObject, Exception</param>
         /// <returns>a string that describes the object</returns>
-        static public void Describe(AvTraceBuilder traceBuilder, object o)
+        static public void Describe(object // AvTraceBuilder 
+            traceBuilder, object o)
         {
             if (o == null)
             {
-                traceBuilder.Append("null");
+                //traceBuilder.Append("null");
             }
 
             else if (o is BindingExpression)
@@ -143,21 +148,21 @@ namespace MS.Internal
                 BindingExpression bindingExpr = o as BindingExpression;
 
                 Describe(traceBuilder, bindingExpr.ParentBinding);
-                traceBuilder.Append("; DataItem=");
+                //traceBuilder.Append("; DataItem=");
                 DescribeSourceObject(traceBuilder, bindingExpr.DataItem);
-                traceBuilder.Append("; ");
+                //traceBuilder.Append("; ");
                 DescribeTarget(traceBuilder, bindingExpr.TargetElement, bindingExpr.TargetProperty);
             }
 
             else if (o is Binding)
             {
-                Binding binding = o as Binding;
-                if (binding.Path != null)
-                    traceBuilder.AppendFormat("Path={0}", binding.Path.Path );
-                else if (binding.XPath != null)
-                    traceBuilder.AppendFormat("XPath={0}", binding.XPath );
-                else
-                    traceBuilder.Append("(no path)");
+                //Binding binding = o as Binding;
+                //if (binding.Path != null)
+                //    traceBuilder.AppendFormat("Path={0}", binding.Path.Path );
+                //else if (binding.XPath != null)
+                //    traceBuilder.AppendFormat("XPath={0}", binding.XPath );
+                //else
+                //    traceBuilder.Append("(no path)");
             }
 
             else if (o is BindingExpressionBase)
@@ -173,7 +178,7 @@ namespace MS.Internal
 
             else
             {
-                traceBuilder.AppendFormat("'{0}'", AvTrace.ToStringHelper(o));
+                //traceBuilder.AppendFormat("'{0}'", AvTrace.ToStringHelper(o));
             }
         }
 
@@ -184,22 +189,23 @@ namespace MS.Internal
         /// <param name="traceBuilder">description will be appended to this builder</param>
         /// <param name="o">a source object (e.g. element in a Binding Path, DataItem in BindingExpression, ContextElement)</param>
         /// <returns>a string that describes the object</returns>
-        static public void DescribeSourceObject(AvTraceBuilder traceBuilder, object o)
+        static public void DescribeSourceObject(object //AvTraceBuilder 
+            traceBuilder, object o)
         {
             if (o == null)
             {
-                traceBuilder.Append("null");
+                //traceBuilder.Append("null");
             }
             else
             {
                 FrameworkElement fe = o as FrameworkElement;
                 if (fe != null)
                 {
-                    traceBuilder.AppendFormat("'{0}' (Name='{1}')", fe.GetType().Name, fe.Name);
+                    //traceBuilder.AppendFormat("'{0}' (Name='{1}')", fe.GetType().Name, fe.Name);
                 }
                 else
                 {
-                    traceBuilder.AppendFormat("'{0}' (HashCode={1})", o.GetType().Name, o.GetHashCode());
+                    //traceBuilder.AppendFormat("'{0}' (HashCode={1})", o.GetType().Name, o.GetHashCode());
                 }
             }
         }
@@ -220,21 +226,22 @@ namespace MS.Internal
         /// <param name="targetElement">TargetElement</param>
         /// <param name="targetProperty">TargetProperty</param>
         /// <returns>a string that describes TargetElement and TargetProperty</returns>
-        static public void DescribeTarget(AvTraceBuilder traceBuilder, DependencyObject targetElement, DependencyProperty targetProperty)
+        static public void DescribeTarget(object // AvTraceBuilder 
+            traceBuilder, DependencyObject targetElement, DependencyProperty targetProperty)
         {
             if (targetElement != null)
             {
-                traceBuilder.Append("target element is ");
-                DescribeSourceObject(traceBuilder, targetElement);
+                //traceBuilder.Append("target element is ");
+                // DescribeSourceObject(traceBuilder, targetElement);
                 if (targetProperty != null)
                 {
-                    traceBuilder.Append("; ");
+                    //traceBuilder.Append("; ");
                 }
             }
 
             if (targetProperty != null)
             {
-                traceBuilder.AppendFormat("target property is '{0}' (type '{1}')", targetProperty.Name, targetProperty.PropertyType.Name);
+                //traceBuilder.AppendFormat("target property is '{0}' (type '{1}')", targetProperty.Name, targetProperty.PropertyType.Name);
             }
         }
 

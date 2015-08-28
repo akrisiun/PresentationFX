@@ -335,28 +335,28 @@ namespace MS.Internal.Data
                 needAssignment = false;
             }
 
-            if (TraceData.IsEnabled)
-            {
-                if ((culture != null) && (savedEx != null))
-                {
-                    TraceData.Trace(TraceEventType.Error,
-                        TraceData.DefaultValueConverterFailedForCulture(
-                            AvTrace.ToStringHelper(o),
-                            AvTrace.TypeName(o),
-                            destinationType.ToString(),
-                            culture),
-                        savedEx);
-                }
-                else if (needAssignment)
-                {
-                    TraceData.Trace(TraceEventType.Error,
-                        TraceData.DefaultValueConverterFailed(
-                            AvTrace.ToStringHelper(o),
-                            AvTrace.TypeName(o),
-                            destinationType.ToString()),
-                        savedEx);
-                }
-            }
+            //if (TraceData.IsEnabled)
+            //{
+            //    if ((culture != null) && (savedEx != null))
+            //    {
+            //        TraceData.Trace(TraceEventType.Error,
+            //            TraceData.DefaultValueConverterFailedForCulture(
+            //                AvTrace.ToStringHelper(o),
+            //                AvTrace.TypeName(o),
+            //                destinationType.ToString(),
+            //                culture),
+            //            savedEx);
+            //    }
+            //    else if (needAssignment)
+            //    {
+            //        TraceData.Trace(TraceEventType.Error,
+            //            TraceData.DefaultValueConverterFailed(
+            //                AvTrace.ToStringHelper(o),
+            //                AvTrace.TypeName(o),
+            //                destinationType.ToString()),
+            //            savedEx);
+            //    }
+            //}
 
             if (needAssignment && savedEx != null)
                 throw savedEx;

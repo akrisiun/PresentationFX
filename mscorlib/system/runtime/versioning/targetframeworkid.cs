@@ -15,7 +15,8 @@ namespace System.Runtime.Versioning
 {
     // What type of .NET Framework was this application compiled against?
     [FriendAccessAllowed]
-    internal enum TargetFrameworkId
+    public // internal 
+        enum TargetFrameworkId
     {
         NotYetChecked = 0,
         Unrecognized = 1, // Unknown type, such as a new SKU (like watches or cars)

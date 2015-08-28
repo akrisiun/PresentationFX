@@ -518,14 +518,14 @@ namespace System.Windows.Data
             }
 
             // warn the user if the default xmlns wasn't set explicitly (bug 1006946)
-            if (TraceData.IsEnabled)
-            {
-                XmlNode root = doc.DocumentElement;
-                if (root != null && root.NamespaceURI == xmlReader.LookupNamespace(String.Empty))
-                {
-                    TraceData.Trace(TraceEventType.Error, TraceData.XmlNamespaceNotSet);
-                }
-            }
+            //if (TraceData.IsEnabled)
+            //{
+            //    XmlNode root = doc.DocumentElement;
+            //    if (root != null && root.NamespaceURI == xmlReader.LookupNamespace(String.Empty))
+            //    {
+            //        TraceData.Trace(TraceEventType.Error, TraceData.XmlNamespaceNotSet);
+            //    }
+            //}
 
             if (ex == null)
             {
@@ -652,12 +652,12 @@ namespace System.Windows.Data
             XmlDataCollection collection = null;
             if (doc != null)
             {
-                if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.XmlBuildCollection))
-                {
-                    TraceData.Trace(TraceEventType.Warning,
-                                        TraceData.XmlBuildCollection(
-                                            TraceData.Identify(this)));
-                }
+                //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.XmlBuildCollection))
+                //{
+                //    TraceData.Trace(TraceEventType.Warning,
+                //                        TraceData.XmlBuildCollection(
+                //                            TraceData.Identify(this)));
+                //}
 
                 XmlNodeList nodes = GetResultNodeList(doc);
 
@@ -670,15 +670,15 @@ namespace System.Windows.Data
                 }
             }
 
-            if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ProviderQuery))
-            {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.QueryFinished(
-                                        TraceData.Identify(this),
-                                        Dispatcher.CheckAccess() ? "synchronous" : "asynchronous",
-                                        TraceData.Identify(collection),
-                                        TraceData.IdentifyException(null)));
-            }
+            //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ProviderQuery))
+            //{
+            //    TraceData.Trace(TraceEventType.Warning,
+            //                        TraceData.QueryFinished(
+            //                            TraceData.Identify(this),
+            //                            Dispatcher.CheckAccess() ? "synchronous" : "asynchronous",
+            //                            TraceData.Identify(collection),
+            //                            TraceData.IdentifyException(null)));
+            //}
 
             OnQueryFinished(collection, null, CompletedCallback, doc);
 
@@ -688,13 +688,13 @@ namespace System.Windows.Data
         // OnQueryFinished marshals back to UI thread if necessary
         private object OnCompletedCallback(object arg)
         {
-            if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ProviderQuery))
-            {
-                TraceData.Trace(TraceEventType.Warning,
-                                    TraceData.QueryResult(
-                                        TraceData.Identify(this),
-                                        TraceData.Identify(Data)));
-            }
+            //if (TraceData.IsExtendedTraceEnabled(this, TraceDataLevel.ProviderQuery))
+            //{
+            //    TraceData.Trace(TraceEventType.Warning,
+            //                        TraceData.QueryResult(
+            //                            TraceData.Identify(this),
+            //                            TraceData.Identify(Data)));
+            //}
 
             ChangeDocument((XmlDocument) arg);
             return null;
@@ -790,8 +790,8 @@ namespace System.Windows.Data
                 }
                 catch (XPathException xe)
                 {
-                    if (TraceData.IsEnabled)
-                        TraceData.Trace(TraceEventType.Error, TraceData.XmlDPSelectNodesFailed, xpath, xe);
+                    //if (TraceData.IsEnabled)
+                    //    TraceData.Trace(TraceEventType.Error, TraceData.XmlDPSelectNodesFailed, xpath, xe);
                 }
             }
 
