@@ -1,6 +1,9 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<cw:ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Controls="clr-namespace:MahApps.Metro.Controls"
+                    
+                    xmlns:c="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+                    xmlns:cw="clr-namespace:System.Windows;assembly=PresentationFramework"
                     xmlns:da="clr-namespace:Metro.Wpf.DataAct"
                     >
     <ResourceDictionary.MergedDictionaries>
@@ -39,9 +42,6 @@
         
     </ResourceDictionary.MergedDictionaries>
 
-    <!--<Style x:Key="MetroToggleSwitchButton" TargetType="{x:Type Controls:ToggleSwitchButton}" BasedOn="{StaticResource {x:Type Controls:ToggleSwitchButton}}" />
-    <Style x:Key="MetroToggleSwitch" TargetType="{x:Type Controls:ToggleSwitch}" BasedOn="{StaticResource {x:Type Controls:ToggleSwitch}}" />-->
-
     <!-- note: default style for textblock is now in MetroWindow !!! -->
 
     <!--<Style TargetType="da:DataActGrid" BasedOn="{StaticResource DataActGrid}" />-->
@@ -78,11 +78,11 @@
     <Style TargetType="DatePicker" BasedOn="{StaticResource MetroDatePicker}" />
     <Style TargetType="DatePickerTextBox" BasedOn="{StaticResource MetroDatePickerTextBox}" />
     <Style TargetType="Calendar" BasedOn="{StaticResource MetroCalendar}" />
-    <Style TargetType="DataGridX" BasedOn="{StaticResource MetroDataGrid}" />
+    <Style TargetType="c:DataGridX" BasedOn="{StaticResource MetroDataGrid}" />
 
     <Style TargetType="StatusBar" BasedOn="{StaticResource MetroStatusBar}" />
     <Style TargetType="StatusBarItem" BasedOn="{StaticResource MetroStatusBarItem}" />
 
     <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource MetroScrollViewer}" />
 
-</ResourceDictionary>
+</cw:ResourceDictionary>

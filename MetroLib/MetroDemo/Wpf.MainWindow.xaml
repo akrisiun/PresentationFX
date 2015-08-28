@@ -21,10 +21,12 @@
                       xmlns:exampleViews="clr-namespace:MetroDemo.ExampleViews"          
                       WindowTransitionsEnabled="False"
                       ResizeMode="CanResizeWithGrip"
-                      Dialog:DialogParticipation.Register="{Binding}"
+                      
                       xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=Wpf.MetroLib"
                       xmlns:Interaction="clr-namespace:Interaction.Helper;assembly=Wpf.MetroLib"
                       >
+    <!--Dialog:DialogParticipation.Register="{Binding}"-->
+    
     <Controls:MetroWindow.Behaviors>
         <Interaction:MetroBehaviors BorderlessWindowBehavior="True" />
     </Controls:MetroWindow.Behaviors>

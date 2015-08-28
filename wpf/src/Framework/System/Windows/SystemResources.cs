@@ -718,11 +718,20 @@ namespace System.Windows
                 // Wires themes KnownTypeHelper
                 if (_assemblyName == PresentationFrameworkName && assembly != null)
                 {
-                    Type knownTypeHelper = assembly.GetType("Microsoft.Windows.Themes.KnownTypeHelper");
-                    if (knownTypeHelper != null)
+                    Exception error = null;
+                    try
                     {
-                        MS.Internal.WindowsBase.SecurityHelper.RunClassConstructor(knownTypeHelper);
+                        Type knownTypeHelper = assembly.GetType("Microsoft.Windows.Themes.KnownTypeHelper");
+                        if (knownTypeHelper != null)
+                        {
+                            MS.Internal.WindowsBase.SecurityHelper.RunClassConstructor(knownTypeHelper);
+                        }
                     }
+                    catch (Exception ex) { error = ex; }
+
+                    if (error != null && !assembly.FullName.Contains("PresentationFramework.Aero"))
+                        throw error;
+
                 }
 #pragma warning restore 6502
             }

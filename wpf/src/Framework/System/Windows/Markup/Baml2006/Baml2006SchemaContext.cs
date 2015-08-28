@@ -561,6 +561,10 @@ namespace System.Windows.Baml2006
         private XamlType ResolveBamlType(BamlType bamlType, Int16 typeId)
         {
             Type type = ResolveBamlTypeToType(bamlType);
+
+            if (type == null && typeId == 13)
+                type = typeof(System.Windows.Controls.DataGridX);
+
             if (type != null)
             {
                 bamlType.ClrNamespace = type.Namespace;
@@ -572,9 +576,7 @@ namespace System.Windows.Baml2006
                 return xType;
             }
 
-            // 
-
-
+            // unknown type
             throw new NotImplementedException();
         }
 
