@@ -519,7 +519,7 @@ namespace MS.Internal.AppModel
 
         private bool InAppShutdown
         {
-            get { return System.Windows.ApplicationX.IsShuttingDown; }
+            get { return System.Windows.Application.IsShuttingDown; }
         }    
 
         #endregion

@@ -159,7 +159,7 @@ namespace System.Windows
                 {
                      s = WpfWebRequestHelper.GetResponseStream(request, out contentType);
                 }
-                catch (System.IO.IOException)
+                catch (System.IO.IOException ex)
                 {
                     if (IsSourcedFromThemeDictionary)
                     {
@@ -193,7 +193,7 @@ namespace System.Windows
                     }
                     else
                     {
-                        throw;
+                        throw new Exception("Error in " + _source, ex);
                     }
                 }
 
@@ -1452,7 +1452,7 @@ namespace System.Windows
                 }
                 else
                 {
-                    ApplicationX app = owner as ApplicationX;
+                    Application app = owner as Application;
                     if (app != null)
                     {
                         if (_ownerApps == null)
@@ -1521,7 +1521,7 @@ namespace System.Windows
                 }
                 else
                 {
-                    ApplicationX app = owner as ApplicationX;
+                    Application app = owner as Application;
                     if (app != null)
                     {
                         if (_ownerApps != null)
@@ -1563,7 +1563,7 @@ namespace System.Windows
                 }
                 else
                 {
-                    ApplicationX app = owner as ApplicationX;
+                    Application app = owner as Application;
                     if (app != null)
                     {
                         return (_ownerApps != null && _ownerApps.Contains(app));
@@ -1638,7 +1638,7 @@ namespace System.Windows
                 {
                     foreach (Object o in _ownerApps)
                     {
-                        ApplicationX app = o as ApplicationX;
+                        Application app = o as Application;
                         if (app != null)
                         {
                             // Set the HasImplicitStyles flag on the owner
@@ -1920,7 +1920,7 @@ namespace System.Windows
 
                 foreach (object o in _ownerApps)
                 {
-                    ApplicationX app = o as ApplicationX;
+                    Application app = o as Application;
                     if (app != null)
                         mergedDictionary.AddOwner(app);
                 }
@@ -1964,7 +1964,7 @@ namespace System.Windows
 
                 foreach (Object o in _ownerApps)
                 {
-                    ApplicationX app = o as ApplicationX;
+                    Application app = o as Application;
                     mergedDictionary.RemoveOwner(app);
 
                 }

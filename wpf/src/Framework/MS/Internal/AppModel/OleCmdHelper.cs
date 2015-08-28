@@ -76,7 +76,7 @@ namespace MS.Internal.AppModel
                 - E_NOTIMPL is not an acceptable return value.
             */
 
-            if (ApplicationX.Current == null || ApplicationX.IsShuttingDown == true)
+            if (Application.Current == null || Application.IsShuttingDown == true)
             {
                 Marshal.ThrowExceptionForHR(NativeMethods.E_FAIL);
             }
@@ -101,7 +101,7 @@ namespace MS.Internal.AppModel
             // Dispatcher.UnhandledException.
             // The above code is not in the callback, because it throws, and we don't want the
             // application to get these exceptions. (The COM Interop layer turns them into HRESULTs.)
-            bool enabled = (bool)ApplicationX.Current.Dispatcher.Invoke(
+            bool enabled = (bool)Application.Current.Dispatcher.Invoke(
                 DispatcherPriority.Send, new DispatcherOperationCallback(QueryEnabled), command);
             flags = enabled ? CommandEnabled : CommandDisabled;
         }
@@ -112,13 +112,13 @@ namespace MS.Internal.AppModel
         [SecurityCritical]
         private object QueryEnabled(object command)
         {
-            if (ApplicationX.Current.MainWindow == null)
+            if (Application.Current.MainWindow == null)
                 return false;
-            IInputElement target = FocusManager.GetFocusedElement(ApplicationX.Current.MainWindow);
+            IInputElement target = FocusManager.GetFocusedElement(Application.Current.MainWindow);
             if (target == null)
             {
                 // This will always succeed because Window is IInputElement
-                target = (IInputElement)ApplicationX.Current.MainWindow;
+                target = (IInputElement)Application.Current.MainWindow;
             }
             return BooleanBoxes.Box(((CommandWithArgument)command).QueryEnabled(target, null));
         }
@@ -133,12 +133,12 @@ namespace MS.Internal.AppModel
         [SecurityCritical]
         internal void ExecCommand(Guid guidCmdGroup, uint commandId, object arg)
         {
-            if (ApplicationX.Current == null || ApplicationX.IsShuttingDown == true)
+            if (Application.Current == null || Application.IsShuttingDown == true)
             {
                 Marshal.ThrowExceptionForHR(NativeMethods.E_FAIL);
             }
 
-            int hresult = (int)ApplicationX.Current.Dispatcher.Invoke(
+            int hresult = (int)Application.Current.Dispatcher.Invoke(
                 DispatcherPriority.Send,
                 new DispatcherOperationCallback(ExecCommandCallback),
                 new object[] { guidCmdGroup, commandId, arg });
@@ -169,13 +169,13 @@ namespace MS.Internal.AppModel
             if (command == null)
                 return OLECMDERR_E_NOTSUPPORTED;
 
-            if (ApplicationX.Current.MainWindow == null)
+            if (Application.Current.MainWindow == null)
                 return OLECMDERR_E_DISABLED;
-            IInputElement target = FocusManager.GetFocusedElement(ApplicationX.Current.MainWindow);
+            IInputElement target = FocusManager.GetFocusedElement(Application.Current.MainWindow);
             if (target == null)
             {
                 // This will always succeed because Window is IInputElement
-                target = (IInputElement)ApplicationX.Current.MainWindow;
+                target = (IInputElement)Application.Current.MainWindow;
             }
             return command.Execute(target, arg) ? NativeMethods.S_OK : OLECMDERR_E_DISABLED;
         }
@@ -264,13 +264,13 @@ namespace MS.Internal.AppModel
                 _applicationCommandsMappingTable.Value.Add((uint)AppCommands.View_Stop, new CommandWithArgument(NavigationCommands.BrowseStop));
 
                 // add document viewer commands
-                _applicationCommandsMappingTable.Value.Add((uint)AppCommands.Edit_Digitalsignatures_SignDocument, new CommandWithArgument(DocumentApplicationDocumentViewer.Sign));
-                _applicationCommandsMappingTable.Value.Add((uint)AppCommands.Edit_Digitalsignatures_RequestSignature, new CommandWithArgument(DocumentApplicationDocumentViewer.RequestSigners));
-                _applicationCommandsMappingTable.Value.Add((uint)AppCommands.Edit_Digitalsignatures_ViewSignature, new CommandWithArgument(DocumentApplicationDocumentViewer.ShowSignatureSummary));
-                _applicationCommandsMappingTable.Value.Add((uint)AppCommands.Edit_Permission_Set, new CommandWithArgument(DocumentApplicationDocumentViewer.ShowRMPublishingUI));
-                _applicationCommandsMappingTable.Value.Add((uint)AppCommands.Edit_Permission_View, new CommandWithArgument(DocumentApplicationDocumentViewer.ShowRMPermissions));
-                _applicationCommandsMappingTable.Value.Add((uint)AppCommands.Edit_Permission_Restrict, new CommandWithArgument(DocumentApplicationDocumentViewer.ShowRMCredentialManager));
-                _applicationCommandsMappingTable.Value.Add((uint)AppCommands.View_Zoom_In, new CommandWithArgument(NavigationCommands.IncreaseZoom));
+                //_applicationCommandsMappingTable.Value.Add((uint)AppCommands.Edit_Digitalsignatures_SignDocument, new CommandWithArgument(DocumentApplicationDocumentViewer.Sign));
+                //_applicationCommandsMappingTable.Value.Add((uint)AppCommands.Edit_Digitalsignatures_RequestSignature, new CommandWithArgument(DocumentApplicationDocumentViewer.RequestSigners));
+                //_applicationCommandsMappingTable.Value.Add((uint)AppCommands.Edit_Digitalsignatures_ViewSignature, new CommandWithArgument(DocumentApplicationDocumentViewer.ShowSignatureSummary));
+                //_applicationCommandsMappingTable.Value.Add((uint)AppCommands.Edit_Permission_Set, new CommandWithArgument(DocumentApplicationDocumentViewer.ShowRMPublishingUI));
+                //_applicationCommandsMappingTable.Value.Add((uint)AppCommands.Edit_Permission_View, new CommandWithArgument(DocumentApplicationDocumentViewer.ShowRMPermissions));
+                //_applicationCommandsMappingTable.Value.Add((uint)AppCommands.Edit_Permission_Restrict, new CommandWithArgument(DocumentApplicationDocumentViewer.ShowRMCredentialManager));
+                //_applicationCommandsMappingTable.Value.Add((uint)AppCommands.View_Zoom_In, new CommandWithArgument(NavigationCommands.IncreaseZoom));
                 _applicationCommandsMappingTable.Value.Add((uint)AppCommands.View_Zoom_Out, new CommandWithArgument(NavigationCommands.DecreaseZoom));
                 _applicationCommandsMappingTable.Value.Add((uint)AppCommands.View_Zoom_400, new CommandWithArgument(NavigationCommands.Zoom, 400));
                 _applicationCommandsMappingTable.Value.Add((uint)AppCommands.View_Zoom_250, new CommandWithArgument(NavigationCommands.Zoom, 250));

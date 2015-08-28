@@ -907,7 +907,7 @@ namespace System.Windows.Controls
             // Update the toolbar with our current document state.
             if (_findToolbar != null)
             {
-                _findToolbar.DocumentLoaded = (Document != null) ? true : false;
+                //_findToolbar.DocumentLoaded = (Document != null) ? true : false;
             }
 
             // We do not automatically go to the first page on the _first_ content
@@ -2201,21 +2201,22 @@ namespace System.Windows.Controls
                if( _findToolbar == null )
                {
                     // create the new object
-                    _findToolbar = new FindToolBar();
+                    //_findToolbar = new FindToolBar();
 
-                    // add the event handlers
-                    _findToolbar.FindClicked += new EventHandler(OnFindInvoked);
+                    //// add the event handlers
+                    //_findToolbar.FindClicked += new EventHandler(OnFindInvoked);
 
-                    //set initial DocumentLoaded state.
-                    _findToolbar.DocumentLoaded = (Document != null) ? true : false;
+                    ////set initial DocumentLoaded state.
+                    //_findToolbar.DocumentLoaded = (Document != null) ? true : false;
                 }
 
                 // Now insert the toolbar, if it isn't already parented elsewhere.
                 // (It will have been disconnected from DocumentViewer on a Theme or
                 // Template change.)
-                if (!_findToolbar.IsAncestorOf(this))
+                
+                if (_findToolbar != null) // !_findToolbar.IsAncestorOf(this))
                 {
-                    ((IAddChild)findHost).AddChild(_findToolbar);
+                    //((IAddChild)findHost).AddChild(_findToolbar);
                 }
             }
         }
@@ -2238,50 +2239,50 @@ namespace System.Windows.Controls
             {
                 if (_findToolbar != null && TextEditor != null)
                 {
-                    ITextRange findResult = Find(_findToolbar);
+                    //ITextRange findResult = Find(_findToolbar);
 
-                    // If we found something, select it.
-                    if ((findResult != null) && (!findResult.IsEmpty))
-                    {
-                        //Give ourselves focus, this ensures that the selection
-                        //will be made visible after it's made.
-                        this.Focus();
+                    //// If we found something, select it.
+                    //if ((findResult != null) && (!findResult.IsEmpty))
+                    //{
+                    //    //Give ourselves focus, this ensures that the selection
+                    //    //will be made visible after it's made.
+                    //    this.Focus();
 
-                        if (_documentScrollInfo != null)
-                        {
-                            _documentScrollInfo.MakeSelectionVisible();
-                        }
+                    //    if (_documentScrollInfo != null)
+                    //    {
+                    //        _documentScrollInfo.MakeSelectionVisible();
+                    //    }
 
-                        //Put the focus back on the Find Toolbar's TextBox to search again.
-                        _findToolbar.GoToTextBox();
-                    }
-                    else
-                    {
-                        // No, we did not find anything.  Alert the user.
+                    //    //Put the focus back on the Find Toolbar's TextBox to search again.
+                    //    _findToolbar.GoToTextBox();
+                    //}
+                    //else
+                    //{
+                    //    // No, we did not find anything.  Alert the user.
 
-                        // build our message string.
-                        string messageString = _findToolbar.SearchUp ?
-                            SR.Get("SRID.DocumentViewerSearchUpCompleteLabel") :
-                            SR.Get("SRID.DocumentViewerSearchDownCompleteLabel");
+                    //    // build our message string.
+                    //    string messageString = _findToolbar.SearchUp ?
+                    //        SR.Get("SRID.DocumentViewerSearchUpCompleteLabel") :
+                    //        SR.Get("SRID.DocumentViewerSearchDownCompleteLabel");
 
-                        messageString = String.Format(
-                            CultureInfo.CurrentCulture,
-                            messageString,
-                            _findToolbar.SearchText);
+                    //    messageString = String.Format(
+                    //        CultureInfo.CurrentCulture,
+                    //        messageString,
+                    //        _findToolbar.SearchText);
 
-                        Window wnd = null;
-                        if (ApplicationX.Current != null && ApplicationX.Current.CheckAccess())
-                        {
-                            wnd = ApplicationX.Current.MainWindow;
-                        }
+                    //    Window wnd = null;
+                    //    if (Application.Current != null && Application.Current.CheckAccess())
+                    //    {
+                    //        wnd = Application.Current.MainWindow;
+                    //    }
 
-                        MS.Internal.PresentationFramework.SecurityHelper.ShowMessageBoxHelper(
-                            wnd,
-                            messageString,
-                            SR.Get("SRID.DocumentViewerSearchCompleteTitle"),
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Asterisk);
-                    }
+                    //    MS.Internal.PresentationFramework.SecurityHelper.ShowMessageBoxHelper(
+                    //        wnd,
+                    //        messageString,
+                    //        SR.Get("SRID.DocumentViewerSearchCompleteTitle"),
+                    //        MessageBoxButton.OK,
+                    //        MessageBoxImage.Asterisk);
+                    //}
                 }
             }
             finally
@@ -2303,7 +2304,7 @@ namespace System.Windows.Controls
         {
             if (_findToolbar != null)
             {
-                _findToolbar.GoToTextBox();
+                //_findToolbar.GoToTextBox();
             }
         }
 
@@ -2333,7 +2334,7 @@ namespace System.Windows.Controls
                 e.Handled = true;
 
                 //If the Shift key is also pressed, then search up.
-                _findToolbar.SearchUp = ((e.KeyboardDevice.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift);
+                //_findToolbar.SearchUp = ((e.KeyboardDevice.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift);
 
                 OnFindInvoked(this, EventArgs.Empty);
             }
@@ -2694,7 +2695,8 @@ namespace System.Windows.Controls
         private ZoomPercentageConverter         _zoomPercentageConverter;
 
         //Find ToolBar
-        private FindToolBar _findToolbar;                           // The FindToolbar UI
+        private object // FindToolBar // in PresentationUI
+            _findToolbar;                           // The FindToolbar UI
 
         // Default values for DPs
         private const double                    _horizontalOffsetDefault = 0.0;

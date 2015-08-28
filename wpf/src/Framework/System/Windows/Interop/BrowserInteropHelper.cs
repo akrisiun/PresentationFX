@@ -68,7 +68,7 @@ namespace System.Windows.Interop
 
                 if (IsBrowserHosted)
                 {
-                    ApplicationX.Current.BrowserCallbackServices.GetOleClientSite(out oleClientSite);
+                    Application.Current.BrowserCallbackServices.GetOleClientSite(out oleClientSite);
                 }
 
                 return oleClientSite;
@@ -171,7 +171,7 @@ namespace System.Windows.Interop
         {
             get
             {
-                ApplicationX app = ApplicationX.Current;
+                Application app = Application.Current;
                 return app != null && app.MimeType == MimeType.Markup;
             }
         }

@@ -703,7 +703,7 @@ namespace System.Windows.Interop
             // and Stop commands. That's why they are dispatched directly here. Of course, this will also
             // handle some cases when the RBW is shown, for example Refresh (coming from the browser) when the
             // deployment failed/canceled page is shown.
-            XappLauncherApp launcherApp = ApplicationX.Current as XappLauncherApp;
+            XappLauncherApp launcherApp = Application.Current as XappLauncherApp;
             if (launcherApp != null && guidCommandGroup == Guid.Empty)
             {
                 switch ((UnsafeNativeMethods.OLECMDID)command)

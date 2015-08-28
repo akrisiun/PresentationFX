@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MahApps")]
 [assembly: AssemblyProduct("MahApps.Metro.Demo")]
-[assembly: AssemblyCopyright("Copyright © MahApps 2011")]
+[assembly: AssemblyCopyright("MIT")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

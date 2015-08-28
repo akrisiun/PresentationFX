@@ -113,9 +113,9 @@ namespace Microsoft.Win32
             {
                 // No active window, so we'll use the parking window as the owner, 
                 // if its available.
-                if (ApplicationX.Current != null)
+                if (Application.Current != null)
                 {                    
-                    hwndOwner = ApplicationX.Current.ParkingHwnd;
+                    hwndOwner = Application.Current.ParkingHwnd;
                 }
             }
 

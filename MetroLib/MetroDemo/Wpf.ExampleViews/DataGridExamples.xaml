@@ -8,18 +8,17 @@
              xmlns:cw="clr-namespace:System.Windows;assembly=PresentationFramework"
              xmlns:MetroDemo="clr-namespace:MetroDemo"
              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=Wpf.MetroLib"
-             xmlns:c="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
              xmlns:ValueConverter="clr-namespace:MetroDemo.ValueConverter"
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="800"
              d:DataContext="{d:DesignInstance MetroDemo:MainWindowViewModel}">
 
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
+    <c:UserControl.Resources>
+        <cw:ResourceDictionary>
+            <cw:ResourceDictionary.MergedDictionaries>
                 <!--<ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib.Resources;component/Icons.xaml" />-->
-            </ResourceDictionary.MergedDictionaries>
+            </cw:ResourceDictionary.MergedDictionaries>
 
             <x:Array x:Key="DataGridSelectionUnitArray"
                      Type="DataGridSelectionUnit">
@@ -42,8 +41,8 @@
                 <DataGridHeadersVisibility>None</DataGridHeadersVisibility>
             </x:Array>
 
-            <ControlTemplate x:Key="ConfigDataTemplate">
-                <Grid 
+            <c:ControlTemplate x:Key="ConfigDataTemplate">
+                <c:Grid 
                       Grid.IsSharedSizeScope="True">
 
                     <!--d:DataContext="{d:DesignInstance c:DataGridX}"-->
@@ -52,7 +51,7 @@
                         <ColumnDefinition Width="Auto" SharedSizeGroup="labels" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    
+
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -78,13 +77,15 @@
                                Margin="2"
                                Text="SelectionUnit" />
 
-                    --><!--<ComboBox Grid.Column="1"
+                    -->
+                    <!--<ComboBox Grid.Column="1"
                               Grid.Row="1"
                               VerticalAlignment="Center"
                               Margin="2"
                               Width="100"
                               ItemsSource="{StaticResource DataGridSelectionUnitArray}"
-                              SelectedValue="{Binding SelectionUnit}" /--><!-- >
+                              SelectedValue="{Binding SelectionUnit}" /-->
+                    <!-- >
 
                     <TextBlock Grid.Column="0"
                                Grid.Row="2"
@@ -92,13 +93,15 @@
                                Margin="2"
                                Text="GridLines" />
 
-                    --><!--<ComboBox Grid.Column="1"
+                    -->
+                    <!--<ComboBox Grid.Column="1"
                               Grid.Row="2"
                               VerticalAlignment="Center"
                               Margin="2"
                               Width="100"
                               ItemsSource="{StaticResource DataGridGridLinesVisibilityArray}"
-                              SelectedValue="{Binding GridLinesVisibility}" />--><!--
+                              SelectedValue="{Binding GridLinesVisibility}" />-->
+                    <!--
 
                     <TextBlock Grid.Column="0"
                                Grid.Row="3"
@@ -114,27 +117,27 @@
                               ItemsSource="{StaticResource DataGridHeadersVisibilityArray}"
                               SelectedValue="{Binding HeadersVisibility}" />-->
 
-                </Grid>
-            </ControlTemplate>
+                </c:Grid>
+            </c:ControlTemplate>
 
             <!--<ValueConverter:AlbumPriceIsTooMuchConverter x:Key="AlbumPriceIsTooMuchConverter" />-->
 
-        </ResourceDictionary>
-    </UserControl.Resources>
+        </cw:ResourceDictionary>
+    </c:UserControl.Resources>
 
-    <Grid RenderOptions.ClearTypeHint="Enabled"
+    <c:Grid RenderOptions.ClearTypeHint="Enabled"
           TextOptions.TextFormattingMode="Display">
-        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
+
+        <c:Grid.ColumnDefinitions>
+            <c:ColumnDefinition Width="Auto" />
+            <c:ColumnDefinition Width="*" />
+        </c:Grid.ColumnDefinitions>
+        <c:Grid.RowDefinitions>
+            <c:RowDefinition Height="Auto" />
+            <c:RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        </c:Grid.RowDefinitions>
 
         <StackPanel>
             <ContentControl Grid.Column="0"
@@ -200,7 +203,9 @@
                                 <Setter Property="Foreground"
                                     Value="Red" />
                             </DataTrigger>
-                            --><!-- IsMouseOver --><!--
+                            -->
+                <!-- IsMouseOver -->
+                <!--
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
                                     <Condition Binding="{Binding Price, Mode=OneWay, Converter={StaticResource AlbumPriceIsTooMuchConverter}}"
@@ -214,7 +219,7 @@
                         </Style.Triggers>
                     </Style>
                 </DataGrid.RowStyle>-->
-                
+
                 <!--<DataGrid.RowValidationRules>
                     <ValueConverter:AlbumPriceIsReallyTooMuchValidation ValidatesOnTargetUpdated="True"
                                                                     ValidationStep="CommittedValue" />
@@ -274,6 +279,6 @@
                 </DataGrid>-->
         </StackPanel>
 
-    </Grid>
+    </c:Grid>
 
 </c:UserControl>

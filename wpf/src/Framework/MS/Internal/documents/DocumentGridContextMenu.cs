@@ -40,11 +40,11 @@ namespace MS.Internal.Documents
         ///     Critical: This code hooks up a call back to context menu opening event which has the ability to spoof copy 
         ///     TreatAsSafe: This code does not expose the callback and does not drive any input into it
         /// </SecurityNote>
-        [SecurityCritical,SecurityTreatAsSafe]
+        [SecurityCritical] // ,SecurityTreatAsSafe]
         internal static void RegisterClassHandler()
         {
             EventManager.RegisterClassHandler(typeof(DocumentGrid), FrameworkElement.ContextMenuOpeningEvent, new ContextMenuEventHandler(OnContextMenuOpening));
-            EventManager.RegisterClassHandler(typeof(DocumentApplicationDocumentViewer), FrameworkElement.ContextMenuOpeningEvent, new ContextMenuEventHandler(OnDocumentViewerContextMenuOpening));
+            //EventManager.RegisterClassHandler(typeof(DocumentApplicationDocumentViewer), FrameworkElement.ContextMenuOpeningEvent, new ContextMenuEventHandler(OnDocumentViewerContextMenuOpening));
         }
 
         #endregion Class Internal Methods        
@@ -96,8 +96,8 @@ namespace MS.Internal.Documents
             }
 
             // We only want to programmatically generate the menu for Mongoose
-            if (!(documentGrid.DocumentViewerOwner is DocumentApplicationDocumentViewer))
-                return;
+            //if (!(documentGrid.DocumentViewerOwner is DocumentApplicationDocumentViewer))
+            //    return;
 
             // If the DocumentViewer or ScrollViewer has a ContextMenu set, the DocumentGrid menu should be ignored
             if (documentGrid.DocumentViewerOwner.ContextMenu != null || documentGrid.DocumentViewerOwner.ScrollViewer.ContextMenu != null)

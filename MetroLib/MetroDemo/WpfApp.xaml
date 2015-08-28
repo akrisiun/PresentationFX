@@ -1,28 +1,29 @@
-﻿<c:ApplicationX x:Class="MetroDemo.WpfApp" x:Name="App"
+﻿<cw:ApplicationX x:Class="MetroDemo.WpfApp" x:Name="App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cw="clr-namespace:System.Windows;assembly=PresentationFramework"
              xmlns:c="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
              StartupUri="Wpf.MainWindow.xaml"
              >
     <!---->
 
-    <c:ApplicationX.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Controls.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Fonts.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Colors.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Accents/Green.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Accents/BaseLight.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+    <cw:ApplicationX.Resources>
+        <cw:ResourceDictionary>
+            <cw:ResourceDictionary.MergedDictionaries>
+                <cw:ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Controls.xaml" />
+                <cw:ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Fonts.xaml" />
+                <cw:ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Colors.xaml" />
+                <cw:ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Accents/Green.xaml" />
+                <cw:ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Accents/BaseLight.xaml" />
+            </cw:ResourceDictionary.MergedDictionaries>
 
-            <Style x:Key="DescriptionHeaderStyle"
+            <cw:Style x:Key="DescriptionHeaderStyle"
                    TargetType="Label">
-                <Setter Property="FontSize"
+                <cw:Setter Property="FontSize"
                         Value="22" />
-                <Setter Property="HorizontalAlignment"
+                <cw:Setter Property="HorizontalAlignment"
                         Value="Center" />
-            </Style>
-        </ResourceDictionary>
-    </c:ApplicationX.Resources>
-</c:ApplicationX>
+            </cw:Style>
+        </cw:ResourceDictionary>
+    </cw:ApplicationX.Resources>
+</cw:ApplicationX>

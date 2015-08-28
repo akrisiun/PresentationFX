@@ -1342,9 +1342,9 @@ namespace System.Windows.Controls
             {
                 if (_rbw.Value == null)
                 {
-                    if (ApplicationX.Current != null)
+                    if (Application.Current != null)
                     {
-                        _rbw.Value = ApplicationX.Current.MainWindow as RootBrowserWindow;
+                        _rbw.Value = Application.Current.MainWindow as RootBrowserWindow;
                     }
                 }
 
@@ -1525,7 +1525,7 @@ namespace System.Windows.Controls
             [SecurityCritical]
             internal override object CreateWebOC()
             {
-                IntPtr pWebOC = ApplicationX.Current.BrowserCallbackServices.CreateWebBrowserControlInBrowserProcess();
+                IntPtr pWebOC = Application.Current.BrowserCallbackServices.CreateWebBrowserControlInBrowserProcess();
                 object webOC = Marshal.GetTypedObjectForIUnknown(pWebOC, typeof(UnsafeNativeMethods.IWebBrowser2));
                 Marshal.Release(pWebOC);
                 return webOC;

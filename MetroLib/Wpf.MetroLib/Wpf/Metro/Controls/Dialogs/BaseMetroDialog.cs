@@ -131,8 +131,8 @@ namespace MahApps.Metro.Controls.Dialogs
                 {
                     case MetroDialogColorScheme.Theme:
                         ThemeManager.ChangeAppStyle(this.Resources, windowAccent, theme);
-                        this.SetValue(BackgroundProperty, ThemeManager.GetResourceFromAppStyle(this.OwningWindow ?? ApplicationX.Current.MainWindow, "WhiteColorBrush"));
-                        this.SetValue(ForegroundProperty, ThemeManager.GetResourceFromAppStyle(this.OwningWindow ?? ApplicationX.Current.MainWindow, "BlackBrush"));
+                        this.SetValue(BackgroundProperty, ThemeManager.GetResourceFromAppStyle(this.OwningWindow ?? Application.Current.MainWindow, "WhiteColorBrush"));
+                        this.SetValue(ForegroundProperty, ThemeManager.GetResourceFromAppStyle(this.OwningWindow ?? Application.Current.MainWindow, "BlackBrush"));
                         break;
                     case MetroDialogColorScheme.Inverted:
                         var inverseTheme = ThemeManager.GetInverseAppTheme(theme);
@@ -143,13 +143,13 @@ namespace MahApps.Metro.Controls.Dialogs
                         }
 
                         ThemeManager.ChangeAppStyle(this.Resources, windowAccent, inverseTheme);
-                        this.SetValue(BackgroundProperty, ThemeManager.GetResourceFromAppStyle(this.OwningWindow ?? ApplicationX.Current.MainWindow, "BlackColorBrush"));
-                        this.SetValue(ForegroundProperty, ThemeManager.GetResourceFromAppStyle(this.OwningWindow ?? ApplicationX.Current.MainWindow, "WhiteColorBrush"));
+                        this.SetValue(BackgroundProperty, ThemeManager.GetResourceFromAppStyle(this.OwningWindow ?? Application.Current.MainWindow, "BlackColorBrush"));
+                        this.SetValue(ForegroundProperty, ThemeManager.GetResourceFromAppStyle(this.OwningWindow ?? Application.Current.MainWindow, "WhiteColorBrush"));
                         break;
                     case MetroDialogColorScheme.Accented:
                         ThemeManager.ChangeAppStyle(this.Resources, windowAccent, theme);
-                        this.SetValue(BackgroundProperty, ThemeManager.GetResourceFromAppStyle(this.OwningWindow ?? ApplicationX.Current.MainWindow, "HighlightBrush"));
-                        this.SetValue(ForegroundProperty, ThemeManager.GetResourceFromAppStyle(this.OwningWindow ?? ApplicationX.Current.MainWindow, "IdealForegroundColorBrush"));
+                        this.SetValue(BackgroundProperty, ThemeManager.GetResourceFromAppStyle(this.OwningWindow ?? Application.Current.MainWindow, "HighlightBrush"));
+                        this.SetValue(ForegroundProperty, ThemeManager.GetResourceFromAppStyle(this.OwningWindow ?? Application.Current.MainWindow, "IdealForegroundColorBrush"));
                         break;
                 }
             }
@@ -157,7 +157,7 @@ namespace MahApps.Metro.Controls.Dialogs
             if (this.ParentDialogWindow != null)
             {
                 this.ParentDialogWindow.SetValue(BackgroundProperty, this.Background);
-                var glowBrush = ThemeManager.GetResourceFromAppStyle(this.OwningWindow ?? ApplicationX.Current.MainWindow, "AccentColorBrush");
+                var glowBrush = ThemeManager.GetResourceFromAppStyle(this.OwningWindow ?? Application.Current.MainWindow, "AccentColorBrush");
                 if (glowBrush != null)
                 {
                     this.ParentDialogWindow.SetValue(MetroWindow.GlowBrushProperty, glowBrush);
@@ -185,15 +185,15 @@ namespace MahApps.Metro.Controls.Dialogs
                 return theme;
 
             // second try, look for main window
-            if (ApplicationX.Current != null)
+            if (Application.Current != null)
             {
-                var mainWindow = ApplicationX.Current.MainWindow as MetroWindow;
+                var mainWindow = Application.Current.MainWindow as MetroWindow;
                 theme = mainWindow != null ? ThemeManager.DetectAppStyle(mainWindow) : null;
                 if (theme != null && theme.Item2 != null)
                     return theme;
 
                 // oh no, now look at application resource
-                theme = ThemeManager.DetectAppStyle(ApplicationX.Current);
+                theme = ThemeManager.DetectAppStyle(Application.Current);
                 if (theme != null && theme.Item2 != null)
                     return theme;
             }

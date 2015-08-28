@@ -92,10 +92,21 @@ namespace System.Windows
 
     #region Application Class
 
+    public class ApplicationX : Application, IHaveResources, IQueryAmbient
+    {
+        static ApplicationX() { }
+
+        public static void Check() { }
+
+        public ApplicationX() : base()
+        { 
+        }
+    }
+
     /// <summary>
     /// Application base class
     /// </summary>
-    public class ApplicationX : DispatcherObject, IHaveResources, IQueryAmbient
+    public class Application : DispatcherObject, IHaveResources, IQueryAmbient
     {
 
         //------------------------------------------------------
@@ -108,7 +119,7 @@ namespace System.Windows
         /// <summary>
         /// The static constructor calls ApplicationInit
         /// </summary>
-        static ApplicationX()
+        static Application()
         {
             ApplicationInit();
         }
@@ -121,7 +132,7 @@ namespace System.Windows
         ///    PublicOk: It is ok because the call itself is not exposed and the application object does this internally.
         /// </SecurityNote>
         [SecurityCritical]
-        public ApplicationX()
+        public Application()
         {
 #if DEBUG_CLR_MEM
             if (CLRProfilerControl.ProcessIsUnderCLRProfiler &&
@@ -274,7 +285,7 @@ namespace System.Windows
         /// </summary>
         internal static bool InBrowserHostedApp()
         {
-            return BrowserInteropHelper.IsBrowserHosted && !(ApplicationX.Current is XappLauncherApp);
+            return BrowserInteropHelper.IsBrowserHosted && !(Application.Current is XappLauncherApp);
         }
 
         /// <summary>
@@ -878,7 +889,7 @@ namespace System.Windows
         ///     The Current property enables the developer to always get to the application in
         ///     AppDomain in which they are running.
         /// </summary>
-        static public ApplicationX Current
+        static public Application Current
         {
             get
             {
@@ -2115,7 +2126,7 @@ namespace System.Windows
 
                 if (BrowserInteropHelper.IsBrowserHosted)
                 {
-                    ApplicationX app = ApplicationX.Current;
+                    Application app = Application.Current;
                     if ((app != null) && (app.CheckAccess()))
                     {
                         IBrowserCallbackServices bcs = app.BrowserCallbackServices;
@@ -2762,7 +2773,7 @@ namespace System.Windows
         static private object                           _globalLock;
         static private bool                             _isShuttingDown;
         static private bool                             _appCreatedInThisAppDomain;
-        static private ApplicationX                      _appInstance;
+        static private Application                      _appInstance;
         static private Assembly                         _resourceAssembly;
 
         // Keep LoadBamlSyncInfo stack so that the Outer LoadBaml and Inner LoadBaml( ) for the same

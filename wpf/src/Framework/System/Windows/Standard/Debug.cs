@@ -364,7 +364,7 @@ namespace Standard
         [Conditional("DEBUG")]
         public static void IsNotOnMainThread()
         {
-            if (System.Windows.ApplicationX.Current.Dispatcher.CheckAccess())
+            if (System.Windows.Application.Current.Dispatcher.CheckAccess())
             {
                 _Break();
             }

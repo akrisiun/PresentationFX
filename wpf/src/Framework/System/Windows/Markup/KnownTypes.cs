@@ -1129,7 +1129,7 @@ namespace System.Windows.Markup
                 case KnownElements.AdornedElementPlaceholder: o = new System.Windows.Controls.AdornedElementPlaceholder();   break;
                 case KnownElements.AdornerDecorator: o = new System.Windows.Documents.AdornerDecorator();   break;
                 case KnownElements.AmbientLight: o = new System.Windows.Media.Media3D.AmbientLight();   break;
-                case KnownElements.Application: o = new System.Windows.ApplicationX();   break;
+                case KnownElements.ApplicationX: o = new System.Windows.Application();   break;
                 case KnownElements.ArcSegment: o = new System.Windows.Media.ArcSegment();   break;
                 case KnownElements.ArrayExtension: o = new System.Windows.Markup.ArrayExtension();   break;
                 case KnownElements.AxisAngleRotation3D: o = new System.Windows.Media.Media3D.AxisAngleRotation3D();   break;
@@ -5555,7 +5555,7 @@ namespace System.Windows.Markup
             case KnownElements.Animatable: t = typeof(System.Windows.Media.Animation.Animatable); break;
             case KnownElements.AnimationClock: t = typeof(System.Windows.Media.Animation.AnimationClock); break;
             case KnownElements.AnimationTimeline: t = typeof(System.Windows.Media.Animation.AnimationTimeline); break;
-            case KnownElements.ApplicationX: t = typeof(System.Windows.ApplicationX); break;
+            case KnownElements.ApplicationX: t = typeof(System.Windows.Application); break;
             case KnownElements.ArcSegment: t = typeof(System.Windows.Media.ArcSegment); break;
             case KnownElements.ArrayExtension: t = typeof(System.Windows.Markup.ArrayExtension); break;
             case KnownElements.AxisAngleRotation3D: t = typeof(System.Windows.Media.Media3D.AxisAngleRotation3D); break;

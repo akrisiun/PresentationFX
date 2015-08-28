@@ -20,7 +20,7 @@ namespace MahApps.Metro.Controls
         {
             // base.Attach(dependencyObject);
 
-            var window = System.Windows.ApplicationX.Current.MainWindow;
+            var window = System.Windows.Application.Current.MainWindow;
             if (window is MetroWindow)
             {
                 var metro = window as MetroWindow;

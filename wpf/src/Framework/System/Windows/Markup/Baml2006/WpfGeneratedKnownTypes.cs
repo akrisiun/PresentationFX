@@ -1740,9 +1740,9 @@ namespace System.Windows.Baml2006
         {
             var bamlType = new WpfKnownType(this, // SchemaContext
                                               12, "Application",
-                                              typeof(System.Windows.ApplicationX),
+                                              typeof(System.Windows.Application),
                                               isBamlType, useV3Rules);
-            bamlType.DefaultConstructor = delegate() { return new System.Windows.ApplicationX(); };
+            bamlType.DefaultConstructor = delegate() { return new System.Windows.Application(); };
             bamlType.Freeze();
             return bamlType;
         }

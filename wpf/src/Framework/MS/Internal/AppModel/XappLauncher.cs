@@ -14,7 +14,7 @@ using System.Diagnostics;
 using MS.Internal;
 using MS.Internal.PresentationFramework;
 using MS.Internal.Utility;
-using Microsoft.Internal.DeploymentUI;
+// using Microsoft.Internal.DeploymentUI;
 using Microsoft.Win32;
 using System.Reflection;
 using MS.Utility;
@@ -24,7 +24,7 @@ using System.Threading;
 
 namespace MS.Internal.AppModel
 {
-    internal class XappLauncherApp : ApplicationX
+    internal class XappLauncherApp : Application
     {
         /// <SecurityNote>
         /// Critical : Accepts critical argument INativeProgressPage
@@ -394,7 +394,9 @@ namespace MS.Internal.AppModel
             {
                 // Uses custom progress page
                 // If the assembly is not specified, use PresentationUI.
-                Assembly customPageAssembly = string.IsNullOrEmpty(pageAssemblyName) ? typeof(TenFeetInstallationProgress).Assembly : Assembly.Load(pageAssemblyName);
+                Assembly customPageAssembly = // string.IsNullOrEmpty(pageAssemblyName) 
+                    // ? typeof(TenFeetInstallationProgress).Assembly : 
+                    Assembly.Load(pageAssemblyName);
                 customPage = customPageAssembly.CreateInstance(pageClassName);
             }
             catch
@@ -784,7 +786,7 @@ namespace MS.Internal.AppModel
             if (errorpage == null)
             {
                 //use default class
-                errorpage = new InstallationErrorPage() as IErrorPage;
+                //errorpage = new InstallationErrorPage() as IErrorPage;
             }
 
             errorpage.DeploymentPath = _deploymentManifest;
@@ -841,7 +843,7 @@ namespace MS.Internal.AppModel
             if (errorpage == null)
             {
                 //use default class
-                errorpage = new InstallationErrorPage() as IErrorPage;
+                //errorpage = new InstallationErrorPage() as IErrorPage;
             }
 
             errorpage.DeploymentPath = _deploymentManifest;

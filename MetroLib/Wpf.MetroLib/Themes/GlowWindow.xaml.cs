@@ -34,7 +34,7 @@ namespace MahApps.Metro.Controls
             // InitializeComponent();
             _contentLoaded = true;
             System.Uri resourceLocater = new System.Uri("/Wpf.MetroLib;component/themes/glowwindow.xaml", System.UriKind.Relative);
-            System.Windows.ApplicationX.LoadComponent(this, resourceLocater);
+            System.Windows.Application.LoadComponent(this, resourceLocater);
 
             this.IsGlowing = true;
             this.AllowsTransparency = true;

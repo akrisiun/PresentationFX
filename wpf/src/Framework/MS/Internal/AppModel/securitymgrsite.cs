@@ -41,11 +41,11 @@ namespace MS.Internal
         {   
             phwnd = IntPtr.Zero;
             
-            if ( ApplicationX.Current != null )
+            if ( Application.Current != null )
             {   
-                Window curWindow = ApplicationX.Current.MainWindow;
+                Window curWindow = Application.Current.MainWindow;
 
-                Invariant.Assert( ApplicationX.Current.BrowserCallbackServices == null || ( curWindow is RootBrowserWindow )); 
+                Invariant.Assert( Application.Current.BrowserCallbackServices == null || ( curWindow is RootBrowserWindow )); 
                 
                 if (curWindow != null)
                 {

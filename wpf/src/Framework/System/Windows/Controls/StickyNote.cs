@@ -132,8 +132,8 @@ namespace System.Windows.Controls
             //
             // set the main style CRK to the default theme style key
             //
-            DefaultStyleKeyProperty.OverrideMetadata(owner, new FrameworkPropertyMetadata(
-                new ComponentResourceKey(typeof(PresentationUIStyleResources), "StickyNoteControlStyleKey")));
+            //DefaultStyleKeyProperty.OverrideMetadata(owner, new FrameworkPropertyMetadata(
+            //    new ComponentResourceKey(typeof(PresentationUIStyleResources), "StickyNoteControlStyleKey")));
 
             KeyboardNavigation.TabNavigationProperty.OverrideMetadata(owner, new FrameworkPropertyMetadata(KeyboardNavigationMode.Local));
             Control.IsTabStopProperty.OverrideMetadata(owner, new FrameworkPropertyMetadata(false));

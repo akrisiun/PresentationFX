@@ -49,9 +49,9 @@ namespace System.Windows.Controls
         /// </summary>
         static FlowDocumentReader()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(
-                typeof(FlowDocumentReader),
-                new FrameworkPropertyMetadata(new ComponentResourceKey(typeof(PresentationUIStyleResources), "PUIFlowDocumentReader")));
+            //DefaultStyleKeyProperty.OverrideMetadata(
+            //    typeof(FlowDocumentReader),
+            //    new FrameworkPropertyMetadata(new ComponentResourceKey(typeof(PresentationUIStyleResources), "PUIFlowDocumentReader")));
 
             _dType = DependencyObjectType.FromSystemTypeInternal(typeof(FlowDocumentReader));
 
@@ -822,7 +822,7 @@ namespace System.Windows.Controls
                         if (FindToolBar != null)
                         {
                             // If the Shift key is also pressed, then search up.
-                            FindToolBar.SearchUp = ((e.KeyboardDevice.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift);
+                            //FindToolBar.SearchUp = ((e.KeyboardDevice.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift);
                             OnFindInvoked(this, EventArgs.Empty);
                         }
                         else
@@ -1572,34 +1572,34 @@ namespace System.Windows.Controls
         {
             ITextRange findResult;
             TextEditor textEditor = TextEditor;
-            FindToolBar findToolBar = FindToolBar;
+            //FindToolBar findToolBar = FindToolBar;
 
-            if (findToolBar != null && textEditor != null)
-            {
-                // In order to show current text selection TextEditor requires Focus to be set on the UIScope.
-                // If there embedded controls, it may happen that embedded control currently has focus and find
-                // was invoked through hotkeys. To support this case we manually move focus to the appropriate element.
-                if (CurrentViewer != null && CurrentViewer is UIElement)
-                {
-                    ((UIElement)CurrentViewer).Focus();
-                }
+            //if (findToolBar != null && textEditor != null)
+            //{
+            //    // In order to show current text selection TextEditor requires Focus to be set on the UIScope.
+            //    // If there embedded controls, it may happen that embedded control currently has focus and find
+            //    // was invoked through hotkeys. To support this case we manually move focus to the appropriate element.
+            //    if (CurrentViewer != null && CurrentViewer is UIElement)
+            //    {
+            //        ((UIElement)CurrentViewer).Focus();
+            //    }
 
-                findResult = DocumentViewerHelper.Find(findToolBar, textEditor, textEditor.TextView, textEditor.TextView);
+            //    findResult = DocumentViewerHelper.Find(findToolBar, textEditor, textEditor.TextView, textEditor.TextView);
 
-                // If we found something, bring it into the view. Otherwise alert the user.
-                if ((findResult != null) && (!findResult.IsEmpty))
-                {
-                    // Bring find result into view.
-                    if (CurrentViewer != null)
-                    {
-                        CurrentViewer.ShowFindResult(findResult);
-                    }
-                }
-                else
-                {
-                    DocumentViewerHelper.ShowFindUnsuccessfulMessage(findToolBar);
-                }
-            }
+            //    // If we found something, bring it into the view. Otherwise alert the user.
+            //    if ((findResult != null) && (!findResult.IsEmpty))
+            //    {
+            //        // Bring find result into view.
+            //        if (CurrentViewer != null)
+            //        {
+            //            CurrentViewer.ShowFindResult(findResult);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        DocumentViewerHelper.ShowFindUnsuccessfulMessage(findToolBar);
+            //    }
+            //}
         }
 
         /// <summary>
@@ -1889,9 +1889,11 @@ namespace System.Windows.Controls
         /// <summary>
         /// Returns FindToolBar, if enabled.
         /// </summary>
-        private FindToolBar FindToolBar
+        private object // FindToolBar 
+            FindToolBar
         {
-            get { return (_findToolBarHost != null) ? _findToolBarHost.Child as FindToolBar : null; }
+            get { return null; // (_findToolBarHost != null) ? _findToolBarHost.Child as FindToolBar : null; 
+            }
         }
 
         /// <summary>
@@ -2088,7 +2090,7 @@ namespace System.Windows.Controls
             {
                 if (_pageViewStyleKey == null)
                 {
-                    _pageViewStyleKey = new ComponentResourceKey(typeof(PresentationUIStyleResources), "PUIPageViewStyleKey");
+                    //_pageViewStyleKey = new ComponentResourceKey(typeof(PresentationUIStyleResources), "PUIPageViewStyleKey");
                 }
 
                 return _pageViewStyleKey;
@@ -2104,7 +2106,7 @@ namespace System.Windows.Controls
             {
                 if (_twoPageViewStyleKey == null)
                 {
-                    _twoPageViewStyleKey = new ComponentResourceKey(typeof(PresentationUIStyleResources), "PUITwoPageViewStyleKey");
+                    //_twoPageViewStyleKey = new ComponentResourceKey(typeof(PresentationUIStyleResources), "PUITwoPageViewStyleKey");
                 }
 
                 return _twoPageViewStyleKey;
@@ -2120,7 +2122,7 @@ namespace System.Windows.Controls
             {
                 if (_scrollViewStyleKey == null)
                 {
-                    _scrollViewStyleKey = new ComponentResourceKey(typeof(PresentationUIStyleResources), "PUIScrollViewStyleKey");
+                    //_scrollViewStyleKey = new ComponentResourceKey(typeof(PresentationUIStyleResources), "PUIScrollViewStyleKey");
                 }
 
                 return _scrollViewStyleKey;

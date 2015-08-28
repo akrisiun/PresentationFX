@@ -1451,7 +1451,7 @@ namespace System.Windows
 
         internal override object GetValue(BaseValueSourceInternal valueSource)
         {
-            lock (((ICollection)ApplicationX.Current.Resources).SyncRoot)
+            lock (((ICollection)Application.Current.Resources).SyncRoot)
             {
                 return base.GetValue(valueSource);
             }
@@ -1460,7 +1460,7 @@ namespace System.Windows
         // Gets the type of the value it represents
         internal override Type GetValueType()
         {
-            lock (((ICollection)ApplicationX.Current.Resources).SyncRoot)
+            lock (((ICollection)Application.Current.Resources).SyncRoot)
             {
                 return base.GetValueType();
             }

@@ -62,7 +62,7 @@ namespace MS.Internal.AppModel
                 if (_applicationResourceManagerWrapper == null)
                 {
                     // load main excutable assembly
-                    Assembly asmApplication = ApplicationX.ResourceAssembly;
+                    Assembly asmApplication = Application.ResourceAssembly;
 
                     if (asmApplication != null)
                     {
@@ -362,7 +362,7 @@ namespace MS.Internal.AppModel
 
                     assembly = BaseUriHelper.GetLoadedAssembly(assemblyName, assemblyVersion, assemblyKey);
 
-                    if (assembly.Equals(ApplicationX.ResourceAssembly))
+                    if (assembly.Equals(Application.ResourceAssembly))
                     {
                         // This Uri maps to Application Entry assembly even though it has ";component".
 

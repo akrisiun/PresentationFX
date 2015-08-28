@@ -54,9 +54,9 @@ namespace System.Windows.Controls
         /// </summary>
         static FlowDocumentScrollViewer()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(
-                typeof(FlowDocumentScrollViewer),
-                new FrameworkPropertyMetadata(new ComponentResourceKey(typeof(PresentationUIStyleResources), "PUIFlowDocumentScrollViewer")));
+            //DefaultStyleKeyProperty.OverrideMetadata(
+            //    typeof(FlowDocumentScrollViewer),
+            //    new FrameworkPropertyMetadata(new ComponentResourceKey(typeof(PresentationUIStyleResources), "PUIFlowDocumentScrollViewer")));
 
             _dType = DependencyObjectType.FromSystemTypeInternal(typeof(FlowDocumentScrollViewer));
 
@@ -679,7 +679,7 @@ namespace System.Windows.Controls
                         if (FindToolBar != null)
                         {
                             // If the Shift key is also pressed, then search up.
-                            FindToolBar.SearchUp = ((e.KeyboardDevice.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift);
+                            //FindToolBar.SearchUp = ((e.KeyboardDevice.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift);
                             OnFindInvoked(this, EventArgs.Empty);
                         }
                         else
@@ -1545,27 +1545,27 @@ namespace System.Windows.Controls
         /// <param name="e">The Click Events associated with this event</param>
         private void OnFindInvoked(object sender, EventArgs e)
         {
-            ITextRange findResult;
-            FindToolBar findToolBar = FindToolBar;
+            //ITextRange findResult;
+            //FindToolBar findToolBar = FindToolBar;
 
-            if (findToolBar != null && _textEditor != null)
-            {
-                // In order to show current text selection TextEditor requires Focus to be set on the UIScope.
-                // If there embedded controls, it may happen that embedded control currently has focus and find
-                // was invoked through hotkeys. To support this case we manually move focus to the appropriate element.
-                Focus();
+            //if (findToolBar != null && _textEditor != null)
+            //{
+            //    // In order to show current text selection TextEditor requires Focus to be set on the UIScope.
+            //    // If there embedded controls, it may happen that embedded control currently has focus and find
+            //    // was invoked through hotkeys. To support this case we manually move focus to the appropriate element.
+            //    Focus();
 
-                findResult = DocumentViewerHelper.Find(findToolBar, _textEditor, _textEditor.TextView, _textEditor.TextView);
+            //    //findResult = DocumentViewerHelper.Find(findToolBar, _textEditor, _textEditor.TextView, _textEditor.TextView);
 
-                // If we found something, TextEditor will bring the selection into view.
-                // It is possible, because RenderScope is inside ScrollViewer.
+            //    // If we found something, TextEditor will bring the selection into view.
+            //    // It is possible, because RenderScope is inside ScrollViewer.
 
-                // If we did not find anything, alert the user.
-                if ((findResult == null) || findResult.IsEmpty)
-                {
-                    DocumentViewerHelper.ShowFindUnsuccessfulMessage(findToolBar);
-                }
-            }
+            //    // If we did not find anything, alert the user.
+            //    if ((findResult == null) || findResult.IsEmpty)
+            //    {
+            //        DocumentViewerHelper.ShowFindUnsuccessfulMessage(findToolBar);
+            //    }
+            //}
         }
 
         /// <summary>
@@ -1798,9 +1798,10 @@ namespace System.Windows.Controls
         /// <summary>
         /// Returns FindToolBar, if enabled.
         /// </summary>
-        private FindToolBar FindToolBar
+        private object // FindToolBar 
+            FindToolBar
         {
-            get { return (_findToolBarHost != null) ? _findToolBarHost.Child as FindToolBar : null; }
+            get { return null; } //  (_findToolBarHost != null) ? _findToolBarHost.Child as FindToolBar : null; }
         }
 
         /// <summary>

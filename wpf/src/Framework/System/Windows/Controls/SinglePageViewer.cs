@@ -51,9 +51,9 @@ namespace System.Windows.Controls
         /// </summary>
         static FlowDocumentPageViewer()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(
-                typeof(FlowDocumentPageViewer),
-                new FrameworkPropertyMetadata(new ComponentResourceKey(typeof(PresentationUIStyleResources), "PUIFlowDocumentPageViewer")));
+            //DefaultStyleKeyProperty.OverrideMetadata(
+            //    typeof(FlowDocumentPageViewer),
+            //    new FrameworkPropertyMetadata(new ComponentResourceKey(typeof(PresentationUIStyleResources), "PUIFlowDocumentPageViewer")));
 
             _dType = DependencyObjectType.FromSystemTypeInternal(typeof(FlowDocumentPageViewer));
 
@@ -402,7 +402,7 @@ namespace System.Windows.Controls
                     if (FindToolBar != null)
                     {
                         // If the Shift key is also pressed, then search up.
-                        FindToolBar.SearchUp = ((e.KeyboardDevice.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift);
+                        //FindToolBar.SearchUp = ((e.KeyboardDevice.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift);
                         OnFindInvoked(this, EventArgs.Empty);
                     }
                     else
@@ -1163,34 +1163,34 @@ namespace System.Windows.Controls
         {
             ITextRange findResult;
             int newMasterPageNumber;
-            FindToolBar findToolBar = FindToolBar;
+            //FindToolBar findToolBar = FindToolBar;
 
-            if (findToolBar != null && this.TextEditor != null)
-            {
-                // In order to show current text selection TextEditor requires Focus to be set on the UIScope.
-                // If there embedded controls, it may happen that embedded control currently has focus and find
-                // was invoked through hotkeys. To support this case we manually move focus to the appropriate element.
-                Focus();
+            //if (findToolBar != null && this.TextEditor != null)
+            //{
+            //    // In order to show current text selection TextEditor requires Focus to be set on the UIScope.
+            //    // If there embedded controls, it may happen that embedded control currently has focus and find
+            //    // was invoked through hotkeys. To support this case we manually move focus to the appropriate element.
+            //    Focus();
 
-                findResult = Find(findToolBar);
+            //    findResult = Find(findToolBar);
 
-                // If we found something, bring it into the view. Otherwise alert the user.
-                if ((findResult != null) && (!findResult.IsEmpty))
-                {
-                    if (findResult.Start is ContentPosition)
-                    {
-                        // Bring find result into view. Set also _contentPosition to the beginning of the
-                        // result, so it is visible during resizing.
-                        _contentPosition = (ContentPosition)findResult.Start;
-                        newMasterPageNumber = ((DynamicDocumentPaginator)this.Document.DocumentPaginator).GetPageNumber(_contentPosition) + 1;
-                        OnBringIntoView(this, Rect.Empty, newMasterPageNumber);
-                    }
-                }
-                else
-                {
-                    DocumentViewerHelper.ShowFindUnsuccessfulMessage(findToolBar);
-                }
-            }
+            //    // If we found something, bring it into the view. Otherwise alert the user.
+            //    if ((findResult != null) && (!findResult.IsEmpty))
+            //    {
+            //        if (findResult.Start is ContentPosition)
+            //        {
+            //            // Bring find result into view. Set also _contentPosition to the beginning of the
+            //            // result, so it is visible during resizing.
+            //            _contentPosition = (ContentPosition)findResult.Start;
+            //            newMasterPageNumber = ((DynamicDocumentPaginator)this.Document.DocumentPaginator).GetPageNumber(_contentPosition) + 1;
+            //            OnBringIntoView(this, Rect.Empty, newMasterPageNumber);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        DocumentViewerHelper.ShowFindUnsuccessfulMessage(findToolBar);
+            //    }
+            //}
         }
 
         /// <summary>
@@ -1489,9 +1489,10 @@ namespace System.Windows.Controls
         /// <summary>
         /// Returns FindToolBar, if enabled.
         /// </summary>
-        private FindToolBar FindToolBar
+        private object // FindToolBar 
+            FindToolBar
         {
-            get { return (_findToolBarHost != null) ? _findToolBarHost.Child as FindToolBar : null; }
+            get { return null; } // (_findToolBarHost != null) ? _findToolBarHost.Child as FindToolBar : null; }
         }
 
         #endregion Private Properties

@@ -6853,17 +6853,17 @@ namespace System.Windows.Baml2006
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
         private WpfKnownMember Create_BamlProperty_Application_Resources()
         {
-            Type type = typeof(System.Windows.ApplicationX);
+            Type type = typeof(System.Windows.Application);
             var bamlMember = new WpfKnownMember( this,  // Schema Context
-                            this.GetXamlType(typeof(System.Windows.ApplicationX)), // DeclaringType
+                            this.GetXamlType(typeof(System.Windows.Application)), // DeclaringType
                             "Resources", // Name
                             typeof(System.Windows.ResourceDictionary), // type
                             false, // IsReadOnly
                             false // IsAttachable
                                      );
             bamlMember.Ambient = true;
-            bamlMember.SetDelegate = delegate(object target, object value) { ((System.Windows.ApplicationX)target).Resources = (System.Windows.ResourceDictionary)value; };
-            bamlMember.GetDelegate = delegate(object target) { return ((System.Windows.ApplicationX)target).Resources; };
+            bamlMember.SetDelegate = delegate(object target, object value) { ((System.Windows.Application)target).Resources = (System.Windows.ResourceDictionary)value; };
+            bamlMember.GetDelegate = delegate(object target) { return ((System.Windows.Application)target).Resources; };
             bamlMember.Freeze();
             return bamlMember;
         }

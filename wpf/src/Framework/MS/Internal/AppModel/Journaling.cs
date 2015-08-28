@@ -851,7 +851,7 @@ namespace MS.Internal.AppModel
 
             Debug.Assert(_markupUri != null, "_markupUri in JournalEntryPageFunctionUri should be set.");
 
-            pageFunction = ApplicationX.LoadComponent(_markupUri, true) as PageFunctionBase;
+            pageFunction = Application.LoadComponent(_markupUri, true) as PageFunctionBase;
 
             RestoreState(pageFunction);
 

@@ -1157,9 +1157,9 @@ namespace MS.Internal.AppModel
         //
         //----------------------------------------------
         #region Private properties
-        private static ApplicationX App
+        private static Application App
         {
-            get { return ApplicationX.Current; }
+            get { return Application.Current; }
         }
 
 

@@ -4477,9 +4477,9 @@ namespace System.Windows.Markup
             else
             {
                 // Set the ApplicationMarkupBaseUri if this is for AppDef baml stream.
-                if (element is ApplicationX)
+                if (element is Application)
                 {
-                    ((ApplicationX)element).ApplicationMarkupBaseUri = GetBaseUri();
+                    ((Application)element).ApplicationMarkupBaseUri = GetBaseUri();
                 }
             }
 

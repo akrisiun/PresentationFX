@@ -65,7 +65,7 @@ namespace MS.Internal.AppModel
             pc.BaseUri = baseUri;
             pc.SkipJournaledProperties = isJournalNavigation;
 
-            return ApplicationX.LoadBamlStreamWithSyncInfo(stream, pc);
+            return Application.LoadBamlStreamWithSyncInfo(stream, pc);
         }
 
         // <summary>

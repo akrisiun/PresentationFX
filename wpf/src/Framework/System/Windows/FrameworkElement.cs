@@ -133,7 +133,7 @@ namespace System.Windows
             }
 
             // Set the ShouldLookupImplicitStyles flag to true if App.Resources has implicit styles.
-            ApplicationX app = ApplicationX.Current;
+            Application app = Application.Current;
             if (app != null && app.HasImplicitStylesInResources)
             {
                 ShouldLookupImplicitStyles = true;
@@ -1072,7 +1072,7 @@ namespace System.Windows
                 }
 
                 // Then we try to find the resource in the App's Resources
-                ApplicationX app = ApplicationX.Current;
+                Application app = Application.Current;
                 if (app != null &&
                     (inheritanceBehavior == InheritanceBehavior.Default ||
                      inheritanceBehavior == InheritanceBehavior.SkipToAppNow ||

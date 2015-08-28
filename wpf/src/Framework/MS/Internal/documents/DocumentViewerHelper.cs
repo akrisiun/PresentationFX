@@ -48,37 +48,38 @@ namespace MS.Internal.Documents
         /// Critical: FindToolBar..ctor is defined in a non-APTCA assembly.
         /// TreatAsSafe: method is not intrinsically unsafe; it's safe to call it.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]        
+        [SecurityCritical] // , SecurityTreatAsSafe]        
         internal static void ToggleFindToolBar(Decorator findToolBarHost, EventHandler handlerFindClicked, bool enable)
         {
-            if (enable)
-            {
-                // Create FindToolBar and attach it to the host.
-                FindToolBar findToolBar = new FindToolBar();
-                findToolBarHost.Child = findToolBar;
-                findToolBarHost.Visibility = Visibility.Visible;
-                KeyboardNavigation.SetTabNavigation(findToolBarHost, KeyboardNavigationMode.Continue);
-                FocusManager.SetIsFocusScope(findToolBarHost, true);
+        
+            //    if (enable)
+        //    {
+        //        // Create FindToolBar and attach it to the host.
+        //        //FindToolBar findToolBar = new FindToolBar();
+        //        findToolBarHost.Child = findToolBar;
+        //        findToolBarHost.Visibility = Visibility.Visible;
+        //        KeyboardNavigation.SetTabNavigation(findToolBarHost, KeyboardNavigationMode.Continue);
+        //        FocusManager.SetIsFocusScope(findToolBarHost, true);
 
-                // Initialize FindToolBar
-                findToolBar.SetResourceReference(Control.StyleProperty, FindToolBarStyleKey);
-                findToolBar.FindClicked += handlerFindClicked;
-                findToolBar.DocumentLoaded = true;
-                findToolBar.GoToTextBox();
-            }
-            else
-            {
-                // Reset FindToolBar state to its initial state.
-                FindToolBar findToolBar = findToolBarHost.Child as FindToolBar;
-                findToolBar.FindClicked -= handlerFindClicked;
-                findToolBar.DocumentLoaded = false;
+        //        // Initialize FindToolBar
+        //        findToolBar.SetResourceReference(Control.StyleProperty, FindToolBarStyleKey);
+        //        findToolBar.FindClicked += handlerFindClicked;
+        //        findToolBar.DocumentLoaded = true;
+        //        findToolBar.GoToTextBox();
+        //    }
+        //    else
+        //    {
+        //        // Reset FindToolBar state to its initial state.
+        //        FindToolBar findToolBar = findToolBarHost.Child as FindToolBar;
+        //        findToolBar.FindClicked -= handlerFindClicked;
+        //        findToolBar.DocumentLoaded = false;
 
-                // Remov FindToolBar form its host.
-                findToolBarHost.Child = null;
-                findToolBarHost.Visibility = Visibility.Collapsed;
-                KeyboardNavigation.SetTabNavigation(findToolBarHost, KeyboardNavigationMode.None);
-                findToolBarHost.ClearValue(FocusManager.IsFocusScopeProperty);
-            }
+        //        // Remov FindToolBar form its host.
+        //        findToolBarHost.Child = null;
+        //        findToolBarHost.Visibility = Visibility.Collapsed;
+        //        KeyboardNavigation.SetTabNavigation(findToolBarHost, KeyboardNavigationMode.None);
+        //        findToolBarHost.ClearValue(FocusManager.IsFocusScopeProperty);
+        //    }
         }
 
         /// <summary>
@@ -89,12 +90,14 @@ namespace MS.Internal.Documents
         /// Critical: get_SearchUp is defined in a non-APTCA assembly.
         /// TreatAsSafe: method is not intrinsically unsafe; it's safe to call it.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]        
-        internal static ITextRange Find(FindToolBar findToolBar, TextEditor textEditor, ITextView textView, ITextView masterPageTextView)
+        
+        [SecurityCritical] // , SecurityTreatAsSafe]        
+        internal static ITextRange Find(object // FindToolBar 
+            findToolBar, TextEditor textEditor, ITextView textView, ITextView masterPageTextView)
         {
             string searchText;
             FindFlags findFlags;
-            ITextContainer textContainer;
+            ITextContainer textContainer = null;
             ITextRange textSelection;
             ITextPointer contentStart;
             ITextPointer contentEnd;
@@ -106,149 +109,150 @@ namespace MS.Internal.Documents
 
             // Set up our FindOptions from the options in the Find Toolbar.
             findFlags = FindFlags.None;
-            findFlags |= (findToolBar.SearchUp ? FindFlags.FindInReverse : FindFlags.None);
-            findFlags |= (findToolBar.MatchCase ? FindFlags.MatchCase : FindFlags.None);
-            findFlags |= (findToolBar.MatchWholeWord ? FindFlags.FindWholeWordsOnly : FindFlags.None);
-            findFlags |= (findToolBar.MatchDiacritic ? FindFlags.MatchDiacritics : FindFlags.None);
-            findFlags |= (findToolBar.MatchKashida ? FindFlags.MatchKashida : FindFlags.None);
-            findFlags |= (findToolBar.MatchAlefHamza ? FindFlags.MatchAlefHamza : FindFlags.None);
+            //findFlags |= (findToolBar.SearchUp ? FindFlags.FindInReverse : FindFlags.None);
+            //findFlags |= (findToolBar.MatchCase ? FindFlags.MatchCase : FindFlags.None);
+            //findFlags |= (findToolBar.MatchWholeWord ? FindFlags.FindWholeWordsOnly : FindFlags.None);
+            //findFlags |= (findToolBar.MatchDiacritic ? FindFlags.MatchDiacritics : FindFlags.None);
+            //findFlags |= (findToolBar.MatchKashida ? FindFlags.MatchKashida : FindFlags.None);
+            //findFlags |= (findToolBar.MatchAlefHamza ? FindFlags.MatchAlefHamza : FindFlags.None);
 
-            // Get the text container for our content.
-            textContainer = textEditor.TextContainer;
-            textSelection = textEditor.Selection;
+            //// Get the text container for our content.
+            //textContainer = textEditor.TextContainer;
+            //textSelection = textEditor.Selection;
 
-            // Initialize other Find parameters
-            searchText = findToolBar.SearchText;
-            CultureInfo cultureInfo = GetDocumentCultureInfo(textContainer);
+            //// Initialize other Find parameters
+            //searchText = findToolBar.SearchText;
+            CultureInfo cultureInfo = CultureInfo.CurrentCulture;
+                //GetDocumentCultureInfo(textContainer);
 
             // The find behavior below is defined in section 2.2.3 of this spec:
             // http://d2/DRX/Development%20Documents/02.01.00%20-%20UI%20Design.DocumentViewer.mht
 
             // Determine if we have a starting selection
-            if (textSelection.IsEmpty)
-            {
-                if (textView != null && !textView.IsValid)
-                {
-                    textView = null;
-                }
+            //if (textSelection.IsEmpty)
+            //{
+            //    if (textView != null && !textView.IsValid)
+            //    {
+            //        textView = null;
+            //    }
 
-                // Determine if the IP/Selection is in view.
-                if (textView != null && textView.Contains(textSelection.Start))
-                {
-                    // Case 1: Selection is empty and IP is currently visible.
-                    // Search from this IP to the start/end of the document.
+            //    // Determine if the IP/Selection is in view.
+            //    if (textView != null && textView.Contains(textSelection.Start))
+            //    {
+            //        // Case 1: Selection is empty and IP is currently visible.
+            //        // Search from this IP to the start/end of the document.
 
-                    //We treat the start of the selection as the IP.
-                    contentStart = findToolBar.SearchUp ? textContainer.Start : textSelection.Start;
-                    contentEnd = findToolBar.SearchUp ? textSelection.Start : textContainer.End;
-                }
-                else
-                {
-                    // Case 4: Selection is empty and IP is not currently visible.
-                    // Search from the top of the current TextView to the end of the document,
-                    // if searching down. If searchind up, search from the start of the document
-                    // to the end position of the current TextView.
-                    if (masterPageTextView != null && masterPageTextView.IsValid)
-                    {
-                        foreach (TextSegment textSegment in masterPageTextView.TextSegments)
-                        {
-                            if (textSegment.IsNull)
-                            {
-                                continue;
-                            }
+            //        //We treat the start of the selection as the IP.
+            //        //contentStart = findToolBar.SearchUp ? textContainer.Start : textSelection.Start;
+            //        //contentEnd = findToolBar.SearchUp ? textSelection.Start : textContainer.End;
+            //    }
+            //    else
+            //    {
+            //        // Case 4: Selection is empty and IP is not currently visible.
+            //        // Search from the top of the current TextView to the end of the document,
+            //        // if searching down. If searchind up, search from the start of the document
+            //        // to the end position of the current TextView.
+            //        if (masterPageTextView != null && masterPageTextView.IsValid)
+            //        {
+            //            foreach (TextSegment textSegment in masterPageTextView.TextSegments)
+            //            {
+            //                if (textSegment.IsNull)
+            //                {
+            //                    continue;
+            //                }
 
-                            if (startPointer == null)
-                            {
-                                // Set initial masterPointer value.
-                                startPointer = !findToolBar.SearchUp ? textSegment.Start : textSegment.End;
-                            }
-                            else
-                            {
-                                if (!findToolBar.SearchUp)
-                                {
-                                    if (textSegment.Start.CompareTo(startPointer) < 0)
-                                    {
-                                        // Start is before the current masterPointer
-                                        startPointer = textSegment.Start;
-                                    }
-                                }
-                                else
-                                {
-                                    // end is after than the current masterPointer
-                                    if (textSegment.End.CompareTo(startPointer) > 0)
-                                    {
-                                        startPointer = textSegment.End;
-                                    }
-                                }
-                            }
-                        }
-                    }
+            //                if (startPointer == null)
+            //                {
+            //                    // Set initial masterPointer value.
+            //                    //startPointer = !findToolBar.SearchUp ? textSegment.Start : textSegment.End;
+            //                }
+            //                else
+            //                {
+            //                    //if (!findToolBar.SearchUp)
+            //                    //{
+            //                    //    if (textSegment.Start.CompareTo(startPointer) < 0)
+            //                    //    {
+            //                    //        // Start is before the current masterPointer
+            //                    //        startPointer = textSegment.Start;
+            //                    //    }
+            //                    //}
+            //                    //else
+            //                    //{
+            //                    //    // end is after than the current masterPointer
+            //                    //    if (textSegment.End.CompareTo(startPointer) > 0)
+            //                    //    {
+            //                    //        startPointer = textSegment.End;
+            //                    //    }
+            //                    //}
+            //                }
+            //            }
+            //        }
 
-                    if (startPointer != null)
-                    {
-                        // Now build the content range from that pointer to the start/end of the document.
-                        // Set content start/end pointer to the content of the find document
-                        contentStart = findToolBar.SearchUp ? textContainer.Start : startPointer;
-                        contentEnd = findToolBar.SearchUp ? startPointer : textContainer.End;
-                    }
-                    else
-                    {
-                        // We were unable to determine the viewing area (form TextView),
-                        // just use the entire TextContainer.
-                        contentStart = textContainer.Start;
-                        contentEnd = textContainer.End;
-                    }
-                }
-            }
-            else
-            {
-                // Determine if the search text is already selected in the document.
-                findResult = TextFindEngine.Find(textSelection.Start, textSelection.End, searchText, findFlags, cultureInfo);
+            //        if (startPointer != null)
+            //        {
+            //            // Now build the content range from that pointer to the start/end of the document.
+            //            // Set content start/end pointer to the content of the find document
+            //            //contentStart = findToolBar.SearchUp ? textContainer.Start : startPointer;
+            //            //contentEnd = findToolBar.SearchUp ? startPointer : textContainer.End;
+            //        }
+            //        else
+            //        {
+            //            // We were unable to determine the viewing area (form TextView),
+            //            // just use the entire TextContainer.
+            //            contentStart = textContainer.Start;
+            //            contentEnd = textContainer.End;
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    // Determine if the search text is already selected in the document.
+            //    findResult = TextFindEngine.Find(textSelection.Start, textSelection.End, searchText, findFlags, cultureInfo);
 
-                // To see if our Text ranges are the same, we will verify that
-                // their start and end points are the same.
-                if ((findResult != null) &&
-                    (findResult.Start != null) &&
-                    (findResult.Start.CompareTo(textSelection.Start) == 0) &&
-                    (findResult.End.CompareTo(textSelection.End) == 0))
-                {
-                    // Case 2: Selection exists and it matches the search text.
-                    // Search from the end of the given selection.
+            //    // To see if our Text ranges are the same, we will verify that
+            //    // their start and end points are the same.
+            //    if ((findResult != null) &&
+            //        (findResult.Start != null) &&
+            //        (findResult.Start.CompareTo(textSelection.Start) == 0) &&
+            //        (findResult.End.CompareTo(textSelection.End) == 0))
+            //    {
+            //        // Case 2: Selection exists and it matches the search text.
+            //        // Search from the end of the given selection.
 
-                    contentStart = findToolBar.SearchUp ? textSelection.Start : textSelection.End;
-                    contentEnd = findToolBar.SearchUp ? textContainer.Start : textContainer.End;
-                }
-                else
-                {
-                    // Case 3: Selection exists and it does not match the search text.
-                    // Search from the beginning of the given selection to the end of the document.
+            //        //contentStart = findToolBar.SearchUp ? textSelection.Start : textSelection.End;
+            //        //contentEnd = findToolBar.SearchUp ? textContainer.Start : textContainer.End;
+            //    }
+            //    else
+            //    {
+            //        // Case 3: Selection exists and it does not match the search text.
+            //        // Search from the beginning of the given selection to the end of the document.
 
-                    contentStart = findToolBar.SearchUp ? textSelection.End : textSelection.Start;
-                    contentEnd = findToolBar.SearchUp ? textContainer.Start : textContainer.End;
-                }
-            }
+            //        //contentStart = findToolBar.SearchUp ? textSelection.End : textSelection.Start;
+            //        //contentEnd = findToolBar.SearchUp ? textContainer.Start : textContainer.End;
+            //    }
+            //}
 
             // We should have content. Try to find something.
             findResult = null;
-            if (contentStart != null && contentEnd != null && contentStart.CompareTo(contentEnd) != 0)
-            {
-                // We might legimately have crossed start/end given our logic above.
-                // It's easier to untangle the range here.
-                if (contentStart.CompareTo(contentEnd) > 0)
-                {
-                    ITextPointer temp = contentStart;
-                    contentStart = contentEnd;
-                    contentEnd = temp;
-                }
+            //if (contentStart != null && contentEnd != null && contentStart.CompareTo(contentEnd) != 0)
+            //{
+            //    // We might legimately have crossed start/end given our logic above.
+            //    // It's easier to untangle the range here.
+            //    if (contentStart.CompareTo(contentEnd) > 0)
+            //    {
+            //        ITextPointer temp = contentStart;
+            //        contentStart = contentEnd;
+            //        contentEnd = temp;
+            //    }
 
-                findResult = TextFindEngine.Find(contentStart, contentEnd, searchText, findFlags, cultureInfo);
-                if ((findResult != null) && (!findResult.IsEmpty))
-                {
-                    textSelection.Select(findResult.Start, findResult.End);
-                }
-            }
+            //    findResult = TextFindEngine.Find(contentStart, contentEnd, searchText, findFlags, cultureInfo);
+            //    if ((findResult != null) && (!findResult.IsEmpty))
+            //    {
+            //        textSelection.Select(findResult.Start, findResult.End);
+            //    }
+            //}
 
-            return findResult;
+            return null; // findResult;
         }
 
         /// <summary>
@@ -292,17 +296,18 @@ namespace MS.Internal.Documents
         /// TreatAsSafe: method is not intrinsically unsafe; it's safe to call it.
         /// </SecurityNote>
         [SecurityCritical, SecurityTreatAsSafe]        
-        internal static void ShowFindUnsuccessfulMessage(FindToolBar findToolBar)
+        internal static void ShowFindUnsuccessfulMessage(object // FindToolBar 
+            findToolBar)
         {
-            string messageString;
+            string messageString = string.Empty;
 
             // No, we did not find anything. Alert the user.
-            messageString = findToolBar.SearchUp ?
-                        SR.Get("SRID.DocumentViewerSearchUpCompleteLabel") :
-                        SR.Get("SRID.DocumentViewerSearchDownCompleteLabel");
-            messageString = String.Format(System.Globalization.CultureInfo.CurrentCulture, messageString, findToolBar.SearchText);
+            //messageString = findToolBar.SearchUp ?
+            //            SR.Get("SRID.DocumentViewerSearchUpCompleteLabel") :
+            //            SR.Get("SRID.DocumentViewerSearchDownCompleteLabel");
+            //messageString = String.Format(System.Globalization.CultureInfo.CurrentCulture, messageString, findToolBar.SearchText);
 
-            HwndSource hwndSource = PresentationSource.CriticalFromVisual(findToolBar) as HwndSource;
+            HwndSource hwndSource = null; // PresentationSource.CriticalFromVisual(findToolBar) as HwndSource;
             IntPtr hwnd = (hwndSource != null) ? hwndSource.CriticalHandle : IntPtr.Zero;
 
             PresentationFramework.SecurityHelper.ShowMessageBoxHelper(
@@ -322,7 +327,7 @@ namespace MS.Internal.Documents
             {
                 if (_findToolBarStyleKey == null)
                 {
-                    _findToolBarStyleKey = new ComponentResourceKey(typeof(PresentationUIStyleResources), "PUIFlowViewers_FindToolBar");
+                    //_findToolBarStyleKey = new ComponentResourceKey(typeof(PresentationUIStyleResources), "PUIFlowViewers_FindToolBar");
                 }
                 return _findToolBarStyleKey;
             }

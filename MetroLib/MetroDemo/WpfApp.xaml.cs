@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
 
 namespace MetroDemo
 {
@@ -13,16 +14,20 @@ namespace MetroDemo
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class WpfApp : ApplicationX
+    public partial class WpfApp : System.Windows.ApplicationX, IComponentConnector
     {
         static WpfApp()
         {
             // App entry point for debugger
         }
 
+        //internal MetroDemo.WpfApp App;
+        //private bool _contentLoaded;
+
         public WpfApp()
         {
             // InitializeComponent();
+            
             this.StartupUri = new System.Uri("Wpf.MainWindow.xaml", System.UriKind.Relative);
             _contentLoaded = true;
             System.Uri resourceLocater = new System.Uri("/WpfMetro;component/wpfapp.xaml", System.UriKind.Relative);
@@ -52,16 +57,28 @@ namespace MetroDemo
 
         }
 
+        //void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target)
+        //{
+        //    switch (connectionId)
+        //    {
+        //        case 1:
+        //            this.App = ((MetroDemo.WpfApp)(target));
+        //            return;
+        //    }
+        //    this._contentLoaded = true;
+        //}
+
+
         /// <summary>
         /// Application Entry Point.
         /// </summary>
+        //[System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        //[System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         [System.STAThreadAttribute()]
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         public static void Main()
         {
             var app = new WpfApp();
-            app.InitializeComponent();
+            // app.InitializeComponent();
             app.Run();
         }
 

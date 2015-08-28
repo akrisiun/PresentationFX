@@ -132,7 +132,7 @@ namespace MS.Internal.AppModel
             {
                 if (isKnownScheme)
                 {
-                    IBrowserCallbackServices ibcs = (ApplicationX.Current != null) ? ApplicationX.Current.BrowserCallbackServices : null;
+                    IBrowserCallbackServices ibcs = (Application.Current != null) ? Application.Current.BrowserCallbackServices : null;
                     if (ibcs != null)
                     {
                         launched = CanNavigateToUrlWithZoneCheck(originatingUri, destinationUri);
@@ -178,9 +178,9 @@ namespace MS.Internal.AppModel
         internal static void UnsafeLaunchBrowser(Uri uri, string targetFrame = null)
         {
             // This'll likely go into SafeLaunchBrowser() function.
-            if (ApplicationX.Current != null && ApplicationX.Current.CheckAccess())
+            if (Application.Current != null && Application.Current.CheckAccess())
             {
-                IBrowserCallbackServices ibcs = ApplicationX.Current.BrowserCallbackServices;
+                IBrowserCallbackServices ibcs = Application.Current.BrowserCallbackServices;
                 if (ibcs != null)
                 {
                     // Browser app.
@@ -285,22 +285,23 @@ namespace MS.Internal.AppModel
             // If the MimeType is not a container, attempt to find sourceUri.
             // sourceUri should be null for Container cases, since it always assumes
             // the least privileged zone (InternetZone).
-            if (ApplicationX.Current.MimeType != MimeType.Document)
+            if (Application.Current.MimeType != MimeType.Document)
             {
                 sourceUri = BrowserInteropHelper.Source;
             }
-            else if (destinationUri.IsFile &&
-                System.IO.Path.GetExtension(destinationUri.LocalPath)
-                    .Equals(DocumentStream.XpsFileExtension, StringComparison.OrdinalIgnoreCase))
-            {
-                // In this case we know the following:
-                //  1) We are currently a Container
-                //  2) The destination is a File and another Container
+            
+            //else if (destinationUri.IsFile &&
+            //    System.IO.Path.GetExtension(destinationUri.LocalPath)
+            //        .Equals(DocumentStream.XpsFileExtension, StringComparison.OrdinalIgnoreCase))
+            //{
+            //    // In this case we know the following:
+            //    //  1) We are currently a Container
+            //    //  2) The destination is a File and another Container
 
-                // In this case we want to treat the destination as internet too so Container
-                // can navigate to other Containers by passing zone checks
-                targetZone = NativeMethods.URLZONE_INTERNET;
-            }
+            //    // In this case we want to treat the destination as internet too so Container
+            //    // can navigate to other Containers by passing zone checks
+            //    targetZone = NativeMethods.URLZONE_INTERNET;
+            //}
 
             if (sourceUri != null)
             {

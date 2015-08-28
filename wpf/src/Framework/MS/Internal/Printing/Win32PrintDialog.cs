@@ -86,11 +86,11 @@ namespace MS.Internal.Printing
             //
             IntPtr owner = IntPtr.Zero;
 
-            if ((System.Windows.ApplicationX.Current != null) &&
-                (System.Windows.ApplicationX.Current.MainWindow != null))
+            if ((System.Windows.Application.Current != null) &&
+                (System.Windows.Application.Current.MainWindow != null))
             {
                 System.Windows.Interop.WindowInteropHelper helper =
-                    new System.Windows.Interop.WindowInteropHelper(System.Windows.ApplicationX.Current.MainWindow);
+                    new System.Windows.Interop.WindowInteropHelper(System.Windows.Application.Current.MainWindow);
                 owner = helper.CriticalHandle;
             }
 

@@ -45,8 +45,8 @@ namespace MS.Internal.Documents.Application
         /// If this is null it will default to the URI source.</param>
         public DocumentApplicationJournalEntry(object state, string name)
         {
-            Invariant.Assert(state is DocumentApplicationState,
-                "state should be of type DocumentApplicationState");
+            //Invariant.Assert(state is DocumentApplicationState,
+            //    "state should be of type DocumentApplicationState");
 
             // Store parameters locally.
             _state = state;
@@ -80,32 +80,33 @@ namespace MS.Internal.Documents.Application
             // On initial history navigation in the browser, the window's layout may not have been 
             // done yet. ApplyTemplate() causes the viewer to be created.
             navigator.ApplyTemplate();
-            DocumentApplicationDocumentViewer docViewer = navigator.Template.FindName(
-                "PUIDocumentApplicationDocumentViewer", navigator)
-                as DocumentApplicationDocumentViewer;
-            Debug.Assert(docViewer != null, "PUIDocumentApplicationDocumentViewer not found.");
-            if (docViewer != null)
-            {
-                // Set the new state on the DocumentViewer
-                if (_state is DocumentApplicationState)
-                {
-                    docViewer.StoredDocumentApplicationState = (DocumentApplicationState)_state;
-                }
 
-                // Check that a Document exists.
-                if (navigationService.Content != null)
-                {
-                    IDocumentPaginatorSource document = navigationService.Content as IDocumentPaginatorSource;
+            //DocumentApplicationDocumentViewer docViewer = navigator.Template.FindName(
+            //    "PUIDocumentApplicationDocumentViewer", navigator)
+            //    as DocumentApplicationDocumentViewer;
+            //Debug.Assert(docViewer != null, "PUIDocumentApplicationDocumentViewer not found.");
+            //if (docViewer != null)
+            //{
+            //    // Set the new state on the DocumentViewer
+            //    if (_state is DocumentApplicationState)
+            //    {
+            //        docViewer.StoredDocumentApplicationState = (DocumentApplicationState)_state;
+            //    }
 
-                    // If the document has already been paginated (could happen in the
-                    // case of a fragment navigation), then set the DocumentViewer to the
-                    // new state that was set.
-                    if ((document != null) && (document.DocumentPaginator.IsPageCountValid))
-                    {
-                        docViewer.SetUIToStoredState();
-                    }
-                }
-            }
+            //    // Check that a Document exists.
+            //    if (navigationService.Content != null)
+            //    {
+            //        IDocumentPaginatorSource document = navigationService.Content as IDocumentPaginatorSource;
+
+            //        // If the document has already been paginated (could happen in the
+            //        // case of a fragment navigation), then set the DocumentViewer to the
+            //        // new state that was set.
+            //        if ((document != null) && (document.DocumentPaginator.IsPageCountValid))
+            //        {
+            //            docViewer.SetUIToStoredState();
+            //        }
+            //    }
+            //}
         }
 
         public override string JournalEntryName

@@ -36,7 +36,7 @@ namespace Metro.Wpf.DataAct
             }
             _contentLoaded = true;
             System.Uri resourceLocater = new System.Uri("/Wpf.MetroLib;component/wpf/dataact/actionsbar.xaml", System.UriKind.Relative);
-            System.Windows.ApplicationX.LoadComponent(this, resourceLocater);
+            System.Windows.Application.LoadComponent(this, resourceLocater);
         }
     }
 }

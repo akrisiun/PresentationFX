@@ -288,15 +288,15 @@ namespace MahApps.Metro.Controls
                 return theme;
 
             // second try, look for main window
-            if (ApplicationX.Current != null)
+            if (Application.Current != null)
             {
-                var mainWindow = ApplicationX.Current.MainWindow as MetroWindow;
+                var mainWindow = Application.Current.MainWindow as MetroWindow;
                 theme = mainWindow != null ? ThemeManager.DetectAppStyle(mainWindow) : null;
                 if (theme != null && theme.Item2 != null)
                     return theme;
 
                 // oh no, now look at application resource
-                theme = ThemeManager.DetectAppStyle(ApplicationX.Current);
+                theme = ThemeManager.DetectAppStyle(Application.Current);
                 if (theme != null && theme.Item2 != null)
                     return theme;
             }

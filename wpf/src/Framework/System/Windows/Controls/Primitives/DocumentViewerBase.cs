@@ -705,16 +705,16 @@ namespace System.Windows.Controls.Primitives
         /// Invoked when the "Find" button in the Find Toolbar is clicked.
         /// This method invokes the actual Find process.
         /// </summary>
-        internal ITextRange Find(FindToolBar findToolBar)
-        {
-            ITextView masterPageTextView = null;
-            DocumentPageView masterPage = GetMasterPageView();
-            if (masterPage != null && masterPage is IServiceProvider)
-            {
-                masterPageTextView = ((IServiceProvider)masterPage).GetService(typeof(ITextView)) as ITextView;
-            }
-            return DocumentViewerHelper.Find(findToolBar, _textEditor, _textView, masterPageTextView);
-        }
+        //internal ITextRange Find(FindToolBar findToolBar)
+        //{
+        //    ITextView masterPageTextView = null;
+        //    DocumentPageView masterPage = GetMasterPageView();
+        //    if (masterPage != null && masterPage is IServiceProvider)
+        //    {
+        //        masterPageTextView = ((IServiceProvider)masterPage).GetService(typeof(ITextView)) as ITextView;
+        //    }
+        //    return DocumentViewerHelper.Find(findToolBar, _textEditor, _textView, masterPageTextView);
+        //}
 
         #endregion Internal Methods
 
@@ -1512,16 +1512,17 @@ namespace System.Windows.Controls.Primitives
             // Special rules:
             // a) Print command is enabled when Document is attached and printing is not in progress.
             // b) CancelPrint command is enabled only during printing.
-            if (args.Command == ApplicationCommands.Print)
-            {
-                args.CanExecute = (dv.Document != null) && (dv._documentWriter == null);
-                args.Handled = true;
-            }
-            else if (args.Command == ApplicationCommands.CancelPrint)
-            {
-                args.CanExecute = (dv._documentWriter != null);
-            }
-            else
+            
+            //if (args.Command == ApplicationCommands.Print)
+            //{
+            //    args.CanExecute = (dv.Document != null) && (dv._documentWriter == null);
+            //    args.Handled = true;
+            //}
+            //else if (args.Command == ApplicationCommands.CancelPrint)
+            //{
+            //    args.CanExecute = (dv._documentWriter != null);
+            //}
+            //else
             {
                 args.CanExecute = true;
             }

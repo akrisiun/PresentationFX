@@ -3666,7 +3666,7 @@ namespace System.Windows
             // check if within an app && on the same thread
             if (IsInsideApp == true)
             {
-                if (ApplicationX.Current.Dispatcher.Thread == Dispatcher.CurrentDispatcher.Thread)
+                if (Application.Current.Dispatcher.Thread == Dispatcher.CurrentDispatcher.Thread)
                 {
                     // add to window collection
                     // use internal version since we want to update the underlying collection
@@ -4604,7 +4604,7 @@ namespace System.Windows
 
             if (this.IsInsideApp)
             {
-                if (ApplicationX.Current.Dispatcher.Thread == Dispatcher.CurrentDispatcher.Thread)
+                if (Application.Current.Dispatcher.Thread == Dispatcher.CurrentDispatcher.Thread)
                 {
                     // use internal version since we want to update the underlying collection
                     App.WindowsInternal.Remove(this);
@@ -5641,7 +5641,7 @@ namespace System.Windows
             // we set Visibility back to Collapsed. Otherwise we could get into a loop.
             if (value == true)
             {
-                if (ApplicationX.IsShuttingDown)
+                if (Application.IsShuttingDown)
                     return null;
 
                 SetShowKeyboardCueState();
@@ -7469,9 +7469,9 @@ namespace System.Windows
         /// <summary>
         ///     Application Instance
         /// </summary>
-        private System.Windows.ApplicationX App
+        private System.Windows.Application App
         {
-            get {return System.Windows.ApplicationX.Current;}
+            get {return System.Windows.Application.Current;}
         }
 
         /// <summary>
@@ -7481,7 +7481,7 @@ namespace System.Windows
         {
             get
             {
-                return (ApplicationX.Current != null);
+                return (Application.Current != null);
             }
         }
 

@@ -219,16 +219,16 @@ namespace System.Windows.Documents
 
                 bool supportImageCopy = false;
 
-                if (_scope is DocumentGrid && ((DocumentGrid)_scope).DocumentViewerOwner is DocumentApplicationDocumentViewer)
-                {
-                    // This is XPSViewer, make sure it is user initiated
-                    if (!e.UserInitiated && !HasRubberBandCopyPermissions())
-                    {
-                        return;
-                    }
-                    supportImageCopy = true;
-                }
-                else
+                //if (_scope is DocumentGrid && ((DocumentGrid)_scope).DocumentViewerOwner is DocumentApplicationDocumentViewer)
+                //{
+                //    // This is XPSViewer, make sure it is user initiated
+                //    if (!e.UserInitiated && !HasRubberBandCopyPermissions())
+                //    {
+                //        return;
+                //    }
+                //    supportImageCopy = true;
+                //}
+                //else
                 {
                     //Outside of XPSViewer, support image copy in full trust only
                     supportImageCopy = HasRubberBandCopyPermissions();
