@@ -155,7 +155,7 @@ namespace MS.Internal.AppModel
             if (_rbw.Value == null)
             {
 
-                Application.Current.Dispatcher.Invoke(
+                ApplicationX.Current.Dispatcher.Invoke(
                                     DispatcherPriority.Send,
                                     new DispatcherOperationCallback(_CreateRootBrowserWindowCallback),
                                     null);
@@ -238,7 +238,7 @@ namespace MS.Internal.AppModel
                 case MimeType.Markup:
                     // Make a dummy application (in lieu of the one provided by the defunct XamlViewer.xbap).
                     Invariant.Assert(AppDomain.CurrentDomain.FriendlyName == "XamlViewer");
-                    Application app = new Application();
+                    ApplicationX app = new ApplicationX();
                     app.StartupUri = Uri;
                     // Any URL #fragment is appended to StartupUri in _RunDelegate().
                     // For history navigation, ApplicationProxyInternal has already started navigation to the
@@ -260,15 +260,15 @@ namespace MS.Internal.AppModel
             // Set the Application.MimeType
             // Since loading containers causes the application to be constructed now,
             // the initial setting of the MimeType does not get passed to the application.
-            Application.Current.MimeType = mimeType;
+            ApplicationX.Current.MimeType = mimeType;
             ServiceProvider = initData.ServiceProvider; // also sets Application.ServiceProvider
 
-            Application.Current.Dispatcher.Invoke(
+            ApplicationX.Current.Dispatcher.Invoke(
                 DispatcherPriority.Send,
                 new DispatcherOperationCallback(_RunDelegate),
                 initData);
 
-            int exitCode = Application.Current.RunInternal(null);
+            int exitCode = ApplicationX.Current.RunInternal(null);
 
             EventTrace.EasyTraceEvent(EventTrace.Keyword.KeywordHosting | EventTrace.Keyword.KeywordPerf, EventTrace.Level.Verbose, EventTrace.Event.WpfHost_AppProxyRunEnd);
 
@@ -283,7 +283,7 @@ namespace MS.Internal.AppModel
         {
             InitData initData = (InitData)args;
 
-            Application currentApp = Application.Current;
+            ApplicationX currentApp = ApplicationX.Current;
             if (currentApp != null && !(currentApp is XappLauncherApp))
             {
                 string fragment = initData.Fragment;
@@ -323,9 +323,9 @@ namespace MS.Internal.AppModel
         internal void Show(bool show)
         {
             _show = show;
-            if (Application.Current != null && RootBrowserWindow != null)
+            if (ApplicationX.Current != null && RootBrowserWindow != null)
             {
-                Application.Current.Dispatcher.BeginInvoke(
+                ApplicationX.Current.Dispatcher.BeginInvoke(
                                     DispatcherPriority.Send,
                                     new DispatcherOperationCallback(_ShowDelegate),
                                     null);
@@ -336,7 +336,7 @@ namespace MS.Internal.AppModel
         private object _ShowDelegate(object ignore)
         {
             // The RBW might be torn down just before the DispatcherOperation is invoked.
-            if (RootBrowserWindow == null || Application.IsShuttingDown)
+            if (RootBrowserWindow == null || ApplicationX.IsShuttingDown)
                 return null;
 
             if (_show)
@@ -347,7 +347,7 @@ namespace MS.Internal.AppModel
 
                 // initial focus should be on us, not the browser frame
                 // Focusing is done asynchronously because Visibility actually changes asynchronously.
-                Application.Current.Dispatcher.BeginInvoke(
+                ApplicationX.Current.Dispatcher.BeginInvoke(
                     // same priority as used in the Window.Visibility PropertyChangedCallback
                     DispatcherPriority.Normal,
                     new DispatcherOperationCallback(_FocusDelegate), null);
@@ -388,9 +388,9 @@ namespace MS.Internal.AppModel
 
         internal void Move(Rect windowRect)
         {
-            if (Application.Current != null && RootBrowserWindow != null)
+            if (ApplicationX.Current != null && RootBrowserWindow != null)
             {
-                Application.Current.Dispatcher.BeginInvoke(
+                ApplicationX.Current.Dispatcher.BeginInvoke(
                                     DispatcherPriority.Send,
                                     new DispatcherOperationCallback(_MoveDelegate),
                                     windowRect);
@@ -406,7 +406,7 @@ namespace MS.Internal.AppModel
         private object _MoveDelegate( object moveArgs )
         {
             // The RBW might be closed just before _MoveDelegate() is called. => check _rbw again.
-            if (_rbw.Value != null && !Application.IsShuttingDown)
+            if (_rbw.Value != null && !ApplicationX.IsShuttingDown)
             {
                 Rect r = (Rect)moveArgs;
 
@@ -431,14 +431,14 @@ namespace MS.Internal.AppModel
             Cleanup();
             _proxyInstance = null;
 
-            Application app = Application.Current;
+            ApplicationX app = ApplicationX.Current;
             if (app != null)
             {
                 XappLauncherApp launcherApp = app as XappLauncherApp;
                 if (launcherApp != null)
                 {
                     launcherApp.AbortActivation();
-                    Debug.Assert(Application.IsShuttingDown);
+                    Debug.Assert(ApplicationX.IsShuttingDown);
                 }
                 else
                 {
@@ -461,9 +461,9 @@ namespace MS.Internal.AppModel
 
         internal void Activate(bool fActivate)
         {
-            if (Application.Current != null && RootBrowserWindow != null)
+            if (ApplicationX.Current != null && RootBrowserWindow != null)
             {
-                Application.Current.Dispatcher.BeginInvoke(
+                ApplicationX.Current.Dispatcher.BeginInvoke(
                                     DispatcherPriority.Send,
                                     new DispatcherOperationCallback(_ActivateDelegate),
                                     fActivate);
@@ -487,16 +487,16 @@ namespace MS.Internal.AppModel
 
         internal bool CanInvokeJournalEntry(int entryId)
         {
-            if (Application.Current == null)
+            if (ApplicationX.Current == null)
             {
                 return false;
             }
 
-            return (bool)Application.Current.Dispatcher.Invoke(
+            return (bool)ApplicationX.Current.Dispatcher.Invoke(
             DispatcherPriority.Send,
                 (DispatcherOperationCallback) delegate(object unused)
             {
-                NavigationWindow window = Application.Current.MainWindow as NavigationWindow;
+                NavigationWindow window = ApplicationX.Current.MainWindow as NavigationWindow;
 
                 if (window == null)
                     return false;
@@ -541,7 +541,7 @@ namespace MS.Internal.AppModel
 
             // When we are here, the browser has just started to shut down, so we should only check
             // whether the application object is shutting down.
-            if (Application.IsApplicationObjectShuttingDown == true)
+            if (ApplicationX.IsApplicationObjectShuttingDown == true)
                 return null;
 
             Invariant.Assert(_rbw.Value != null, "BrowserJournalingError: _rbw should not be null");
@@ -676,9 +676,9 @@ namespace MS.Internal.AppModel
         {
             SaveHistoryReturnInfo info = null ;
 
-            if (Application.Current != null)
+            if (ApplicationX.Current != null)
             {
-                info = ( SaveHistoryReturnInfo) Application.Current.Dispatcher.Invoke(
+                info = ( SaveHistoryReturnInfo) ApplicationX.Current.Dispatcher.Invoke(
                                 DispatcherPriority.Send,
                                 new DispatcherOperationCallback(_GetSaveHistoryBytesDelegate) ,
                                 persistEntireJournal);
@@ -706,7 +706,7 @@ namespace MS.Internal.AppModel
         [SecurityCritical]
         internal void LoadHistoryStream(MemoryStream loadStream, bool firstLoadFromHistory)
         {
-            if (Application.Current == null)
+            if (ApplicationX.Current == null)
             {
                 return;
             }
@@ -715,7 +715,7 @@ namespace MS.Internal.AppModel
             info.loadStream = loadStream ;
             info.firstLoadFromHistory = firstLoadFromHistory ;
 
-            Application.Current.Dispatcher.Invoke(
+            ApplicationX.Current.Dispatcher.Invoke(
                         DispatcherPriority.Send,
                         new DispatcherOperationCallback(_LoadHistoryStreamDelegate),
                         info);
@@ -782,12 +782,12 @@ namespace MS.Internal.AppModel
 
 
 
-                Debug.Assert(Application.Current != null, "BrowserJournalingError: Application object should already be created");
+                Debug.Assert(ApplicationX.Current != null, "BrowserJournalingError: Application object should already be created");
 
                 if (entry != null)
                 {
                     //Prevent navigations to StartupUri for history loads by canceling the StartingUp event
-                    Application.Current.Startup += new System.Windows.StartupEventHandler(this.OnStartup);
+                    ApplicationX.Current.Startup += new System.Windows.StartupEventHandler(this.OnStartup);
                     
                     _rbw.Value.JournalNavigationScope.NavigateToEntry(entry);
                 }
@@ -870,13 +870,13 @@ namespace MS.Internal.AppModel
         // See if an App instance is currently loaded.
         internal bool IsAppLoaded()
         {
-            return (Application.Current == null ? false : true);
+            return (ApplicationX.Current == null ? false : true);
         }
 
         // Return the internal static variable _shutdown.
         internal bool IsShutdown()
         {
-            return Application.IsShuttingDown;
+            return ApplicationX.IsShuttingDown;
         }
 
         /// <SecurityNote>
@@ -890,12 +890,12 @@ namespace MS.Internal.AppModel
         [SecurityCritical, SecurityTreatAsSafe]
         internal void Cleanup()
         {
-            if (Application.Current != null)
+            if (ApplicationX.Current != null)
             {
-                IBrowserCallbackServices bcs = Application.Current.BrowserCallbackServices;
+                IBrowserCallbackServices bcs = ApplicationX.Current.BrowserCallbackServices;
                 if (bcs != null)
                 {
-                    Debug.Assert(!Application.IsApplicationObjectShuttingDown);
+                    Debug.Assert(!ApplicationX.IsApplicationObjectShuttingDown);
                     // Marshal.ReleaseComObject(bcs) has to be called so that the refcount of the
                     // native objects goes to zero for clean shutdown. But it should not be called
                     // right away, because there may still be DispatcherOperations in the queue
@@ -903,7 +903,7 @@ namespace MS.Internal.AppModel
                     // Last, it can't be called with prioroty lower than Normal, because that's
                     // the priority of Applicatoin.ShudownCallback(), which shuts down the
                     // Dispatcher.
-                    Application.Current.Dispatcher.BeginInvoke(
+                    ApplicationX.Current.Dispatcher.BeginInvoke(
                         DispatcherPriority.Normal, new DispatcherOperationCallback(ReleaseBrowserCallback), bcs);
                 }
             }
@@ -1029,18 +1029,18 @@ namespace MS.Internal.AppModel
         {
             get
             {
-                if (Application.Current == null)
+                if (ApplicationX.Current == null)
                 {
                     return null;
                 }
 
-                return (OleCmdHelper) Application.Current.Dispatcher.Invoke(
+                return (OleCmdHelper) ApplicationX.Current.Dispatcher.Invoke(
                 DispatcherPriority.Send,
                 (DispatcherOperationCallback) delegate(object unused)
                 {
                     // V3.5: Check for Application object shutting down only.
                     // Consider to check for Browser shutting down.
-                    if (Application.IsApplicationObjectShuttingDown == true)
+                    if (ApplicationX.IsApplicationObjectShuttingDown == true)
                         return null;
 
                     if (_oleCmdHelper == null)
@@ -1125,7 +1125,7 @@ namespace MS.Internal.AppModel
             //We listen to the Startup event only for history loads in which
             //case we want to do our journaling load instead of StartupUri load
             e.PerformDefaultAction = false;
-            Application.Current.Startup -= new System.Windows.StartupEventHandler(this.OnStartup);
+            ApplicationX.Current.Startup -= new System.Windows.StartupEventHandler(this.OnStartup);
         }
 
 
@@ -1174,9 +1174,9 @@ namespace MS.Internal.AppModel
             {
                 _serviceProvider = value;
 
-                if (Application.Current != null)
+                if (ApplicationX.Current != null)
                 {
-                    Application.Current.ServiceProvider = value;
+                    ApplicationX.Current.ServiceProvider = value;
                 }
             }
         }

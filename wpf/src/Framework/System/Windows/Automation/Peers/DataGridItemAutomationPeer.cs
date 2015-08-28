@@ -366,7 +366,7 @@ namespace System.Windows.Automation.Peers
 
         IRawElementProviderSimple[] ISelectionProvider.GetSelection()
         {
-            DataGrid dataGrid = this.OwningDataGrid;
+            DataGridX dataGrid = this.OwningDataGrid;
             if (dataGrid == null)
             {
                 return null;
@@ -576,7 +576,7 @@ namespace System.Windows.Automation.Peers
         {
             get
             {
-                return (_item == CollectionView.NewItemPlaceholder) || (_item == DataGrid.NewItemPlaceholder);
+                return (_item == CollectionView.NewItemPlaceholder) || (_item == DataGridX.NewItemPlaceholder);
             }
         }
         
@@ -589,12 +589,12 @@ namespace System.Windows.Automation.Peers
             }
         }
 
-        private DataGrid OwningDataGrid
+        private DataGridX OwningDataGrid
         {
             get
             {
                 DataGridAutomationPeer gridPeer = _dataGridAutomationPeer as DataGridAutomationPeer;
-                return (DataGrid)gridPeer.Owner;
+                return (DataGridX)gridPeer.Owner;
             }
         }
 

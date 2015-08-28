@@ -22,7 +22,7 @@ using System.IO;
 using System.Reflection;
 using System.Security;
 using System.Security.Permissions;
-using System.Windows.Xps.Serialization;
+//using System.Windows.Xps.Serialization;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Win32;
 using MS.Internal.PresentationFramework;
@@ -255,7 +255,7 @@ namespace System.Windows.Documents.Serialization
         ///</SecurityNote> 
         /// <returns>SerializerDescriptor for new serializer</returns>
         [SuppressMessage("Microsoft.Security", "CA2116:AptcaMethodsShouldOnlyCallAptcaMethods")]
-        [SecurityCritical, SecurityTreatAsSafe]        
+        [SecurityCritical] // , SecurityTreatAsSafe]        
         private SerializerDescriptor CreateSystemSerializerDescriptor()
         {
             SecurityHelper.DemandPlugInSerializerPermissions();
@@ -264,9 +264,11 @@ namespace System.Windows.Documents.Serialization
 
             // The XpsSerializer (our default document serializer) is defined in ReachFramework.dll
             // But callers can only get here if the above demand succeeds, so they are already fully trusted
-            serializerDescriptor = SerializerDescriptor.CreateFromFactoryInstance(
-                                        new XpsSerializerFactory()
-                                        );
+            
+            // TODO
+            //serializerDescriptor = SerializerDescriptor.CreateFromFactoryInstance(
+            //                            new XpsSerializerFactory()
+            //                            );
 
             return serializerDescriptor;
         }

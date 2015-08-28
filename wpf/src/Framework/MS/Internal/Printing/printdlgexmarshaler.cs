@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.Printing.Interop;
+//using System.Printing.Interop;
 using System.Printing;
 using System.Runtime.InteropServices;
 using System.Security;
@@ -134,7 +134,7 @@ namespace MS.Internal.Printing
                         out devModeHandle);
 
                     _dialog.PrintQueue = AcquirePrintQueue(printerName);
-                    _dialog.PrintTicket = AcquirePrintTicket(devModeHandle, printerName);
+                    //_dialog.PrintTicket = AcquirePrintTicket(devModeHandle, printerName);
 
                     if ((flags & NativeMethods.PD_PAGENUMS) == NativeMethods.PD_PAGENUMS)
                     {
@@ -318,7 +318,7 @@ namespace MS.Internal.Printing
                     IntPtr pDevNames = IntPtr.Zero;
                     try
                     {
-                        pDevNames = UnsafeNativeMethods.GlobalLock(devNamesHandle);
+                        pDevNames = UnsafeNativeMethodsX.GlobalLock(devNamesHandle);
 
                         NativeMethods.DEVNAMES devNames = (NativeMethods.DEVNAMES)Marshal.PtrToStructure(
                             pDevNames,
@@ -330,7 +330,7 @@ namespace MS.Internal.Printing
                     {
                         if (pDevNames != IntPtr.Zero)
                         {
-                            UnsafeNativeMethods.GlobalUnlock(devNamesHandle);
+                            UnsafeNativeMethodsX.GlobalUnlock(devNamesHandle);
                         }
                     }
                 }
@@ -420,13 +420,14 @@ namespace MS.Internal.Printing
             /// </SecurityNote>
             [SecurityCritical]
             private
-            PrintTicket
+            object // Reach : 
             AcquirePrintTicket(
                 IntPtr devModeHandle,
                 string printQueueName
                 )
             {
-                PrintTicket printTicket = null;
+                object // Reach : 
+                       printTicket = null;
                 byte[] devModeData = null;
 
                 //
@@ -435,7 +436,7 @@ namespace MS.Internal.Printing
                 IntPtr pDevMode = IntPtr.Zero;
                 try
                 {
-                    pDevMode = UnsafeNativeMethods.GlobalLock(devModeHandle);
+                    pDevMode = UnsafeNativeMethodsX.GlobalLock(devModeHandle);
 
                     NativeMethods.DEVMODE devMode = (NativeMethods.DEVMODE)Marshal.PtrToStructure(
                         pDevMode,
@@ -447,7 +448,7 @@ namespace MS.Internal.Printing
                 {
                     if (pDevMode != IntPtr.Zero)
                     {
-                        UnsafeNativeMethods.GlobalUnlock(devModeHandle);
+                        UnsafeNativeMethodsX.GlobalUnlock(devModeHandle);
                     }
                 }
 
@@ -457,12 +458,12 @@ namespace MS.Internal.Printing
                     //
                     // Convert the devmode data to a PrintTicket object
                     //
-                    using (PrintTicketConverter ptConverter = new PrintTicketConverter(
-                                printQueueName,
-                                PrintTicketConverter.MaxPrintSchemaVersion))
-                    {
-                        printTicket = ptConverter.ConvertDevModeToPrintTicket(devModeData);
-                    }
+                    //using (PrintTicketConverter ptConverter = new PrintTicketConverter(
+                    //            printQueueName,
+                    //            PrintTicketConverter.MaxPrintSchemaVersion))
+                    //{
+                    //    printTicket = ptConverter.ConvertDevModeToPrintTicket(devModeData);
+                    //}
                 }
                 finally
                 {
@@ -765,17 +766,17 @@ namespace MS.Internal.Printing
 
                 if (devModeHandle != IntPtr.Zero)
                 {
-                    UnsafeNativeMethods.GlobalFree(devModeHandle);
+                    UnsafeNativeMethodsX.GlobalFree(devModeHandle);
                 }
 
                 if (devNamesHandle != IntPtr.Zero)
                 {
-                    UnsafeNativeMethods.GlobalFree(devNamesHandle);
+                    UnsafeNativeMethodsX.GlobalFree(devNamesHandle);
                 }
 
                 if (pageRangePtr != IntPtr.Zero)
                 {
-                    UnsafeNativeMethods.GlobalFree(pageRangePtr);
+                    UnsafeNativeMethodsX.GlobalFree(pageRangePtr);
                 }
 
                 Marshal.FreeHGlobal(unmanagedBuffer);
@@ -907,7 +908,8 @@ namespace MS.Internal.Printing
             IntPtr
             AllocateAndInitializeDevMode(
                 string printerName,
-                PrintTicket printTicket
+                object // Reach : PrintTicket 
+                    printTicket
                 )
             {
                 byte[] devModeData = null;
@@ -918,14 +920,14 @@ namespace MS.Internal.Printing
                     //
                     // Convert the PrintTicket object to a DEVMODE
                     //
-                    using (PrintTicketConverter ptConverter = new PrintTicketConverter(
-                                printerName,
-                                PrintTicketConverter.MaxPrintSchemaVersion))
-                    {
-                        devModeData = ptConverter.ConvertPrintTicketToDevMode(
-                            printTicket,
-                            BaseDevModeType.UserDefault);
-                    }
+                    //using (PrintTicketConverter ptConverter = new PrintTicketConverter(
+                    //            printerName,
+                    //            PrintTicketConverter.MaxPrintSchemaVersion))
+                    //{
+                    //    devModeData = ptConverter.ConvertPrintTicketToDevMode(
+                    //        printTicket,
+                    //        BaseDevModeType.UserDefault);
+                    //}
                 }
                 finally
                 {

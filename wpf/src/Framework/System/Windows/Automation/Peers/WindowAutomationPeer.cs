@@ -10,6 +10,7 @@ using System.ComponentModel;
 
 using MS.Internal;
 using MS.Win32;
+using NativeMethods = MS.Win32.NativeMethods;
 
 // Used to support the warnings disabled below
 #pragma warning disable 1634, 1691

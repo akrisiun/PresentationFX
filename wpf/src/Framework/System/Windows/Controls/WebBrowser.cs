@@ -19,6 +19,8 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows;
 using MS.Win32;
+using NativeMethods = MS.Win32.NativeMethods;
+
 using System.Security; 
 using System.Security.Permissions; 
 using System.Windows.Controls.Primitives; //PopupRoot
@@ -1340,9 +1342,9 @@ namespace System.Windows.Controls
             {
                 if (_rbw.Value == null)
                 {
-                    if (Application.Current != null)
+                    if (ApplicationX.Current != null)
                     {
-                        _rbw.Value = Application.Current.MainWindow as RootBrowserWindow;
+                        _rbw.Value = ApplicationX.Current.MainWindow as RootBrowserWindow;
                     }
                 }
 
@@ -1523,7 +1525,7 @@ namespace System.Windows.Controls
             [SecurityCritical]
             internal override object CreateWebOC()
             {
-                IntPtr pWebOC = Application.Current.BrowserCallbackServices.CreateWebBrowserControlInBrowserProcess();
+                IntPtr pWebOC = ApplicationX.Current.BrowserCallbackServices.CreateWebBrowserControlInBrowserProcess();
                 object webOC = Marshal.GetTypedObjectForIUnknown(pWebOC, typeof(UnsafeNativeMethods.IWebBrowser2));
                 Marshal.Release(pWebOC);
                 return webOC;

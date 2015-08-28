@@ -19,7 +19,7 @@ namespace System.Runtime.InteropServices
     [InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
     [CLSCompliant(false)]
     [TypeLibImportClassAttribute(typeof(System.Activator))]
-[System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(true)]
     public interface _Activator
     {
         void GetTypeInfoCount(out uint pcTInfo);

@@ -21,6 +21,8 @@ namespace System.Windows.Documents
     using System.Security;
     using System.Security.Permissions;
     using MS.Win32;
+    using NativeMethods = MS.Win32.NativeMethods;
+
     using System.Windows.Interop;
 
     // A Component of TextEditor supporting the default ContextMenu.

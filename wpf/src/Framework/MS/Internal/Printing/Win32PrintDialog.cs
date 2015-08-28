@@ -86,11 +86,11 @@ namespace MS.Internal.Printing
             //
             IntPtr owner = IntPtr.Zero;
 
-            if ((System.Windows.Application.Current != null) &&
-                (System.Windows.Application.Current.MainWindow != null))
+            if ((System.Windows.ApplicationX.Current != null) &&
+                (System.Windows.ApplicationX.Current.MainWindow != null))
             {
                 System.Windows.Interop.WindowInteropHelper helper =
-                    new System.Windows.Interop.WindowInteropHelper(System.Windows.Application.Current.MainWindow);
+                    new System.Windows.Interop.WindowInteropHelper(System.Windows.ApplicationX.Current.MainWindow);
                 owner = helper.CriticalHandle;
             }
 
@@ -117,7 +117,7 @@ namespace MS.Internal.Printing
                     //
                     // Display the Win32 print dialog
                     //
-                    Int32 hr = UnsafeNativeMethods.PrintDlgEx(printDlgEx.UnmanagedPrintDlgEx);
+                    Int32 hr = UnsafeNativeMethodsX.PrintDlgEx(printDlgEx.UnmanagedPrintDlgEx);
                     if (hr == MS.Win32.NativeMethods.S_OK)
                     {
                         result = printDlgEx.SyncFromStruct();
@@ -335,11 +335,11 @@ namespace MS.Internal.Printing
             try
             {
                 // If printer support is not installed this should throw a PrintingNotSupportedException
-                using (IDisposable converter = new PrintTicketConverter(printerName, 1))
-                {
-                }
+                //using (IDisposable converter = new PrintTicketConverter(printerName, 1))
+                //{
+                //}
             }
-            catch (PrintQueueException)
+            catch (Exception) // PrintQueueException)
             {
                 // We can ---- print queue exceptions because they imply that printing
                 // support is installed

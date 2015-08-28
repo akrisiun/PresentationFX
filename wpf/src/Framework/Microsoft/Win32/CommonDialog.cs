@@ -34,6 +34,10 @@ namespace Microsoft.Win32
     using MS.Internal.PresentationFramework;
     using MS.Win32;
 
+    using SafeNativeMethods = MS.Win32.SafeNativeMethods;
+    using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethodsX;
+    using NativeMethods = MS.Win32.NativeMethods;
+
     /// <summary>
     ///  An abstract base class for displaying common dialogs.
     /// </summary>
@@ -103,15 +107,15 @@ namespace Microsoft.Win32
             // Call GetActiveWindow to retrieve the window handle to the active window
             // attached to the calling thread's message queue.  We'll set the owner of
             // the common dialog to this handle.
-            IntPtr hwndOwner = UnsafeNativeMethods.GetActiveWindow();
+            IntPtr hwndOwner = UnsafeNativeMethodsX.GetActiveWindow();
             
             if (hwndOwner == IntPtr.Zero)
             {
                 // No active window, so we'll use the parking window as the owner, 
                 // if its available.
-                if (Application.Current != null)
+                if (ApplicationX.Current != null)
                 {                    
-                    hwndOwner = Application.Current.ParkingHwnd;
+                    hwndOwner = ApplicationX.Current.ParkingHwnd;
                 }
             }
 
@@ -362,7 +366,7 @@ namespace Microsoft.Win32
                                                           ref y);
                     
                     // Call SetWindowPos to actually move the window.
-                    UnsafeNativeMethods.SetWindowPos(hWnd,                          // handle to the window to move
+                    UnsafeNativeMethodsX.SetWindowPos(hWnd,                          // handle to the window to move
                                                      NativeMethods.NullHandleRef,   // window to precede this one in zorder
                                                      (int)Math.Round(x), 
                                                      (int)Math.Round(y),            // new X and Y positions

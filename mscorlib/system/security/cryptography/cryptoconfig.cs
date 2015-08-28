@@ -690,12 +690,16 @@ namespace System.Security.Cryptography {
             }
         }
 
-        public static string MapNameToOID (string name) {
-            return MapNameToOID(name, OidGroup.AllGroups);
-        }
+        //public static string MapNameToOID (string name) {
+        //    return MapNameToOID(name, OidGroup.AllGroups);
+        //}
 
-        [SecuritySafeCritical]
-        internal static string MapNameToOID(string name, OidGroup oidGroup) {
+        // [SecuritySafeCritical]
+        internal static string MapNameToOID(string name, 
+            object // OidGroup 
+                oidGroup) 
+        {
+
             if (name == null) 
                 throw new ArgumentNullException("name");
             Contract.EndContractBlock();
@@ -719,9 +723,13 @@ namespace System.Security.Cryptography {
                 oid = DefaultOidHT.GetValueOrDefault(name);
 
 #if FEATURE_CRYPTO || FEATURE_LEGACYNETCFCRYPTO
+            
+            // TODO
+
             // Try the CAPI table association
-            if (oid == null)
-                oid = X509Utils.GetOidFromFriendlyName(name, oidGroup);
+            //if (oid == null)
+            //    oid = X509Utils.GetOidFromFriendlyName(name, oidGroup);
+
 #endif // FEATURE_CRYPTO
 
             return oid;

@@ -29,6 +29,9 @@ using MS.Internal.Interop;                      // For STAT_CHUNK, etc.
 using MS.Internal.IO.Packaging;                 // For ManagedIStream
 using MS.Internal;
 
+using MS.Win32;                                     // for NativeMethods
+using NativeMethods = MS.Win32.NativeMethods;
+
 namespace MS.Internal.IO.Packaging
 {
     #region XpsFilter
@@ -61,15 +64,15 @@ namespace MS.Internal.IO.Packaging
         {
             if (_filter == null)
             {
-                throw new COMException(SR.Get("SRID.FileToFilterNotLoaded"),
-                    (int)NativeMethods.E_FAIL);
+                throw new COMException(SR.Get("SRID.FileToFilterNotLoaded"), -1);
+                    //(int)NativeMethods.E_FAIL);
             }
 
             if (cAttributes > 0 && aAttributes == null)
             {
                 // Attributes count and array do not match.
-                throw new COMException(SR.Get("SRID.FilterInitInvalidAttributes"),
-                    (int)NativeMethods.E_INVALIDARG);
+                throw new COMException(SR.Get("SRID.FilterInitInvalidAttributes"), -1);
+                    //(int)NativeMethods.E_INVALIDARG);
             }
 
             return _filter.Init(grfFlags, cAttributes, aAttributes);

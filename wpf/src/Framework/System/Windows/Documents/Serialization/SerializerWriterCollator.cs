@@ -69,8 +69,11 @@ namespace System.Windows.Documents.Serialization
         ///   Critical : Takes critical argument of type PrintTicket from non-aptca assembly
         ///   Safe     : PrintTicket is strongly typed wrapper over an XML document that does not contain security critical information
         /// </SecurityNote>
+        
         [SecuritySafeCritical]
-        public abstract void WriteAsync(Visual visual, PrintTicket printTicket);
+        public abstract void WriteAsync(Visual visual, 
+            PrintTicket  // Reach 
+                printTicket);
 
         /// <summary>
         /// Asynchronous Write a single Visual and close package
@@ -80,7 +83,9 @@ namespace System.Windows.Documents.Serialization
         ///   Safe     : PrintTicket is strongly typed wrapper over an XML document that does not contain security critical information
         /// </SecurityNote>
         [SecuritySafeCritical]
-        public abstract void WriteAsync(Visual visual, PrintTicket printTicket, object userState);
+        public abstract void WriteAsync(Visual visual, 
+            object // Reach : PrintTicket 
+                printTicket, object userState);
 
 
         /// <summary>

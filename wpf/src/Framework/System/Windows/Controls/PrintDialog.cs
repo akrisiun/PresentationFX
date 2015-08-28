@@ -30,7 +30,8 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Xps;
 using MS.Internal.Printing;
-using System.Windows.Xps.Serialization;
+// Reach
+//using System.Windows.Xps.Serialization;
 using System.Windows.Documents;
 using System.Windows.Documents.Serialization;  // WritingCompletedEventArgs
 using MS.Internal.PresentationFramework;
@@ -260,17 +261,19 @@ namespace System.Windows.Controls
         ///                  - We also demand before setting the print ticket object.  If they can satisfy the
         ///                    the demand then they are safe to print anyways.
         /// </SecurityNote>
-        public PrintTicket PrintTicket
+
+        public PrintTicket // Reach
+            PrintTicket
         {
             [SecurityCritical]
             get
             {
                 SecurityHelper.DemandPrintDialogPermissions();
 
-                if (_printTicket == null)
-                {
-                    _printTicket = AcquireDefaultPrintTicket(this.PrintQueue);
-                }
+                //if (_printTicket == null)
+                //{
+                //    _printTicket = AcquireDefaultPrintTicket(this.PrintQueue);
+                //}
 
                 return _printTicket;
             }
@@ -488,7 +491,7 @@ namespace System.Windows.Controls
                     LocalPrintServer server = new LocalPrintServer();
                     printQueue = server.DefaultPrintQueue;
                 }
-                catch (PrintSystemException)
+                catch (Exception) // PrintSystemException)
                 {
                     //
                     // It is entirely possible for there to be no "default" printer.  In this case,
@@ -512,28 +515,29 @@ namespace System.Windows.Controls
         /// </SecurityNote>
         [SecurityCritical]
         private
-        PrintTicket
-        AcquireDefaultPrintTicket(
-            PrintQueue printQueue
-            )
+            PrintTicket        // Reach
+            AcquireDefaultPrintTicket(
+                PrintQueue printQueue
+                )
         {
-            PrintTicket printTicket = null;
+            PrintTicket // Reach : 
+                   printTicket = null;
 
             MS.Internal.SystemDrawingHelper.NewDefaultPrintingPermission().Assert(); //BlessedAssert
             try
             {
                 try
                 {
-                    if (printQueue != null)
-                    {
-                        printTicket = printQueue.UserPrintTicket;
-                        if (printTicket == null)
-                        {
-                            printTicket = printQueue.DefaultPrintTicket;
-                        }
-                    }
+                    //if (printQueue != null)
+                    //{
+                    //    printTicket = printQueue.UserPrintTicket;
+                    //    if (printTicket == null)
+                    //    {
+                    //        printTicket = printQueue.DefaultPrintTicket;
+                    //    }
+                    //}
                 }
-                catch (PrintSystemException)
+                catch (Exception) // PrintSystemException)
                 {
                     //
                     // The printing subsystem can throw an exception in certain cases when
@@ -555,7 +559,7 @@ namespace System.Windows.Controls
             //
             if (printTicket == null)
             {
-                printTicket = new PrintTicket();
+                //printTicket = new PrintTicket();
             }
 
             return printTicket;
@@ -578,21 +582,21 @@ namespace System.Windows.Controls
 
             PickCorrectPrintingEnvironment(ref printQueue, ref printTicket);
 
-            PrintCapabilities printCap = null;
-            if (printQueue != null)
-            {
-                printCap = printQueue.GetPrintCapabilities(printTicket);
-            }
+            //PrintCapabilities printCap = null;
+            //if (printQueue != null)
+            //{
+            //    printCap = printQueue.GetPrintCapabilities(printTicket);
+            //}
 
             // PrintCapabilities OrientedPageMediaWidth/Height are Nullable
-            if ((printCap != null) &&
-                (printCap.OrientedPageMediaWidth != null) &&
-                (printCap.OrientedPageMediaHeight != null))
-            {
-                _printableAreaWidth  = (double)printCap.OrientedPageMediaWidth;
-                _printableAreaHeight = (double)printCap.OrientedPageMediaHeight;
-            }
-            else
+            //if ((printCap != null) &&
+            //    (printCap.OrientedPageMediaWidth != null) &&
+            //    (printCap.OrientedPageMediaHeight != null))
+            //{
+            //    _printableAreaWidth  = (double)printCap.OrientedPageMediaWidth;
+            //    _printableAreaHeight = (double)printCap.OrientedPageMediaHeight;
+            //}
+            //else
             {
                 // Initialize page size to portrait Letter size.
                 // This is our fallback if PrintTicket doesn't specify the page size.
@@ -601,29 +605,29 @@ namespace System.Windows.Controls
 
                 // PrintTicket's PageMediaSize could be null and PageMediaSize Width/Height are Nullable
 
-                if ((printTicket.PageMediaSize != null) &&
-                    (printTicket.PageMediaSize.Width != null) &&
-                    (printTicket.PageMediaSize.Height != null))
-                {
-                    _printableAreaWidth  = (double)printTicket.PageMediaSize.Width;
-                    _printableAreaHeight = (double)printTicket.PageMediaSize.Height;
-                }
+                //if ((printTicket.PageMediaSize != null) &&
+                //    (printTicket.PageMediaSize.Width != null) &&
+                //    (printTicket.PageMediaSize.Height != null))
+                //{
+                //    _printableAreaWidth  = (double)printTicket.PageMediaSize.Width;
+                //    _printableAreaHeight = (double)printTicket.PageMediaSize.Height;
+                //}
 
                 // If we are using PrintTicket's PageMediaSize dimensions to populate the widht/height values,
                 // we need to adjust them based on current orientation. PrintTicket's PageOrientation is Nullable.
-                if (printTicket.PageOrientation != null)
-                {
-                    PageOrientation orientation = (PageOrientation)printTicket.PageOrientation;
+                //if (printTicket.PageOrientation != null)
+                //{
+                //    PageOrientation orientation = (PageOrientation)printTicket.PageOrientation;
 
-                    // need to swap width/height in landscape orientation
-                    if ((orientation == PageOrientation.Landscape) ||
-                        (orientation == PageOrientation.ReverseLandscape))
-                    {
-                        double t = _printableAreaWidth;
-                        _printableAreaWidth  = _printableAreaHeight;
-                        _printableAreaHeight = t;
-                    }
-                }
+                //    // need to swap width/height in landscape orientation
+                //    if ((orientation == PageOrientation.Landscape) ||
+                //        (orientation == PageOrientation.ReverseLandscape))
+                //    {
+                //        double t = _printableAreaWidth;
+                //        _printableAreaWidth  = _printableAreaHeight;
+                //        _printableAreaHeight = t;
+                //    }
+                //}
             }
         }
 
@@ -824,7 +828,8 @@ namespace System.Windows.Controls
             [SecurityCritical, SecurityTreatAsSafe]
             public
             PrintDlgPrintTicketEventHandler(
-                PrintTicket printTicket
+                object // Reach : PrintTicket
+                printTicket
                 )
             {
                 _printTicket = printTicket;
@@ -839,7 +844,7 @@ namespace System.Windows.Controls
             ///                 -   Makes use of PrintTicketLevel type which is critical because it is defined in the none APTCA assembly ReachFramework.dll
             ///     TreatAsSafe -   PrintTicket type is safe
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] // , SecurityTreatAsSafe]
             public
             void
             SetPrintTicket(
@@ -847,10 +852,10 @@ namespace System.Windows.Controls
                 WritingPrintTicketRequiredEventArgs args
                 )
             {
-                if (args.CurrentPrintTicketLevel == PrintTicketLevel.FixedDocumentSequencePrintTicket)
-                {
-                    args.CurrentPrintTicket = _printTicket;
-                }
+                //if (args.CurrentPrintTicketLevel == PrintTicketLevel.FixedDocumentSequencePrintTicket)
+                //{
+                //    args.CurrentPrintTicket = _printTicket;
+                //}
             }
 
             #endregion Public Methods
@@ -862,7 +867,8 @@ namespace System.Windows.Controls
             /// </SecurityNote>
             [SecurityCritical]
             private
-            PrintTicket _printTicket;
+            object // Reach : PrintTicket 
+                _printTicket;
 
             #endregion Private Data
         };

@@ -32,7 +32,10 @@ using MS.Internal.Interop;
 using MS.Utility;
 using MS.Win32;
 
-using CommonDependencyProperty=MS.Internal.PresentationFramework.CommonDependencyPropertyAttribute;
+using CommonDependencyProperty = MS.Internal.PresentationFramework.CommonDependencyPropertyAttribute;
+
+using NativeMethods = MS.Win32.NativeMethods;
+using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethods;
 
 // Disable pragma warnings to enable PREsharp pragmas
 #pragma warning disable 1634, 1691

@@ -1125,7 +1125,7 @@ namespace System.Windows.Navigation
         {
             get
             {
-                return System.Windows.Application.IsShuttingDown;
+                return System.Windows.ApplicationX.IsShuttingDown;
             }
 
         }

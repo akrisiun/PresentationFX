@@ -396,7 +396,7 @@ namespace System.Windows.Markup
                 WpfXamlLoader.EnsureXmlNamespaceMaps(rootObject, schemaContext);
             }
 
-            Application app = rootObject as Application;
+            ApplicationX app = rootObject as ApplicationX;
             if (app != null)
             {
                 app.ApplicationMarkupBaseUri = GetBaseUri(settings.BaseUri);
@@ -803,7 +803,7 @@ namespace System.Windows.Markup
 
             // In some cases, the application constructor is not run prior to loading,
             // causing the loader not to recognize URIs beginning with "pack:" or "application:".
-            MS.Internal.WindowsBase.SecurityHelper.RunClassConstructor(typeof(System.Windows.Application));
+            MS.Internal.WindowsBase.SecurityHelper.RunClassConstructor(typeof(System.Windows.ApplicationX));
 
             EventTrace.EasyTraceEvent(EventTrace.Keyword.KeywordXamlBaml | EventTrace.Keyword.KeywordPerf, EventTrace.Event.WClientParseXamlBegin, parserContext.BaseUri);
 
@@ -818,7 +818,7 @@ namespace System.Windows.Markup
                 }
             }
 
-            Application app = root as Application;
+            ApplicationX app = root as ApplicationX;
             if (app != null)
             {
                 app.ApplicationMarkupBaseUri = GetBaseUri(parserContext.BaseUri);
@@ -986,7 +986,7 @@ namespace System.Windows.Markup
                     dObject.SetValue(BaseUriHelper.BaseUriProperty, readerSettings.BaseUri);
                 }
 
-                Application app = root as Application;
+                ApplicationX app = root as ApplicationX;
                 if (app != null)
                 {
                     app.ApplicationMarkupBaseUri = GetBaseUri(readerSettings.BaseUri);

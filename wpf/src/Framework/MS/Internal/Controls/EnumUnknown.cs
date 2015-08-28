@@ -21,35 +21,48 @@ using Microsoft.Win32;
 using System.Security;
 
 using MS.Win32;
+using NativeMethods = MS.Win32.NativeMethods;
 
 namespace MS.Internal.Controls
 {
     #region class EnumUnknown
 
-    internal class EnumUnknown : UnsafeNativeMethods.IEnumUnknown
+    internal class EnumUnknownX : UnsafeNativeMethodsX.IEnumUnknown
     {
         private Object[] arr;
         private int loc;
         private int size;
 
-        internal EnumUnknown(Object[] arr)
+        internal EnumUnknownX(Object[] arr)
         {
             this.arr = arr;
             this.loc = 0;
             this.size = (arr == null) ? 0 : arr.Length;
         }
 
-        private EnumUnknown(Object[] arr, int loc)
+        private EnumUnknownX(Object[] arr, int loc)
             : this(arr)
         {
             this.loc = loc;
         }
 
+
+        //[PreserveSig]
+        //int Next([In, MarshalAs(UnmanagedType.U4)]
+        //        int celt,
+        //    [Out]
+        //        IntPtr rgelt,
+        //    IntPtr pceltFetched);
+
+        //[PreserveSig]
+        //int Skip([In, MarshalAs(UnmanagedType.U4)]
+        //        int celt);
+
         ///<SecurityNote>
         ///     Critical: Takes arbitrary pointers, writes to memory
         ///</SecurityNote> 
         [SecurityCritical]
-        unsafe int UnsafeNativeMethods.IEnumUnknown.Next(int celt, IntPtr rgelt, IntPtr pceltFetched)
+        unsafe int UnsafeNativeMethodsX.IEnumUnknown.Next(int celt, IntPtr rgelt, IntPtr pceltFetched)
         {
             if (pceltFetched != IntPtr.Zero)
                 Marshal.WriteInt32(pceltFetched, 0, 0);
@@ -91,7 +104,7 @@ namespace MS.Internal.Controls
         ///     Critical: Implements critical interface method
         ///</SecurityNote> 
         [SecurityCritical]
-        int UnsafeNativeMethods.IEnumUnknown.Skip(int celt)
+        int UnsafeNativeMethodsX.IEnumUnknown.Skip(int celt)
         {
             this.loc += celt;
             if (this.loc >= this.size)
@@ -105,7 +118,7 @@ namespace MS.Internal.Controls
         ///     Critical: Implements critical interface method
         ///</SecurityNote> 
         [SecurityCritical]
-        void UnsafeNativeMethods.IEnumUnknown.Reset()
+        void UnsafeNativeMethodsX.IEnumUnknown.Reset()
         {
             this.loc = 0;
         }
@@ -114,9 +127,9 @@ namespace MS.Internal.Controls
         ///     Critical: Implements critical interface method
         ///</SecurityNote> 
         [SecurityCritical]
-        void UnsafeNativeMethods.IEnumUnknown.Clone(out UnsafeNativeMethods.IEnumUnknown ppenum)
+        void UnsafeNativeMethodsX.IEnumUnknown.Clone(out UnsafeNativeMethodsX.IEnumUnknown ppenum)
         {
-            ppenum = new EnumUnknown(this.arr, this.loc);
+            ppenum = new EnumUnknownX(this.arr, this.loc);
         }
     }
     #endregion class EnumUnknown

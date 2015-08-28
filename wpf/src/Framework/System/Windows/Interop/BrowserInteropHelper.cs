@@ -12,7 +12,6 @@
 //---------------------------------------------------------------------------      
 
 using System;
-using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Threading;
@@ -20,13 +19,15 @@ using System.Security;
 using System.Security.Permissions;
 using System.Diagnostics;
 using MS.Internal;
-using MS.Win32;
 using System.Windows.Input;
 using MS.Internal.AppModel;
 using MS.Internal.Interop;
 using System.Threading;
 
 using SafeSecurityHelper=MS.Internal.PresentationFramework.SafeSecurityHelper;
+using System.Runtime.InteropServices;
+using MS.Win32;
+using NativeMethods = MS.Win32.NativeMethods;
 
 namespace System.Windows.Interop
 {
@@ -67,7 +68,7 @@ namespace System.Windows.Interop
 
                 if (IsBrowserHosted)
                 {
-                    Application.Current.BrowserCallbackServices.GetOleClientSite(out oleClientSite);
+                    ApplicationX.Current.BrowserCallbackServices.GetOleClientSite(out oleClientSite);
                 }
 
                 return oleClientSite;
@@ -170,7 +171,7 @@ namespace System.Windows.Interop
         {
             get
             {
-                Application app = Application.Current;
+                ApplicationX app = ApplicationX.Current;
                 return app != null && app.MimeType == MimeType.Markup;
             }
         }

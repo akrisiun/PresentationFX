@@ -18,6 +18,9 @@ using System.Security ;
 using System.Security.Permissions;
 using System.Windows.Controls;
 
+using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethods;   // WindowsBase.dll
+using NativeMethods = MS.Win32.NativeMethods;   // WindowsBase.dll
+
 namespace MS.Internal.Controls 
 {
     ///
@@ -180,7 +183,8 @@ namespace MS.Internal.Controls
         [SecurityCritical]
         int UnsafeNativeMethods.IOleClientSite.GetContainer(out UnsafeNativeMethods.IOleContainer container) 
         {
-            container = this.Host.Container;
+            // TODO
+            container = this.Host.Container as ActiveXContainerX;
             return NativeMethods.S_OK;
         }
         ///<SecurityNote> 
@@ -280,11 +284,13 @@ namespace MS.Internal.Controls
         ///     Critical - accesses ParentHandle - critical data. 
         ///</SecurityNote> 
         [SecurityCritical ]
-        int UnsafeNativeMethods.IOleInPlaceSite.GetWindowContext(out UnsafeNativeMethods.IOleInPlaceFrame ppFrame, out UnsafeNativeMethods.IOleInPlaceUIWindow ppDoc,
-                                             NativeMethods.COMRECT lprcPosRect, NativeMethods.COMRECT lprcClipRect, NativeMethods.OLEINPLACEFRAMEINFO lpFrameInfo)
+        int UnsafeNativeMethods.IOleInPlaceSite.GetWindowContext(out UnsafeNativeMethods.IOleInPlaceFrame ppFrame,
+                out UnsafeNativeMethods.IOleInPlaceUIWindow ppDoc,
+                NativeMethods.COMRECT lprcPosRect, NativeMethods.COMRECT lprcClipRect, NativeMethods.OLEINPLACEFRAMEINFO lpFrameInfo)
         {
             ppDoc = null;
-            ppFrame = this.Host.Container;
+            // TODO check
+            ppFrame = this.Host.Container as MS.Win32.UnsafeNativeMethods.IOleInPlaceFrame;
             
             lprcPosRect.left = (int) this.Host.Bounds.left;
             lprcPosRect.top =  (int) this.Host.Bounds.top;

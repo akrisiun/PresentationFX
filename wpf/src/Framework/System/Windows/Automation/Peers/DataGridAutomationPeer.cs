@@ -22,7 +22,7 @@ namespace System.Windows.Automation.Peers
         /// Default contructor
         /// </summary>
         /// <param name="owner">DataGrid</param>
-        public DataGridAutomationPeer(DataGrid owner)
+        public DataGridAutomationPeer(DataGridX owner)
             : base(owner)
         {
             if (owner == null)
@@ -299,11 +299,11 @@ namespace System.Windows.Automation.Peers
 
         #region Private Helpers
 
-        private DataGrid OwningDataGrid
+        private DataGridX OwningDataGrid
         {
             get
             {
-                return (DataGrid)Owner;
+                return (DataGridX)Owner;
             }
         }
 

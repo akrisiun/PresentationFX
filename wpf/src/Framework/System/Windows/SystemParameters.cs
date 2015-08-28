@@ -12,6 +12,10 @@ using MS.Internal;
 using MS.Internal.Interop;
 using MS.Internal.KnownBoxes;
 
+using NativeMethods = MS.Win32.NativeMethods;   // WindowsBase.dll
+using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethodsX;
+      // Microsoft.Win32.UnsafeNativeMethods;    // mscorlib.dll, v4.0.0.0
+
 // Disable pragma warnings to enable PREsharp pragmas
 #pragma warning disable 1634, 1691
 
@@ -5973,7 +5977,7 @@ namespace System.Windows
                 {
                     if (!_cacheValid[(int)CacheSlot.IsGlassEnabled])
                     {
-                        _isGlassEnabled = Standard.NativeMethods.DwmIsCompositionEnabled();
+                        _isGlassEnabled = Standard.NativeMethodsX.DwmIsCompositionEnabled();
                         _cacheValid[(int)CacheSlot.IsGlassEnabled] = true;
                     }
                 }
@@ -5999,7 +6003,7 @@ namespace System.Windows
                 {
                     if (!_cacheValid[(int)CacheSlot.UxThemeName])
                     {
-                        if (!Standard.NativeMethods.IsThemeActive())
+                        if (!Standard.NativeMethodsX.IsThemeActive())
                         {
                             _uxThemeName = "Classic";
                         }
@@ -6009,7 +6013,7 @@ namespace System.Windows
                             string color;
                             string size;
 
-                            Standard.NativeMethods.GetCurrentThemeName(out name, out color, out size);
+                            Standard.NativeMethodsX.GetCurrentThemeName(out name, out color, out size);
                             _uxThemeName = System.IO.Path.GetFileNameWithoutExtension(name);
                         }
 
@@ -6038,7 +6042,7 @@ namespace System.Windows
                 {
                     if (!_cacheValid[(int)CacheSlot.UxThemeColor])
                     {
-                        if (!Standard.NativeMethods.IsThemeActive())
+                        if (!Standard.NativeMethodsX.IsThemeActive())
                         {
                             _uxThemeColor = "";
                         }
@@ -6048,7 +6052,7 @@ namespace System.Windows
                             string color;
                             string size;
 
-                            Standard.NativeMethods.GetCurrentThemeName(out name, out color, out size);
+                            Standard.NativeMethodsX.GetCurrentThemeName(out name, out color, out size);
                             _uxThemeColor = color;
                         }
 
@@ -6097,7 +6101,7 @@ namespace System.Windows
                                 break;
                             case "AERO":
                                 // Aero has two cases.  One with glass and one without...
-                                if (Standard.NativeMethods.DwmIsCompositionEnabled())
+                                if (Standard.NativeMethodsX.DwmIsCompositionEnabled())
                                 {
                                     cornerRadius = new CornerRadius(8);
                                 }
@@ -6140,7 +6144,7 @@ namespace System.Windows
                     {
                         bool isOpaque;
                         uint color;
-                        Standard.NativeMethods.DwmGetColorizationColor(out color, out isOpaque);
+                        Standard.NativeMethodsX.DwmGetColorizationColor(out color, out isOpaque);
                         color |= isOpaque ? 0xFF000000 : 0;
 
                         _windowGlassColor = Standard.Utility.ColorFromArgbDword(color);
@@ -6194,8 +6198,8 @@ namespace System.Windows
                 {
                     if (!_cacheValid[(int)CacheSlot.WindowResizeBorderThickness])
                     {
-                        Size frameSize = new Size(Standard.NativeMethods.GetSystemMetrics(Standard.SM.CXSIZEFRAME),
-                                                  Standard.NativeMethods.GetSystemMetrics(Standard.SM.CYSIZEFRAME));
+                        Size frameSize = new Size(Standard.NativeMethodsX.GetSystemMetrics(Standard.SM.CXSIZEFRAME),
+                                                  Standard.NativeMethodsX.GetSystemMetrics(Standard.SM.CYSIZEFRAME));
                         Size frameSizeInDips = Standard.DpiHelper.DeviceSizeToLogical(frameSize);
 
                         _windowResizeBorderThickness = new Thickness(frameSizeInDips.Width, frameSizeInDips.Height, frameSizeInDips.Width, frameSizeInDips.Height);
@@ -6222,10 +6226,10 @@ namespace System.Windows
                 {
                     if (!_cacheValid[(int)CacheSlot.WindowNonClientFrameThickness])
                     {
-                        Size frameSize = new Size(Standard.NativeMethods.GetSystemMetrics(Standard.SM.CXSIZEFRAME),
-                                                  Standard.NativeMethods.GetSystemMetrics(Standard.SM.CYSIZEFRAME));
+                        Size frameSize = new Size(Standard.NativeMethodsX.GetSystemMetrics(Standard.SM.CXSIZEFRAME),
+                                                  Standard.NativeMethodsX.GetSystemMetrics(Standard.SM.CYSIZEFRAME));
                         Size frameSizeInDips = Standard.DpiHelper.DeviceSizeToLogical(frameSize);
-                        int captionHeight = Standard.NativeMethods.GetSystemMetrics(Standard.SM.CYCAPTION);
+                        int captionHeight = Standard.NativeMethodsX.GetSystemMetrics(Standard.SM.CYCAPTION);
                         double captionHeightInDips = Standard.DpiHelper.DevicePixelsToLogical(new Point(0, captionHeight)).Y;
                         _windowNonClientFrameThickness = new Thickness(frameSizeInDips.Width, frameSizeInDips.Height + captionHeightInDips, frameSizeInDips.Width, frameSizeInDips.Height);
                         _cacheValid[(int)CacheSlot.WindowNonClientFrameThickness] = true;

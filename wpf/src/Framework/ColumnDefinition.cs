@@ -61,30 +61,17 @@ namespace System.Windows.Controls
         {
         }
 
-        //
-        // Summary:
-        //     Identifies the System.Windows.Controls.RowDefinition.Height dependency property.
-        //
-        // Returns:
         //     The identifier for the System.Windows.Controls.RowDefinition.Height dependency
         //     property.
         [CommonDependencyPropertyAttribute]
         public static readonly DependencyProperty HeightProperty;
-        //
-        // Summary:
-        //     Identifies the System.Windows.Controls.RowDefinition.MaxHeight dependency property.
-        //
-        // Returns:
+       
         //     The identifier for the System.Windows.Controls.RowDefinition.MaxHeight dependency
         //     property.
         [CommonDependencyPropertyAttribute]
         [TypeConverter("System.Windows.LengthConverter, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, Custom=null")]
         public static readonly DependencyProperty MaxHeightProperty;
-        //
-        // Summary:
-        //     Identifies the System.Windows.Controls.RowDefinition.MinHeight dependency property.
-        //
-        // Returns:
+        
         //     The identifier for the System.Windows.Controls.RowDefinition.MinHeight dependency
         //     property.
         [CommonDependencyPropertyAttribute]
@@ -94,7 +81,7 @@ namespace System.Windows.Controls
         
         //     A System.Double that represents the calculated height in device independent pixels.
         //     The default value is 0.0.
-        public double ActualHeight { get; }
+        public double ActualHeight { get { return Height.Value; } }
         
         //     The System.Windows.GridLength that represents the height of the row. The default
         //     value is 1.0.

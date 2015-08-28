@@ -30,6 +30,10 @@ namespace Microsoft.Win32
     using System.Security.Permissions;
     using System.Windows;
 
+    using NativeMethods = MS.Win32.NativeMethods;
+    using SafeNativeMethods = MS.Win32.SafeNativeMethods;
+    using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethodsX;
+
     /// <summary>
     /// Represents a common dialog box that allows the user to specify options 
     /// for saving a file. This class cannot be inherited.
@@ -341,13 +345,13 @@ namespace Microsoft.Win32
             // is completed - any interaction we have with the dialog
             // while it's open takes place through our HookProc.  The
             // return value is a bool;  true = success.
-            result = UnsafeNativeMethods.GetSaveFileName(ofn);
+            result = UnsafeNativeMethodsX.GetSaveFileName(ofn);
 
             if (!result)    // result was 0 (false), so an error occurred.
             {
                 // Something may have gone wrong - check for error conditions
                 // by calling CommDlgExtendedError to get the specific error.
-                int errorCode = UnsafeNativeMethods.CommDlgExtendedError();
+                int errorCode = UnsafeNativeMethodsX.CommDlgExtendedError();
 
                 // Throw an appropriate exception if we know what happened:
                 switch (errorCode)

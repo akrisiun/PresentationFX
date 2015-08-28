@@ -26,12 +26,20 @@ using System.Windows.Controls;
 
 namespace MS.Internal.Controls
 {
-    #region class ActiveXContainer
+
+    using NativeMethodsSetLastError = MS.Internal.WindowsBase.NativeMethodsSetLastError;
+    using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethods;   // in WindowsBase
+
+    #region class ActiveXContainerX
 
     //This implements the basic container interfaces. Other siting related interfaces are
     //implemented on the ActiveXSite object e.g. IOleClientSite, IOleInPlaceSite, IOleControlSite etc.
 
-    internal class ActiveXContainer : UnsafeNativeMethods.IOleContainer, UnsafeNativeMethods.IOleInPlaceFrame
+    // internal
+    public class ActiveXContainerX : 
+        UnsafeNativeMethodsX.IOleContainer,
+        UnsafeNativeMethods.IOleContainer,      // #region Assembly WindowsBase.dll, v4.0.0.0
+        UnsafeNativeMethodsX.IOleInPlaceFrame
     {
         #region Constructor
 
@@ -39,7 +47,7 @@ namespace MS.Internal.Controls
         ///     Critical - accesses critical _host member.
         ///</SecurityNote>
         [ SecurityCritical ]
-        internal ActiveXContainer(ActiveXHost host)
+        internal ActiveXContainerX(ActiveXHost host)
         {
             this._host = host;
 
@@ -61,6 +69,14 @@ namespace MS.Internal.Controls
         //
         // IOleContainer methods:
         //
+        int UnsafeNativeMethodsX.IOleContainer.ParseDisplayName(Object pbc, string pszDisplayName, int[] pchEaten, Object[] ppmkOut)
+        {
+            if (ppmkOut != null)
+                ppmkOut[0] = null;
+
+            return NativeMethods.E_NOTIMPL;
+        }
+
         int UnsafeNativeMethods.IOleContainer.ParseDisplayName(Object pbc, string pszDisplayName, int[] pchEaten, Object[] ppmkOut)
         {
             if (ppmkOut != null)
@@ -69,11 +85,46 @@ namespace MS.Internal.Controls
             return NativeMethods.E_NOTIMPL;
         }
 
+
+        [SecurityCritical]
+        int UnsafeNativeMethods.IOleContainer.EnumObjects(int grfFlags, out UnsafeNativeMethods.IEnumUnknown ppenum)
+        {
+            ppenum = null;
+
+            Debug.Assert(_host != null, "gotta have the avalon activex host");
+
+            object ax = _host.ActiveXInstance;
+
+            //We support only one control, return that here
+            //How does one add multiple controls to a container?
+            //if (ax != null
+            //    &&
+            //    (((grfFlags & NativeMethods.OLECONTF_EMBEDDINGS) != 0)
+            //      ||
+            //      ((grfFlags & NativeMethods.OLECONTF_ONLYIFRUNNING) != 0 &&
+            //        _host.ActiveXState == ActiveXHelper.ActiveXState.Running)))
+            //{
+            //    Object[] temp = new Object[1];
+            //    temp[0] = ax;
+            //    ppenum = new EnumUnknown(temp);
+            //    return NativeMethods.S_OK;
+            //}
+
+            //ppenum = new EnumUnknown(null);
+
+            return NativeMethods.S_FALSE; //  .S_OK;
+        }
+
         ///<SecurityNote>
         ///     Critical - calls _host.ActiveXInstance
         ///</SecurityNote>
         [SecurityCritical]
-        int UnsafeNativeMethods.IOleContainer.EnumObjects(int grfFlags, out UnsafeNativeMethods.IEnumUnknown ppenum)
+        int UnsafeNativeMethodsX.IOleContainer.EnumObjects(int grfFlags, out UnsafeNativeMethodsX.IEnumUnknown ppenum)
+        {
+            return EnumObjectsX(grfFlags, out ppenum);
+        }
+
+        int EnumObjectsX(int grfFlags, out UnsafeNativeMethodsX.IEnumUnknown ppenum)
         {
             ppenum = null;
 
@@ -92,12 +143,17 @@ namespace MS.Internal.Controls
             {
                 Object[] temp = new Object[1];
                 temp[0]= ax;
-                ppenum = new EnumUnknown(temp);
+                ppenum = new EnumUnknownX(temp);
                 return NativeMethods.S_OK;
             }
 
-            ppenum = new EnumUnknown(null);
+            ppenum = new EnumUnknownX(null);
             return NativeMethods.S_OK;
+        }
+
+        int UnsafeNativeMethodsX.IOleContainer.LockContainer(bool fLock)
+        {
+            return NativeMethods.E_NOTIMPL;
         }
 
         int UnsafeNativeMethods.IOleContainer.LockContainer(bool fLock)
@@ -117,7 +173,7 @@ namespace MS.Internal.Controls
         ///     Critical - accesses critical _host member.
         ///</SecurityNote>
         [SecurityCritical]
-        IntPtr UnsafeNativeMethods.IOleInPlaceFrame.GetWindow()
+        IntPtr UnsafeNativeMethodsX.IOleInPlaceFrame.GetWindow()
         {
             return _host.ParentHandle.Handle;
         }
@@ -126,7 +182,7 @@ namespace MS.Internal.Controls
         ///     Critical: Implements critical interface method
         ///</SecurityNote> 
         [SecurityCritical]
-        int UnsafeNativeMethods.IOleInPlaceFrame.ContextSensitiveHelp(int fEnterMode)
+        int UnsafeNativeMethodsX.IOleInPlaceFrame.ContextSensitiveHelp(int fEnterMode)
         {
             return NativeMethods.S_OK;
         }
@@ -135,7 +191,7 @@ namespace MS.Internal.Controls
         ///     Critical: Implements critical interface method
         ///</SecurityNote> 
         [SecurityCritical]
-        int UnsafeNativeMethods.IOleInPlaceFrame.GetBorder(NativeMethods.COMRECT lprectBorder)
+        int UnsafeNativeMethodsX.IOleInPlaceFrame.GetBorder(NativeMethods.COMRECT lprectBorder)
         {
             return NativeMethods.E_NOTIMPL;
         }
@@ -144,7 +200,7 @@ namespace MS.Internal.Controls
         ///     Critical: Implements critical interface method
         ///</SecurityNote> 
         [SecurityCritical]
-        int UnsafeNativeMethods.IOleInPlaceFrame.RequestBorderSpace(NativeMethods.COMRECT pborderwidths)
+        int UnsafeNativeMethodsX.IOleInPlaceFrame.RequestBorderSpace(NativeMethods.COMRECT pborderwidths)
         {
             return NativeMethods.E_NOTIMPL;
         }
@@ -153,16 +209,27 @@ namespace MS.Internal.Controls
         ///     Critical: Implements critical interface method
         ///</SecurityNote> 
         [SecurityCritical]
-        int UnsafeNativeMethods.IOleInPlaceFrame.SetBorderSpace(NativeMethods.COMRECT pborderwidths)
+        int UnsafeNativeMethodsX.IOleInPlaceFrame.SetBorderSpace(NativeMethods.COMRECT pborderwidths)
         {
             return NativeMethods.E_NOTIMPL;
         }
 
+
+        int UnsafeNativeMethodsX.IOleInPlaceFrame.SetActiveObjectX(UnsafeNativeMethods.IOleInPlaceActiveObject pActiveObject, string pszObjName)
+        {
+            // return 0; //  SetActiveObject(pActiveObject, pszObjName);
+            return NativeMethods.S_OK;
+        }
+       
         ///<SecurityNote>
         ///     Critical: Implements critical interface method
         ///</SecurityNote> 
-        [SecurityCritical]
-        int UnsafeNativeMethods.IOleInPlaceFrame.SetActiveObject(UnsafeNativeMethods.IOleInPlaceActiveObject pActiveObject, string pszObjName)
+       
+        // [SecurityCritical]
+        // int UnsafeNativeMethodsX.IOleInPlaceFrame.
+         
+        // public
+        internal int SetActiveObject(UnsafeNativeMethodsX.IOleInPlaceActiveObject pActiveObject, string pszObjName)
         {
             //[....] has code to remove selection handler around the active object
             //and add it around the new one
@@ -176,10 +243,10 @@ namespace MS.Internal.Controls
             /*
             ActiveXHost host = null;
 
-            if (pActiveObject is UnsafeNativeMethods.IOleObject)
+            if (pActiveObject is UnsafeNativeMethodsX.IOleObject)
             {
-                UnsafeNativeMethods.IOleObject oleObject = (UnsafeNativeMethods.IOleObject)pActiveObject;
-                UnsafeNativeMethods.IOleClientSite clientSite = null;
+                UnsafeNativeMethodsX.IOleObject oleObject = (UnsafeNativeMethodsX.IOleObject)pActiveObject;
+                UnsafeNativeMethodsX.IOleClientSite clientSite = null;
 
                 try
                 {
@@ -203,7 +270,7 @@ namespace MS.Internal.Controls
         ///     Critical: Implements critical interface method
         ///</SecurityNote> 
         [SecurityCritical]
-        int UnsafeNativeMethods.IOleInPlaceFrame.InsertMenus(IntPtr hmenuShared, NativeMethods.tagOleMenuGroupWidths lpMenuWidths)
+        int UnsafeNativeMethodsX.IOleInPlaceFrame.InsertMenus(IntPtr hmenuShared, NativeMethods.tagOleMenuGroupWidths lpMenuWidths)
         {
             return NativeMethods.S_OK;
         }
@@ -212,7 +279,7 @@ namespace MS.Internal.Controls
         ///     Critical: Implements critical interface method
         ///</SecurityNote> 
         [SecurityCritical]
-        int UnsafeNativeMethods.IOleInPlaceFrame.SetMenu(IntPtr hmenuShared, IntPtr holemenu, IntPtr hwndActiveObject)
+        int UnsafeNativeMethodsX.IOleInPlaceFrame.SetMenu(IntPtr hmenuShared, IntPtr holemenu, IntPtr hwndActiveObject)
         {
             return NativeMethods.E_NOTIMPL;
         }
@@ -221,7 +288,7 @@ namespace MS.Internal.Controls
         ///     Critical: Implements critical interface method
         ///</SecurityNote> 
         [SecurityCritical]
-        int UnsafeNativeMethods.IOleInPlaceFrame.RemoveMenus(IntPtr hmenuShared)
+        int UnsafeNativeMethodsX.IOleInPlaceFrame.RemoveMenus(IntPtr hmenuShared)
         {
             return NativeMethods.E_NOTIMPL;
         }
@@ -230,7 +297,7 @@ namespace MS.Internal.Controls
         ///     Critical: Implements critical interface method
         ///</SecurityNote> 
         [SecurityCritical]
-        int UnsafeNativeMethods.IOleInPlaceFrame.SetStatusText(string pszStatusText)
+        int UnsafeNativeMethodsX.IOleInPlaceFrame.SetStatusText(string pszStatusText)
         {
             return NativeMethods.E_NOTIMPL;
         }
@@ -239,7 +306,7 @@ namespace MS.Internal.Controls
         ///     Critical: Implements critical interface method
         ///</SecurityNote> 
         [SecurityCritical]
-        int UnsafeNativeMethods.IOleInPlaceFrame.EnableModeless(bool fEnable)
+        int UnsafeNativeMethodsX.IOleInPlaceFrame.EnableModeless(bool fEnable)
         {
             return NativeMethods.E_NOTIMPL;
         }
@@ -248,7 +315,7 @@ namespace MS.Internal.Controls
         ///     Critical: Implements critical interface method
         ///</SecurityNote> 
         [SecurityCritical]
-        int UnsafeNativeMethods.IOleInPlaceFrame.TranslateAccelerator(ref MSG lpmsg, short wID)
+        int UnsafeNativeMethodsX.IOleInPlaceFrame.TranslateAccelerator(ref MSG lpmsg, short wID)
         {
             return NativeMethods.S_FALSE;
         }
@@ -359,5 +426,5 @@ namespace MS.Internal.Controls
         #endregion Private Fields
     }
 
-    #endregion class ActiveXContainer
+    #endregion class ActiveXContainerX
 }

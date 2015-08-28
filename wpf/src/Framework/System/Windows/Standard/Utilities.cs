@@ -195,7 +195,7 @@ namespace Standard
             {
                 using (SafeDC dc = SafeDC.GetDesktop())
                 {
-                    s_bitDepth = NativeMethods.GetDeviceCaps(dc, DeviceCap.BITSPIXEL) * NativeMethods.GetDeviceCaps(dc, DeviceCap.PLANES);
+                    s_bitDepth = NativeMethodsX.GetDeviceCaps(dc, DeviceCap.BITSPIXEL) * NativeMethodsX.GetDeviceCaps(dc, DeviceCap.PLANES);
                 }
             }
             return s_bitDepth;
@@ -213,7 +213,7 @@ namespace Standard
             gdiObject = IntPtr.Zero;
             if (IntPtr.Zero != p)
             {
-                NativeMethods.DeleteObject(p);
+                NativeMethodsX.DeleteObject(p);
             }
         }
 
@@ -226,9 +226,9 @@ namespace Standard
         {
             IntPtr p = hwnd;
             hwnd = IntPtr.Zero;
-            if (NativeMethods.IsWindow(p))
+            if (NativeMethodsX.IsWindow(p))
             {
-                NativeMethods.DestroyWindow(p);
+                NativeMethodsX.DestroyWindow(p);
             }
         }
 

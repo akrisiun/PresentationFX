@@ -21,6 +21,7 @@ using System.Collections.Specialized;
 using System.Runtime.InteropServices;
 using System.Security;
 using MS.Win32;
+using NativeMethods = MS.Win32.NativeMethods;
 
 namespace MS.Internal.Controls 
 {

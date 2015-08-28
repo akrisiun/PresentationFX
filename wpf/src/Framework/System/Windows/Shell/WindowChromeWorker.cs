@@ -21,6 +21,12 @@ namespace Microsoft.Windows.Shell
     using System.Windows.Threading;
     using Standard;
 
+    using MS.Win32;
+    
+    // using NativeMethods = MS.Win32.NativeMethodsX;
+    // using NativeMethods = Microsoft.Win32.NativeMethodsX;
+    using NativeMethods = Standard.NativeMethodsX;
+
     using HANDLE_MESSAGE = System.Collections.Generic.KeyValuePair<Standard.WM, Standard.MessageHandler>;
 
     internal class WindowChromeWorker : DependencyObject

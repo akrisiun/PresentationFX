@@ -252,7 +252,7 @@ namespace System {
                 TimeZoneInfo match;
 
                 Win32Native.TimeZoneInformation timeZoneInformation = new Win32Native.TimeZoneInformation();
-                long result = UnsafeNativeMethods.GetTimeZoneInformation(out timeZoneInformation);
+                long result = UnsafeNativeMethodsX.GetTimeZoneInformation(out timeZoneInformation);
                 if (result == Win32Native.TIME_ZONE_ID_INVALID)
                     match = CreateCustomTimeZone(c_localId, TimeSpan.Zero, c_localId, c_localId);
                 else
@@ -1949,7 +1949,7 @@ namespace System {
                     new Win32Native.DynamicTimeZoneInformation();
 
                 // call kernel32!GetDynamicTimeZoneInformation...
-                long result = UnsafeNativeMethods.GetDynamicTimeZoneInformation(out dynamicTimeZoneInformation);
+                long result = UnsafeNativeMethodsX.GetDynamicTimeZoneInformation(out dynamicTimeZoneInformation);
                 if (result == Win32Native.TIME_ZONE_ID_INVALID) {
                     // return a dummy entry
                     return CreateCustomTimeZone(c_localId, TimeSpan.Zero, c_localId, c_localId);
@@ -2726,7 +2726,7 @@ namespace System {
                 int languageLength = 0;
                 Int64 enumerator = 0;
 
-                Boolean succeeded = UnsafeNativeMethods.GetFileMUIPath(
+                Boolean succeeded = UnsafeNativeMethodsX.GetFileMUIPath(
                                         Win32Native.MUI_PREFERRED_UI_LANGUAGES,
                                         filePath, null /* language */, ref languageLength,
                                         fileMuiPath, ref fileMuiPathLength, ref enumerator);
@@ -2757,13 +2757,13 @@ namespace System {
         [SecurityCritical]
         static private string TryGetLocalizedNameByNativeResource(string filePath, int resource) {
             using (SafeLibraryHandle handle = 
-                       UnsafeNativeMethods.LoadLibraryEx(filePath, IntPtr.Zero, Win32Native.LOAD_LIBRARY_AS_DATAFILE)) {
+                       UnsafeNativeMethodsX.LoadLibraryEx(filePath, IntPtr.Zero, Win32Native.LOAD_LIBRARY_AS_DATAFILE)) {
 
                 if (!handle.IsInvalid) {
                     StringBuilder localizedResource = StringBuilderCache.Acquire(Win32Native.LOAD_STRING_MAX_LENGTH);
                     localizedResource.Length = Win32Native.LOAD_STRING_MAX_LENGTH;
 
-                    int result = UnsafeNativeMethods.LoadString(handle, resource, 
+                    int result = UnsafeNativeMethodsX.LoadString(handle, resource, 
                                      localizedResource, localizedResource.Length);
 
                     if (result != 0) {

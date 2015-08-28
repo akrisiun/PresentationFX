@@ -18,9 +18,11 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;      // for IStream
 using System.Windows;
-using MS.Win32;                                     // for NativeMethods
 using System.Security;                              // for marking critical methods
 using System.Security.Permissions;                  // for elevations
+
+using MS.Win32;                                     // for NativeMethods
+using NativeMethods = MS.Win32.NativeMethods;
 
 namespace MS.Internal.IO.Packaging
 {

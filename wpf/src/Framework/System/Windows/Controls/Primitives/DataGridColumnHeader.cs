@@ -193,7 +193,7 @@ namespace System.Windows.Controls.Primitives
             DataGridColumn column = header.Column;
             if (column != null)
             {
-                DataGrid dataGrid = column.DataGridOwner;
+                DataGridX dataGrid = column.DataGridOwner;
                 if (dataGrid != null)
                 {
                     header.SetLeftGripperVisibility();
@@ -300,7 +300,7 @@ namespace System.Windows.Controls.Primitives
             {
                 if (header.Column != null)
                 {
-                    DataGrid dataGrid = header.Column.DataGridOwner;
+                    DataGridX dataGrid = header.Column.DataGridOwner;
                     if (dataGrid != null)
                     {
                         dataGrid.InternalColumns.OnColumnResizeStarted();
@@ -334,7 +334,7 @@ namespace System.Windows.Controls.Primitives
                 return;
             }
 
-            DataGrid dataGrid = resizingColumn.DataGridOwner;
+            DataGridX dataGrid = resizingColumn.DataGridOwner;
             if (dataGrid == null)
             {
                 return;
@@ -351,7 +351,7 @@ namespace System.Windows.Controls.Primitives
             {
                 if (header.Column != null)
                 {
-                    DataGrid dataGrid = header.Column.DataGridOwner;
+                    DataGridX dataGrid = header.Column.DataGridOwner;
                     if (dataGrid != null)
                     {
                         dataGrid.InternalColumns.OnColumnResizeCompleted(e.Canceled);
@@ -428,11 +428,11 @@ namespace System.Windows.Controls.Primitives
             {
                 DataGridHelper.TransferProperty(this, ContentStringFormatProperty);
             }
-            else if (e.Property == DataGrid.ColumnHeaderStyleProperty || e.Property == DataGridColumn.HeaderStyleProperty || e.Property == StyleProperty)
+            else if (e.Property == DataGridX.ColumnHeaderStyleProperty || e.Property == DataGridColumn.HeaderStyleProperty || e.Property == StyleProperty)
             {
                 DataGridHelper.TransferProperty(this, StyleProperty);
             }
-            else if (e.Property == DataGrid.ColumnHeaderHeightProperty || e.Property == HeightProperty)
+            else if (e.Property == DataGridX.ColumnHeaderHeightProperty || e.Property == HeightProperty)
             {
                 DataGridHelper.TransferProperty(this, HeightProperty);
             }
@@ -441,7 +441,7 @@ namespace System.Windows.Controls.Primitives
                 CoerceValue(DisplayIndexProperty);
                 TabIndex = column.DisplayIndex;
             }
-            else if (e.Property == DataGrid.CanUserResizeColumnsProperty)
+            else if (e.Property == DataGridX.CanUserResizeColumnsProperty)
             {
                 OnCanUserResizeColumnsChanged();
             }
@@ -480,7 +480,7 @@ namespace System.Windows.Controls.Primitives
         private void OnCanUserResizeChanged()
         {
             Debug.Assert(Column != null, "column can't be null if we got a notification for this property change");
-            DataGrid dataGrid = Column.DataGridOwner;
+            DataGridX dataGrid = Column.DataGridOwner;
             if (dataGrid != null)
             {
                 SetNextHeaderLeftGripperVisibility(Column.CanUserResize);
@@ -495,7 +495,7 @@ namespace System.Windows.Controls.Primitives
                 return;
             }
 
-            DataGrid dataGridOwner = Column.DataGridOwner;
+            DataGridX dataGridOwner = Column.DataGridOwner;
             bool canPrevColumnResize = false;
             for (int index = DisplayIndex - 1; index >= 0; index--)
             {
@@ -516,7 +516,7 @@ namespace System.Windows.Controls.Primitives
                 return;
             }
 
-            DataGrid dataGrid = Column.DataGridOwner;
+            DataGridX dataGrid = Column.DataGridOwner;
             if (dataGrid != null && dataGrid.CanUserResizeColumns && canPreviousColumnResize)
             {
                 _leftGripper.Visibility = Visibility.Visible;
@@ -534,7 +534,7 @@ namespace System.Windows.Controls.Primitives
                 return;
             }
 
-            DataGrid dataGrid = Column.DataGridOwner;
+            DataGridX dataGrid = Column.DataGridOwner;
             if (dataGrid != null && dataGrid.CanUserResizeColumns && Column.CanUserResize)
             {
                 _rightGripper.Visibility = Visibility.Visible;
@@ -547,7 +547,7 @@ namespace System.Windows.Controls.Primitives
 
         private void SetNextHeaderLeftGripperVisibility(bool canUserResize)
         {
-            DataGrid dataGrid = Column.DataGridOwner;
+            DataGridX dataGrid = Column.DataGridOwner;
             int columnCount = dataGrid.Columns.Count;
             for (int index = DisplayIndex + 1; index < columnCount; index++)
             {
@@ -566,7 +566,7 @@ namespace System.Windows.Controls.Primitives
         private void OnColumnVisibilityChanged(DependencyPropertyChangedEventArgs e)
         {
             Debug.Assert(Column != null, "column can't be null if we got a notification for this property change");
-            DataGrid dataGrid = Column.DataGridOwner;
+            DataGridX dataGrid = Column.DataGridOwner;
             if (dataGrid != null)
             {
                 bool oldIsVisible = (((Visibility)e.OldValue) == Visibility.Visible);
@@ -677,7 +677,7 @@ namespace System.Windows.Controls.Primitives
         {
             var columnHeader = (DataGridColumnHeader)d;
             DataGridColumn column = columnHeader.Column;
-            DataGrid dataGrid = null;
+            DataGridX dataGrid = null;
 
             // Propagate style changes to any filler column headers.
             if (column == null)
@@ -700,7 +700,7 @@ namespace System.Windows.Controls.Primitives
                 column,
                 DataGridColumn.HeaderStyleProperty,
                 dataGrid,
-                DataGrid.ColumnHeaderStyleProperty);
+                DataGridX.ColumnHeaderStyleProperty);
         }
 
         #endregion
@@ -787,7 +787,7 @@ namespace System.Windows.Controls.Primitives
         {
             var columnHeader = (DataGridColumnHeader)d;
             DataGridColumn column = columnHeader.Column;
-            DataGrid dataGrid = null;
+            DataGridX dataGrid = null;
 
             // Propagate style changes to any filler column headers.
             if (column == null)
@@ -808,7 +808,7 @@ namespace System.Windows.Controls.Primitives
                 baseValue,
                 HeightProperty,
                 dataGrid,
-                DataGrid.ColumnHeaderHeightProperty);
+                DataGridX.ColumnHeaderHeightProperty);
         }
 
         /// <summary>
@@ -1116,7 +1116,7 @@ namespace System.Windows.Controls.Primitives
                 DataGridColumn column = Column;
                 if (column != null)
                 {
-                    DataGrid dataGridOwner = column.DataGridOwner;
+                    DataGridX dataGridOwner = column.DataGridOwner;
                     if (dataGridOwner != null)
                     {
                         for (int index = DisplayIndex - 1; index >= 0; index--)

@@ -22,6 +22,7 @@ using System.Windows;                               // for ExceptionStringTable
 using System.Security;                              // for SecurityCritical
 
 using MS.Win32;                                     // for NativeMethods
+using NativeMethods = MS.Win32.NativeMethods;
 
 namespace MS.Internal.IO.Packaging
 {

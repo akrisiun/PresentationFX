@@ -25,6 +25,10 @@ using System.Windows;
 using MS.Internal.Interop;
 using MS.Win32;
 
+// using NativeMethods = Microsoft.Win32.NativeMethodsX;   // WindowsBase.dll
+using NativeMethods = MS.Win32.NativeMethods;
+using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethods;
+
 namespace System.Windows.Interop
 {
     /// <summary>

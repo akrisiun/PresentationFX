@@ -78,7 +78,7 @@ namespace System.Windows
             }
 
             // Set the ShouldLookupImplicitStyles flag to true if App.Resources has implicit styles.
-            Application app = Application.Current;
+            ApplicationX app = ApplicationX.Current;
             if (app != null && app.HasImplicitStylesInResources)
             {
                 ShouldLookupImplicitStyles = true;

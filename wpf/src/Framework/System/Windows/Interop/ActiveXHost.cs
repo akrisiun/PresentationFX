@@ -49,6 +49,10 @@ using MS.Internal.Utility;
 using MS.Win32;
 using System.Security;
 
+// using NativeMethods = Microsoft.Win32.NativeMethodsX;   // WindowsBase.dll
+using NativeMethods = MS.Win32.NativeMethods;
+using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethodsX;
+
 // Since we disable PreSharp warnings in this file, PreSharp warning is unknown to C# compiler.
 // We first need to disable warnings about unknown message numbers and unknown pragmas.
 #pragma warning disable 1634, 1691
@@ -408,14 +412,14 @@ namespace System.Windows.Interop
         ///<SecurityNote>
         /// Critical - exposes critical _axContainer member.
         ///</SecurityNote>
-        internal ActiveXContainer Container
+        internal ActiveXContainerX Container
         {
             [SecurityCritical]
             get
             {
                 if (_axContainer == null)
                 {
-                    _axContainer = new ActiveXContainer(this);
+                    _axContainer = new ActiveXContainerX(this);
                 }
                 return _axContainer;
             }
@@ -1232,7 +1236,7 @@ namespace System.Windows.Interop
         ///     Critical - ActiveXContainer of control
         ///</SecurityNote>
         [ SecurityCritical ]
-        private ActiveXContainer            _axContainer;
+        private ActiveXContainerX            _axContainer;
 
         ///<SecurityNote>
         ///     Critical - all methods on this Interface are critical

@@ -28,6 +28,8 @@ using System.Windows.Navigation;
 using MS.Internal.PresentationFramework;
 using System.Windows.Controls;
 using MS.Win32;
+using NativeMethods = MS.Win32.NativeMethods;
+
 using MS.Internal.AppModel;
 using MS.Internal.Interop;
 

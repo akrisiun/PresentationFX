@@ -78,13 +78,13 @@ namespace Standard
                 cbSize = Marshal.SizeOf(typeof(WNDCLASSEX)),
                 style = classStyle,
                 lpfnWndProc = s_WndProc,
-                hInstance = NativeMethods.GetModuleHandle(null),
-                hbrBackground = NativeMethods.GetStockObject(StockObject.NULL_BRUSH),
+                hInstance = NativeMethodsX.GetModuleHandle(null),
+                hbrBackground = NativeMethodsX.GetStockObject(StockObject.NULL_BRUSH),
                 lpszMenuName = "",
                 lpszClassName = _className,
             };
 
-            NativeMethods.RegisterClassEx(ref wc);
+            NativeMethodsX.RegisterClassEx(ref wc);
 
             GCHandle gcHandle = default(GCHandle);
             try
@@ -92,7 +92,7 @@ namespace Standard
                 gcHandle = GCHandle.Alloc(this);
                 IntPtr pinnedThisPtr = (IntPtr)gcHandle;
 
-                Handle = NativeMethods.CreateWindowEx(
+                Handle = NativeMethodsX.CreateWindowEx(
                     exStyle,
                     _className,
                     name,
@@ -207,7 +207,7 @@ namespace Standard
             {
                 if (!s_windowLookup.TryGetValue(hwnd, out hwndWrapper))
                 {
-                    return NativeMethods.DefWindowProc(hwnd, msg, wParam, lParam);
+                    return NativeMethodsX.DefWindowProc(hwnd, msg, wParam, lParam);
                 }
             }
             Assert.IsNotNull(hwndWrapper);
@@ -219,7 +219,7 @@ namespace Standard
             }
             else
             {
-                ret = NativeMethods.DefWindowProc(hwnd, msg, wParam, lParam);
+                ret = NativeMethodsX.DefWindowProc(hwnd, msg, wParam, lParam);
             }
 
             if (msg == WM.NCDESTROY)
@@ -238,7 +238,7 @@ namespace Standard
         private static void _DestroyWindow(IntPtr hwnd, string className)
         {
             Utility.SafeDestroyWindow(ref hwnd);
-            NativeMethods.UnregisterClass(className, NativeMethods.GetModuleHandle(null));
+            NativeMethodsX.UnregisterClass(className, NativeMethodsX.GetModuleHandle(null));
         }
     }
 }

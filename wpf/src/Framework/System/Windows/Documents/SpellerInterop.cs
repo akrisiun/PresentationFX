@@ -19,6 +19,9 @@ namespace System.Windows.Documents
     using System.Windows.Controls;
     using MS.Internal.PresentationFramework;
 
+    using NativeMethods = MS.Win32.NativeMethods;
+    using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethods;
+
     // Custom COM marshalling code and interfaces for interaction
     // with the Natural Language Group's nl6 proofing engine.
     internal class SpellerInterop : IDisposable

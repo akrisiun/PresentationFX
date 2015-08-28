@@ -30,6 +30,8 @@ namespace System.Windows.Documents
     using System.Windows.Interop;
     using MS.Utility;
     using MS.Win32;
+    using NativeMethods = MS.Win32.NativeMethods;
+    
     using MS.Internal.Documents;
     using MS.Internal.Commands; // CommandHelpers
 

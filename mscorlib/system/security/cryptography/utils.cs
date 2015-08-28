@@ -230,8 +230,10 @@ namespace System.Security.Cryptography
         [ResourceExposure(ResourceScope.None)]
         [ResourceConsumption(ResourceScope.Machine, ResourceScope.Machine)]
         internal static SafeProvHandle CreateProvHandle (CspParameters parameters, bool randomKeyContainer) {
+            
             SafeProvHandle safeProvHandle = SafeProvHandle.InvalidHandle;
             int hr = Utils._OpenCSP(parameters, 0, ref safeProvHandle);
+
             KeyContainerPermission kp = new KeyContainerPermission(KeyContainerPermissionFlags.NoFlags);
             if (hr != Constants.S_OK) {
                 // If UseExistingKey flag is used and the key container does not exist
@@ -585,7 +587,10 @@ namespace System.Security.Cryptography
             return r;
         }
 
-        internal static int ObjToAlgId(object hashAlg, OidGroup group) {
+        internal static int ObjToAlgId(object hashAlg, 
+            object // OidGroup 
+                group) 
+        {
             if (hashAlg == null)
                 throw new ArgumentNullException("hashAlg");
             Contract.EndContractBlock();
@@ -607,7 +612,7 @@ namespace System.Security.Cryptography
             if (oidValue == null)
                 throw new ArgumentException(Environment.GetResourceString("Argument_InvalidValue"));
 
-            return X509Utils.GetAlgIdFromOid(oidValue, group);
+            return X509Utils.GetAlgIdFromOid(oidValue, group as OidGroup?);
         }
 
         internal static HashAlgorithm ObjToHashAlgorithm (Object hashAlg) {

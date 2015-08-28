@@ -34,6 +34,7 @@ using MS.Internal.Documents;
 using System.Security;
 using System.Security.Permissions;
 using MS.Win32;
+using NativeMethods = MS.Win32.NativeMethods;
 
 using IComDataObject = System.Runtime.InteropServices.ComTypes.IDataObject;
 

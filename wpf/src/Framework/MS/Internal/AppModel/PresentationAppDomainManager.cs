@@ -26,6 +26,9 @@ using MS.Utility;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
+using SafeNativeMethods = MS.Win32.SafeNativeMethods;
+using NativeMethods = MS.Win32.NativeMethods;
+
 namespace System.Windows.Interop
 {
     internal class PresentationHostSecurityManager : HostSecurityManager

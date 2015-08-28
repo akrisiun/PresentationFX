@@ -12,6 +12,8 @@
 //---------------------------------------------------------------------------
 //#define CURSOR_DEBUG
 using MS.Win32;
+using NativeMethods = MS.Win32.NativeMethods;
+
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;

@@ -158,7 +158,7 @@ namespace System.Windows
             XamlType feXType = schemaContext.GetXamlType(typeof(FrameworkElement));
             XamlType styleXType = schemaContext.GetXamlType(typeof(Style));
             XamlType templateXType = schemaContext.GetXamlType(typeof(FrameworkTemplate));
-            XamlType appXType = schemaContext.GetXamlType(typeof(Application));
+            XamlType appXType = schemaContext.GetXamlType(typeof(ApplicationX));
             XamlType fceXType = schemaContext.GetXamlType(typeof(FrameworkContentElement));
 
             XamlMember fceResourcesProperty = fceXType.GetMember("Resources");

@@ -66,7 +66,7 @@ namespace System.Windows
             string[] retValue = null;
 
             if (!BrowserInteropHelper.IsBrowserHosted && 
-                 ( ( Application.Current.MimeType != MimeType.Application ) 
+                 ( ( ApplicationX.Current.MimeType != MimeType.Application ) 
                    || ! IsOnNetworkShareForDeployedApps() ))
             {
                 string[] args = Environment.GetCommandLineArgs();

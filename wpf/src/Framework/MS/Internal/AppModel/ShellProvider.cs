@@ -14,6 +14,9 @@ namespace MS.Internal.AppModel
     using System.Text;
     using MS.Win32;
     using MS.Internal.Interop;
+    using NativeMethods = MS.Win32.NativeMethods;   // WindowsBase.dll
+    using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethodsX;
+    // Microsoft.Win32.UnsafeNativeMethods;    // mscorlib.dll, v4.0.0.0
 
     // Some COM interfaces and Win32 structures are already declared in the framework.
     // Interesting ones to remember in System.Runtime.InteropServices.ComTypes are:

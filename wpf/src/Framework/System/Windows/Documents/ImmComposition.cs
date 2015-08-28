@@ -32,6 +32,9 @@ using MS.Internal.PresentationFramework;
 using MS.Internal;
 using MS.Internal.Interop;
 
+using NativeMethods = MS.Win32.NativeMethods;
+using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethods;
+
 // Enable presharp pragma warning suppress directives.
 #pragma warning disable 1634, 1691
 

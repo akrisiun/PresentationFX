@@ -21,13 +21,17 @@
 //
 //---------------------------------------------------------------------------
 
-
 namespace Microsoft.Win32
 {
     using MS.Internal;
     using MS.Internal.AppModel;
     using MS.Internal.Interop;
     using MS.Win32;
+    
+    // using NativeMethods = Microsoft.Win32.NativeMethodsX;   // WindowsBase.dll
+    using NativeMethods = MS.Win32.NativeMethods;
+    using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethodsX;
+    using SafeNativeMethods = MS.Win32.SafeNativeMethods;
 
     using System;
     using System.ComponentModel;
@@ -43,7 +47,8 @@ namespace Microsoft.Win32
 
     using CharBuffer = MS.Win32.NativeMethods.CharBuffer;
     using HRESULT = MS.Internal.Interop.HRESULT;
-    using SecurityHelper=MS.Internal.PresentationFramework.SecurityHelper;
+    using SecurityHelper = MS.Internal.PresentationFramework.SecurityHelper;
+
 
     /// <summary>
     ///    Provides a common base class for wrappers around both the
@@ -108,7 +113,7 @@ namespace Microsoft.Win32
         public override void Reset()
         {
             SecurityHelper.DemandUnrestrictedFileIOPermission();
-            
+
             Initialize();
         }
 
@@ -169,7 +174,7 @@ namespace Microsoft.Win32
             set
             {
                 SecurityHelper.DemandUnrestrictedFileIOPermission();
-                
+
                 SetOption(OPTION_ADDEXTENSION, value);
             }
         }
@@ -204,7 +209,7 @@ namespace Microsoft.Win32
             set
             {
                 SecurityHelper.DemandUnrestrictedFileIOPermission();
-                
+
                 SetOption(NativeMethods.OFN_FILEMUSTEXIST, value);
             }
         }
@@ -233,7 +238,7 @@ namespace Microsoft.Win32
             set
             {
                 SecurityHelper.DemandUnrestrictedFileIOPermission();
-                
+
                 SetOption(NativeMethods.OFN_PATHMUSTEXIST, value);
             }
         }
@@ -259,7 +264,7 @@ namespace Microsoft.Win32
                 {
                     // Use Ordinal here as per FxCop CA1307
                     if (value.StartsWith(".", StringComparison.Ordinal)) // Allow calling code to provide 
-                                                                         // extensions like ".ext" - 
+                    // extensions like ".ext" - 
                     {
                         value = value.Substring(1);    // but strip out the period to leave only "ext"
                     }
@@ -299,7 +304,7 @@ namespace Microsoft.Win32
             set
             {
                 SecurityHelper.DemandUnrestrictedFileIOPermission();
-                
+
                 SetOption(NativeMethods.OFN_NODEREFERENCELINKS, !value);
             }
         }
@@ -361,7 +366,7 @@ namespace Microsoft.Win32
                     // Call Path.GetFileName to retrieve only the filename
                     // component of the current full path.
                     safeFileNames[i] = Path.GetFileName(unsafeFileNames[i]);
-                    
+
                     // Check to make sure Path.GetFileName does not return null.
                     // If it does, set this filename to String.Empty instead to accomodate
                     // programmers that fail to check for null when reading strings.
@@ -434,7 +439,7 @@ namespace Microsoft.Win32
             get
             {
                 SecurityHelper.DemandUnrestrictedFileIOPermission();
-                
+
                 // FileNamesInternal is a property we use to clone
                 // the string array before returning it.
                 string[] files = FileNamesInternal;
@@ -473,7 +478,7 @@ namespace Microsoft.Win32
 
             set
             {
-                if (String.CompareOrdinal(value,_filter) != 0)   // different filter than what we have stored already
+                if (String.CompareOrdinal(value, _filter) != 0)   // different filter than what we have stored already
                 {
                     string updatedFilter = value;
 
@@ -500,7 +505,7 @@ namespace Microsoft.Win32
                         // below picks up null as the new value of _filter.
                         updatedFilter = null;
                     }
-        
+
                     _filter = updatedFilter;
                 }
             }
@@ -551,7 +556,7 @@ namespace Microsoft.Win32
             set
             {
                 SecurityHelper.DemandUnrestrictedFileIOPermission();
-                
+
                 _initialDirectory.Value = value;
             }
         }
@@ -580,7 +585,7 @@ namespace Microsoft.Win32
             set
             {
                 SecurityHelper.DemandUnrestrictedFileIOPermission();
-                
+
                 SetOption(NativeMethods.OFN_NOCHANGEDIR, value);
             }
         }
@@ -608,7 +613,7 @@ namespace Microsoft.Win32
             set
             {
                 SecurityHelper.DemandUnrestrictedFileIOPermission();
-                
+
                 _title.Value = value;
             }
         }
@@ -639,7 +644,7 @@ namespace Microsoft.Win32
             set
             {
                 SecurityHelper.DemandUnrestrictedFileIOPermission();
-                
+
                 SetOption(NativeMethods.OFN_NOVALIDATE, !value);
             }
         }
@@ -696,7 +701,7 @@ namespace Microsoft.Win32
                     // Our hookproc is actually the hook procedure for a child template hosted
                     // inside the actual file dialog box.  We want the hwnd of the actual dialog,
                     // so we call GetParent on the hwnd passed to the hookproc.
-                    _hwndFileDialog = UnsafeNativeMethods.GetParent(new HandleRef(this, hwnd));
+                    _hwndFileDialog = UnsafeNativeMethodsX.GetParent(new HandleRef(this, hwnd));
 
                     // When we receive WM_NOTIFY, lParam is a pointer to an OFNOTIFY
                     // structure that defines the action.  OFNOTIFY is a structure
@@ -719,7 +724,8 @@ namespace Microsoft.Win32
                     //    }
                     // 
                     // Convert the pointer to our OFNOTIFY stored in lparam to an object using PtrToStructure.
-                    NativeMethods.OFNOTIFY notify = (NativeMethods.OFNOTIFY)UnsafeNativeMethods.PtrToStructure(lParam, typeof(NativeMethods.OFNOTIFY));
+                    NativeMethods.OFNOTIFY notify = (NativeMethods.OFNOTIFY)
+                        UnsafeNativeMethodsX.PtrToStructure(lParam, typeof(NativeMethods.OFNOTIFY));
 
                     // WM_NOTIFY indicates that the dialog is sending us a notification message.
                     // notify.hdr_code is an int defining which notification is being received.
@@ -753,8 +759,8 @@ namespace Microsoft.Win32
 
                             // Retrieve the OPENFILENAME structure from the OFNOTIFY structure
                             // so we can access the CharBuffer inside it.
-                            NativeMethods.OPENFILENAME_I ofn = (NativeMethods.OPENFILENAME_I) 
-                                UnsafeNativeMethods.PtrToStructure(notify.lpOFN, typeof(NativeMethods.OPENFILENAME_I));
+                            NativeMethods.OPENFILENAME_I ofn = (NativeMethods.OPENFILENAME_I)
+                                UnsafeNativeMethodsX.PtrToStructure(notify.lpOFN, typeof(NativeMethods.OPENFILENAME_I));
 
 
                             // Get the buffer size required to store the selected file names.
@@ -771,7 +777,8 @@ namespace Microsoft.Win32
                             // selected, so changing to it actually makes things worse with very large
                             // cases.  So we'll stick with CDM_GETSPEC plus extra buffer space.
                             //
-                            int sizeNeeded = (int)UnsafeNativeMethods.UnsafeSendMessage(_hwndFileDialog,                      // hWnd of window to receive message
+                            int sizeNeeded = (int)
+                                UnsafeNativeMethodsX.UnsafeSendMessage(_hwndFileDialog,                      // hWnd of window to receive message
                                                                                   (WindowMessage)NativeMethods.CDM_GETSPEC,                          // Msg (message to send)
                                                                                   IntPtr.Zero,                          // wParam (additional info)
                                                                                   IntPtr.Zero);                         // lParam (additional info)
@@ -783,33 +790,33 @@ namespace Microsoft.Win32
 
                                 //try
                                 //{
-                                    // Make the new buffer equal to the size the dialog told us we needed
-                                    // plus a reasonable growth factor.
-                                    int newBufferSize = sizeNeeded + (FILEBUFSIZE / 4); 
+                                // Make the new buffer equal to the size the dialog told us we needed
+                                // plus a reasonable growth factor.
+                                int newBufferSize = sizeNeeded + (FILEBUFSIZE / 4);
 
-                                    // Allocate a new CharBuffer in the appropriate size.
-                                    CharBuffer charBufferTmp = CharBuffer.CreateBuffer(newBufferSize);
+                                // Allocate a new CharBuffer in the appropriate size.
+                                CharBuffer charBufferTmp = CharBuffer.CreateBuffer(newBufferSize);
 
-                                    // Allocate unmanaged memory for the buffer and store the pointer.
-                                    IntPtr newBuffer = charBufferTmp.AllocCoTaskMem();
+                                // Allocate unmanaged memory for the buffer and store the pointer.
+                                IntPtr newBuffer = charBufferTmp.AllocCoTaskMem();
 
-                                    // Free the old, smaller buffer stored in ofn.lpstrFile
-                                    Marshal.FreeCoTaskMem(ofn.lpstrFile);
+                                // Free the old, smaller buffer stored in ofn.lpstrFile
+                                Marshal.FreeCoTaskMem(ofn.lpstrFile);
 
-                                    // Substitute buffer and update the buffer maximum size in
-                                    // the dialog.
-                                    ofn.lpstrFile = newBuffer;
-                                    ofn.nMaxFile = newBufferSize;
+                                // Substitute buffer and update the buffer maximum size in
+                                // the dialog.
+                                ofn.lpstrFile = newBuffer;
+                                ofn.nMaxFile = newBufferSize;
 
-                                    // Store the reference to the character buffer inside our
-                                    // class so we can free it when we're done.
-                                    this._charBuffer = charBufferTmp;
+                                // Store the reference to the character buffer inside our
+                                // class so we can free it when we're done.
+                                this._charBuffer = charBufferTmp;
 
-                                    // Marshal the OPENFILENAME structure back into the
-                                    // OFNOTIFY structure, then marshal the OFNOTIFY structure
-                                    // back into lparam to update the dialog.
-                                    Marshal.StructureToPtr(ofn, notify.lpOFN, true);
-                                    Marshal.StructureToPtr(notify, lParam, true);
+                                // Marshal the OPENFILENAME structure back into the
+                                // OFNOTIFY structure, then marshal the OFNOTIFY structure
+                                // back into lparam to update the dialog.
+                                Marshal.StructureToPtr(ofn, notify.lpOFN, true);
+                                Marshal.StructureToPtr(notify, lParam, true);
                                 // }
                                 // Windows Forms had a catch-all exception handler here
                                 // but no justification for why it existed.  If exceptions
@@ -822,7 +829,7 @@ namespace Microsoft.Win32
                                 //
                                 // catch (Exception)
                                 // {
-                                    // intentionally not throwing here.
+                                // intentionally not throwing here.
                                 // }
                             }
                             break;
@@ -879,7 +886,7 @@ namespace Microsoft.Win32
                                     // Call SetWindowLong to set the DWL_MSGRESULT value of the file dialog window
                                     // to a non-zero number to tell the dialog to stay open.  
                                     // NativeMethods.InvalidIntPtr is defined as -1.
-                                    UnsafeNativeMethods.CriticalSetWindowLong(new HandleRef(this, hwnd),             // hWnd (which window are we affecting)
+                                    UnsafeNativeMethodsX.CriticalSetWindowLong(new HandleRef(this, hwnd),             // hWnd (which window are we affecting)
                                                                       NativeMethods.DWL_MSGRESULT,           // nIndex (which value are we setting)
                                                                       NativeMethods.InvalidIntPtr);          // dwNewLong (what is the new value)
 
@@ -900,7 +907,7 @@ namespace Microsoft.Win32
                                 // Call SetWindowLong to set the DWL_MSGRESULT value of the file dialog window
                                 // to a non-zero number to tell the dialog to stay open.  
                                 // NativeMethods.InvalidIntPtr is defined as -1.
-                                UnsafeNativeMethods.CriticalSetWindowLong(new HandleRef(this, hwnd),                  // hWnd (which window are we affecting)
+                                UnsafeNativeMethodsX.CriticalSetWindowLong(new HandleRef(this, hwnd),                  // hWnd (which window are we affecting)
                                                                   NativeMethods.DWL_MSGRESULT,                        // nIndex (which value are we setting)
                                                                   NativeMethods.InvalidIntPtr);               // dwNewLong (what is the new value)
 
@@ -928,7 +935,7 @@ namespace Microsoft.Win32
         {
             if (FileOk != null)
             {
-                FileOk(this, e);  
+                FileOk(this, e);
             }
         }
 
@@ -1171,14 +1178,14 @@ namespace Microsoft.Win32
         ///    UnsafeNativeMethods, which are marked SupressUnmanagedCodeSecurity.
         /// </SecurityNote>
         [SecurityCritical]
-        internal bool MessageBoxWithFocusRestore(string message, 
+        internal bool MessageBoxWithFocusRestore(string message,
                          MessageBoxButton buttons,
                          MessageBoxImage image)
         {
             bool ret = false;
 
             // Get the window that currently has focus and temporarily cache a handle to it
-            IntPtr focusHandle = UnsafeNativeMethods.GetFocus();
+            IntPtr focusHandle = UnsafeNativeMethodsX.GetFocus();
 
             try
             {
@@ -1192,7 +1199,7 @@ namespace Microsoft.Win32
             {
                 // Return focus to the window that had focus before we showed the messagebox.
                 // SetFocus can handle improper hwnd values, including null.
-                UnsafeNativeMethods.SetFocus(new HandleRef(this, focusHandle));
+                UnsafeNativeMethodsX.SetFocus(new HandleRef(this, focusHandle));
             }
             return ret;
         }
@@ -1250,8 +1257,8 @@ namespace Microsoft.Win32
                     fileExists = false;
                 }
 
-                if (!fileExists)    
-                {                   
+                if (!fileExists)
+                {
                     // file does not exist, we can't continue
                     // and must display an error
                     // Display the message box
@@ -1331,7 +1338,8 @@ namespace Microsoft.Win32
         [SecurityCritical]
         private bool DoFileOk(IntPtr lpOFN)
         {
-            NativeMethods.OPENFILENAME_I ofn = (NativeMethods.OPENFILENAME_I)UnsafeNativeMethods.PtrToStructure(lpOFN, typeof(NativeMethods.OPENFILENAME_I));
+            NativeMethods.OPENFILENAME_I ofn = (NativeMethods.OPENFILENAME_I)
+                UnsafeNativeMethodsX.PtrToStructure(lpOFN, typeof(NativeMethods.OPENFILENAME_I));
 
             // While processing the results we get from the OPENFILENAME struct,
             // we will adjust several properties of our own class to reflect the
@@ -1465,7 +1473,7 @@ namespace Microsoft.Win32
 
                 bool isFullPath = (fileName.Length > 3 &&
                                    fileName[1] == Path.VolumeSeparatorChar &&
-                                   fileName[2] == Path.DirectorySeparatorChar );
+                                   fileName[2] == Path.DirectorySeparatorChar);
 
                 if (!(isUncPath || isFullPath))
                 {
@@ -1498,14 +1506,14 @@ namespace Microsoft.Win32
             // Initialize Options Flags
             // 
             _dialogOptions.Value = 0;   // _dialogOptions is an int containing a set of
-                                        // bit flags used to initialize the dialog box.
-                                        // It is placed directly into the OPENFILEDIALOG
-                                        // struct used to instantiate the file dialog box.
-                                        // Within our code, we only use GetOption and SetOption
-                                        // (change from Windows Forms, which sometimes directly
-                                        // modified _dialogOptions).  As such, we initialize to 0
-                                        // here and then call SetOption to get _dialogOptions
-                                        // into the default state.
+            // bit flags used to initialize the dialog box.
+            // It is placed directly into the OPENFILEDIALOG
+            // struct used to instantiate the file dialog box.
+            // Within our code, we only use GetOption and SetOption
+            // (change from Windows Forms, which sometimes directly
+            // modified _dialogOptions).  As such, we initialize to 0
+            // here and then call SetOption to get _dialogOptions
+            // into the default state.
 
             //
             // Set some default options
@@ -1534,8 +1542,8 @@ namespace Microsoft.Win32
             _fileNames = null;
             _filter = null;
             _filterIndex = 1;        // The index of the first filter entry is 1, not 0.  
-                                     // 0 is reserved for the custom filter functionality
-                                     // provided by Windows, which we do not expose to the user.
+            // 0 is reserved for the custom filter functionality
+            // provided by Windows, which we do not expose to the user.
 
             // Variables used for bug workaround:
             // When the selected file is locked for writing, we get a sharing violation notification
@@ -1581,7 +1589,7 @@ namespace Microsoft.Win32
             // Replace the vertical bar with a null to conform to the Windows
             // filter string format requirements
             nullSeparatedFilter.Replace('|', '\0');
-            
+
             // Append two nulls at the end
             nullSeparatedFilter.Append('\0');
             nullSeparatedFilter.Append('\0');
@@ -1693,7 +1701,7 @@ namespace Microsoft.Win32
         [SecurityCritical]
         private void PromptFileNotFound(string fileName)
         {
-            MessageBoxWithFocusRestore(SR.Get("SRID.FileDialogFileNotFound", fileName), 
+            MessageBoxWithFocusRestore(SR.Get("SRID.FileDialogFileNotFound", fileName),
                     System.Windows.MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
@@ -1759,17 +1767,17 @@ namespace Microsoft.Win32
             [SecurityCritical]
             get
             {
-                if (!UnsafeNativeMethods.IsWindow(new HandleRef(this, _hwndFileDialog)))
+                if (!UnsafeNativeMethodsX.IsWindow(new HandleRef(this, _hwndFileDialog)))
                 {
                     return String.Empty;
                 }
 
                 // Determine the length of the text we want to retrieve...
-                int textLen = UnsafeNativeMethods.GetWindowTextLength(new HandleRef(this, _hwndFileDialog));
+                int textLen = UnsafeNativeMethodsX.GetWindowTextLength(new HandleRef(this, _hwndFileDialog));
                 // then make a StringBuilder...
                 StringBuilder sb = new StringBuilder(textLen + 1);
                 // and call GetWindowText to fill it up...
-                UnsafeNativeMethods.GetWindowText(new HandleRef(this, _hwndFileDialog),
+                UnsafeNativeMethodsX.GetWindowText(new HandleRef(this, _hwndFileDialog),
                            sb /*target string*/,
                            sb.Capacity /* max # of chars to copy before truncation occurs */
                            );
@@ -1915,7 +1923,7 @@ namespace Microsoft.Win32
             /// </SecurityNote>
             [SecurityCritical]
             public VistaDialogEvents(IFileDialog dialog, OnOkCallback okCallback)
-            { 
+            {
                 _dialog = dialog;
                 _eventCookie = dialog.Advise(this);
                 _okCallback = okCallback;
@@ -2012,7 +2020,7 @@ namespace Microsoft.Win32
 
         #region Internal and Protected Methods
         // These methods are intended to be internal AND protected, but C# doesn't allow that declaration.
-        
+
         /// <SecurityNote>
         ///     Derived callers have similar attributes.  See their declarations for a fuller explanation.
         ///     TreatAsSafe as this returns a COM interface, not a handle, which has Security attributes on it as well.
@@ -2061,7 +2069,7 @@ namespace Microsoft.Win32
             // Only accept physically backed locations.
             FOS options = ((FOS)Options & c_VistaFileDialogMask) | FOS.DEFAULTNOMINIMODE | FOS.FORCEFILESYSTEM;
             dialog.SetOptions(options);
-            
+
             COMDLG_FILTERSPEC[] filterItems = GetFilterItems(Filter);
             if (filterItems.Length > 0)
             {
@@ -2094,10 +2102,10 @@ namespace Microsoft.Win32
         #endregion
 
         #region Private Methods
-        
+
         private bool UseVistaDialog
         {
-            get { return Environment.OSVersion.Version.Major >= 6; } 
+            get { return Environment.OSVersion.Version.Major >= 6; }
         }
 
         /// <SecurityNote> 
@@ -2107,7 +2115,7 @@ namespace Microsoft.Win32
         private bool RunVistaDialog(IntPtr hwndOwner)
         {
             IFileDialog dialog = CreateVistaDialog();
-            
+
             PrepareVistaDialog(dialog);
 
             using (VistaDialogEvents events = new VistaDialogEvents(dialog, HandleVistaFileOk))
@@ -2131,9 +2139,9 @@ namespace Microsoft.Win32
             // When this callback occurs, the HWND is visible and we need to
             // grab it because it is used for various things like looking up the
             // DialogCaption.
-            UnsafeNativeMethods.IOleWindow oleWindow = (UnsafeNativeMethods.IOleWindow) dialog;
+            UnsafeNativeMethodsX.IOleWindow oleWindow = (UnsafeNativeMethodsX.IOleWindow)dialog;
             oleWindow.GetWindow(out _hwndFileDialog);
-            
+
             int saveOptions = _dialogOptions.Value;
             int saveFilterIndex = _filterIndex;
             string[] saveFileNames = _fileNames;
@@ -2186,9 +2194,9 @@ namespace Microsoft.Win32
                     for (int i = 1; i < tokens.Length; i += 2)
                     {
                         extensions.Add(
-                            new COMDLG_FILTERSPEC 
-                            { 
-                                pszName = tokens[i-1], 
+                            new COMDLG_FILTERSPEC
+                            {
+                                pszName = tokens[i - 1],
                                 pszSpec = tokens[i],
                             });
                     }
@@ -2208,7 +2216,7 @@ namespace Microsoft.Win32
         }
 
         #endregion
-        
+
         #endregion
 
         //---------------------------------------------------
@@ -2218,7 +2226,7 @@ namespace Microsoft.Win32
         //---------------------------------------------------
         #region Private Fields
 
-        private const FOS c_VistaFileDialogMask = FOS.OVERWRITEPROMPT | FOS.NOCHANGEDIR  | FOS.NOVALIDATE | FOS.ALLOWMULTISELECT | FOS.PATHMUSTEXIST | FOS.FILEMUSTEXIST | FOS.CREATEPROMPT | FOS.NODEREFERENCELINKS;
+        private const FOS c_VistaFileDialogMask = FOS.OVERWRITEPROMPT | FOS.NOCHANGEDIR | FOS.NOVALIDATE | FOS.ALLOWMULTISELECT | FOS.PATHMUSTEXIST | FOS.FILEMUSTEXIST | FOS.CREATEPROMPT | FOS.NODEREFERENCELINKS;
 
         // _dialogOptions is a set of bit flags used to control the behavior
         // of the Win32 dialog box.
@@ -2235,14 +2243,14 @@ namespace Microsoft.Win32
         private SecurityCriticalDataForSet<string> _title;                  // Title bar of the message box
         private SecurityCriticalDataForSet<string> _initialDirectory;       // Starting directory
         private string _defaultExtension;       // Extension appended first if AddExtension
-                                                // is enabled
+        // is enabled
         private string _filter;                 // The file extension filters that display
-                                                // in the "Files of Type" box in the dialog
+        // in the "Files of Type" box in the dialog
         private int _filterIndex;               // The index of the currently selected
-                                                // filter (a default filter index before
-                                                // the dialog is called, and the filter
-                                                // the user selected afterwards.)  This
-                                                // index is 1-based, not 0-based.
+        // filter (a default filter index before
+        // the dialog is called, and the filter
+        // the user selected afterwards.)  This
+        // index is 1-based, not 0-based.
 
         // Since we have to interop with native code to show the file dialogs,
         // we use the CharBuffer class to help with the marshalling of
@@ -2275,7 +2283,7 @@ namespace Microsoft.Win32
         // 8192 is an arbitrary but reasonable size that should minimize the
         // number of times we need to grow the buffer.
         private const int FILEBUFSIZE = 8192;
-        
+
         // OPTION_ADDEXTENSION is our own bit flag that we use to control our
         // own automatic extension appending feature.
         private const int OPTION_ADDEXTENSION = unchecked(unchecked((int)0x80000000));

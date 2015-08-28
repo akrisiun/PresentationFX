@@ -188,7 +188,7 @@ namespace System.Windows.Controls.Primitives
         {
             var baseSize = base.MeasureOverride(availableSize);
 
-            DataGrid dataGridOwner = DataGridOwner;
+            DataGridX dataGridOwner = DataGridOwner;
             if (dataGridOwner == null)
             {
                 return baseSize;
@@ -266,19 +266,19 @@ namespace System.Windows.Controls.Primitives
             {
                 DataGridHelper.TransferProperty(this, ContentProperty);
             }
-            else if (e.Property == DataGrid.RowHeaderStyleProperty || e.Property == DataGridRow.HeaderStyleProperty || e.Property == StyleProperty)
+            else if (e.Property == DataGridX.RowHeaderStyleProperty || e.Property == DataGridRow.HeaderStyleProperty || e.Property == StyleProperty)
             {
                 DataGridHelper.TransferProperty(this, StyleProperty);
             }
-            else if (e.Property == DataGrid.RowHeaderTemplateProperty || e.Property == DataGridRow.HeaderTemplateProperty || e.Property == ContentTemplateProperty)
+            else if (e.Property == DataGridX.RowHeaderTemplateProperty || e.Property == DataGridRow.HeaderTemplateProperty || e.Property == ContentTemplateProperty)
             {
                 DataGridHelper.TransferProperty(this, ContentTemplateProperty);
             }
-            else if (e.Property == DataGrid.RowHeaderTemplateSelectorProperty || e.Property == DataGridRow.HeaderTemplateSelectorProperty || e.Property == ContentTemplateSelectorProperty)
+            else if (e.Property == DataGridX.RowHeaderTemplateSelectorProperty || e.Property == DataGridRow.HeaderTemplateSelectorProperty || e.Property == ContentTemplateSelectorProperty)
             {
                 DataGridHelper.TransferProperty(this, ContentTemplateSelectorProperty);
             }
-            else if (e.Property == DataGrid.RowHeaderWidthProperty || e.Property == WidthProperty)
+            else if (e.Property == DataGridX.RowHeaderWidthProperty || e.Property == WidthProperty)
             {
                 DataGridHelper.TransferProperty(this, WidthProperty);
             }
@@ -286,11 +286,11 @@ namespace System.Windows.Controls.Primitives
             {
                 CoerceValue(IsRowSelectedProperty);
             }
-            else if (e.Property == DataGrid.CanUserResizeRowsProperty)
+            else if (e.Property == DataGridX.CanUserResizeRowsProperty)
             {
                 OnCanUserResizeRowsChanged();
             }
-            else if (e.Property == DataGrid.RowHeaderActualWidthProperty)
+            else if (e.Property == DataGridX.RowHeaderActualWidthProperty)
             {
                 // When the RowHeaderActualWidth changes we need to re-measure to pick up the new value for DesiredSize
                 this.InvalidateMeasure();
@@ -305,10 +305,10 @@ namespace System.Windows.Controls.Primitives
                     parent.InvalidateArrange();
                 }
             }
-            else if (e.Property == DataGrid.CurrentItemProperty    ||
+            else if (e.Property == DataGridX.CurrentItemProperty    ||
                      e.Property == DataGridRow.IsEditingProperty   ||
                      e.Property == DataGridRow.IsMouseOverProperty ||
-                     e.Property == DataGrid.IsKeyboardFocusWithinProperty)
+                     e.Property == DataGridX.IsKeyboardFocusWithinProperty)
             {
                 UpdateVisualState();
             }
@@ -347,7 +347,7 @@ namespace System.Windows.Controls.Primitives
                 row,
                 DataGridRow.HeaderTemplateProperty,
                 dataGrid,
-                DataGrid.RowHeaderTemplateProperty);
+                DataGridX.RowHeaderTemplateProperty);
         }
 
         /// <summary>
@@ -365,7 +365,7 @@ namespace System.Windows.Controls.Primitives
                 row,
                 DataGridRow.HeaderTemplateSelectorProperty,
                 dataGrid,
-                DataGrid.RowHeaderTemplateSelectorProperty);
+                DataGridX.RowHeaderTemplateSelectorProperty);
         }
 
         /// <summary>
@@ -381,7 +381,7 @@ namespace System.Windows.Controls.Primitives
                 header.ParentRow,
                 DataGridRow.HeaderStyleProperty,
                 header.DataGridOwner,
-                DataGrid.RowHeaderStyleProperty);
+                DataGridX.RowHeaderStyleProperty);
         }
 
         /// <summary>
@@ -395,7 +395,7 @@ namespace System.Windows.Controls.Primitives
                 baseValue,
                 WidthProperty,
                 header.DataGridOwner,
-                DataGrid.RowHeaderWidthProperty);
+                DataGridX.RowHeaderWidthProperty);
         }
 
         #endregion
@@ -563,7 +563,7 @@ namespace System.Windows.Controls.Primitives
                 ReleaseMouseCapture();
             }
 
-            DataGrid dataGridOwner = DataGridOwner;
+            DataGridX dataGridOwner = DataGridOwner;
             DataGridRow parentRow = ParentRow;
             if ((dataGridOwner != null) && (parentRow != null))
             {
@@ -648,7 +648,7 @@ namespace System.Windows.Controls.Primitives
         {
             if (_topGripper != null)
             {
-                DataGrid dataGrid = DataGridOwner;
+                DataGridX dataGrid = DataGridOwner;
                 DataGridRow parent = ParentRow;
                 if (dataGrid != null && parent != null &&
                     dataGrid.CanUserResizeRows && dataGrid.Items.Count > 1 &&
@@ -667,7 +667,7 @@ namespace System.Windows.Controls.Primitives
         {
             if (_bottomGripper != null)
             {
-                DataGrid dataGrid = DataGridOwner;
+                DataGridX dataGrid = DataGridOwner;
                 if (dataGrid != null && dataGrid.CanUserResizeRows)
                 {
                     _bottomGripper.Visibility = Visibility.Visible;
@@ -689,7 +689,7 @@ namespace System.Windows.Controls.Primitives
                 DataGridRow row = ParentRow;
                 if (row != null)
                 {
-                    DataGrid dataGrid = row.DataGridOwner;
+                    DataGridX dataGrid = row.DataGridOwner;
                     if (dataGrid != null)
                     {
                         int index = dataGrid.ItemContainerGenerator.IndexFromContainer(row);
@@ -773,7 +773,7 @@ namespace System.Windows.Controls.Primitives
             }
         }
 
-        private DataGrid DataGridOwner
+        private DataGridX DataGridOwner
         {
             get
             {

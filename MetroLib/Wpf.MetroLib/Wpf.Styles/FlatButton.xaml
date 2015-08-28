@@ -1,0 +1,14 @@
+﻿<cw:ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    
+                    xmlns:c="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+                    xmlns:cw="clr-namespace:System.Windows;assembly=PresentationFramework"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <cw:ResourceDictionary.MergedDictionaries>
+        <cw:ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Controls.Buttons.xaml" />
+    </cw:ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type Button}"
+           BasedOn="{StaticResource MetroFlatButton}" />
+
+</cw:ResourceDictionary>

@@ -265,7 +265,7 @@ namespace System.Windows.Automation.Peers
 
         #region Private Methods
 
-        private DataGrid OwningDataGrid
+        private DataGridX OwningDataGrid
         {
             get
             {

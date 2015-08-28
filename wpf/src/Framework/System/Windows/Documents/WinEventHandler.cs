@@ -23,6 +23,8 @@ using System.Windows.Threading;
 using MS.Win32;
 
 using MS.Internal;
+using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethods;   // in WindowsBase
+using NativeMethods = MS.Win32.NativeMethods;   // WindowsBase.dll 
 
 namespace System.Windows.Documents
 {

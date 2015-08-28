@@ -20,6 +20,8 @@ using System.IO;
 using System.Runtime.InteropServices;           // For Marshal
 using System.Windows;                           // for ExceptionStringTable
 using MS.Win32;                                 // For NativeMethods
+using NativeMethods = MS.Win32.NativeMethods;
+
 using MS.Internal.Interop;	                // for IStream
 using System.Security;                          // For SecurityCritical
 

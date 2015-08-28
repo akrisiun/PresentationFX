@@ -101,7 +101,7 @@ namespace System.Windows.Baml2006
                     case 9: t = () => typeof(Animatable); break;
                     case 10: t = () => typeof(AnimationClock); break;
                     case 11: t = () => typeof(AnimationTimeline); break;
-                    case 12: t = () => typeof(Application); break;
+                    case 12: t = () => typeof(ApplicationX); break;
                     case 13: t = () => typeof(ArcSegment); break;
                     case 14: t = () => typeof(ArrayExtension); break;
                     case 15: t = () => typeof(AxisAngleRotation3D); break;

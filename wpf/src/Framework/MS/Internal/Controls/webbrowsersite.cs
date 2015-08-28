@@ -32,6 +32,7 @@ using System.Windows.Threading;
 using System.Threading;
 
 using IComDataObject = System.Runtime.InteropServices.ComTypes.IDataObject;
+using NativeMethods = MS.Win32.NativeMethods;   // WindowsBase.dll
 
 namespace MS.Internal.Controls
 {

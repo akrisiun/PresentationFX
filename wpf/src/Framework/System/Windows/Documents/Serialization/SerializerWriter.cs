@@ -41,7 +41,8 @@ namespace System.Windows.Documents.Serialization
         ///   Safe     : PrintTicket is strongly typed wrapper over an XML document that does not contain security critical information
         /// </SecurityNote>
         [SecuritySafeCritical]
-        public abstract void Write(Visual visual, PrintTicket printTicket);
+        public abstract void Write(Visual visual, object // Reach : PrintTicket 
+            printTicket);
 
         /// <summary>
         /// Asynchronous Write a single Visual and close package

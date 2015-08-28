@@ -50,7 +50,7 @@ namespace System.Windows.Documents
         {
             try
             {
-                _hyphenatorResource = UnsafeNativeMethods.NlCreateHyphenator();
+                _hyphenatorResource = UnsafeNativeMethodsX.NlCreateHyphenator();
             }
             catch (DllNotFoundException)
             {
@@ -92,7 +92,7 @@ namespace System.Windows.Documents
         {
             if (!_disposed && _hyphenatorResource != IntPtr.Zero)
             {
-                UnsafeNativeMethods.NlDestroyHyphenator(ref _hyphenatorResource);
+                UnsafeNativeMethodsX.NlDestroyHyphenator(ref _hyphenatorResource);
                 _disposed = true;
             }
         }
@@ -151,7 +151,7 @@ namespace System.Windows.Documents
 
             byte[] isHyphenPositions = new byte[(length + 7) / 8];
 
-            UnsafeNativeMethods.NlHyphenate(
+            UnsafeNativeMethodsX.NlHyphenate(
                 _hyphenatorResource,
                 characterSource,
                 length,
@@ -231,7 +231,7 @@ namespace System.Windows.Documents
         }
 
 
-        private static class UnsafeNativeMethods
+        private static class UnsafeNativeMethodsX
         {
             /// <SecurityNote>
             ///     Critical: This elevates to unmanaged code permission

@@ -302,8 +302,8 @@ namespace System.Diagnostics.Tracing
 #endif // FEATURE_ACTIVITYSAMPLING
             // We ignore errors to keep with the convention that EventSources do not throw errors.
             // Note we can't access m_throwOnWrites because this is a static method.  
-            if (UnsafeNativeMethods.ManifestEtw.EventActivityIdControl(
-                UnsafeNativeMethods.ManifestEtw.ActivityControl.EVENT_ACTIVITY_CTRL_GET_SET_ID,
+            if (UnsafeNativeMethodsX.ManifestEtw.EventActivityIdControl(
+                UnsafeNativeMethodsX.ManifestEtw.ActivityControl.EVENT_ACTIVITY_CTRL_GET_SET_ID,
                 ref activityId) == 0)
             {
 #if FEATURE_ACTIVITYSAMPLING
@@ -346,8 +346,8 @@ namespace System.Diagnostics.Tracing
             oldActivityThatWillContinue = activityId;
             // We ignore errors to keep with the convention that EventSources do not throw errors.
             // Note we can't access m_throwOnWrites because this is a static method.  
-            UnsafeNativeMethods.ManifestEtw.EventActivityIdControl(
-                UnsafeNativeMethods.ManifestEtw.ActivityControl.EVENT_ACTIVITY_CTRL_GET_SET_ID,
+            UnsafeNativeMethodsX.ManifestEtw.EventActivityIdControl(
+                UnsafeNativeMethodsX.ManifestEtw.ActivityControl.EVENT_ACTIVITY_CTRL_GET_SET_ID,
                     ref oldActivityThatWillContinue);
             // We don't call the activityDying callback here because the caller has declared that
             // it is not dying.  
@@ -361,8 +361,8 @@ namespace System.Diagnostics.Tracing
                 // We ignore errors to keep with the convention that EventSources do not throw 
                 // errors. Note we can't access m_throwOnWrites because this is a static method.
                 Guid retVal = new Guid();
-                UnsafeNativeMethods.ManifestEtw.EventActivityIdControl(
-                    UnsafeNativeMethods.ManifestEtw.ActivityControl.EVENT_ACTIVITY_CTRL_GET_ID,
+                UnsafeNativeMethodsX.ManifestEtw.EventActivityIdControl(
+                    UnsafeNativeMethodsX.ManifestEtw.ActivityControl.EVENT_ACTIVITY_CTRL_GET_ID,
                     ref retVal);
                 return retVal;
             }

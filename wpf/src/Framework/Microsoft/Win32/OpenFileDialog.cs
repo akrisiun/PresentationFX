@@ -27,6 +27,10 @@ namespace Microsoft.Win32
     using MS.Internal.PresentationFramework;
     using MS.Win32;
 
+    using SafeNativeMethods = MS.Win32.SafeNativeMethods;
+    using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethodsX;
+    using NativeMethods = MS.Win32.NativeMethods;
+
     /// <summary>
     ///  Represents a common dialog box that allows the user to open one or more file(s). 
     ///  This class cannot be inherited.
@@ -386,13 +390,13 @@ namespace Microsoft.Win32
             // is completed - any interaction we have with the dialog
             // while it's open takes place through our HookProc.  The
             // return value is a bool;  true = success.
-            result = UnsafeNativeMethods.GetOpenFileName(ofn);
+            result = UnsafeNativeMethodsX.GetOpenFileName(ofn);
 
             if (!result)    // result was 0 (false), so an error occurred.
             {
                 // Something may have gone wrong - check for error conditions
                 // by calling CommDlgExtendedError to get the specific error.
-                int errorCode = UnsafeNativeMethods.CommDlgExtendedError();
+                int errorCode = UnsafeNativeMethodsX.CommDlgExtendedError();
 
                 // Throw an appropriate exception if we know what happened:
                 switch (errorCode)

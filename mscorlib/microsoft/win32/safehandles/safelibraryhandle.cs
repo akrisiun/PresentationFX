@@ -29,7 +29,7 @@ namespace Microsoft.Win32 {
         [System.Security.SecurityCritical]
         override protected bool ReleaseHandle()
         {
-            return UnsafeNativeMethods.FreeLibrary(handle);
+            return UnsafeNativeMethodsX.FreeLibrary(handle);
         }
     }
 }

@@ -58,7 +58,7 @@ namespace System.Windows.Controls
             _removedCells = removedCells;
         }
 
-        internal SelectedCellsChangedEventArgs(DataGrid owner, VirtualizedCellInfoCollection addedCells, VirtualizedCellInfoCollection removedCells)
+        internal SelectedCellsChangedEventArgs(DataGridX owner, VirtualizedCellInfoCollection addedCells, VirtualizedCellInfoCollection removedCells)
         {
             _addedCells = (addedCells != null) ? addedCells : VirtualizedCellInfoCollection.MakeEmptyCollection(owner);
             _removedCells = (removedCells != null) ? removedCells : VirtualizedCellInfoCollection.MakeEmptyCollection(owner);

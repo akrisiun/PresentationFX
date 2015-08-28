@@ -23,6 +23,9 @@ namespace System.Windows.Documents
     using System.Windows.Interop;
     using System.Windows.Controls.Primitives;
 
+    using SafeNativeMethods = MS.Win32.SafeNativeMethods;
+    using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethodsX;
+    using NativeMethods = MS.Win32.NativeMethods;
 
 // Disable pragma warnings to enable PREsharp pragmas
 #pragma warning disable 1634, 1691

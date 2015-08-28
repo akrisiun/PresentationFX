@@ -7,7 +7,7 @@ using MS.Internal.PresentationFramework;
 
 namespace MS.Internal.Printing
 {
-    internal static class UnsafeNativeMethods
+    internal static class UnsafeNativeMethodsX
     {
         /// <SecurityNote>
         ///     Critical: Because of suppression

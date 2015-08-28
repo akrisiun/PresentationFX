@@ -215,7 +215,7 @@ namespace System.Windows.Navigation
             }
             else
             {
-                if (Application.InBrowserHostedApp())
+                if (ApplicationX.InBrowserHostedApp())
                 {
                     LaunchResult launched = LaunchResult.NotLaunched;
 
@@ -612,7 +612,7 @@ namespace System.Windows.Navigation
             // Application has two window collections. One for Application windows (windows
             // created on the same thread as the app) and the other for all other windows.
             // we will try to find target in all of these windows.
-            if (Application.Current == null)
+            if (ApplicationX.Current == null)
                 return null;
 
             // WindowsInternal takes a lock to access the storage.  We want to clone it and use the copy.
@@ -621,13 +621,13 @@ namespace System.Windows.Navigation
             //
             // Same argument goes for NonAppWindowsInternal.Clone() below
             //
-            INavigatorBase navigator = FindTargetInWindowCollection(Application.Current.WindowsInternal.Clone(), targetName);
+            INavigatorBase navigator = FindTargetInWindowCollection(ApplicationX.Current.WindowsInternal.Clone(), targetName);
 
             // if we didn't find the target in one of the App windows, search for it in windows on
             // non app thread
             if (navigator == null)
             {
-                navigator = FindTargetInWindowCollection(Application.Current.NonAppWindowsInternal.Clone(), targetName);
+                navigator = FindTargetInWindowCollection(ApplicationX.Current.NonAppWindowsInternal.Clone(), targetName);
             }
 
             return navigator;
@@ -1796,7 +1796,7 @@ namespace System.Windows.Navigation
         {
             if (Application != null && Application.CheckAccess())
             {
-                Application.PerformNavigationStateChangeTasks(true, false, Application.NavigationStateChange.Stopped);
+                Application.PerformNavigationStateChangeTasks(true, false, ApplicationX.NavigationStateChange.Stopped);
             }
         }
 
@@ -3662,9 +3662,9 @@ namespace System.Windows.Navigation
         /// <summary>
         /// Returns the current Application
         /// </summary>
-        internal Application Application
+        internal ApplicationX Application
         {
-            get { return Application.Current; }
+            get { return ApplicationX.Current; }
         }
 
         internal bool AllowWindowNavigation
@@ -3880,7 +3880,7 @@ namespace System.Windows.Navigation
                 bool isAppShuttingDown = false;
                 if ((this.Application != null) &&
                     (this.Application.CheckAccess() == true) &&
-                    (Application.IsShuttingDown == true))
+                    (ApplicationX.IsShuttingDown == true))
                 {
                     isAppShuttingDown = true;
                 }

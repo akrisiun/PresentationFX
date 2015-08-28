@@ -102,13 +102,13 @@ namespace MS.Internal
 
 
 
-            Application app = Application.Current;
+            ApplicationX app = ApplicationX.Current;
             if (app != null)
             {
                 // If the element is rooted to a Window and App exists, defer to App.
                 for (k = 0;  k < bestMatch;  ++k)
                 {
-                    object appResource = Application.Current.FindResourceInternal(keys[k]);
+                    object appResource = ApplicationX.Current.FindResourceInternal(keys[k]);
                     if (appResource != null)
                     {
                         bestMatch = k;

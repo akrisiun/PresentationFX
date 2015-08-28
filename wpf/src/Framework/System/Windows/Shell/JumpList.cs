@@ -258,7 +258,7 @@ namespace System.Windows.Shell
         /// </SecurityNote>
         [SecuritySafeCritical]
         [UIPermission(SecurityAction.Demand, Window=UIPermissionWindow.AllWindows)]
-        public static void SetJumpList(Application application, JumpList value)
+        public static void SetJumpList(ApplicationX application, JumpList value)
         {
             Verify.IsNotNull(application, "application");
 
@@ -290,7 +290,7 @@ namespace System.Windows.Shell
         /// <summary>
         /// Get the JumpList attached property for an Application.
         /// </summary>
-        public static JumpList GetJumpList(Application application)
+        public static JumpList GetJumpList(ApplicationX application)
         {
             Verify.IsNotNull(application, "application");
 
@@ -303,9 +303,9 @@ namespace System.Windows.Shell
 
         // static lock to ensure integrity when modifying instances as attached properties on Application.
         private static readonly object s_lock = new object();
-        private static readonly Dictionary<Application, JumpList> s_applicationMap = new Dictionary<Application, JumpList>();
+        private static readonly Dictionary<ApplicationX, JumpList> s_applicationMap = new Dictionary<ApplicationX, JumpList>();
 
-        private Application _application;
+        private ApplicationX _application;
 
         // Used to enforce the ISupportInitialize contract.  It's not required to BeginInit to use this class,
         // but it is useful for XAML scenarios so we can apply the changes when both EndInit has been called
@@ -543,7 +543,7 @@ namespace System.Windows.Shell
                 _initializing = false;
             }
 
-            if (_application == Application.Current && _initializing == false)
+            if (_application == ApplicationX.Current && _initializing == false)
             {
                 // If we're applying due to being an attached property, then don't apply
                 // unless we're really on the current application and wait until EndInit

@@ -31,6 +31,7 @@ using MS.Internal.Documents;                               // DocumentApplicatio
 using MS.Internal.PresentationFramework;                   // SecurityHelper
 using MS.Internal.KnownBoxes;
 using MS.Win32;
+using NativeMethods = MS.Win32.NativeMethods;
 
 namespace MS.Internal.AppModel
 {
@@ -75,7 +76,7 @@ namespace MS.Internal.AppModel
                 - E_NOTIMPL is not an acceptable return value.
             */
 
-            if (Application.Current == null || Application.IsShuttingDown == true)
+            if (ApplicationX.Current == null || ApplicationX.IsShuttingDown == true)
             {
                 Marshal.ThrowExceptionForHR(NativeMethods.E_FAIL);
             }
@@ -100,7 +101,7 @@ namespace MS.Internal.AppModel
             // Dispatcher.UnhandledException.
             // The above code is not in the callback, because it throws, and we don't want the
             // application to get these exceptions. (The COM Interop layer turns them into HRESULTs.)
-            bool enabled = (bool)Application.Current.Dispatcher.Invoke(
+            bool enabled = (bool)ApplicationX.Current.Dispatcher.Invoke(
                 DispatcherPriority.Send, new DispatcherOperationCallback(QueryEnabled), command);
             flags = enabled ? CommandEnabled : CommandDisabled;
         }
@@ -111,13 +112,13 @@ namespace MS.Internal.AppModel
         [SecurityCritical]
         private object QueryEnabled(object command)
         {
-            if (Application.Current.MainWindow == null)
+            if (ApplicationX.Current.MainWindow == null)
                 return false;
-            IInputElement target = FocusManager.GetFocusedElement(Application.Current.MainWindow);
+            IInputElement target = FocusManager.GetFocusedElement(ApplicationX.Current.MainWindow);
             if (target == null)
             {
                 // This will always succeed because Window is IInputElement
-                target = (IInputElement)Application.Current.MainWindow;
+                target = (IInputElement)ApplicationX.Current.MainWindow;
             }
             return BooleanBoxes.Box(((CommandWithArgument)command).QueryEnabled(target, null));
         }
@@ -132,12 +133,12 @@ namespace MS.Internal.AppModel
         [SecurityCritical]
         internal void ExecCommand(Guid guidCmdGroup, uint commandId, object arg)
         {
-            if (Application.Current == null || Application.IsShuttingDown == true)
+            if (ApplicationX.Current == null || ApplicationX.IsShuttingDown == true)
             {
                 Marshal.ThrowExceptionForHR(NativeMethods.E_FAIL);
             }
 
-            int hresult = (int)Application.Current.Dispatcher.Invoke(
+            int hresult = (int)ApplicationX.Current.Dispatcher.Invoke(
                 DispatcherPriority.Send,
                 new DispatcherOperationCallback(ExecCommandCallback),
                 new object[] { guidCmdGroup, commandId, arg });
@@ -168,13 +169,13 @@ namespace MS.Internal.AppModel
             if (command == null)
                 return OLECMDERR_E_NOTSUPPORTED;
 
-            if (Application.Current.MainWindow == null)
+            if (ApplicationX.Current.MainWindow == null)
                 return OLECMDERR_E_DISABLED;
-            IInputElement target = FocusManager.GetFocusedElement(Application.Current.MainWindow);
+            IInputElement target = FocusManager.GetFocusedElement(ApplicationX.Current.MainWindow);
             if (target == null)
             {
                 // This will always succeed because Window is IInputElement
-                target = (IInputElement)Application.Current.MainWindow;
+                target = (IInputElement)ApplicationX.Current.MainWindow;
             }
             return command.Execute(target, arg) ? NativeMethods.S_OK : OLECMDERR_E_DISABLED;
         }

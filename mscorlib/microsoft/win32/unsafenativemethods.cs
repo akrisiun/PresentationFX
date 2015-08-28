@@ -23,15 +23,15 @@ namespace Microsoft.Win32 {
     using System.Diagnostics.Tracing;
 
     [System.Security.SecurityCritical]  // auto-generated
-    [SuppressUnmanagedCodeSecurityAttribute()]
-    internal static class UnsafeNativeMethods {
+    //[SuppressUnmanagedCodeSecurityAttribute()]
+    internal static class UnsafeNativeMethodsX {
 
         [DllImport(Win32Native.KERNEL32, EntryPoint="GetTimeZoneInformation", SetLastError = true, ExactSpelling = true)]
-        [ResourceExposure(ResourceScope.None)]
+        //[ResourceExposure(ResourceScope.None)]
         internal static extern int GetTimeZoneInformation(out Win32Native.TimeZoneInformation lpTimeZoneInformation);
 
         [DllImport(Win32Native.KERNEL32, EntryPoint="GetDynamicTimeZoneInformation", SetLastError = true, ExactSpelling = true)]
-        [ResourceExposure(ResourceScope.None)]
+        //[ResourceExposure(ResourceScope.None)]
         internal static extern int GetDynamicTimeZoneInformation(out Win32Native.DynamicTimeZoneInformation lpDynamicTimeZoneInformation);
 
         // 

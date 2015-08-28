@@ -32,12 +32,12 @@ namespace System.Windows
         private static void _PostSystemCommand(Window window, SC command)
         {
             IntPtr hwnd = new WindowInteropHelper(window).Handle;
-            if (hwnd == IntPtr.Zero || !NativeMethods.IsWindow(hwnd))
+            if (hwnd == IntPtr.Zero || !NativeMethodsX.IsWindow(hwnd))
             {
                 return;
             }
 
-            NativeMethods.PostMessage(hwnd, WM.SYSCOMMAND, new IntPtr((int)command), IntPtr.Zero);
+            NativeMethodsX.PostMessage(hwnd, WM.SYSCOMMAND, new IntPtr((int)command), IntPtr.Zero);
         }
 
         /// <SecurityNote>
@@ -113,17 +113,17 @@ namespace System.Windows
 
             Verify.IsNotNull(window, "window");
             IntPtr hwnd = new WindowInteropHelper(window).Handle;
-            if (hwnd == IntPtr.Zero || !NativeMethods.IsWindow(hwnd))
+            if (hwnd == IntPtr.Zero || !NativeMethodsX.IsWindow(hwnd))
             {
                 return;
             }
 
-            IntPtr hmenu = NativeMethods.GetSystemMenu(hwnd, false);
+            IntPtr hmenu = NativeMethodsX.GetSystemMenu(hwnd, false);
 
-            uint cmd = NativeMethods.TrackPopupMenuEx(hmenu, TPM_LEFTBUTTON | TPM_RETURNCMD, (int)physicalScreenLocation.X, (int)physicalScreenLocation.Y, hwnd, IntPtr.Zero);
+            uint cmd = NativeMethodsX.TrackPopupMenuEx(hmenu, TPM_LEFTBUTTON | TPM_RETURNCMD, (int)physicalScreenLocation.X, (int)physicalScreenLocation.Y, hwnd, IntPtr.Zero);
             if (0 != cmd)
             {
-                NativeMethods.PostMessage(hwnd, WM.SYSCOMMAND, new IntPtr(cmd), IntPtr.Zero);
+                NativeMethodsX.PostMessage(hwnd, WM.SYSCOMMAND, new IntPtr(cmd), IntPtr.Zero);
             }
         }
     }

@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 using System.Windows ; 
 using System.Security; 
 using MS.Internal.AppModel;
+using NativeMethods = MS.Win32.NativeMethods;
 
 namespace MS.Internal 
 {
@@ -40,11 +41,11 @@ namespace MS.Internal
         {   
             phwnd = IntPtr.Zero;
             
-            if ( Application.Current != null )
+            if ( ApplicationX.Current != null )
             {   
-                Window curWindow = Application.Current.MainWindow;
+                Window curWindow = ApplicationX.Current.MainWindow;
 
-                Invariant.Assert( Application.Current.BrowserCallbackServices == null || ( curWindow is RootBrowserWindow )); 
+                Invariant.Assert( ApplicationX.Current.BrowserCallbackServices == null || ( curWindow is RootBrowserWindow )); 
                 
                 if (curWindow != null)
                 {

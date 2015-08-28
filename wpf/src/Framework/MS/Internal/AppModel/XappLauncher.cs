@@ -24,7 +24,7 @@ using System.Threading;
 
 namespace MS.Internal.AppModel
 {
-    internal class XappLauncherApp : Application
+    internal class XappLauncherApp : ApplicationX
     {
         /// <SecurityNote>
         /// Critical : Accepts critical argument INativeProgressPage
@@ -1144,7 +1144,7 @@ namespace MS.Internal.AppModel
             {
                 // Use FOD to activate the required framework version
                 Invariant.Assert(!String.IsNullOrEmpty(_requiredCLRVersion));
-                UnsafeNativeMethods.TryGetRequestedCLRRuntime(_requiredCLRVersion);
+                UnsafeNativeMethodsX.TryGetRequestedCLRRuntime(_requiredCLRVersion);
                 frameworkActivated = true;
             }
             else if (OperatingSystemVersionCheck.IsVersionOrLater(OperatingSystemVersion.WindowsVista))
@@ -1363,7 +1363,7 @@ namespace MS.Internal.AppModel
         bool _hasTriedUriActivation;
         
         [SecurityCritical]
-        static class UnsafeNativeMethods
+        static class UnsafeNativeMethodsX
         {
             [SecurityCritical]
             [SuppressUnmanagedCodeSecurity, DllImport(DllImport.PresentationNative, CharSet = CharSet.Unicode)]

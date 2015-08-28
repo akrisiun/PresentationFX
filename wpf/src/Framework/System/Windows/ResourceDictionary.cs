@@ -1452,7 +1452,7 @@ namespace System.Windows
                 }
                 else
                 {
-                    Application app = owner as Application;
+                    ApplicationX app = owner as ApplicationX;
                     if (app != null)
                     {
                         if (_ownerApps == null)
@@ -1521,7 +1521,7 @@ namespace System.Windows
                 }
                 else
                 {
-                    Application app = owner as Application;
+                    ApplicationX app = owner as ApplicationX;
                     if (app != null)
                     {
                         if (_ownerApps != null)
@@ -1563,7 +1563,7 @@ namespace System.Windows
                 }
                 else
                 {
-                    Application app = owner as Application;
+                    ApplicationX app = owner as ApplicationX;
                     if (app != null)
                     {
                         return (_ownerApps != null && _ownerApps.Contains(app));
@@ -1638,7 +1638,7 @@ namespace System.Windows
                 {
                     foreach (Object o in _ownerApps)
                     {
-                        Application app = o as Application;
+                        ApplicationX app = o as ApplicationX;
                         if (app != null)
                         {
                             // Set the HasImplicitStyles flag on the owner
@@ -1920,7 +1920,7 @@ namespace System.Windows
 
                 foreach (object o in _ownerApps)
                 {
-                    Application app = o as Application;
+                    ApplicationX app = o as ApplicationX;
                     if (app != null)
                         mergedDictionary.AddOwner(app);
                 }
@@ -1964,7 +1964,7 @@ namespace System.Windows
 
                 foreach (Object o in _ownerApps)
                 {
-                    Application app = o as Application;
+                    ApplicationX app = o as ApplicationX;
                     mergedDictionary.RemoveOwner(app);
 
                 }

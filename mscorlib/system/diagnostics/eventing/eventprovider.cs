@@ -64,7 +64,7 @@ namespace System.Diagnostics.Tracing
         }
 
         [SecurityCritical]
-        UnsafeNativeMethods.ManifestEtw.EtwEnableCallback m_etwCallback;     // Trace Callback function
+        UnsafeNativeMethodsX.ManifestEtw.EtwEnableCallback m_etwCallback;     // Trace Callback function
         private long m_regHandle;                        // Trace Registration Handle
         private byte m_level;                            // Tracing Level
         private long m_anyKeywordMask;                   // Trace Enable Flags
@@ -137,7 +137,7 @@ namespace System.Diagnostics.Tracing
         {
             m_providerId = providerGuid;
             uint status;
-            m_etwCallback = new UnsafeNativeMethods.ManifestEtw.EtwEnableCallback(EtwEnableCallBack);
+            m_etwCallback = new UnsafeNativeMethodsX.ManifestEtw.EtwEnableCallback(EtwEnableCallBack);
 
             status = EventRegister(ref m_providerId, m_etwCallback); 
             if (status != 0)
@@ -238,7 +238,7 @@ namespace System.Diagnostics.Tracing
                         [In] byte setLevel,
                         [In] long anyKeyword,
                         [In] long allKeyword,
-                        [In] UnsafeNativeMethods.ManifestEtw.EVENT_FILTER_DESCRIPTOR* filterData,
+                        [In] UnsafeNativeMethodsX.ManifestEtw.EVENT_FILTER_DESCRIPTOR* filterData,
                         [In] void* callbackContext
                         )
         {
@@ -249,7 +249,7 @@ namespace System.Diagnostics.Tracing
             bool skipFinalOnControllerCommand = false;
             EventSource.OutputDebugString(string.Format("EtwEnableCallBack(ctrl {0}, lvl {1}, any {2:x}, all {3:x})", 
                                           controlCode, setLevel, anyKeyword, allKeyword));
-            if (controlCode == UnsafeNativeMethods.ManifestEtw.EVENT_CONTROL_CODE_ENABLE_PROVIDER)
+            if (controlCode == UnsafeNativeMethodsX.ManifestEtw.EVENT_CONTROL_CODE_ENABLE_PROVIDER)
             {
                 m_enabled = true;
                 m_level = setLevel;
@@ -306,7 +306,7 @@ namespace System.Diagnostics.Tracing
                     }
                 }
             }
-            else if (controlCode == UnsafeNativeMethods.ManifestEtw.EVENT_CONTROL_CODE_DISABLE_PROVIDER)
+            else if (controlCode == UnsafeNativeMethodsX.ManifestEtw.EVENT_CONTROL_CODE_DISABLE_PROVIDER)
             {
                 m_enabled = false;
                 m_level = 0;
@@ -314,7 +314,7 @@ namespace System.Diagnostics.Tracing
                 m_allKeywordMask = 0;
                 m_liveSessions = null;
             }
-            else if (controlCode == UnsafeNativeMethods.ManifestEtw.EVENT_CONTROL_CODE_CAPTURE_STATE)
+            else if (controlCode == UnsafeNativeMethodsX.ManifestEtw.EVENT_CONTROL_CODE_CAPTURE_STATE)
             {
                 command = ControllerCommand.SendManifest;
             }
@@ -446,7 +446,7 @@ namespace System.Diagnostics.Tracing
 
                 fixed (Guid* provider = &m_providerId)
                 {
-                    hr = UnsafeNativeMethods.ManifestEtw.EnumerateTraceGuidsEx(UnsafeNativeMethods.ManifestEtw.TRACE_QUERY_INFO_CLASS.TraceGuidQueryInfo,
+                    hr = UnsafeNativeMethodsX.ManifestEtw.EnumerateTraceGuidsEx(UnsafeNativeMethodsX.ManifestEtw.TRACE_QUERY_INFO_CLASS.TraceGuidQueryInfo,
                         provider, sizeof(Guid), buffer, buffSize, ref buffSize);
                 }
                 if (hr == 0)
@@ -455,15 +455,15 @@ namespace System.Diagnostics.Tracing
                     return;
             }
 
-            var providerInfos = (UnsafeNativeMethods.ManifestEtw.TRACE_GUID_INFO*)buffer;
-            var providerInstance = (UnsafeNativeMethods.ManifestEtw.TRACE_PROVIDER_INSTANCE_INFO*)&providerInfos[1];
+            var providerInfos = (UnsafeNativeMethodsX.ManifestEtw.TRACE_GUID_INFO*)buffer;
+            var providerInstance = (UnsafeNativeMethodsX.ManifestEtw.TRACE_PROVIDER_INSTANCE_INFO*)&providerInfos[1];
             int processId = (int)Win32Native.GetCurrentProcessId();
             // iterate over the instances of the EventProvider in all processes
             for (int i = 0; i < providerInfos->InstanceCount; i++)
             {
                 if (providerInstance->Pid == processId)
                 {
-                    var enabledInfos = (UnsafeNativeMethods.ManifestEtw.TRACE_ENABLE_INFO*)&providerInstance[1];
+                    var enabledInfos = (UnsafeNativeMethodsX.ManifestEtw.TRACE_ENABLE_INFO*)&providerInstance[1];
                     // iterate over the list of active ETW sessions "listening" to the current provider
                     for (int j = 0; j < providerInstance->EnableCount; j++)
                         action(enabledInfos[j].LoggerId, enabledInfos[j].MatchAllKeyword);
@@ -472,7 +472,7 @@ namespace System.Diagnostics.Tracing
                     break;
                 Contract.Assert(0 <= providerInstance->NextOffset && providerInstance->NextOffset < buffSize);
                 var structBase = (byte*)providerInstance;
-                providerInstance = (UnsafeNativeMethods.ManifestEtw.TRACE_PROVIDER_INSTANCE_INFO*)&structBase[providerInstance->NextOffset];
+                providerInstance = (UnsafeNativeMethodsX.ManifestEtw.TRACE_PROVIDER_INSTANCE_INFO*)&structBase[providerInstance->NextOffset];
             }
         }
 
@@ -503,7 +503,7 @@ namespace System.Diagnostics.Tracing
         /// </summary>
         [System.Security.SecurityCritical]
         private unsafe bool GetDataFromController(int etwSessionId, 
-                UnsafeNativeMethods.ManifestEtw.EVENT_FILTER_DESCRIPTOR* filterData, out ControllerCommand command, out byte[] data, out int dataStart)
+                UnsafeNativeMethodsX.ManifestEtw.EVENT_FILTER_DESCRIPTOR* filterData, out ControllerCommand command, out byte[] data, out int dataStart)
         {
             data = null;
             dataStart = 0;
@@ -600,11 +600,11 @@ namespace System.Diagnostics.Tracing
         {
             switch (error)
             {
-                case UnsafeNativeMethods.ManifestEtw.ERROR_ARITHMETIC_OVERFLOW:
-                case UnsafeNativeMethods.ManifestEtw.ERROR_MORE_DATA:
+                case UnsafeNativeMethodsX.ManifestEtw.ERROR_ARITHMETIC_OVERFLOW:
+                case UnsafeNativeMethodsX.ManifestEtw.ERROR_MORE_DATA:
                     s_returnCode = WriteEventErrorCode.EventTooBig;
                     break;
-                case UnsafeNativeMethods.ManifestEtw.ERROR_NOT_ENOUGH_MEMORY:
+                case UnsafeNativeMethodsX.ManifestEtw.ERROR_NOT_ENOUGH_MEMORY:
                     s_returnCode = WriteEventErrorCode.NoFreeBuffers;
                     break;
             }
@@ -954,9 +954,9 @@ namespace System.Diagnostics.Tracing
                             }
 
                             if (childActivityID == null)
-                                status = UnsafeNativeMethods.ManifestEtw.EventWrite(m_regHandle, ref eventDescriptor, argCount, userData);
+                                status = UnsafeNativeMethodsX.ManifestEtw.EventWrite(m_regHandle, ref eventDescriptor, argCount, userData);
                             else
-                                status = UnsafeNativeMethods.ManifestEtw.EventWriteTransfer(m_regHandle, ref eventDescriptor, null, childActivityID, argCount, userData);
+                                status = UnsafeNativeMethodsX.ManifestEtw.EventWriteTransfer(m_regHandle, ref eventDescriptor, null, childActivityID, argCount, userData);
                         }
                     }
                     else
@@ -973,9 +973,9 @@ namespace System.Diagnostics.Tracing
                         }
 
                         if (childActivityID == null)
-                            status = UnsafeNativeMethods.ManifestEtw.EventWrite(m_regHandle, ref eventDescriptor, argCount, userData);
+                            status = UnsafeNativeMethodsX.ManifestEtw.EventWrite(m_regHandle, ref eventDescriptor, argCount, userData);
                         else
-                            status = UnsafeNativeMethods.ManifestEtw.EventWriteTransfer(m_regHandle, ref eventDescriptor, null, childActivityID, argCount, userData);
+                            status = UnsafeNativeMethodsX.ManifestEtw.EventWriteTransfer(m_regHandle, ref eventDescriptor, null, childActivityID, argCount, userData);
 
                         for (int i = 0; i < stringIndex; ++i)
                         {
@@ -1021,14 +1021,14 @@ namespace System.Diagnostics.Tracing
             int status;
             if (childActivityID == null)
             {
-                status = UnsafeNativeMethods.ManifestEtw.EventWrite(m_regHandle, ref eventDescriptor, dataCount, (EventData*)data);
+                status = UnsafeNativeMethodsX.ManifestEtw.EventWrite(m_regHandle, ref eventDescriptor, dataCount, (EventData*)data);
             }
             else
             {
                 // activity transfers are supported only for events that specify the Send or Receive opcode
                 Contract.Assert((EventOpcode)eventDescriptor.Opcode == EventOpcode.Send || 
                                 (EventOpcode)eventDescriptor.Opcode == EventOpcode.Receive);
-                status = UnsafeNativeMethods.ManifestEtw.EventWriteTransfer(m_regHandle, ref eventDescriptor, null, childActivityID, dataCount, (EventData*)data);
+                status = UnsafeNativeMethodsX.ManifestEtw.EventWriteTransfer(m_regHandle, ref eventDescriptor, null, childActivityID, dataCount, (EventData*)data);
             }
             if (status != 0)
             {
@@ -1043,7 +1043,7 @@ namespace System.Diagnostics.Tracing
         {
             int status;
 
-            status = UnsafeNativeMethods.ManifestEtw.EventWriteString(m_regHandle, (byte) level, keywords, msg);
+            status = UnsafeNativeMethodsX.ManifestEtw.EventWriteString(m_regHandle, (byte) level, keywords, msg);
 
             if (status != 0)
             {
@@ -1056,17 +1056,17 @@ namespace System.Diagnostics.Tracing
         // These are look-alikes to the Manifest based ETW OS APIs that have been shimmed to work
         // either with Manifest ETW or Classic ETW (if Manifest based ETW is not available).  
         [SecurityCritical]
-        private unsafe uint EventRegister(ref Guid providerId, UnsafeNativeMethods.ManifestEtw.EtwEnableCallback enableCallback)
+        private unsafe uint EventRegister(ref Guid providerId, UnsafeNativeMethodsX.ManifestEtw.EtwEnableCallback enableCallback)
         {
             m_providerId = providerId;
             m_etwCallback = enableCallback;
-            return UnsafeNativeMethods.ManifestEtw.EventRegister(ref providerId, enableCallback, null, ref m_regHandle);
+            return UnsafeNativeMethodsX.ManifestEtw.EventRegister(ref providerId, enableCallback, null, ref m_regHandle);
         }
 
         [SecurityCritical]
         private uint EventUnregister()
         {
-            uint status = UnsafeNativeMethods.ManifestEtw.EventUnregister(m_regHandle);
+            uint status = UnsafeNativeMethodsX.ManifestEtw.EventUnregister(m_regHandle);
             m_regHandle = 0;
             return status;
         }

@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mscorlib", "MscorLib\mscorlib.csproj", "{A72657BE-225C-4239-956E-EE2A30893B41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationFramework", "wpf\PresentationFramework.csproj", "{B5B08386-66F4-42ED-8387-304CF7980FB7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationFrameworkX", "wpf\PresentationFrameworkX.csproj", "{B5B08386-66F4-42ED-8387-304CF7980FB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

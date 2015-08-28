@@ -100,7 +100,7 @@ namespace System.Threading.Tasks
 
             try
             {
-                factory = Microsoft.Win32.UnsafeNativeMethods.RoGetActivationFactory(ClassId, ref guid);
+                factory = Microsoft.Win32.UnsafeNativeMethodsX.RoGetActivationFactory(ClassId, ref guid);
             }
             catch (COMException)
             {

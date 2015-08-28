@@ -4,6 +4,8 @@ using System.Windows.Media;
 using Microsoft.Win32;
 using MS.Win32;
 
+using SafeNativeMethods = MS.Win32.SafeNativeMethods;
+
 namespace System.Windows
 {
     /// <summary>

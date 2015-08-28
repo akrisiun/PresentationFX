@@ -28,6 +28,7 @@ using MS.Internal;
 using MS.Internal.Interop;
 using MS.Internal.PresentationFramework;                   // SecurityHelper
 using MS.Win32;
+using NativeMethods = MS.Win32.NativeMethods;
 
 namespace MS.Internal.AppModel
 {

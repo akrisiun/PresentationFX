@@ -438,7 +438,7 @@ namespace System.Windows.Controls
         /// </remarks>
         /// <param name="item">The data item that the row represents.</param>
         /// <param name="owningDataGrid">The DataGrid owner.</param>
-        internal void PrepareRow(object item, DataGrid owningDataGrid)
+        internal void PrepareRow(object item, DataGridX owningDataGrid)
         {
             bool fireOwnerChanged = (_owner != owningDataGrid);
             Debug.Assert(_owner == null || _owner == owningDataGrid, "_owner should be null before PrepareRow is called or the same as the owningDataGrid.");
@@ -480,7 +480,7 @@ namespace System.Windows.Controls
         /// <summary>
         ///     Clears the row of references.
         /// </summary>
-        internal void ClearRow(DataGrid owningDataGrid)
+        internal void ClearRow(DataGridX owningDataGrid)
         {
             Debug.Assert(_owner == owningDataGrid, "_owner should be the same as the DataGrid that is clearing the row.");
 
@@ -613,7 +613,7 @@ namespace System.Windows.Controls
                 baseValue,
                 HeaderStyleProperty,
                 row.DataGridOwner,
-                DataGrid.RowHeaderStyleProperty);
+                DataGridX.RowHeaderStyleProperty);
         }
 
         private static object OnCoerceHeaderTemplate(DependencyObject d, object baseValue)
@@ -624,7 +624,7 @@ namespace System.Windows.Controls
                 baseValue,
                 HeaderTemplateProperty,
                 row.DataGridOwner,
-                DataGrid.RowHeaderTemplateProperty);
+                DataGridX.RowHeaderTemplateProperty);
         }
 
         private static object OnCoerceHeaderTemplateSelector(DependencyObject d, object baseValue)
@@ -635,7 +635,7 @@ namespace System.Windows.Controls
                 baseValue,
                 HeaderTemplateSelectorProperty,
                 row.DataGridOwner,
-                DataGrid.RowHeaderTemplateSelectorProperty);
+                DataGridX.RowHeaderTemplateSelectorProperty);
         }
 
         private static object OnCoerceBackground(DependencyObject d, object baseValue)
@@ -651,7 +651,7 @@ namespace System.Windows.Controls
                         baseValue,
                         BackgroundProperty,
                         row.DataGridOwner,
-                        DataGrid.RowBackgroundProperty);
+                        DataGridX.RowBackgroundProperty);
 
                     break;
                 case 1:
@@ -660,7 +660,7 @@ namespace System.Windows.Controls
                         baseValue,
                         BackgroundProperty,
                         row.DataGridOwner,
-                        DataGrid.AlternatingRowBackgroundProperty);
+                        DataGridX.AlternatingRowBackgroundProperty);
 
                     break;
             }
@@ -676,7 +676,7 @@ namespace System.Windows.Controls
                 baseValue,
                 ValidationErrorTemplateProperty,
                 row.DataGridOwner,
-                DataGrid.RowValidationErrorTemplateProperty);
+                DataGridX.RowValidationErrorTemplateProperty);
         }
 
         private static object OnCoerceDetailsTemplate(DependencyObject d, object baseValue)
@@ -687,7 +687,7 @@ namespace System.Windows.Controls
                 baseValue,
                 DetailsTemplateProperty,
                 row.DataGridOwner,
-                DataGrid.RowDetailsTemplateProperty);
+                DataGridX.RowDetailsTemplateProperty);
         }
 
         private static object OnCoerceDetailsTemplateSelector(DependencyObject d, object baseValue)
@@ -698,7 +698,7 @@ namespace System.Windows.Controls
                 baseValue,
                 DetailsTemplateSelectorProperty,
                 row.DataGridOwner,
-                DataGrid.RowDetailsTemplateSelectorProperty);
+                DataGridX.RowDetailsTemplateSelectorProperty);
         }
 
         private static object OnCoerceDetailsVisibility(DependencyObject d, object baseValue)
@@ -709,7 +709,7 @@ namespace System.Windows.Controls
                 baseValue,
                 DetailsVisibilityProperty,
                 row.DataGridOwner,
-                DataGrid.RowDetailsVisibilityModeProperty);
+                DataGridX.RowDetailsVisibilityModeProperty);
 
             if (visibility is DataGridRowDetailsVisibilityMode)
             {
@@ -800,7 +800,7 @@ namespace System.Windows.Controls
                 if (e.NewValue != null)
                 {
                     // Invoke LoadingRowDetails, but only after the details template is expanded (so DetailsElement will be available).
-                    Dispatcher.CurrentDispatcher.BeginInvoke(new DispatcherOperationCallback(DataGrid.DelayedOnLoadingRowDetails), DispatcherPriority.Loaded, row);
+                    Dispatcher.CurrentDispatcher.BeginInvoke(new DispatcherOperationCallback(DataGridX.DelayedOnLoadingRowDetails), DispatcherPriority.Loaded, row);
                 }
             }
         }
@@ -873,38 +873,38 @@ namespace System.Windows.Controls
         {
             if (DataGridHelper.ShouldNotifyRows(target))
             {
-                if (e.Property == DataGrid.RowBackgroundProperty || e.Property == DataGrid.AlternatingRowBackgroundProperty ||
+                if (e.Property == DataGridX.RowBackgroundProperty || e.Property == DataGridX.AlternatingRowBackgroundProperty ||
                     e.Property == BackgroundProperty || e.Property == AlternationIndexProperty)
                 {
                     DataGridHelper.TransferProperty(this, BackgroundProperty);
                 }
-                else if (e.Property == DataGrid.RowHeaderStyleProperty || e.Property == HeaderStyleProperty)
+                else if (e.Property == DataGridX.RowHeaderStyleProperty || e.Property == HeaderStyleProperty)
                 {
                     DataGridHelper.TransferProperty(this, HeaderStyleProperty);
                 }
-                else if (e.Property == DataGrid.RowHeaderTemplateProperty || e.Property == HeaderTemplateProperty)
+                else if (e.Property == DataGridX.RowHeaderTemplateProperty || e.Property == HeaderTemplateProperty)
                 {
                     DataGridHelper.TransferProperty(this, HeaderTemplateProperty);
                 }
-                else if (e.Property == DataGrid.RowHeaderTemplateSelectorProperty || e.Property == HeaderTemplateSelectorProperty)
+                else if (e.Property == DataGridX.RowHeaderTemplateSelectorProperty || e.Property == HeaderTemplateSelectorProperty)
                 {
                     DataGridHelper.TransferProperty(this, HeaderTemplateSelectorProperty);
                 }
-                else if (e.Property == DataGrid.RowValidationErrorTemplateProperty || e.Property == ValidationErrorTemplateProperty)
+                else if (e.Property == DataGridX.RowValidationErrorTemplateProperty || e.Property == ValidationErrorTemplateProperty)
                 {
                     DataGridHelper.TransferProperty(this, ValidationErrorTemplateProperty);
                 }
-                else if (e.Property == DataGrid.RowDetailsTemplateProperty || e.Property == DetailsTemplateProperty)
+                else if (e.Property == DataGridX.RowDetailsTemplateProperty || e.Property == DetailsTemplateProperty)
                 {
                     DataGridHelper.TransferProperty(this, DetailsTemplateProperty);
                     DataGridHelper.TransferProperty(this, DetailsVisibilityProperty);
                 }
-                else if (e.Property == DataGrid.RowDetailsTemplateSelectorProperty || e.Property == DetailsTemplateSelectorProperty)
+                else if (e.Property == DataGridX.RowDetailsTemplateSelectorProperty || e.Property == DetailsTemplateSelectorProperty)
                 {
                     DataGridHelper.TransferProperty(this, DetailsTemplateSelectorProperty);
                     DataGridHelper.TransferProperty(this, DetailsVisibilityProperty);
                 }
-                else if (e.Property == DataGrid.RowDetailsVisibilityModeProperty || e.Property == DetailsVisibilityProperty || e.Property == IsSelectedProperty)
+                else if (e.Property == DataGridX.RowDetailsVisibilityModeProperty || e.Property == DetailsVisibilityProperty || e.Property == IsSelectedProperty)
                 {
                     DataGridHelper.TransferProperty(this, DetailsVisibilityProperty);
                 }
@@ -923,7 +923,7 @@ namespace System.Windows.Controls
                 }
                 else if (e.Property == DataGridRow.IsEditingProperty ||
                          e.Property == DataGridRow.IsMouseOverProperty ||
-                         e.Property == DataGrid.IsKeyboardFocusWithinProperty)
+                         e.Property == DataGridX.IsKeyboardFocusWithinProperty)
                 {
                     UpdateVisualState();
                 }
@@ -1081,7 +1081,7 @@ namespace System.Windows.Controls
                 throw new InvalidOperationException(SR.Get("SRID.DataGridRow_CannotSelectRowWhenCells"));
             }
 
-            DataGrid grid = row.DataGridOwner;
+            DataGridX grid = row.DataGridOwner;
             if (grid != null && row.DataContext != null)
             {
                 DataGridAutomationPeer gridPeer = UIElementAutomationPeer.FromElement(grid) as DataGridAutomationPeer;
@@ -1191,7 +1191,7 @@ namespace System.Windows.Controls
         {
             get
             {
-                DataGrid dataGrid = DataGridOwner;
+                DataGridX dataGrid = DataGridOwner;
                 if (dataGrid != null)
                 {
                     DataGridSelectionUnit unit = dataGrid.SelectionUnit;
@@ -1259,7 +1259,7 @@ namespace System.Windows.Controls
         /// </summary>
         protected override Size ArrangeOverride(Size arrangeBounds)
         {
-            DataGrid dataGrid = DataGridOwner;
+            DataGridX dataGrid = DataGridOwner;
             if (dataGrid != null)
             {
                 dataGrid.QueueInvalidateCellsPanelHorizontalOffset();
@@ -1307,7 +1307,7 @@ namespace System.Windows.Controls
         /// <returns>The index, if found, -1 otherwise.</returns>
         public int GetIndex()
         {
-            DataGrid dataGridOwner = DataGridOwner;
+            DataGridX dataGridOwner = DataGridOwner;
             if (dataGridOwner != null)
             {
                 return dataGridOwner.ItemContainerGenerator.IndexFromContainer(this);
@@ -1330,7 +1330,7 @@ namespace System.Windows.Controls
             return DataGridHelper.FindVisualParent<DataGridRow>(element);
         }
 
-        internal DataGrid DataGridOwner
+        internal DataGridX DataGridOwner
         {
             get { return _owner; }
         }
@@ -1368,7 +1368,7 @@ namespace System.Windows.Controls
         //      false - row details template has either is unset, or has never been asked to render
         internal bool _detailsLoaded;
 
-        private DataGrid _owner;
+        private DataGridX _owner;
         private DataGridCellsPresenter _cellsPresenter;
         private DataGridDetailsPresenter _detailsPresenter;
         private DataGridRowHeader _rowHeader;

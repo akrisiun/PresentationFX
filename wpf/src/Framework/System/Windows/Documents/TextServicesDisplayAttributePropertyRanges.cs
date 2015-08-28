@@ -23,6 +23,7 @@ using System.Windows.Media;
 using System.Windows.Input;
 using System.Windows.Documents;
 using MS.Win32;
+using NativeMethods = MS.Win32.NativeMethods;
 
 namespace System.Windows.Documents
 {

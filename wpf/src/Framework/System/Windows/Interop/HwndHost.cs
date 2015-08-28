@@ -16,6 +16,10 @@ using System.Runtime.InteropServices;
 using System.Windows.Threading;
 using System.Diagnostics.CodeAnalysis;
 
+using NativeMethods = MS.Win32.NativeMethods;
+using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethods;
+using SafeNativeMethods = MS.Win32.SafeNativeMethods;
+
 // Disable pragma warnings to enable PREsharp pragmas
 #pragma warning disable 1634, 1691
 

@@ -1,0 +1,19 @@
+﻿<da:DataWindow x:Class="Metro.Wpf.DataAct.DataActWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:metro="clr-namespace:MahApps.Metro.Controls"
+        xmlns:da="clr-namespace:Metro.Wpf.DataAct"
+        Title="DataActWindow" Height="300" Width="700">
+    <!--;assembly=Wpf.MetroLib-->
+    <metro:MetroContentControl>
+        <da:DataTabControl x:Name="frame">
+            <da:DataTabItem x:Name="Page1">
+                <WrapPanel Orientation="Vertical">
+                    <da:ActionsBar x:Name="tool" Action="List"  />
+                
+                    <da:DataActGrid x:Name="grd1" />
+                </WrapPanel>
+            </da:DataTabItem>
+        </da:DataTabControl>
+    </metro:MetroContentControl>
+</da:DataWindow>

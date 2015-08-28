@@ -25,6 +25,8 @@ using System.Windows.Media;
 using System.Windows.Input;
 using System.Windows.Resources;
 using MS.Win32;
+using NativeMethods = MS.Win32.NativeMethods;
+
 using MS.Internal;
 using MS.Internal.Ink;
 using MS.Internal.Interop;
@@ -1449,7 +1451,7 @@ namespace System.Windows
 
         internal override object GetValue(BaseValueSourceInternal valueSource)
         {
-            lock (((ICollection)Application.Current.Resources).SyncRoot)
+            lock (((ICollection)ApplicationX.Current.Resources).SyncRoot)
             {
                 return base.GetValue(valueSource);
             }
@@ -1458,7 +1460,7 @@ namespace System.Windows
         // Gets the type of the value it represents
         internal override Type GetValueType()
         {
-            lock (((ICollection)Application.Current.Resources).SyncRoot)
+            lock (((ICollection)ApplicationX.Current.Resources).SyncRoot)
             {
                 return base.GetValueType();
             }

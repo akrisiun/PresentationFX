@@ -2270,9 +2270,9 @@ namespace System.Windows.Controls
                             _findToolbar.SearchText);
 
                         Window wnd = null;
-                        if (Application.Current != null && Application.Current.CheckAccess())
+                        if (ApplicationX.Current != null && ApplicationX.Current.CheckAccess())
                         {
-                            wnd = Application.Current.MainWindow;
+                            wnd = ApplicationX.Current.MainWindow;
                         }
 
                         MS.Internal.PresentationFramework.SecurityHelper.ShowMessageBoxHelper(

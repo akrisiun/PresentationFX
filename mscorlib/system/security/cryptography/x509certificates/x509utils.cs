@@ -67,7 +67,8 @@ namespace System.Security.Cryptography.X509Certificates
     /// <summary>
     ///     Groups of OIDs supported by CryptFindOIDInfo
     /// </summary>
-    internal enum OidGroup {
+    // internal 
+    public enum OidGroup {
         AllGroups = 0,
         HashAlgorithm = 1,                              // CRYPT_HASH_ALG_OID_GROUP_ID
         EncryptionAlgorithm = 2,                        // CRYPT_ENCRYPT_ALG_OID_GROUP_ID
@@ -174,7 +175,7 @@ namespace System.Security.Cryptography.X509Certificates
         }
 
         [SecuritySafeCritical]
-        internal static int GetAlgIdFromOid(string oid, OidGroup oidGroup) {
+        internal static int GetAlgIdFromOid(string oid, OidGroup? oidGroup) {
             Contract.Requires(oid != null);
 
             // CAPI does not have ALGID mappings for all of the hash algorithms - see if we know the mapping
@@ -189,7 +190,7 @@ namespace System.Security.Cryptography.X509Certificates
                 return Constants.CALG_SHA_512;
             }
             else {
-                return FindOidInfo(OidKeyType.Oid, oid, oidGroup).AlgId;
+                return FindOidInfo(OidKeyType.Oid, oid, oidGroup.Value).AlgId;
             }
         }
 

@@ -32,7 +32,9 @@ using System.Windows.Media;
 using System.Windows.Navigation;
 using MS.Internal.Commands;
 using MS.Internal.Controls;
+
 using MS.Win32;
+using NativeMethods = MS.Win32.NativeMethods;
 
 //In order to avoid generating warnings about unknown message numbers and
 //unknown pragmas when compiling your C# source code with the actual C# compiler,
@@ -1027,8 +1029,8 @@ namespace MS.Internal.AppModel
             Invariant.Assert(dialog != null, "Dialog should not be null.");
 
             System.Printing.PrintQueue queue = null;
-            System.Printing.PrintCapabilities capabilities = null;
-            System.Printing.PageImageableArea imageableArea = null;
+            //System.Printing.PrintCapabilities capabilities = null;
+            //System.Printing.PageImageableArea imageableArea = null;
             
             // This gets the PringDocumentImageableArea.OriginWidth/OriginHeight 
             // of the PrintQueue the user chose in the dialog.
@@ -1037,27 +1039,27 @@ namespace MS.Internal.AppModel
             try
             {
                 queue = dialog.PrintQueue;
-                if (queue != null)
-                {
-                    capabilities = queue.GetPrintCapabilities();
-                }
+                //if (queue != null)
+                //{
+                //    capabilities = queue.GetPrintCapabilities();
+                //}
             }
             finally
             {
                 CodeAccessPermission.RevertAssert();
             }
 
-            if (capabilities != null)
-            {
-                imageableArea = capabilities.PageImageableArea;
-                if (imageableArea != null)
-                {
-                    imageableRect = new Rect(imageableArea.OriginWidth,
-                                             imageableArea.OriginHeight,
-                                             imageableArea.ExtentWidth,
-                                             imageableArea.ExtentHeight);
-                }
-            }
+            //if (capabilities != null)
+            //{
+            //    imageableArea = capabilities.PageImageableArea;
+            //    if (imageableArea != null)
+            //    {
+            //        imageableRect = new Rect(imageableArea.OriginWidth,
+            //                                 imageableArea.OriginHeight,
+            //                                 imageableArea.ExtentWidth,
+            //                                 imageableArea.ExtentHeight);
+            //    }
+            //}
 
             // If for any reason we couldn't get the actual printer's values
             // we fallback to a constant and the values available from the
@@ -1155,9 +1157,9 @@ namespace MS.Internal.AppModel
         //
         //----------------------------------------------
         #region Private properties
-        private static Application App
+        private static ApplicationX App
         {
-            get { return Application.Current; }
+            get { return ApplicationX.Current; }
         }
 
 

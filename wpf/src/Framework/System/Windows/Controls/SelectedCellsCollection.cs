@@ -37,7 +37,7 @@ namespace System.Windows.Controls
     {
         #region Construction
 
-        internal SelectedCellsCollection(DataGrid owner) : base(owner)
+        internal SelectedCellsCollection(DataGridX owner) : base(owner)
         {
         }
 

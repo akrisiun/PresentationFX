@@ -49,7 +49,7 @@ namespace MS.Internal.AppModel
         internal ContentFilePart(Package container, Uri uri) :
                 base(container, uri)
         {
-            Invariant.Assert(Application.ResourceAssembly != null, "If the entry assembly is null no ContentFileParts should be created");
+            Invariant.Assert(ApplicationX.ResourceAssembly != null, "If the entry assembly is null no ContentFileParts should be created");
             _fullPath = null;
         }
 
@@ -136,7 +136,7 @@ namespace MS.Internal.AppModel
             permissionSet.Assert();
             try
             {
-                entryLocation = new Uri(Application.ResourceAssembly.CodeBase);
+                entryLocation = new Uri(ApplicationX.ResourceAssembly.CodeBase);
             }
             catch(Exception ex)
             {

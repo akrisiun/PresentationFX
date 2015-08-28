@@ -1352,7 +1352,7 @@ namespace Standard
         [SecurityCritical]
         protected override bool ReleaseHandle()
         {
-            return NativeMethods.FindClose(handle);
+            return NativeMethodsX.FindClose(handle);
         }
     }
 
@@ -1595,7 +1595,7 @@ namespace Standard
         [ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
         protected override bool ReleaseHandle()
         {
-            return NativeMethods.DeleteObject(handle);
+            return NativeMethodsX.DeleteObject(handle);
         }
     }
 
@@ -1618,7 +1618,7 @@ namespace Standard
         [ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
         protected override bool ReleaseHandle()
         {
-            Status s = NativeMethods.GdiplusShutdown(this.handle);
+            Status s = NativeMethodsX.GdiplusShutdown(this.handle);
             return s == Status.Ok;
         }
 
@@ -1634,7 +1634,7 @@ namespace Standard
             SafeGdiplusStartupToken safeHandle = new SafeGdiplusStartupToken();
             IntPtr unsafeHandle;
             StartupOutput output;
-            Status s = NativeMethods.GdiplusStartup(out unsafeHandle, new StartupInput(), out output);
+            Status s = NativeMethodsX.GdiplusStartup(out unsafeHandle, new StartupInput(), out output);
             if (s == Status.Ok)
             {
                 safeHandle.handle = unsafeHandle;
@@ -2406,7 +2406,7 @@ namespace Standard
     internal delegate IntPtr MessageHandler(WM uMsg, IntPtr wParam, IntPtr lParam, out bool handled);
 
     // Some native methods are shimmed through public versions that handle converting failures into thrown exceptions.
-    internal static class NativeMethods
+    internal static class NativeMethodsX
     {
         /// <SecurityNote>
         ///   Critical : P-Invokes

@@ -40,6 +40,9 @@ using MS.Internal.Progressivity;
 using MS.Internal.Utility;
 using MS.Utility;
 using MS.Win32;
+using NativeMethods = MS.Win32.NativeMethods;
+using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethodsX;
+
 using MS.Internal;
 using System.Text;
 using System.Windows.Input;
@@ -700,7 +703,7 @@ namespace System.Windows.Interop
             // and Stop commands. That's why they are dispatched directly here. Of course, this will also
             // handle some cases when the RBW is shown, for example Refresh (coming from the browser) when the
             // deployment failed/canceled page is shown.
-            XappLauncherApp launcherApp = Application.Current as XappLauncherApp;
+            XappLauncherApp launcherApp = ApplicationX.Current as XappLauncherApp;
             if (launcherApp != null && guidCommandGroup == Guid.Empty)
             {
                 switch ((UnsafeNativeMethods.OLECMDID)command)

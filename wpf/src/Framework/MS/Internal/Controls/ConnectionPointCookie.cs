@@ -4,6 +4,8 @@ using System.Security ;
 using System.Windows;
 using MS.Internal;
 using MS.Win32;
+using NativeMethods = MS.Win32.NativeMethods;
+using UnsafeNativeMethods = MS.Win32.UnsafeNativeMethodsX;
 
 // Since we disable PreSharp warnings in this file, PreSharp warning is unknown to C# compiler.
 // We first need to disable warnings about unknown message numbers and unknown pragmas.

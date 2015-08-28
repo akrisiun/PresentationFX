@@ -729,11 +729,11 @@ namespace System.Windows.Automation.Peers
         {
             get
             {
-                return (_item == CollectionView.NewItemPlaceholder) || (_item == DataGrid.NewItemPlaceholder);
+                return (_item == CollectionView.NewItemPlaceholder) || (_item == DataGridX.NewItemPlaceholder);
             }
         }
 
-        private DataGrid OwningDataGrid
+        private DataGridX OwningDataGrid
         {
             get
             {
@@ -746,7 +746,7 @@ namespace System.Windows.Automation.Peers
         {
             get
             {
-                DataGrid dataGrid = this.OwningDataGrid;
+                DataGridX dataGrid = this.OwningDataGrid;
                 return (dataGrid != null) ? dataGrid.TryFindCell(_item, _column) : null;
             }
         }
