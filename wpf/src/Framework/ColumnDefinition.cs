@@ -15,15 +15,17 @@ namespace System.Windows.Controls
         //     property.
         [CommonDependencyPropertyAttribute]
         [TypeConverter("System.Windows.LengthConverter, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, Custom=null")]
-        public static readonly DependencyProperty MaxWidthProperty;
-        
+        public static readonly DependencyProperty MaxWidthProperty =
+            DependencyProperty.Register("MaxWidth", typeof(double), typeof(ColumnDefinition), null);
+
         // Returns:
         //     The identifier for the System.Windows.Controls.ColumnDefinition.MinWidth dependency
         //     property.
         [CommonDependencyPropertyAttribute]
         [TypeConverter("System.Windows.LengthConverter, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, Custom=null")]
-        public static readonly DependencyProperty MinWidthProperty;
-        
+        public static readonly DependencyProperty MinWidthProperty =
+            DependencyProperty.Register("MinWidth", typeof(double), typeof(ColumnDefinition), null);
+
         // Returns:
         //     The identifier for the System.Windows.Controls.ColumnDefinition.Width dependency
         //     property.
@@ -39,13 +41,15 @@ namespace System.Windows.Controls
         // Returns:
         //     A System.Double that represents the maximum width. The default value is System.Double.PositiveInfinity.
         [TypeConverter(typeof(LengthConverter))]
-        public double MaxWidth { get; set; }
-        
+        public double MaxWidth
+        { get { return (double)GetValue(MaxWidthProperty); } set { SetValue(MaxWidthProperty, value); } }
+
         // Returns:
         //     A System.Double that represents the minimum width. The default value is 0.
         [TypeConverter(typeof(LengthConverter))]
-        public double MinWidth { get; set; }
-        
+        public double MinWidth
+        { get { return (double)GetValue(MinWidthProperty); } set { SetValue(MinWidthProperty, value); } }
+
         //     A System.Double that represents the offset of the column. The default value is
         //     0.0.
         public double Offset { get; protected set; } // +set
@@ -73,14 +77,16 @@ namespace System.Windows.Controls
         //     property.
         [CommonDependencyPropertyAttribute]
         [TypeConverter("System.Windows.LengthConverter, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, Custom=null")]
-        public static readonly DependencyProperty MaxHeightProperty;
+        public static readonly DependencyProperty MaxHeightProperty = 
+                DependencyProperty.Register("MaxHeight", typeof(double), typeof(ColumnDefinition), null);
+
         
         //     The identifier for the System.Windows.Controls.RowDefinition.MinHeight dependency
         //     property.
         [CommonDependencyPropertyAttribute]
         [TypeConverter("System.Windows.LengthConverter, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, Custom=null")]
-        public static readonly DependencyProperty MinHeightProperty;
-
+        public static readonly DependencyProperty MinHeightProperty = 
+                DependencyProperty.Register("MinHeight", typeof(double), typeof(ColumnDefinition), null);
         
         //     A System.Double that represents the calculated height in device independent pixels.
         //     The default value is 0.0.
@@ -92,12 +98,14 @@ namespace System.Windows.Controls
         
         //     A System.Double that represents the maximum height.
         [TypeConverter(typeof(LengthConverter))]
-        public double MaxHeight { get; set; }
-        
+        public double MaxHeight 
+        { get { return (double)GetValue(MaxHeightProperty); } set { SetValue(MaxHeightProperty, value); } }
+
         //     A System.Double that represents the minimum allowable height. The default value
         //     is 0.
         [TypeConverter(typeof(LengthConverter))]
-        public double MinHeight { get; set; }
+        public double MinHeight
+        { get { return (double)GetValue(MinHeightProperty); } set { SetValue(MinHeightProperty, value); } }
         
         //     A System.Double that represents the offset of the row. The default value is 0.0.
         public double Offset { get; protected set; }

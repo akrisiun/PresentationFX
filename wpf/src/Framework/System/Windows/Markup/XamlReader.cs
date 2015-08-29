@@ -415,7 +415,14 @@ namespace System.Windows.Markup
         {
             var ex2 = WrapException(e, lineInfo, baseUri);
             Console.WriteLine(ex2.Message);
-            // throw WrapException(e, lineInfo, baseUri);
+
+            e = ex2;
+            while (e.InnerException != null)
+            {
+                e = e.InnerException;
+                Console.WriteLine(e.Message);
+            }
+                // throw WrapException(e, lineInfo, baseUri);
         }
 
         internal static XamlParseException WrapException(Exception e, IXamlLineInfo lineInfo, Uri baseUri)
@@ -435,7 +442,7 @@ namespace System.Windows.Markup
             if (e is System.Xaml.XamlException)
             {
                 System.Xaml.XamlException xe = (System.Xaml.XamlException)e;
-                return new XamlParseException(xe.Message + " at " + baseUri.AbsolutePath
+                return new XamlParseException(xe.Message + (baseUri == null ? "" : (" at " + baseUri.AbsolutePath))
                     , xe.LineNumber, xe.LinePosition, baseUri, baseException);
             }
             else if (e is XmlException)

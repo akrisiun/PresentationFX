@@ -97,6 +97,9 @@
     <Compile Include="Wpf.ExampleWindows\SizeToContentDemo.xaml.cs">
       <DependentUpon>SizeToContentDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Wpf.MainWindow.xaml.cs">
+      <DependentUpon>Wpf.MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WpfApp.xaml.cs">
       <DependentUpon>WpfApp.xaml</DependentUpon>
     </Compile>
@@ -134,6 +137,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Wpf.ExampleWindows\SizeToContentDemo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Wpf.MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

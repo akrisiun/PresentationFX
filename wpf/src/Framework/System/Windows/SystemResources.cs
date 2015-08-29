@@ -494,7 +494,10 @@ namespace System.Windows
                     _genericLocation = ResourceDictionaryLocation.None;
 
                     // Themed dictionaries are all external
+                    // .Aero2
                     _themedLocation = ResourceDictionaryLocation.ExternalAssembly;
+
+                    // _themedLocation = ResourceDictionaryLocation.None;
                     _locationsLoaded = true;
                 }
                 else
@@ -731,6 +734,8 @@ namespace System.Windows
 
                     if (error != null && !assembly.FullName.Contains("PresentationFramework.Aero"))
                         throw error;
+                    else
+                        Console.WriteLine(error.Message);
 
                 }
 #pragma warning restore 6502

@@ -77,7 +77,9 @@ namespace System.Windows.Controls
             EventManager.RegisterClassHandler(typeof(ListBox), Keyboard.GotKeyboardFocusEvent, new KeyboardFocusChangedEventHandler(OnGotKeyboardFocus));
 
             CommandHelpers.RegisterCommandHandler(typeof(ListBox), ListBox.SelectAllCommand, new ExecutedRoutedEventHandler(OnSelectAll), new CanExecuteRoutedEventHandler(OnQueryStatusSelectAll), KeyGesture.CreateFromResourceStrings(
-                    SR.Get("SRID.ListBoxSelectAllKey"), SR.Get("SRID.ListBoxSelectAllKeyDisplayString")));
+                    "Ctrl+A", // SR.Get("SRID.ListBoxSelectAllKey"), 
+                    SR.Get("SRID.ListBoxSelectAllKeyDisplayString")
+                    ));
 
         }
 

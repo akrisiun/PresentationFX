@@ -972,9 +972,16 @@ namespace System.Windows
             if (_templateHolder.LoadPermission != null)
             {
                 _templateHolder.LoadPermission.Assert();
+
+                string context = objectWriter.Result == null ? "" 
+                        : objectWriter.Result.ToString();
                 try
                 {
                     LoadTemplateXaml(templateReader, objectWriter);
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("error " + e.Message + " with " + context, e);
                 }
                 finally
                 {

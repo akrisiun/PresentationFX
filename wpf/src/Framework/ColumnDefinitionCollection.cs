@@ -13,32 +13,40 @@ namespace System.Windows.Controls
     {
         public ColumnDefinitionCollection(IAddChild owner = null)
         {
-
+            Owner = owner;
         }
 
         public void InternalTrimToSize() { }
 
+        protected IAddChild Owner { get; set; }
         public int InternalCount { get; protected set; }
 
-        public DefinitionBase[] InternalItems { get { return null; } }
+        public DefinitionBase[] InternalItems { get { return this.ToArray<DefinitionBase>(); } }
 
         public class Enumerator : IEnumerator
         {
             public Enumerator(ColumnDefinitionCollection owner = null)
             {
-
+                Owner = owner;
+                if (owner != null)
+                    Reset();
             }
+            private ColumnDefinitionCollection Owner;
+            private IEnumerator numerator;
 
-            public object Current { get; set; }
+            public object Current { get { return numerator == null ? null : numerator.Current; } }
 
             public bool MoveNext()
             {
-                throw new NotImplementedException();
+                return numerator == null ? false : numerator.MoveNext();
             }
 
             public void Reset()
             {
-                throw new NotImplementedException();
+                if (Owner == null)
+                    numerator = null;
+                else
+                    numerator = Owner.GetEnumerator();
             }
         }
 
@@ -48,32 +56,40 @@ namespace System.Windows.Controls
     {
         public RowDefinitionCollection(IAddChild owner = null)
         {
-
+            Owner = owner;
         }
 
         public void InternalTrimToSize() { }
 
+        protected IAddChild Owner { get; set; }
         public int InternalCount { get; protected set; }
 
-        public DefinitionBase[] InternalItems { get { return null; } }
+        public DefinitionBase[] InternalItems { get { return this.ToArray<DefinitionBase>(); } }
 
         public class Enumerator : IEnumerator
         {
             public Enumerator(RowDefinitionCollection owner = null)
             {
-
+                Owner = owner;
+                if (owner != null)
+                    Reset();
             }
+            private RowDefinitionCollection Owner;
+            private IEnumerator numerator;
 
-            public object Current { get; set; }
+            public object Current { get { return numerator == null ? null : numerator.Current; } }
 
             public bool MoveNext()
             {
-                throw new NotImplementedException();
+                return numerator == null ? false : numerator.MoveNext();
             }
 
             public void Reset()
             {
-                throw new NotImplementedException();
+                if (Owner == null)
+                    numerator = null;
+                else
+                    numerator = Owner.GetEnumerator();
             }
         }
     }

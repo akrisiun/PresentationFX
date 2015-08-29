@@ -24,7 +24,9 @@ namespace System.Windows.Controls.Primitives
     ///     it needs to be able to find the ScrollViewer -- this is done by setting the
     ///     SourceScrollViewerName property.
     /// </summary>
-    [TemplatePart(Name = "PART_FillerColumnHeader", Type = typeof(DataGridColumnHeader))]
+
+    // [TemplatePart(Name = "PART_FillerColumnHeader", Type = typeof(DataGridColumnHeader))]
+    // Aero2
     public class DataGridColumnHeadersPresenter : ItemsControl
     {
         #region Constants
