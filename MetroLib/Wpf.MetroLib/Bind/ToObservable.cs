@@ -12,7 +12,7 @@ namespace Metro.Wpf.DataAct
 {
     public static class ToObservableBind
     {
-        public static IEnumerable ToObservable<T>(this DataGridX grid,
+        public static IEnumerable ToObservable<T>(this DataGrid grid,
                IBindingList<T> listData, ExpandoObject firstObj) where T : class
         {
             //if (grid is DataActGrid)

@@ -910,6 +910,9 @@ namespace System.Windows
             DependencyObject rootObject = null;
 
             //if (TraceMarkup.IsEnabled)
+            if (container.ToString().Contains("SRID.ToStringFormatString_ItemsControl"))
+            {
+            }
             //{
             //    TraceMarkup.Trace(TraceEventType.Start, TraceMarkup.Load);
             //}
@@ -981,7 +984,11 @@ namespace System.Windows
                 }
                 catch (Exception e)
                 {
-                    throw new Exception("error " + e.Message + " with " + context, e);
+                    // throw new Exception("error " + e.Message + " with " + context, e);
+                    Console.WriteLine("error " + e.Message + " with " + context);
+                    if (e.InnerException != null)
+                        Console.WriteLine(e.InnerException.Message);
+                    Console.WriteLine("part=" + objectWriter.Result.ToString());
                 }
                 finally
                 {
@@ -996,7 +1003,8 @@ namespace System.Windows
 
         private void LoadTemplateXaml(System.Xaml.XamlReader templateReader, XamlObjectWriter currentWriter)
         {
-            try
+            //try
+            //
             {
                 int nestedTemplateDepth = 0;
 
@@ -1004,7 +1012,15 @@ namespace System.Windows
                 {
                     // We need to call the ObjectWriter first because x:Name & RNPA needs to be registered
                     // before we call InvalidateProperties.
-                    currentWriter.WriteNode(templateReader);
+
+                    bool withError = false;
+                    try
+                    {
+                        currentWriter.WriteNode(templateReader);
+                    }
+                    catch (Exception) { withError = true;  }
+                    if (withError)
+                        return;
 
                     switch (templateReader.NodeType)
                     {
@@ -1077,14 +1093,14 @@ namespace System.Windows
                     }
                 }
             }
-            catch (Exception e)
-            {
-                if (CriticalExceptions.IsCriticalException(e) || e is System.Windows.Markup.XamlParseException)
-                {
-                    throw;
-                }
-                System.Windows.Markup.XamlReader.RewrapException(e, null);
-            }
+            //catch (Exception e)
+            //{
+            //    if (CriticalExceptions.IsCriticalException(e) || e is System.Windows.Markup.XamlParseException)
+            //    {
+            //        throw;
+            //    }
+            //    System.Windows.Markup.XamlReader.RewrapException(e, null);
+            //}
         }
 
         internal static bool IsNameProperty(XamlMember member, XamlType owner)

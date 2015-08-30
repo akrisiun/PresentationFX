@@ -19,10 +19,10 @@ namespace MahApps.Metro.Controls
             {
                 cell.Loaded -= DataGridCellLoaded;
                 cell.Unloaded -= DataGridCellUnloaded;
-                DataGridX dataGrid = null;
+                DataGrid dataGrid = null;
                 if ((bool)e.NewValue)
                 {
-                    dataGrid = cell.TryFindParent<DataGridX>();
+                    dataGrid = cell.TryFindParent<DataGrid>();
                     cell.Loaded += DataGridCellLoaded;
                     cell.Unloaded += DataGridCellUnloaded;
                 }
@@ -35,7 +35,7 @@ namespace MahApps.Metro.Controls
             var cell = (DataGridCell)sender;
             if (GetDataGrid(cell) == null)
             {
-                var dataGrid = cell.TryFindParent<DataGridX>();
+                var dataGrid = cell.TryFindParent<DataGrid>();
                 SetDataGrid(cell, dataGrid);
             }
         }
@@ -60,19 +60,19 @@ namespace MahApps.Metro.Controls
         }
 
         public static readonly DependencyProperty DataGridProperty =
-            DependencyProperty.RegisterAttached("DataGrid", typeof(DataGridX), typeof(DataGridCellHelper),
-                                                new FrameworkPropertyMetadata(default(DataGridX), FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.AffectsMeasure));
+            DependencyProperty.RegisterAttached("DataGrid", typeof(DataGrid), typeof(DataGridCellHelper),
+                                                new FrameworkPropertyMetadata(default(DataGrid), FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <summary>
         /// Get the DataGrid.
         /// </summary>
         [AttachedPropertyBrowsableForType(typeof(DataGridCell))]
-        public static DataGridX GetDataGrid(UIElement element)
+        public static DataGrid GetDataGrid(UIElement element)
         {
-            return (DataGridX)element.GetValue(DataGridProperty);
+            return (DataGrid)element.GetValue(DataGridProperty);
         }
 
-        public static void SetDataGrid(UIElement element, DataGridX value)
+        public static void SetDataGrid(UIElement element, DataGrid value)
         {
             element.SetValue(DataGridProperty, value);
         }

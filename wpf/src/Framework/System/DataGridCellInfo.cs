@@ -55,13 +55,13 @@ namespace System.Windows.Controls
                 throw new ArgumentNullException("cell");
             }
 
-            DataGridX owner = cell.DataGridOwner;
+            DataGrid owner = cell.DataGridOwner;
             _info = owner.NewItemInfo(cell.RowDataItem, cell.RowOwner);
             _column = cell.Column;
             _owner = new WeakReference(owner);
         }
 
-        internal DataGridCellInfo(object item, DataGridColumn column, DataGridX owner)
+        internal DataGridCellInfo(object item, DataGridColumn column, DataGrid owner)
         {
             Debug.Assert(item != null, "item should not be null.");
             Debug.Assert(column != null, "column should not be null.");
@@ -72,7 +72,7 @@ namespace System.Windows.Controls
             _owner = new WeakReference(owner);
         }
 
-        internal DataGridCellInfo(ItemsControl.ItemInfo info, DataGridColumn column, DataGridX owner)
+        internal DataGridCellInfo(ItemsControl.ItemInfo info, DataGridColumn column, DataGrid owner)
         {
             Debug.Assert(info != null, "item should not be null.");
             Debug.Assert(column != null, "column should not be null.");
@@ -112,7 +112,7 @@ namespace System.Windows.Controls
         ///     This is being kept private so that it is explicit that the
         ///     caller expects invalid data.
         /// </remarks>
-        private DataGridCellInfo(DataGridX owner, DataGridColumn column, object item)
+        private DataGridCellInfo(DataGrid owner, DataGridColumn column, object item)
         {
             Debug.Assert(owner != null, "owner should not be null.");
 
@@ -124,7 +124,7 @@ namespace System.Windows.Controls
         /// <summary>
         ///     This is used by CurrentCell if there isn't a valid CurrentItem or CurrentColumn.
         /// </summary>
-        internal static DataGridCellInfo CreatePossiblyPartialCellInfo(object item, DataGridColumn column, DataGridX owner)
+        internal static DataGridCellInfo CreatePossiblyPartialCellInfo(object item, DataGridColumn column, DataGrid owner)
         {
             Debug.Assert(owner != null, "owner should not be null.");
 
@@ -225,9 +225,9 @@ namespace System.Windows.Controls
         /// <summary>
         ///     Assumes that if the owner matches, then the column and item fields are valid.
         /// </summary>
-        internal bool IsValidForDataGrid(DataGridX dataGrid)
+        internal bool IsValidForDataGrid(DataGrid dataGrid)
         {
-            DataGridX owner = Owner;
+            DataGrid owner = Owner;
             return (ArePropertyValuesValid && (owner == dataGrid)) || (owner == null);
         }
 
@@ -274,13 +274,13 @@ namespace System.Windows.Controls
             get { return new DataGridCellInfo(DependencyProperty.UnsetValue); }
         }
 
-        private DataGridX Owner
+        private DataGrid Owner
         {
             get
             {
                 if (_owner != null)
                 {
-                    return (DataGridX)_owner.Target;
+                    return (DataGrid)_owner.Target;
                 }
 
                 return null;

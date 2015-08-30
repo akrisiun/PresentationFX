@@ -49,7 +49,7 @@ namespace System.Windows.Controls.Primitives
 
             if (newIsItemsHost)
             {
-                DataGridX dataGrid = Owner;
+                DataGrid dataGrid = Owner;
                 if (dataGrid != null)
                 {
                     // ItemsHost should be the "root" element which has
@@ -84,7 +84,7 @@ namespace System.Windows.Controls.Primitives
         /// <param name="newViewportSize">viewport size after the change</param>
         protected override void OnViewportSizeChanged(Size oldViewportSize, Size newViewportSize)
         {
-            DataGridX dataGrid = Owner;
+            DataGrid dataGrid = Owner;
             if (dataGrid != null)
             {
                 ScrollContentPresenter scrollContentPresenter = dataGrid.InternalScrollContentPresenter;
@@ -143,13 +143,13 @@ namespace System.Windows.Controls.Primitives
 
         #region Helpers
 
-        internal DataGridX Owner
+        internal DataGrid Owner
         {
             get
             {
                 if (_owner == null)
                 {
-                    _owner = ItemsControl.GetItemsOwner(this) as DataGridX;
+                    _owner = ItemsControl.GetItemsOwner(this) as DataGrid;
                 }
 
                 return _owner;
@@ -160,7 +160,7 @@ namespace System.Windows.Controls.Primitives
 
         #region Data
 
-        private DataGridX _owner;
+        private DataGrid _owner;
         private Size _availableSize;
 
         #endregion

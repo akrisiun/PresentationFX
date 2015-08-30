@@ -2,7 +2,7 @@
 
 namespace Metro.Wpf.DataAct
 {
-    public partial class DataActGrid : DataGridX 
+    public partial class DataActGrid : DataGrid 
     {
 
         public DataActGrid()

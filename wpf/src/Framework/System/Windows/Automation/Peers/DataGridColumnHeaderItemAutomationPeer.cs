@@ -223,7 +223,7 @@ namespace System.Windows.Automation.Peers
             }
         }
 
-        internal DataGridX OwningDataGrid
+        internal DataGrid OwningDataGrid
         {
             get
             {

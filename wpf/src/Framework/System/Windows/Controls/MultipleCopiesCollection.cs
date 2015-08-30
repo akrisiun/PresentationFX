@@ -137,7 +137,7 @@ namespace System.Windows.Controls
                 {
                     // If we populate the collection with the CollectionView's
                     // NewItemPlaceholder, it will confuse the CollectionView.
-                    value = DataGridX.NewItemPlaceholder;
+                    value = DataGrid.NewItemPlaceholder;
                 }
 
                 if (_item != value)

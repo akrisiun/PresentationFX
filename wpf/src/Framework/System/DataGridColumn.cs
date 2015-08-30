@@ -60,7 +60,7 @@ namespace System.Windows.Controls
                 baseValue,
                 HeaderStyleProperty,
                 column.DataGridOwner,
-                DataGridX.ColumnHeaderStyleProperty);
+                DataGrid.ColumnHeaderStyleProperty);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace System.Windows.Controls
                 baseValue,
                 CellStyleProperty,
                 column.DataGridOwner,
-                DataGridX.CellStyleProperty);
+                DataGrid.CellStyleProperty);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace System.Windows.Controls
                 baseValue,
                 IsReadOnlyProperty,
                 DataGridOwner,
-                DataGridX.IsReadOnlyProperty);
+                DataGrid.IsReadOnlyProperty);
         }
 
         #endregion
@@ -226,7 +226,7 @@ namespace System.Windows.Controls
             DataGridColumn column = (DataGridColumn)d;
             DataGridLength oldWidth = (DataGridLength)e.OldValue;
             DataGridLength newWidth = (DataGridLength)e.NewValue;
-            DataGridX dataGrid = column.DataGridOwner;
+            DataGrid dataGrid = column.DataGridOwner;
 
             if (dataGrid != null &&
                 !DoubleUtil.AreClose(oldWidth.DisplayValue, newWidth.DisplayValue))
@@ -314,7 +314,7 @@ namespace System.Windows.Controls
         private static void OnMinWidthPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             DataGridColumn column = (DataGridColumn)d;
-            DataGridX dataGrid = column.DataGridOwner;
+            DataGrid dataGrid = column.DataGridOwner;
 
             column.NotifyPropertyChanged(d, e, DataGridNotificationTarget.Columns);
 
@@ -353,7 +353,7 @@ namespace System.Windows.Controls
         private static void OnMaxWidthPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             DataGridColumn column = (DataGridColumn)d;
-            DataGridX dataGrid = column.DataGridOwner;
+            DataGrid dataGrid = column.DataGridOwner;
 
             column.NotifyPropertyChanged(d, e, DataGridNotificationTarget.Columns);
 
@@ -396,7 +396,7 @@ namespace System.Windows.Controls
                 baseValue,
                 WidthProperty,
                 column.DataGridOwner,
-                DataGridX.ColumnWidthProperty);
+                DataGrid.ColumnWidthProperty);
 
             double newDesiredValue = CoerceDesiredOrDisplayWidthValue(width.Value, width.DesiredValue, width.UnitType);
             double newDisplayValue = CoerceDesiredOrDisplayWidthValue(width.Value, width.DisplayValue, width.UnitType);
@@ -424,7 +424,7 @@ namespace System.Windows.Controls
                 baseValue,
                 MinWidthProperty,
                 column.DataGridOwner,
-                DataGridX.MinColumnWidthProperty);
+                DataGrid.MinColumnWidthProperty);
         }
 
         /// <summary>
@@ -438,7 +438,7 @@ namespace System.Windows.Controls
                 baseValue,
                 MaxWidthProperty,
                 column.DataGridOwner,
-                DataGridX.MaxColumnWidthProperty);
+                DataGrid.MaxColumnWidthProperty);
 
             // Coerce the Max Width to 10k pixels if infinity on a star column
             if (double.IsPositiveInfinity(transferValue) &&
@@ -823,31 +823,31 @@ namespace System.Windows.Controls
                 // sent to the DataGrid.
                 target &= ~DataGridNotificationTarget.Columns;
 
-                if (e.Property == DataGridX.MaxColumnWidthProperty || e.Property == MaxWidthProperty)
+                if (e.Property == DataGrid.MaxColumnWidthProperty || e.Property == MaxWidthProperty)
                 {
                     DataGridHelper.TransferProperty(this, MaxWidthProperty);
                 }
-                else if (e.Property == DataGridX.MinColumnWidthProperty || e.Property == MinWidthProperty)
+                else if (e.Property == DataGrid.MinColumnWidthProperty || e.Property == MinWidthProperty)
                 {
                     DataGridHelper.TransferProperty(this, MinWidthProperty);
                 }
-                else if (e.Property == DataGridX.ColumnWidthProperty || e.Property == WidthProperty)
+                else if (e.Property == DataGrid.ColumnWidthProperty || e.Property == WidthProperty)
                 {
                     DataGridHelper.TransferProperty(this, WidthProperty);
                 }
-                else if (e.Property == DataGridX.ColumnHeaderStyleProperty || e.Property == HeaderStyleProperty)
+                else if (e.Property == DataGrid.ColumnHeaderStyleProperty || e.Property == HeaderStyleProperty)
                 {
                     DataGridHelper.TransferProperty(this, HeaderStyleProperty);
                 }
-                else if (e.Property == DataGridX.CellStyleProperty || e.Property == CellStyleProperty)
+                else if (e.Property == DataGrid.CellStyleProperty || e.Property == CellStyleProperty)
                 {
                     DataGridHelper.TransferProperty(this, CellStyleProperty);
                 }
-                else if (e.Property == DataGridX.IsReadOnlyProperty || e.Property == IsReadOnlyProperty)
+                else if (e.Property == DataGrid.IsReadOnlyProperty || e.Property == IsReadOnlyProperty)
                 {
                     DataGridHelper.TransferProperty(this, IsReadOnlyProperty);
                 }
-                else if (e.Property == DataGridX.DragIndicatorStyleProperty || e.Property == DragIndicatorStyleProperty)
+                else if (e.Property == DataGrid.DragIndicatorStyleProperty || e.Property == DragIndicatorStyleProperty)
                 {
                     DataGridHelper.TransferProperty(this, DragIndicatorStyleProperty);
                 }
@@ -855,15 +855,15 @@ namespace System.Windows.Controls
                 {
                     CoerceValue(IsFrozenProperty);
                 }
-                else if (e.Property == DataGridX.CanUserSortColumnsProperty)
+                else if (e.Property == DataGrid.CanUserSortColumnsProperty)
                 {
                     DataGridHelper.TransferProperty(this, CanUserSortProperty);
                 }
-                else if (e.Property == DataGridX.CanUserResizeColumnsProperty || e.Property == CanUserResizeProperty)
+                else if (e.Property == DataGrid.CanUserResizeColumnsProperty || e.Property == CanUserResizeProperty)
                 {
                     DataGridHelper.TransferProperty(this, CanUserResizeProperty);
                 }
-                else if (e.Property == DataGridX.CanUserReorderColumnsProperty || e.Property == CanUserReorderProperty)
+                else if (e.Property == DataGrid.CanUserReorderColumnsProperty || e.Property == CanUserReorderProperty)
                 {
                     DataGridHelper.TransferProperty(this, CanUserReorderProperty);
                 }
@@ -879,7 +879,7 @@ namespace System.Windows.Controls
                 // Everything else gets sent to the DataGrid so it can propogate back down
                 // to the targets that need notification.
                 DataGridColumn column = (DataGridColumn)d;
-                DataGridX dataGridOwner = column.DataGridOwner;
+                DataGrid dataGridOwner = column.DataGridOwner;
                 if (dataGridOwner != null)
                 {
                     dataGridOwner.NotifyPropertyChanged(d, e, target);
@@ -940,7 +940,7 @@ namespace System.Windows.Controls
         /// <summary>
         ///     The owning DataGrid control.
         /// </summary>
-        protected internal DataGridX DataGridOwner
+        protected internal DataGrid DataGridOwner
         {
             get { return _dataGridOwner; }
             internal set { _dataGridOwner = value; }
@@ -1068,10 +1068,10 @@ namespace System.Windows.Controls
             if (column.DataGridOwner != null)
             {
                 bool parentPropertyHasModifiers;
-                BaseValueSourceInternal parentValueSource = column.DataGridOwner.GetValueSource(DataGridX.CanUserSortColumnsProperty, /*metadata*/ null, out parentPropertyHasModifiers);
+                BaseValueSourceInternal parentValueSource = column.DataGridOwner.GetValueSource(DataGrid.CanUserSortColumnsProperty, /*metadata*/ null, out parentPropertyHasModifiers);
                 if (parentValueSource == baseValueSource && !basePropertyHasModifiers && parentPropertyHasModifiers)
                 {
-                    return column.DataGridOwner.GetValue(DataGridX.CanUserSortColumnsProperty);
+                    return column.DataGridOwner.GetValue(DataGrid.CanUserSortColumnsProperty);
                 }
             }
 
@@ -1080,7 +1080,7 @@ namespace System.Windows.Controls
                 baseValue,
                 CanUserSortProperty,
                 column.DataGridOwner,
-                DataGridX.CanUserSortColumnsProperty);
+                DataGrid.CanUserSortColumnsProperty);
         }
 
         /// <summary>
@@ -1288,7 +1288,7 @@ namespace System.Windows.Controls
         private static object OnCoerceIsFrozen(DependencyObject d, object baseValue)
         {
             DataGridColumn column = (DataGridColumn)d;
-            DataGridX dataGrid = column.DataGridOwner;
+            DataGrid dataGrid = column.DataGridOwner;
             if (dataGrid != null)
             {
                 if (column.DisplayIndex < dataGrid.FrozenColumnCount)
@@ -1331,7 +1331,7 @@ namespace System.Windows.Controls
                 baseValue,
                 CanUserReorderProperty,
                 column.DataGridOwner,
-                DataGridX.CanUserReorderColumnsProperty);
+                DataGrid.CanUserReorderColumnsProperty);
         }
 
         /// <summary>
@@ -1357,7 +1357,7 @@ namespace System.Windows.Controls
                 baseValue,
                 DragIndicatorStyleProperty,
                 column.DataGridOwner,
-                DataGridX.DragIndicatorStyleProperty);
+                DataGrid.DragIndicatorStyleProperty);
         }
 
         #endregion
@@ -1490,7 +1490,7 @@ namespace System.Windows.Controls
                 baseValue,
                 CanUserResizeProperty,
                 column.DataGridOwner,
-                DataGridX.CanUserResizeColumnsProperty);
+                DataGrid.CanUserResizeColumnsProperty);
         }
 
         #endregion
@@ -1550,7 +1550,7 @@ namespace System.Windows.Controls
 
         #region Data
 
-        private DataGridX _dataGridOwner = null;                     // This property is updated by DataGrid when the column is added to the DataGrid.Columns collection
+        private DataGrid _dataGridOwner = null;                     // This property is updated by DataGrid when the column is added to the DataGrid.Columns collection
         private BindingBase _clipboardContentBinding;               // Storage for ClipboardContentBinding
         private bool _ignoreRedistributionOnWidthChange = false;    // Flag which indicates to ignore recomputation of column widths on width change of column
         private bool _processingWidthChange = false;                // Flag which indicates that execution of width change callback to avoid recursions.

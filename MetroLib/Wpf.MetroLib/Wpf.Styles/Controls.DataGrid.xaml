@@ -28,7 +28,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{ComponentResourceKey ResourceId=MetroDataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGridX}}"
+    <Style x:Key="{ComponentResourceKey ResourceId=MetroDataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}"
            TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
@@ -540,7 +540,7 @@
     <Style x:Key="MetroDataGridRow"
            TargetType="{x:Type DataGridRow}">
         <Setter Property="Controls:DataGridRowHelper.SelectionUnit"
-                Value="{Binding Path=SelectionUnit, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type DataGridX}}}" />
+                Value="{Binding Path=SelectionUnit, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
         <Setter Property="Margin"
                 Value="0,0,0,0" />
         <Setter Property="Validation.ErrorTemplate"
@@ -631,7 +631,7 @@
     </Style>
 
     <Style x:Key="MetroDataGrid"
-           TargetType="{x:Type DataGridX}">
+           TargetType="{x:Type DataGrid}">
         <Setter Property="MinRowHeight"
                 Value="25" />
         <Setter Property="GridLinesVisibility"
@@ -677,7 +677,7 @@
         </Setter>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type DataGridX}">
+                <ControlTemplate TargetType="{x:Type DataGrid}">
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
@@ -698,14 +698,14 @@
                                             <RowDefinition Height="*" />
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
-                                        <Button Command="{x:Static DataGridX.SelectAllCommand}"
+                                        <Button Command="{x:Static DataGrid.SelectAllCommand}"
                                                 Focusable="false"
-                                                Style="{DynamicResource {ComponentResourceKey ResourceId=MetroDataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGridX}}}"
-                                                Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.All}, Converter={x:Static DataGridX.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGridX}}}"
-                                                Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGridX}}}" />
+                                                Style="{DynamicResource {ComponentResourceKey ResourceId=MetroDataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}}"
+                                                Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.All}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                                Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
                                         <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter"
                                                                         Grid.Column="1"
-                                                                        Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGridX.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGridX}}}" />
+                                                                        Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
                                         <Grid Grid.Row="1"
                                               Grid.ColumnSpan="2">
                                             <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
@@ -723,7 +723,7 @@
                                         <Grid Grid.Column="1"
                                               Grid.Row="2">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGridX}}}" />
+                                                <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
                                             <ScrollBar x:Name="PART_HorizontalScrollBar"
@@ -822,7 +822,7 @@
     </Style>
 
     <Style x:Key="AzureDataGrid"
-           TargetType="{x:Type DataGridX}"
+           TargetType="{x:Type DataGrid}"
            BasedOn="{StaticResource MetroDataGrid}">
         <Setter Property="ColumnHeaderStyle"
                 Value="{StaticResource AzureDataGridColumnHeader}" />

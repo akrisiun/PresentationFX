@@ -93,7 +93,7 @@ namespace System.Windows.Controls
 
             _owner = ownerRow;
 
-            DataGridX dataGrid = _owner.DataGridOwner;
+            DataGrid dataGrid = _owner.DataGridOwner;
             if (dataGrid != null)
             {
                 // The index of the container should correspond to the index of the column
@@ -252,11 +252,11 @@ namespace System.Windows.Controls
                 {
                     DataGridHelper.OnColumnWidthChanged(this, e);
                 }
-                else if (e.Property == DataGridX.CellStyleProperty || e.Property == DataGridColumn.CellStyleProperty || e.Property == StyleProperty)
+                else if (e.Property == DataGrid.CellStyleProperty || e.Property == DataGridColumn.CellStyleProperty || e.Property == StyleProperty)
                 {
                     DataGridHelper.TransferProperty(this, StyleProperty);
                 }
-                else if (e.Property == DataGridX.IsReadOnlyProperty || e.Property == DataGridColumn.IsReadOnlyProperty || e.Property == IsReadOnlyProperty)
+                else if (e.Property == DataGrid.IsReadOnlyProperty || e.Property == DataGridColumn.IsReadOnlyProperty || e.Property == IsReadOnlyProperty)
                 {
                     DataGridHelper.TransferProperty(this, IsReadOnlyProperty);
                 }
@@ -264,7 +264,7 @@ namespace System.Windows.Controls
                 {
                     TabIndex = column.DisplayIndex;
                 }
-                else if (e.Property == DataGridX.IsKeyboardFocusWithinProperty)
+                else if (e.Property == DataGrid.IsKeyboardFocusWithinProperty)
                 {
                     UpdateVisualState();
                 }
@@ -301,7 +301,7 @@ namespace System.Windows.Controls
                 cell.Column,
                 DataGridColumn.CellStyleProperty,
                 cell.DataGridOwner,
-                DataGridX.CellStyleProperty);
+                DataGrid.CellStyleProperty);
         }
 
         #endregion
@@ -522,7 +522,7 @@ namespace System.Windows.Controls
                 column.IsReadOnly,
                 DataGridColumn.IsReadOnlyProperty,
                 dataGrid,
-                DataGridX.IsReadOnlyProperty);
+                DataGrid.IsReadOnlyProperty);
         }
 
         private static void OnAnyLostFocus(object sender, RoutedEventArgs e)
@@ -533,7 +533,7 @@ namespace System.Windows.Controls
             DataGridCell cell = DataGridHelper.FindVisualParent<DataGridCell>(e.OriginalSource as UIElement);
             if (cell != null && cell == sender)
             {
-                DataGridX owner = cell.DataGridOwner;
+                DataGrid owner = cell.DataGridOwner;
                 if (owner != null && !cell.IsKeyboardFocusWithin && owner.FocusedCell == cell)
                 {
                     owner.FocusedCell = null;
@@ -546,7 +546,7 @@ namespace System.Windows.Controls
             DataGridCell cell = DataGridHelper.FindVisualParent<DataGridCell>(e.OriginalSource as UIElement);
             if (cell != null && cell == sender)
             {
-                DataGridX owner = cell.DataGridOwner;
+                DataGrid owner = cell.DataGridOwner;
                 if (owner != null)
                 {
                     owner.FocusedCell = cell;
@@ -607,7 +607,7 @@ namespace System.Windows.Controls
 
         private void RaisePreparingCellForEdit(RoutedEventArgs editingEventArgs)
         {
-            DataGridX dataGridOwner = DataGridOwner;
+            DataGrid dataGridOwner = DataGridOwner;
             if (dataGridOwner != null)
             {
                 FrameworkElement currentEditingElement = EditingElement;
@@ -652,7 +652,7 @@ namespace System.Windows.Controls
             // from the DataGrid.
             if (!cell._syncingIsSelected)
             {
-                DataGridX dataGrid = cell.DataGridOwner;
+                DataGrid dataGrid = cell.DataGridOwner;
                 if (dataGrid != null)
                 {
                     // Notify the DataGrid that a cell's IsSelected property changed
@@ -771,7 +771,7 @@ namespace System.Windows.Controls
             // Make space for the GridLine on the right and bottom:
             // Remove space from the constraint (since it implicitly includes the GridLine's thickness),
             // call the base implementation, and add the thickness back for the returned size.
-            DataGridX dataGridOwner = DataGridOwner;
+            DataGrid dataGridOwner = DataGridOwner;
             bool horizontalLinesVisible = DataGridHelper.IsGridLineVisible(dataGridOwner, /*isHorizontal = */ true);
             bool verticalLinesVisible = DataGridHelper.IsGridLineVisible(dataGridOwner, /*isHorizontal = */ false);
             double horizontalLineThickness = 0;
@@ -807,7 +807,7 @@ namespace System.Windows.Controls
         {
             // We don't need to adjust the Arrange position of the content.  By default it is arranged at 0,0 and we're
             // adding a line to the right and bottom.  All we have to do is compress and extend the size, just like Measure.
-            DataGridX dataGridOwner = DataGridOwner;
+            DataGrid dataGridOwner = DataGridOwner;
             bool horizontalLinesVisible = DataGridHelper.IsGridLineVisible(dataGridOwner, /*isHorizontal = */ true);
             bool verticalLinesVisible = DataGridHelper.IsGridLineVisible(dataGridOwner, /*isHorizontal = */ false);
             double horizontalLineThickness = 0;
@@ -841,7 +841,7 @@ namespace System.Windows.Controls
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
-            DataGridX dataGrid = DataGridOwner;
+            DataGrid dataGrid = DataGridOwner;
             
             if (DataGridHelper.IsGridLineVisible(dataGrid, /*isHorizontal = */ false))
             {
@@ -883,7 +883,7 @@ namespace System.Windows.Controls
             {
                 // The cell is focused and there are no other special selection gestures,
                 // enter edit mode.
-                DataGridX dataGridOwner = DataGridOwner;
+                DataGrid dataGridOwner = DataGridOwner;
                 if (dataGridOwner != null)
                 {
                     // The cell was clicked, which means that other cells may
@@ -911,7 +911,7 @@ namespace System.Windows.Controls
                     Focus();
                 }
 
-                DataGridX dataGridOwner = DataGridOwner;
+                DataGrid dataGridOwner = DataGridOwner;
                 if (dataGridOwner != null)
                 {
                     // Let the DataGrid process selection
@@ -1013,16 +1013,16 @@ namespace System.Windows.Controls
 
         #region Helpers
 
-        internal DataGridX DataGridOwner
+        internal DataGrid DataGridOwner
         {
             get
             {
                 if (_owner != null)
                 {
-                    DataGridX dataGridOwner = _owner.DataGridOwner;
+                    DataGrid dataGridOwner = _owner.DataGridOwner;
                     if (dataGridOwner == null)
                     {
-                        dataGridOwner = ItemsControl.ItemsControlFromItemContainer(_owner) as DataGridX;
+                        dataGridOwner = ItemsControl.ItemsControlFromItemContainer(_owner) as DataGrid;
                     }
 
                     return dataGridOwner;

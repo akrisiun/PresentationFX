@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace MahApps.Metro.Controls
 {
-    public class MetroDataGrid : System.Windows.Controls.DataGridX 
+    public class MetroDataGrid : System.Windows.Controls.DataGrid 
     {
         // <controls:MetroDataGrid x:Name="MetroDataGrid"
         static MetroDataGrid() { }

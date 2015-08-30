@@ -21,7 +21,7 @@ namespace System.Windows.Controls
     /// </summary>
     internal class DataGridColumnCollection : ObservableCollection<DataGridColumn>
     {
-        internal DataGridColumnCollection(DataGridX dataGridOwner)
+        internal DataGridColumnCollection(DataGrid dataGridOwner)
         {
             Debug.Assert(dataGridOwner != null, "We should have a valid DataGrid");
 
@@ -182,7 +182,7 @@ namespace System.Windows.Controls
                         InvalidateColumnRealization(false);
                     }
                 }
-                else if (e.Property == DataGridX.FrozenColumnCountProperty)
+                else if (e.Property == DataGrid.FrozenColumnCountProperty)
                 {
                     InvalidateColumnRealization(false);
                     OnDataGridFrozenColumnCountChanged((int)e.OldValue, (int)e.NewValue);
@@ -194,15 +194,15 @@ namespace System.Windows.Controls
                     InvalidateColumnWidthsComputation();
                     InvalidateColumnRealization(true);
                 }
-                else if (e.Property == DataGridX.EnableColumnVirtualizationProperty)
+                else if (e.Property == DataGrid.EnableColumnVirtualizationProperty)
                 {
                     InvalidateColumnRealization(true);
                 }
-                else if (e.Property == DataGridX.CellsPanelHorizontalOffsetProperty)
+                else if (e.Property == DataGrid.CellsPanelHorizontalOffsetProperty)
                 {
                     OnCellsPanelHorizontalOffsetChanged(e);
                 }
-                else if (e.Property == DataGridX.HorizontalScrollOffsetProperty ||
+                else if (e.Property == DataGrid.HorizontalScrollOffsetProperty ||
                          string.Compare(propertyName, "ViewportWidth", StringComparison.Ordinal) == 0)
                 {
                     InvalidateColumnRealization(false);
@@ -774,7 +774,7 @@ namespace System.Windows.Controls
 
         #region Helpers
 
-        private DataGridX DataGridOwner
+        private DataGrid DataGridOwner
         {
             get { return _dataGridOwner; }
         }
@@ -2403,7 +2403,7 @@ namespace System.Windows.Controls
                 // Notify other rows and column header row to
                 // remeasure their child panel's in order to be
                 // in [....] with latest column realization computations
-                DataGridX dataGrid = DataGridOwner;
+                DataGrid dataGrid = DataGridOwner;
                 dataGrid.NotifyPropertyChanged(
                     dataGrid,
                     "RealizedColumnsBlockListForNonVirtualizedRows",
@@ -2446,7 +2446,7 @@ namespace System.Windows.Controls
                 // Notify other rows and column header row to
                 // remeasure their child panel's in order to be
                 // in [....] with latest column realization computations
-                DataGridX dataGrid = DataGridOwner;
+                DataGrid dataGrid = DataGridOwner;
                 dataGrid.NotifyPropertyChanged(
                     dataGrid,
                     "RealizedColumnsBlockListForVirtualizedRows", 
@@ -2529,7 +2529,7 @@ namespace System.Windows.Controls
 
         #region Data
 
-        private DataGridX _dataGridOwner;
+        private DataGrid _dataGridOwner;
         private bool _isUpdatingDisplayIndex;     // true if we're in the middle of updating the display index of each column.
         private List<int> _displayIndexMap;            // maps a DisplayIndex to an index in the _columns collection.
         private bool _displayIndexMapInitialized; // Flag is used to delay the validation of DisplayIndex until the first measure

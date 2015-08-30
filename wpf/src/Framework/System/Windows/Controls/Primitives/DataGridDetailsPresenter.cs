@@ -59,7 +59,7 @@ namespace System.Windows.Controls.Primitives
                 row, 
                 DataGridRow.DetailsTemplateProperty,
                 dataGrid, 
-                DataGridX.RowDetailsTemplateProperty);
+                DataGrid.RowDetailsTemplateProperty);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace System.Windows.Controls.Primitives
                 row, 
                 DataGridRow.DetailsTemplateSelectorProperty,
                 dataGrid, 
-                DataGridX.RowDetailsTemplateSelectorProperty);
+                DataGrid.RowDetailsTemplateSelectorProperty);
         }
 
         #endregion
@@ -115,7 +115,7 @@ namespace System.Windows.Controls.Primitives
             }
 
             DataGridRow rowOwner = DataGridRowOwner;
-            DataGridX dataGridOwner = rowOwner != null ? rowOwner.DataGridOwner : null;
+            DataGrid dataGridOwner = rowOwner != null ? rowOwner.DataGridOwner : null;
             if ((dataGridOwner != null) && (rowOwner != null))
             {
                 // HandleSelectionForRowHeaderAndDetailsInput below sets the CurrentCell
@@ -181,11 +181,11 @@ namespace System.Windows.Controls.Primitives
 
         internal void NotifyPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (e.Property == DataGridX.RowDetailsTemplateProperty || e.Property == DataGridRow.DetailsTemplateProperty || e.Property == ContentTemplateProperty)
+            if (e.Property == DataGrid.RowDetailsTemplateProperty || e.Property == DataGridRow.DetailsTemplateProperty || e.Property == ContentTemplateProperty)
             {
                 DataGridHelper.TransferProperty(this, ContentTemplateProperty);
             }
-            else if (e.Property == DataGridX.RowDetailsTemplateSelectorProperty || e.Property == DataGridRow.DetailsTemplateSelectorProperty || e.Property == ContentTemplateSelectorProperty)
+            else if (e.Property == DataGrid.RowDetailsTemplateSelectorProperty || e.Property == DataGridRow.DetailsTemplateSelectorProperty || e.Property == ContentTemplateSelectorProperty)
             {
                 DataGridHelper.TransferProperty(this, ContentTemplateSelectorProperty);
             }
@@ -306,7 +306,7 @@ namespace System.Windows.Controls.Primitives
         /// <summary>
         ///     The DataGrid that owns this control
         /// </summary>
-        private DataGridX DataGridOwner
+        private DataGrid DataGridOwner
         {
             get
             {

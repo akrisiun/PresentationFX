@@ -37,6 +37,7 @@ namespace Microsoft.Internal
         internal const string PresentationFrameworkRoyale = "PresentationFramework.Royale, PublicKey="+ WCP_PUBLIC_KEY_STRING;
         internal const string PresentationFrameworkAero = "PresentationFramework.Aero, PublicKey="+ WCP_PUBLIC_KEY_STRING;
         internal const string PresentationFrameworkAero2 = "PresentationFramework.Aero2, PublicKey="+ WCP_PUBLIC_KEY_STRING;
+
         internal const string PresentationFrameworkAeroLite = "PresentationFramework.AeroLite, PublicKey="+ WCP_PUBLIC_KEY_STRING;
         internal const string PresentationFrameworkClassic = "PresentationFramework.Classic, PublicKey="+ WCP_PUBLIC_KEY_STRING;
         internal const string PresentationFrameworkSystemCore = "PresentationFramework-SystemCore, PublicKey="+ DEVDIV_PUBLIC_KEY_STRING;

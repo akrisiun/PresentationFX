@@ -166,7 +166,7 @@
 
                 <!--ItemsSource="{Binding Path=Albums}"-->
 
-                <c:DataGridX.Columns>
+                <c:DataGrid.Columns>
                     <c:DataGridCheckBoxColumn ElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                         EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                         Header="IsSelected"
@@ -182,15 +182,15 @@
                                                       Binding="{Binding Price}"
                                                       StringFormat="C"
                                                       Minimum="0" />-->
-                </c:DataGridX.Columns>
+                </c:DataGrid.Columns>
 
-                <c:DataGridX.Style>
+                <c:DataGrid.Style>
                     <Style BasedOn="{StaticResource MetroDataGrid}"
-                       TargetType="{x:Type c:DataGridX}">
+                       TargetType="{x:Type c:DataGrid}">
                         <Setter Property="AlternatingRowBackground"
                             Value="{DynamicResource GrayBrush10}" />
                     </Style>
-                </c:DataGridX.Style>
+                </c:DataGrid.Style>
 
                 <!--<c:DataGridX.RowStyle>
                     <Style BasedOn="{StaticResource MetroDataGridRow}"

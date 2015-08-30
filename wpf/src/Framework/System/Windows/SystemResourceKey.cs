@@ -1932,7 +1932,7 @@ namespace System.Windows
             {
                 if (_focusBorderBrushKey == null)
                 {
-                    _focusBorderBrushKey = new ComponentResourceKey(typeof(DataGridX), "FocusBorderBrushKey");
+                    _focusBorderBrushKey = new ComponentResourceKey(typeof(DataGrid), "FocusBorderBrushKey");
                 }
 
                 return _focusBorderBrushKey;
@@ -1945,7 +1945,7 @@ namespace System.Windows
             {
                 if (_textBlockComboBoxStyleKey == null)
                 {
-                    _textBlockComboBoxStyleKey = new ComponentResourceKey(typeof(DataGridX), "TextBlockComboBoxStyleKey");
+                    _textBlockComboBoxStyleKey = new ComponentResourceKey(typeof(DataGrid), "TextBlockComboBoxStyleKey");
                 }
 
                 return _textBlockComboBoxStyleKey;
@@ -1970,7 +1970,7 @@ namespace System.Windows
             {
                 if (_columnFloatingHeaderStyleKey == null)
                 {
-                    _columnFloatingHeaderStyleKey = new ComponentResourceKey(typeof(DataGridX), "ColumnFloatingHeaderStyleKey");
+                    _columnFloatingHeaderStyleKey = new ComponentResourceKey(typeof(DataGrid), "ColumnFloatingHeaderStyleKey");
                 }
 
                 return _columnFloatingHeaderStyleKey;
@@ -1983,7 +1983,7 @@ namespace System.Windows
             {
                 if (_columnHeaderDropSeparatorStyleKey == null)
                 {
-                    _columnHeaderDropSeparatorStyleKey = new ComponentResourceKey(typeof(DataGridX), "ColumnHeaderDropSeparatorStyleKey");
+                    _columnHeaderDropSeparatorStyleKey = new ComponentResourceKey(typeof(DataGrid), "ColumnHeaderDropSeparatorStyleKey");
                 }
 
                 return _columnHeaderDropSeparatorStyleKey;

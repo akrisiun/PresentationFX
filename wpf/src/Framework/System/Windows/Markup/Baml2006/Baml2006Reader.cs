@@ -1896,6 +1896,11 @@ namespace System.Windows.Baml2006
             // and OptimizedStaticResource elements.  (not ME's)
             // If the Dictionary KeyList was loaded into a ResourceDictionary's DeferredContent Property then the
             // KeyList[].StaticResource elements are processed and replaced with StaticResourceHolders. (an ME)
+
+            if (resourceId < 0)
+            {
+            }
+
             Object resource = _context.KeyList[_context.CurrentKey - 1].StaticResources[resourceId];
 
             // resource is either a StaticResource, OptimizedStaticResource or StaticResourceHolder.
@@ -2396,7 +2401,9 @@ namespace System.Windows.Baml2006
                         }
                         else
                         {
-                            throw new XamlParseException(SR.Get("SRID.RecordOutOfOrder", parentType.Name));
+                            // throw new XamlParseException(SR.Get("SRID.RecordOutOfOrder", parentType.Name));
+                            System.Console.WriteLine("XamlParseException(SR.Get( SRID.RecordOutOfOrder " + parentType.Name);
+                            return;
                         }
                     }
                     _context.CurrentFrame.Flags = Baml2006ReaderFrameFlags.HasImplicitProperty;

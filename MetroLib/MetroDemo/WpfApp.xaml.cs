@@ -36,7 +36,8 @@ namespace MetroDemo
             System.Windows.ApplicationX.LoadComponent(this, resourceLocater);
 
 
-            this.MainWindow = new Window2();
+            // this.MainWindow = new Window2();
+            this.MainWindow = new MainWindow();
 
             //var testWindow = new MetroWindow()
             //{

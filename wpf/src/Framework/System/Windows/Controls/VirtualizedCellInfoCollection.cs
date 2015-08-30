@@ -24,7 +24,7 @@ namespace System.Windows.Controls
         ///     In order to not always keep references to cells, the collection
         ///     requires a reference to the source of the cells.
         /// </param>
-        internal VirtualizedCellInfoCollection(DataGridX owner)
+        internal VirtualizedCellInfoCollection(DataGrid owner)
         {
             Debug.Assert(owner != null, "owner must not be null.");
 
@@ -37,7 +37,7 @@ namespace System.Windows.Controls
         /// <summary>
         ///     Creates a read-only collection initialized to the specified region.
         /// </summary>
-        private VirtualizedCellInfoCollection(DataGridX owner, List<CellRegion> regions)
+        private VirtualizedCellInfoCollection(DataGrid owner, List<CellRegion> regions)
         {
             Debug.Assert(owner != null, "owner must not be null.");
 
@@ -51,7 +51,7 @@ namespace System.Windows.Controls
         /// <summary>
         ///     Creates an empty, read-only collection.
         /// </summary>
-        internal static VirtualizedCellInfoCollection MakeEmptyCollection(DataGridX owner)
+        internal static VirtualizedCellInfoCollection MakeEmptyCollection(DataGrid owner)
         {
             return new VirtualizedCellInfoCollection(owner, null);
         }
@@ -235,7 +235,7 @@ namespace System.Windows.Controls
         /// </summary>
         private class VirtualizedCellInfoCollectionEnumerator : IEnumerator<DataGridCellInfo>, IEnumerator
         {
-            public VirtualizedCellInfoCollectionEnumerator(DataGridX owner, List<CellRegion> regions, VirtualizedCellInfoCollection collection)
+            public VirtualizedCellInfoCollectionEnumerator(DataGrid owner, List<CellRegion> regions, VirtualizedCellInfoCollection collection)
             {
                 _owner = owner;
                 _regions = new List<CellRegion>(regions);
@@ -295,7 +295,7 @@ namespace System.Windows.Controls
                 get { return ((VirtualizedCellInfoCollectionEnumerator)this).Current; }
             }
 
-            private DataGridX _owner;
+            private DataGrid _owner;
             private List<CellRegion> _regions;
             private int _current;
             private int _count;
@@ -1316,19 +1316,19 @@ namespace System.Windows.Controls
         /// </summary>
         private class RemovedCellInfoCollection : VirtualizedCellInfoCollection
         {
-            internal RemovedCellInfoCollection(DataGridX owner, List<CellRegion> regions, DataGridColumn column)
+            internal RemovedCellInfoCollection(DataGrid owner, List<CellRegion> regions, DataGridColumn column)
                 : base(owner, regions)
             {
                 _removedColumn = column;
             }
 
-            internal RemovedCellInfoCollection(DataGridX owner, List<CellRegion> regions, object item)
+            internal RemovedCellInfoCollection(DataGrid owner, List<CellRegion> regions, object item)
                 : base(owner, regions)
             {
                 _removedItem = item;
             }
 
-            protected override DataGridCellInfo CreateCellInfo(ItemsControl.ItemInfo rowInfo, DataGridColumn column, DataGridX owner)
+            protected override DataGridCellInfo CreateCellInfo(ItemsControl.ItemInfo rowInfo, DataGridColumn column, DataGrid owner)
             {
                 if (_removedColumn != null)
                 {
@@ -1560,7 +1560,7 @@ namespace System.Windows.Controls
 
         #region Helpers
 
-        protected DataGridX Owner
+        protected DataGrid Owner
         {
             get { return _owner; }
         }
@@ -1607,7 +1607,7 @@ namespace System.Windows.Controls
         /// <summary>
         ///     Converts from an index to a DataGridCellInfo.
         /// </summary>
-        private DataGridCellInfo GetCellInfoFromIndex(DataGridX owner, List<CellRegion> regions, int index)
+        private DataGridCellInfo GetCellInfoFromIndex(DataGrid owner, List<CellRegion> regions, int index)
         {
             int columnIndex;
             int rowIndex;
@@ -1655,7 +1655,7 @@ namespace System.Windows.Controls
         /// <summary>
         ///     Overriden by collections faking removed columns and rows.
         /// </summary>
-        protected virtual DataGridCellInfo CreateCellInfo(ItemsControl.ItemInfo rowInfo, DataGridColumn column, DataGridX owner)
+        protected virtual DataGridCellInfo CreateCellInfo(ItemsControl.ItemInfo rowInfo, DataGridColumn column, DataGrid owner)
         {
             return new DataGridCellInfo(rowInfo, column, owner);
         }
@@ -1665,7 +1665,7 @@ namespace System.Windows.Controls
         #region Data
 
         private bool _isReadOnly;
-        private DataGridX _owner;
+        private DataGrid _owner;
         private List<CellRegion> _regions;
 
         #endregion

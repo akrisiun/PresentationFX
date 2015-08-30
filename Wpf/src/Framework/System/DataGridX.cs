@@ -25,22 +25,26 @@ using MS.Internal.Data;
 
 namespace System.Windows.Controls
 {
+    public class DataGridX : DataGrid
+    {
+    }
+
     /// <summary>
     ///     A DataGrid control that displays data in rows and columns and allows
     ///     for the entering and editing of data.
     /// </summary>
-    public class DataGridX : MultiSelector
+    public class DataGrid : MultiSelector
     {
         #region Constructors
 
         /// <summary>
         ///     Instantiates global information.
         /// </summary>
-        static DataGridX()
+        static DataGrid()
         {
-            Type ownerType = typeof(DataGridX);
+            Type ownerType = typeof(DataGrid);
 
-            DefaultStyleKeyProperty.OverrideMetadata(ownerType, new FrameworkPropertyMetadata(typeof(DataGridX)));
+            DefaultStyleKeyProperty.OverrideMetadata(ownerType, new FrameworkPropertyMetadata(typeof(DataGrid)));
             FrameworkElementFactory dataGridRowPresenterFactory = new FrameworkElementFactory(typeof(DataGridRowsPresenter));
             dataGridRowPresenterFactory.SetValue(FrameworkElement.NameProperty, ItemsPanelPartName);
             ItemsPanelProperty.OverrideMetadata(ownerType, new FrameworkPropertyMetadata(new ItemsPanelTemplate(dataGridRowPresenterFactory)));
@@ -70,15 +74,15 @@ namespace System.Windows.Controls
             CommandManager.RegisterClassCommandBinding(ownerType, new CommandBinding(DeleteCommand, new ExecutedRoutedEventHandler(OnExecutedDelete), new CanExecuteRoutedEventHandler(OnCanExecuteDelete)));
 
             // Default Clipboard handling
-            CommandManager.RegisterClassCommandBinding(typeof(DataGridX), new CommandBinding(ApplicationCommands.Copy, new ExecutedRoutedEventHandler(OnExecutedCopy), new CanExecuteRoutedEventHandler(OnCanExecuteCopy)));
+            CommandManager.RegisterClassCommandBinding(typeof(DataGrid), new CommandBinding(ApplicationCommands.Copy, new ExecutedRoutedEventHandler(OnExecutedCopy), new CanExecuteRoutedEventHandler(OnCanExecuteCopy)));
 
-            EventManager.RegisterClassHandler(typeof(DataGridX), MouseUpEvent, new MouseButtonEventHandler(OnAnyMouseUpThunk), true);
+            EventManager.RegisterClassHandler(typeof(DataGrid), MouseUpEvent, new MouseButtonEventHandler(OnAnyMouseUpThunk), true);
         }
 
         /// <summary>
         ///     Instantiates a new instance of this class.
         /// </summary>
-        public DataGridX()
+        public DataGrid()
         {
             _columns = new DataGridColumnCollection(this);
             _columns.CollectionChanged += new NotifyCollectionChangedEventHandler(OnColumnsChanged);
@@ -136,7 +140,7 @@ namespace System.Windows.Controls
         ///     The DependencyProperty that represents the CanUserResizeColumns property.
         /// </summary>
         public static readonly DependencyProperty CanUserResizeColumnsProperty =
-            DependencyProperty.Register("CanUserResizeColumns", typeof(bool), typeof(DataGridX), new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnNotifyColumnAndColumnHeaderPropertyChanged)));
+            DependencyProperty.Register("CanUserResizeColumns", typeof(bool), typeof(DataGrid), new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnNotifyColumnAndColumnHeaderPropertyChanged)));
 
         /// <summary>
         ///     Specifies the width of the header and cells within all the columns.
@@ -151,7 +155,7 @@ namespace System.Windows.Controls
         ///     The DependencyProperty that represents the ColumnWidth property.
         /// </summary>
         public static readonly DependencyProperty ColumnWidthProperty =
-            DependencyProperty.Register("ColumnWidth", typeof(DataGridLength), typeof(DataGridX), new FrameworkPropertyMetadata(DataGridLength.SizeToHeader));
+            DependencyProperty.Register("ColumnWidth", typeof(DataGridLength), typeof(DataGrid), new FrameworkPropertyMetadata(DataGridLength.SizeToHeader));
 
         /// <summary>
         ///     Specifies the minimum width of the header and cells within all columns.
@@ -169,7 +173,7 @@ namespace System.Windows.Controls
             DependencyProperty.Register(
                 "MinColumnWidth",
                 typeof(double),
-                typeof(DataGridX),
+                typeof(DataGrid),
                 new FrameworkPropertyMetadata(20d, new PropertyChangedCallback(OnColumnSizeConstraintChanged)),
                 new ValidateValueCallback(ValidateMinColumnWidth));
 
@@ -189,13 +193,13 @@ namespace System.Windows.Controls
             DependencyProperty.Register(
                 "MaxColumnWidth",
                 typeof(double),
-                typeof(DataGridX),
+                typeof(DataGrid),
                 new FrameworkPropertyMetadata(double.PositiveInfinity, new PropertyChangedCallback(OnColumnSizeConstraintChanged)),
                 new ValidateValueCallback(ValidateMaxColumnWidth));
 
         private static void OnColumnSizeConstraintChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Columns);
+            ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Columns);
         }
 
         /// <summary>
@@ -434,7 +438,7 @@ namespace System.Windows.Controls
         /// </summary>
         private static void OnNotifyCellsPresenterPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.CellsPresenter);
+            ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.CellsPresenter);
         }
 
         /// <summary>
@@ -442,7 +446,7 @@ namespace System.Windows.Controls
         /// </summary>
         private static void OnNotifyColumnAndCellPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Columns | DataGridNotificationTarget.Cells);
+            ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Columns | DataGridNotificationTarget.Cells);
         }
 
         /// <summary>
@@ -450,7 +454,7 @@ namespace System.Windows.Controls
         /// </summary>
         private static void OnNotifyColumnPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Columns);
+            ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Columns);
         }
 
         /// <summary>
@@ -458,7 +462,7 @@ namespace System.Windows.Controls
         /// </summary>
         private static void OnNotifyColumnAndColumnHeaderPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Columns | DataGridNotificationTarget.ColumnHeaders);
+            ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Columns | DataGridNotificationTarget.ColumnHeaders);
         }
 
         /// <summary>
@@ -466,7 +470,7 @@ namespace System.Windows.Controls
         /// </summary>
         private static void OnNotifyColumnHeaderPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.ColumnHeaders);
+            ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.ColumnHeaders);
         }
 
         /// <summary>
@@ -474,7 +478,7 @@ namespace System.Windows.Controls
         /// </summary>
         private static void OnNotifyHeaderPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.ColumnHeaders | DataGridNotificationTarget.RowHeaders);
+            ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.ColumnHeaders | DataGridNotificationTarget.RowHeaders);
         }
 
         /// <summary>
@@ -482,7 +486,7 @@ namespace System.Windows.Controls
         /// </summary>
         private static void OnNotifyDataGridAndRowPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Rows | DataGridNotificationTarget.DataGrid);
+            ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Rows | DataGridNotificationTarget.DataGrid);
         }
 
         /// <summary>
@@ -498,7 +502,7 @@ namespace System.Windows.Controls
             // clears out all containers and notifies the panel.  The fact we're passing in two null templates is ignored.
             if (e.OldValue != e.NewValue)
             {
-                ((DataGridX)d).OnItemTemplateChanged(null, null);
+                ((DataGrid)d).OnItemTemplateChanged(null, null);
             }
         }
 
@@ -507,7 +511,7 @@ namespace System.Windows.Controls
         /// </summary>
         private static void OnNotifyRowPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Rows);
+            ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Rows);
         }
 
         /// <summary>
@@ -515,7 +519,7 @@ namespace System.Windows.Controls
         /// </summary>
         private static void OnNotifyRowHeaderPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.RowHeaders);
+            ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.RowHeaders);
         }
 
         /// <summary>
@@ -523,7 +527,7 @@ namespace System.Windows.Controls
         /// </summary>
         private static void OnNotifyRowAndRowHeaderPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Rows | DataGridNotificationTarget.RowHeaders);
+            ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Rows | DataGridNotificationTarget.RowHeaders);
         }
 
         /// <summary>
@@ -531,7 +535,7 @@ namespace System.Windows.Controls
         /// </summary>
         private static void OnNotifyRowAndDetailsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Rows | DataGridNotificationTarget.DetailsPresenter);
+            ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Rows | DataGridNotificationTarget.DetailsPresenter);
         }
 
         /// <summary>
@@ -539,7 +543,7 @@ namespace System.Windows.Controls
         /// </summary>
         private static void OnNotifyHorizontalOffsetPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.ColumnCollection | DataGridNotificationTarget.CellsPresenter | DataGridNotificationTarget.ColumnHeadersPresenter);
+            ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.ColumnCollection | DataGridNotificationTarget.CellsPresenter | DataGridNotificationTarget.ColumnHeadersPresenter);
         }
 
         /// <summary>
@@ -659,7 +663,7 @@ namespace System.Windows.Controls
             DependencyProperty.Register(
                 "GridLinesVisibility",
                 typeof(DataGridGridLinesVisibility),
-                typeof(DataGridX),
+                typeof(DataGrid),
                 new FrameworkPropertyMetadata(DataGridGridLinesVisibility.All, new PropertyChangedCallback(OnNotifyGridLinePropertyChanged)));
 
         /// <summary>
@@ -678,7 +682,7 @@ namespace System.Windows.Controls
             DependencyProperty.Register(
                 "HorizontalGridLinesBrush",
                 typeof(Brush),
-                typeof(DataGridX),
+                typeof(DataGrid),
                 new FrameworkPropertyMetadata(Brushes.Black, new PropertyChangedCallback(OnNotifyGridLinePropertyChanged)));
 
         /// <summary>
@@ -697,7 +701,7 @@ namespace System.Windows.Controls
             DependencyProperty.Register(
                 "VerticalGridLinesBrush",
                 typeof(Brush),
-                typeof(DataGridX),
+                typeof(DataGrid),
                 new FrameworkPropertyMetadata(Brushes.Black, new PropertyChangedCallback(OnNotifyGridLinePropertyChanged)));
 
         /// <summary>
@@ -861,7 +865,7 @@ namespace System.Windows.Controls
         ///     DependencyProperty for the RowStyle property.
         /// </summary>
         public static readonly DependencyProperty RowStyleProperty =
-            DependencyProperty.Register("RowStyle", typeof(Style), typeof(DataGridX), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnRowStyleChanged)));
+            DependencyProperty.Register("RowStyle", typeof(Style), typeof(DataGrid), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnRowStyleChanged)));
 
         private static void OnRowStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -870,9 +874,9 @@ namespace System.Windows.Controls
 
         private static object OnCoerceItemContainerStyle(DependencyObject d, object baseValue)
         {
-            if (!DataGridHelper.IsDefaultValue(d, DataGridX.RowStyleProperty))
+            if (!DataGridHelper.IsDefaultValue(d, DataGrid.RowStyleProperty))
             {
-                return d.GetValue(DataGridX.RowStyleProperty);
+                return d.GetValue(DataGrid.RowStyleProperty);
             }
 
             return baseValue;
@@ -891,7 +895,7 @@ namespace System.Windows.Controls
         ///     DependencyProperty for the RowValidationErrorTemplate property.
         /// </summary>
         public static readonly DependencyProperty RowValidationErrorTemplateProperty =
-            DependencyProperty.Register("RowValidationErrorTemplate", typeof(ControlTemplate), typeof(DataGridX), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyRowPropertyChanged)));
+            DependencyProperty.Register("RowValidationErrorTemplate", typeof(ControlTemplate), typeof(DataGrid), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyRowPropertyChanged)));
 
         /// <summary>
         ///     Validation rules that are run on each DataGridRow.  If DataGrid.ItemBindingGroup is used, RowValidationRules is ignored.
@@ -973,7 +977,7 @@ namespace System.Windows.Controls
         ///     DependencyProperty for the RowStyleSelector property.
         /// </summary>
         public static readonly DependencyProperty RowStyleSelectorProperty =
-            DependencyProperty.Register("RowStyleSelector", typeof(StyleSelector), typeof(DataGridX), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnRowStyleSelectorChanged)));
+            DependencyProperty.Register("RowStyleSelector", typeof(StyleSelector), typeof(DataGrid), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnRowStyleSelectorChanged)));
 
         private static void OnRowStyleSelectorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -982,9 +986,9 @@ namespace System.Windows.Controls
 
         private static object OnCoerceItemContainerStyleSelector(DependencyObject d, object baseValue)
         {
-            if (!DataGridHelper.IsDefaultValue(d, DataGridX.RowStyleSelectorProperty))
+            if (!DataGridHelper.IsDefaultValue(d, DataGrid.RowStyleSelectorProperty))
             {
-                return d.GetValue(DataGridX.RowStyleSelectorProperty);
+                return d.GetValue(DataGrid.RowStyleSelectorProperty);
             }
 
             return baseValue;
@@ -992,7 +996,7 @@ namespace System.Windows.Controls
 
         private static object OnCoerceIsSynchronizedWithCurrentItem(DependencyObject d, object baseValue)
         {
-            DataGridX dataGrid = (DataGridX)d;
+            DataGrid dataGrid = (DataGrid)d;
             if (dataGrid.SelectionUnit == DataGridSelectionUnit.Cell)
             {
                 // IsSynchronizedWithCurrentItem makes IsSelected=true on the current row.
@@ -1016,7 +1020,7 @@ namespace System.Windows.Controls
         ///     DependencyProperty for RowBackground.
         /// </summary>
         public static readonly DependencyProperty RowBackgroundProperty =
-            DependencyProperty.Register("RowBackground", typeof(Brush), typeof(DataGridX), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyRowPropertyChanged)));
+            DependencyProperty.Register("RowBackground", typeof(Brush), typeof(DataGrid), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyRowPropertyChanged)));
 
         /// <summary>
         ///     The default row background brush for use on every other row.
@@ -1034,7 +1038,7 @@ namespace System.Windows.Controls
         ///     DependencyProperty for AlternatingRowBackground.
         /// </summary>
         public static readonly DependencyProperty AlternatingRowBackgroundProperty =
-            DependencyProperty.Register("AlternatingRowBackground", typeof(Brush), typeof(DataGridX), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyDataGridAndRowPropertyChanged)));
+            DependencyProperty.Register("AlternatingRowBackground", typeof(Brush), typeof(DataGrid), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyDataGridAndRowPropertyChanged)));
 
         private static object OnCoerceAlternationCount(DependencyObject d, object baseValue)
         {
@@ -1042,7 +1046,7 @@ namespace System.Windows.Controls
             // to something that can use it.
             if (((int)baseValue) < 2)
             {
-                DataGridX dataGrid = (DataGridX)d;
+                DataGrid dataGrid = (DataGrid)d;
                 if (dataGrid.AlternatingRowBackground != null)
                 {
                     // There is an alternate background, coerce to 2.
@@ -1066,7 +1070,7 @@ namespace System.Windows.Controls
         ///     The DependencyProperty for RowHeight.
         /// </summary>
         public static readonly DependencyProperty RowHeightProperty =
-            DependencyProperty.Register("RowHeight", typeof(double), typeof(DataGridX), new FrameworkPropertyMetadata(double.NaN, new PropertyChangedCallback(OnNotifyCellsPresenterPropertyChanged)));
+            DependencyProperty.Register("RowHeight", typeof(double), typeof(DataGrid), new FrameworkPropertyMetadata(double.NaN, new PropertyChangedCallback(OnNotifyCellsPresenterPropertyChanged)));
 
         /// <summary>
         ///     The default minimum height of a row.
@@ -1081,7 +1085,7 @@ namespace System.Windows.Controls
         ///     The DependencyProperty for MinRowHeight.
         /// </summary>
         public static readonly DependencyProperty MinRowHeightProperty =
-            DependencyProperty.Register("MinRowHeight", typeof(double), typeof(DataGridX), new FrameworkPropertyMetadata(0.0, new PropertyChangedCallback(OnNotifyCellsPresenterPropertyChanged)));
+            DependencyProperty.Register("MinRowHeight", typeof(double), typeof(DataGrid), new FrameworkPropertyMetadata(0.0, new PropertyChangedCallback(OnNotifyCellsPresenterPropertyChanged)));
 
         /// <summary>
         ///     The NewItemPlaceholder row uses this to set its visibility while it's preparing.
@@ -1166,7 +1170,7 @@ namespace System.Windows.Controls
         ///     The DependencyProperty for RowHeaderWidth.
         /// </summary>
         public static readonly DependencyProperty RowHeaderWidthProperty =
-            DependencyProperty.Register("RowHeaderWidth", typeof(double), typeof(DataGridX), new FrameworkPropertyMetadata(double.NaN, new PropertyChangedCallback(OnNotifyRowHeaderWidthPropertyChanged)));
+            DependencyProperty.Register("RowHeaderWidth", typeof(double), typeof(DataGrid), new FrameworkPropertyMetadata(double.NaN, new PropertyChangedCallback(OnNotifyRowHeaderWidthPropertyChanged)));
 
         /// <summary>
         ///     The actual width of row headers used for binding.  This is computed from the measure of all the visible row headers.
@@ -1181,7 +1185,7 @@ namespace System.Windows.Controls
         ///     The DependencyPropertyKey for RowHeaderActualWidth.
         /// </summary>
         private static readonly DependencyPropertyKey RowHeaderActualWidthPropertyKey =
-            DependencyProperty.RegisterReadOnly("RowHeaderActualWidth", typeof(double), typeof(DataGridX), new FrameworkPropertyMetadata(0.0, new PropertyChangedCallback(OnNotifyRowHeaderPropertyChanged)));
+            DependencyProperty.RegisterReadOnly("RowHeaderActualWidth", typeof(double), typeof(DataGrid), new FrameworkPropertyMetadata(0.0, new PropertyChangedCallback(OnNotifyRowHeaderPropertyChanged)));
 
         /// <summary>
         ///     The DependencyProperty for RowHeaderActualWidth.
@@ -1201,7 +1205,7 @@ namespace System.Windows.Controls
         ///     The DependencyProperty for ColumnHeaderHeight.
         /// </summary>
         public static readonly DependencyProperty ColumnHeaderHeightProperty =
-            DependencyProperty.Register("ColumnHeaderHeight", typeof(double), typeof(DataGridX), new FrameworkPropertyMetadata(double.NaN, OnNotifyColumnHeaderPropertyChanged));
+            DependencyProperty.Register("ColumnHeaderHeight", typeof(double), typeof(DataGrid), new FrameworkPropertyMetadata(double.NaN, OnNotifyColumnHeaderPropertyChanged));
 
         /// <summary>
         ///     A property that specifies the visibility of the column & row headers.
@@ -1216,14 +1220,14 @@ namespace System.Windows.Controls
         ///     The DependencyProperty that represents the HeadersVisibility property.
         /// </summary>
         public static readonly DependencyProperty HeadersVisibilityProperty =
-            DependencyProperty.Register("HeadersVisibility", typeof(DataGridHeadersVisibility), typeof(DataGridX), new FrameworkPropertyMetadata(DataGridHeadersVisibility.All));
+            DependencyProperty.Register("HeadersVisibility", typeof(DataGridHeadersVisibility), typeof(DataGrid), new FrameworkPropertyMetadata(DataGridHeadersVisibility.All));
 
         /// <summary>
         ///     Updates RowHeaderActualWidth to reflect changes to RowHeaderWidth
         /// </summary>
         private static void OnNotifyRowHeaderWidthPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var dataGrid = ((DataGridX)d);
+            var dataGrid = ((DataGrid)d);
             var newValue = (double)e.NewValue;
 
             if (!DoubleUtil.IsNaN(newValue))
@@ -1355,7 +1359,7 @@ namespace System.Windows.Controls
         ///     The DependencyProperty that represents the CellStyle property.
         /// </summary>
         public static readonly DependencyProperty CellStyleProperty =
-            DependencyProperty.Register("CellStyle", typeof(Style), typeof(DataGridX), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyColumnAndCellPropertyChanged)));
+            DependencyProperty.Register("CellStyle", typeof(Style), typeof(DataGrid), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyColumnAndCellPropertyChanged)));
 
         /// <summary>
         ///     A style to apply to all column headers in the DataGrid
@@ -1370,7 +1374,7 @@ namespace System.Windows.Controls
         ///     The DependencyProperty that represents the ColumnHeaderStyle property.
         /// </summary>
         public static readonly DependencyProperty ColumnHeaderStyleProperty =
-            DependencyProperty.Register("ColumnHeaderStyle", typeof(Style), typeof(DataGridX), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyColumnAndColumnHeaderPropertyChanged)));
+            DependencyProperty.Register("ColumnHeaderStyle", typeof(Style), typeof(DataGrid), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyColumnAndColumnHeaderPropertyChanged)));
 
         /// <summary>
         ///     A style to apply to all row headers in the DataGrid
@@ -1385,7 +1389,7 @@ namespace System.Windows.Controls
         ///     The DependencyProperty that represents the RowHeaderStyle property.
         /// </summary>
         public static readonly DependencyProperty RowHeaderStyleProperty =
-            DependencyProperty.Register("RowHeaderStyle", typeof(Style), typeof(DataGridX), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyRowAndRowHeaderPropertyChanged)));
+            DependencyProperty.Register("RowHeaderStyle", typeof(Style), typeof(DataGrid), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyRowAndRowHeaderPropertyChanged)));
 
         /// <summary>
         ///     The object representing the Row Header template.
@@ -1400,7 +1404,7 @@ namespace System.Windows.Controls
         ///     The DependencyProperty for the RowHeaderTemplate property.
         /// </summary>
         public static readonly DependencyProperty RowHeaderTemplateProperty =
-            DependencyProperty.Register("RowHeaderTemplate", typeof(DataTemplate), typeof(DataGridX), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyRowAndRowHeaderPropertyChanged)));
+            DependencyProperty.Register("RowHeaderTemplate", typeof(DataTemplate), typeof(DataGrid), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyRowAndRowHeaderPropertyChanged)));
 
         /// <summary>
         ///     The object representing the Row Header template selector.
@@ -1415,7 +1419,7 @@ namespace System.Windows.Controls
         ///     The DependencyProperty for the RowHeaderTemplateSelector property.
         /// </summary>
         public static readonly DependencyProperty RowHeaderTemplateSelectorProperty =
-            DependencyProperty.Register("RowHeaderTemplateSelector", typeof(DataTemplateSelector), typeof(DataGridX), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyRowAndRowHeaderPropertyChanged)));
+            DependencyProperty.Register("RowHeaderTemplateSelector", typeof(DataTemplateSelector), typeof(DataGrid), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnNotifyRowAndRowHeaderPropertyChanged)));
 
         /// <summary>
         ///     The default style references this brush to create a thicker border
@@ -1482,7 +1486,7 @@ namespace System.Windows.Controls
         /// <summary>
         ///     The DependencyProperty for the HorizontalScrollBarVisibility property.
         /// </summary>
-        public static readonly DependencyProperty HorizontalScrollBarVisibilityProperty = ScrollViewer.HorizontalScrollBarVisibilityProperty.AddOwner(typeof(DataGridX), new FrameworkPropertyMetadata(ScrollBarVisibility.Auto));
+        public static readonly DependencyProperty HorizontalScrollBarVisibilityProperty = ScrollViewer.HorizontalScrollBarVisibilityProperty.AddOwner(typeof(DataGrid), new FrameworkPropertyMetadata(ScrollBarVisibility.Auto));
 
         /// <summary>
         ///     Defines the behavior that determines the visibility of vertical ScrollBars.
@@ -1496,7 +1500,7 @@ namespace System.Windows.Controls
         /// <summary>
         ///     The DependencyProperty for the HorizontalScrollBarVisibility property.
         /// </summary>
-        public static readonly DependencyProperty VerticalScrollBarVisibilityProperty = ScrollViewer.VerticalScrollBarVisibilityProperty.AddOwner(typeof(DataGridX), new FrameworkPropertyMetadata(ScrollBarVisibility.Auto));
+        public static readonly DependencyProperty VerticalScrollBarVisibilityProperty = ScrollViewer.VerticalScrollBarVisibilityProperty.AddOwner(typeof(DataGrid), new FrameworkPropertyMetadata(ScrollBarVisibility.Auto));
 
         /// <summary>
         ///     Scrolls a row into view.
@@ -1996,7 +2000,7 @@ namespace System.Windows.Controls
             DependencyProperty.Register(
                 "HorizontalScrollOffset",
                 typeof(double),
-                typeof(DataGridX),
+                typeof(DataGrid),
                 new FrameworkPropertyMetadata(0d, OnNotifyHorizontalOffsetPropertyChanged));
 
         /// <summary>
@@ -2018,20 +2022,20 @@ namespace System.Windows.Controls
         ///     The command to fire and allow to route to the DataGrid in order to indicate that the
         ///     current cell or row should begin editing.
         /// </summary>
-        public static readonly RoutedCommand BeginEditCommand = new RoutedCommand("BeginEdit", typeof(DataGridX));
+        public static readonly RoutedCommand BeginEditCommand = new RoutedCommand("BeginEdit", typeof(DataGrid));
 
         /// <summary>
         ///     The command to fire and allow to route to the DataGrid in order to indicate that the
         ///     current cell or row should commit any pending changes and exit edit mode.
         /// </summary>
-        public static readonly RoutedCommand CommitEditCommand = new RoutedCommand("CommitEdit", typeof(DataGridX));
+        public static readonly RoutedCommand CommitEditCommand = new RoutedCommand("CommitEdit", typeof(DataGrid));
 
         /// <summary>
         ///     The command to fire and allow to route to the DataGrid in order to indicate that the
         ///     current cell or row should purge any pending changes and revert to the state it was
         ///     in before BeginEdit.
         /// </summary>
-        public static readonly RoutedCommand CancelEditCommand = new RoutedCommand("CancelEdit", typeof(DataGridX));
+        public static readonly RoutedCommand CancelEditCommand = new RoutedCommand("CancelEdit", typeof(DataGrid));
 
         /// <summary>
         ///     A command that, when invoked, will delete the current row.
@@ -2046,12 +2050,12 @@ namespace System.Windows.Controls
 
         private static void OnCanExecuteBeginEdit(object sender, CanExecuteRoutedEventArgs e)
         {
-            ((DataGridX)sender).OnCanExecuteBeginEdit(e);
+            ((DataGrid)sender).OnCanExecuteBeginEdit(e);
         }
 
         private static void OnExecutedBeginEdit(object sender, ExecutedRoutedEventArgs e)
         {
-            ((DataGridX)sender).OnExecutedBeginEdit(e);
+            ((DataGrid)sender).OnExecutedBeginEdit(e);
         }
 
         /// <summary>
@@ -2252,12 +2256,12 @@ namespace System.Windows.Controls
 
         private static void OnCanExecuteCommitEdit(object sender, CanExecuteRoutedEventArgs e)
         {
-            ((DataGridX)sender).OnCanExecuteCommitEdit(e);
+            ((DataGrid)sender).OnCanExecuteCommitEdit(e);
         }
 
         private static void OnExecutedCommitEdit(object sender, ExecutedRoutedEventArgs e)
         {
-            ((DataGridX)sender).OnExecutedCommitEdit(e);
+            ((DataGrid)sender).OnExecutedCommitEdit(e);
         }
 
         private DataGridCell GetEventCellOrCurrentCell(RoutedEventArgs e)
@@ -2456,12 +2460,12 @@ namespace System.Windows.Controls
 
         private static void OnCanExecuteCancelEdit(object sender, CanExecuteRoutedEventArgs e)
         {
-            ((DataGridX)sender).OnCanExecuteCancelEdit(e);
+            ((DataGrid)sender).OnCanExecuteCancelEdit(e);
         }
 
         private static void OnExecutedCancelEdit(object sender, ExecutedRoutedEventArgs e)
         {
-            ((DataGridX)sender).OnExecutedCancelEdit(e);
+            ((DataGrid)sender).OnExecutedCancelEdit(e);
         }
 
         /// <summary>
@@ -2548,12 +2552,12 @@ namespace System.Windows.Controls
 
         private static void OnCanExecuteDelete(object sender, CanExecuteRoutedEventArgs e)
         {
-            ((DataGridX)sender).OnCanExecuteDelete(e);
+            ((DataGrid)sender).OnCanExecuteDelete(e);
         }
 
         private static void OnExecutedDelete(object sender, ExecutedRoutedEventArgs e)
         {
-            ((DataGridX)sender).OnExecutedDelete(e);
+            ((DataGrid)sender).OnExecutedDelete(e);
         }
 
         /// <summary>
@@ -2742,14 +2746,14 @@ namespace System.Windows.Controls
         ///     The DependencyProperty for IsReadOnly.
         /// </summary>
         public static readonly DependencyProperty IsReadOnlyProperty =
-            DependencyProperty.Register("IsReadOnly", typeof(bool), typeof(DataGridX), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnIsReadOnlyChanged)));
+            DependencyProperty.Register("IsReadOnly", typeof(bool), typeof(DataGrid), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnIsReadOnlyChanged)));
 
         private static void OnIsReadOnlyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)e.NewValue)
             {
                 // When going from R/W to R/O, cancel any current edits
-                ((DataGridX)d).CancelAnyEdit();
+                ((DataGrid)d).CancelAnyEdit();
             }
 
             // re-evalutate the BeginEdit command's CanExecute.
@@ -2778,11 +2782,11 @@ namespace System.Windows.Controls
         ///     The DependencyProperty for CurrentItem.
         /// </summary>
         public static readonly DependencyProperty CurrentItemProperty =
-            DependencyProperty.Register("CurrentItem", typeof(object), typeof(DataGridX), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnCurrentItemChanged)));
+            DependencyProperty.Register("CurrentItem", typeof(object), typeof(DataGrid), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnCurrentItemChanged)));
 
         private static void OnCurrentItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            DataGridX dataGrid = (DataGridX)d;
+            DataGrid dataGrid = (DataGrid)d;
             DataGridCellInfo currentCell = dataGrid.CurrentCell;
             object newItem = e.NewValue;
 
@@ -2821,11 +2825,11 @@ namespace System.Windows.Controls
         ///     The DependencyProperty for CurrentColumn.
         /// </summary>
         public static readonly DependencyProperty CurrentColumnProperty =
-            DependencyProperty.Register("CurrentColumn", typeof(DataGridColumn), typeof(DataGridX), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnCurrentColumnChanged)));
+            DependencyProperty.Register("CurrentColumn", typeof(DataGridColumn), typeof(DataGrid), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnCurrentColumnChanged)));
 
         private static void OnCurrentColumnChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            DataGridX dataGrid = (DataGridX)d;
+            DataGrid dataGrid = (DataGrid)d;
             DataGridCellInfo currentCell = dataGrid.CurrentCell;
             DataGridColumn newColumn = (DataGridColumn)e.NewValue;
 
@@ -2854,11 +2858,11 @@ namespace System.Windows.Controls
         ///     The DependencyProperty for CurrentCell.
         /// </summary>
         public static readonly DependencyProperty CurrentCellProperty =
-            DependencyProperty.Register("CurrentCell", typeof(DataGridCellInfo), typeof(DataGridX), new FrameworkPropertyMetadata(DataGridCellInfo.Unset, new PropertyChangedCallback(OnCurrentCellChanged)));
+            DependencyProperty.Register("CurrentCell", typeof(DataGridCellInfo), typeof(DataGrid), new FrameworkPropertyMetadata(DataGridCellInfo.Unset, new PropertyChangedCallback(OnCurrentCellChanged)));
 
         private static void OnCurrentCellChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            DataGridX dataGrid = (DataGridX)d;
+            DataGrid dataGrid = (DataGrid)d;
             DataGridCellInfo oldCell = (DataGridCellInfo)e.OldValue;
             DataGridCellInfo currentCell = (DataGridCellInfo)e.NewValue;
 
@@ -3417,19 +3421,19 @@ namespace System.Windows.Controls
         ///     DependencyProperty for CanUserAddRows.
         /// </summary>
         public static readonly DependencyProperty CanUserAddRowsProperty =
-            DependencyProperty.Register("CanUserAddRows", typeof(bool), typeof(DataGridX), new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCanUserAddRowsChanged), new CoerceValueCallback(OnCoerceCanUserAddRows)));
+            DependencyProperty.Register("CanUserAddRows", typeof(bool), typeof(DataGrid), new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCanUserAddRowsChanged), new CoerceValueCallback(OnCoerceCanUserAddRows)));
 
         private static void OnCanUserAddRowsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).UpdateNewItemPlaceholder(/* isAddingNewItem = */ false);
+            ((DataGrid)d).UpdateNewItemPlaceholder(/* isAddingNewItem = */ false);
         }
 
         private static object OnCoerceCanUserAddRows(DependencyObject d, object baseValue)
         {
-            return OnCoerceCanUserAddOrDeleteRows((DataGridX)d, (bool)baseValue, /* canUserAddRowsProperty = */ true);
+            return OnCoerceCanUserAddOrDeleteRows((DataGrid)d, (bool)baseValue, /* canUserAddRowsProperty = */ true);
         }
 
-        private static bool OnCoerceCanUserAddOrDeleteRows(DataGridX dataGrid, bool baseValue, bool canUserAddRowsProperty)
+        private static bool OnCoerceCanUserAddOrDeleteRows(DataGrid dataGrid, bool baseValue, bool canUserAddRowsProperty)
         {
             // Only when the base value is true do we need to validate that the user
             // can actually add or delete rows.
@@ -3467,7 +3471,7 @@ namespace System.Windows.Controls
         ///     DependencyProperty for CanUserDeleteRows.
         /// </summary>
         public static readonly DependencyProperty CanUserDeleteRowsProperty =
-            DependencyProperty.Register("CanUserDeleteRows", typeof(bool), typeof(DataGridX), new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCanUserDeleteRowsChanged), new CoerceValueCallback(OnCoerceCanUserDeleteRows)));
+            DependencyProperty.Register("CanUserDeleteRows", typeof(bool), typeof(DataGrid), new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCanUserDeleteRowsChanged), new CoerceValueCallback(OnCoerceCanUserDeleteRows)));
 
         private static void OnCanUserDeleteRowsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -3477,7 +3481,7 @@ namespace System.Windows.Controls
 
         private static object OnCoerceCanUserDeleteRows(DependencyObject d, object baseValue)
         {
-            return OnCoerceCanUserAddOrDeleteRows((DataGridX)d, (bool)baseValue, /* canUserAddRowsProperty = */ false);
+            return OnCoerceCanUserAddOrDeleteRows((DataGrid)d, (bool)baseValue, /* canUserAddRowsProperty = */ false);
         }
 
         /// <summary>
@@ -3837,7 +3841,7 @@ namespace System.Windows.Controls
 
         private bool IsNewItemPlaceholder(object item)
         {
-            return (item == CollectionView.NewItemPlaceholder) || (item == DataGridX.NewItemPlaceholder);
+            return (item == CollectionView.NewItemPlaceholder) || (item == DataGrid.NewItemPlaceholder);
         }
 
         #endregion
@@ -3857,7 +3861,7 @@ namespace System.Windows.Controls
         ///     DependencyProperty for RowDetailsVisibilityMode.
         /// </summary>
         public static readonly DependencyProperty RowDetailsVisibilityModeProperty =
-            DependencyProperty.Register("RowDetailsVisibilityMode", typeof(DataGridRowDetailsVisibilityMode), typeof(DataGridX), new FrameworkPropertyMetadata(DataGridRowDetailsVisibilityMode.VisibleWhenSelected, OnNotifyRowAndDetailsPropertyChanged));
+            DependencyProperty.Register("RowDetailsVisibilityMode", typeof(DataGridRowDetailsVisibilityMode), typeof(DataGrid), new FrameworkPropertyMetadata(DataGridRowDetailsVisibilityMode.VisibleWhenSelected, OnNotifyRowAndDetailsPropertyChanged));
 
         /// <summary>
         ///     Controls if the row details scroll.
@@ -3872,7 +3876,7 @@ namespace System.Windows.Controls
         ///     DependencyProperty for AreRowDetailsFrozen.
         /// </summary>
         public static readonly DependencyProperty AreRowDetailsFrozenProperty =
-            DependencyProperty.Register("AreRowDetailsFrozen", typeof(bool), typeof(DataGridX), new FrameworkPropertyMetadata(false));
+            DependencyProperty.Register("AreRowDetailsFrozen", typeof(bool), typeof(DataGrid), new FrameworkPropertyMetadata(false));
 
         /// <summary>
         ///     Template used for the Row details.
@@ -3887,7 +3891,7 @@ namespace System.Windows.Controls
         ///     DependencyProperty for RowDetailsTemplate.
         /// </summary>
         public static readonly DependencyProperty RowDetailsTemplateProperty =
-            DependencyProperty.Register("RowDetailsTemplate", typeof(DataTemplate), typeof(DataGridX), new FrameworkPropertyMetadata(null, OnNotifyRowAndDetailsPropertyChanged));
+            DependencyProperty.Register("RowDetailsTemplate", typeof(DataTemplate), typeof(DataGrid), new FrameworkPropertyMetadata(null, OnNotifyRowAndDetailsPropertyChanged));
 
         /// <summary>
         ///     TemplateSelector used for the Row details
@@ -3902,7 +3906,7 @@ namespace System.Windows.Controls
         ///     DependencyProperty for RowDetailsTemplateSelector.
         /// </summary>
         public static readonly DependencyProperty RowDetailsTemplateSelectorProperty =
-            DependencyProperty.Register("RowDetailsTemplateSelector", typeof(DataTemplateSelector), typeof(DataGridX), new FrameworkPropertyMetadata(null, OnNotifyRowAndDetailsPropertyChanged));
+            DependencyProperty.Register("RowDetailsTemplateSelector", typeof(DataTemplateSelector), typeof(DataGrid), new FrameworkPropertyMetadata(null, OnNotifyRowAndDetailsPropertyChanged));
 
         /// <summary>
         ///     Event that is fired just before the details of a Row is shown
@@ -4004,7 +4008,7 @@ namespace System.Windows.Controls
         ///     The DependencyProperty that represents the CanUserResizeColumns property.
         /// </summary>
         public static readonly DependencyProperty CanUserResizeRowsProperty =
-            DependencyProperty.Register("CanUserResizeRows", typeof(bool), typeof(DataGridX), new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnNotifyRowHeaderPropertyChanged)));
+            DependencyProperty.Register("CanUserResizeRows", typeof(bool), typeof(DataGrid), new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnNotifyRowHeaderPropertyChanged)));
 
         #endregion
 
@@ -4025,7 +4029,7 @@ namespace System.Windows.Controls
         private static readonly DependencyPropertyKey NewItemMarginPropertyKey =
             DependencyProperty.RegisterReadOnly("NewItemMargin",
                 typeof(Thickness),
-                typeof(DataGridX),
+                typeof(DataGrid),
                 new FrameworkPropertyMetadata(new Thickness(0)));
 
         /// <summary>
@@ -4291,14 +4295,14 @@ namespace System.Windows.Controls
 
         private static void OnCanExecuteSelectAll(object sender, CanExecuteRoutedEventArgs e)
         {
-            DataGridX dataGrid = (DataGridX)sender;
+            DataGrid dataGrid = (DataGrid)sender;
             e.CanExecute = (dataGrid.SelectionMode == DataGridSelectionMode.Extended) && dataGrid.IsEnabled;
             e.Handled = true;
         }
 
         private static void OnExecutedSelectAll(object sender, ExecutedRoutedEventArgs e)
         {
-            DataGridX dataGrid = (DataGridX)sender;
+            DataGrid dataGrid = (DataGrid)sender;
             if (dataGrid.SelectionUnit == DataGridSelectionUnit.Cell)
             {
                 dataGrid.SelectAllCells();
@@ -4402,11 +4406,11 @@ namespace System.Windows.Controls
         ///     The DependencyProperty for the SelectionMode property.
         /// </summary>
         public static readonly DependencyProperty SelectionModeProperty =
-            DependencyProperty.Register("SelectionMode", typeof(DataGridSelectionMode), typeof(DataGridX), new FrameworkPropertyMetadata(DataGridSelectionMode.Extended, new PropertyChangedCallback(OnSelectionModeChanged)));
+            DependencyProperty.Register("SelectionMode", typeof(DataGridSelectionMode), typeof(DataGrid), new FrameworkPropertyMetadata(DataGridSelectionMode.Extended, new PropertyChangedCallback(OnSelectionModeChanged)));
 
         private static void OnSelectionModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            DataGridX dataGrid = (DataGridX)d;
+            DataGrid dataGrid = (DataGrid)d;
             DataGridSelectionMode newSelectionMode = (DataGridSelectionMode)e.NewValue;
             bool changingToSingleMode = newSelectionMode == DataGridSelectionMode.Single;
             DataGridSelectionUnit selectionUnit = dataGrid.SelectionUnit;
@@ -4464,11 +4468,11 @@ namespace System.Windows.Controls
         ///     The DependencyProperty for the SelectionUnit property.
         /// </summary>
         public static readonly DependencyProperty SelectionUnitProperty =
-            DependencyProperty.Register("SelectionUnit", typeof(DataGridSelectionUnit), typeof(DataGridX), new FrameworkPropertyMetadata(DataGridSelectionUnit.FullRow, new PropertyChangedCallback(OnSelectionUnitChanged)));
+            DependencyProperty.Register("SelectionUnit", typeof(DataGridSelectionUnit), typeof(DataGrid), new FrameworkPropertyMetadata(DataGridSelectionUnit.FullRow, new PropertyChangedCallback(OnSelectionUnitChanged)));
 
         private static void OnSelectionUnitChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            DataGridX dataGrid = (DataGridX)d;
+            DataGrid dataGrid = (DataGrid)d;
             DataGridSelectionUnit oldUnit = (DataGridSelectionUnit)e.OldValue;
 
             // Full wipe on unit change
@@ -5261,7 +5265,7 @@ namespace System.Windows.Controls
         /// </summary>
         private class ChangingSelectedCellsHelper : IDisposable
         {
-            internal ChangingSelectedCellsHelper(DataGridX dataGrid)
+            internal ChangingSelectedCellsHelper(DataGrid dataGrid)
             {
                 _dataGrid = dataGrid;
                 _wasUpdatingSelectedCells = _dataGrid.IsUpdatingSelectedCells;
@@ -5280,7 +5284,7 @@ namespace System.Windows.Controls
                 }
             }
 
-            private DataGridX _dataGrid;
+            private DataGrid _dataGrid;
             private bool _wasUpdatingSelectedCells;
         }
 
@@ -5371,7 +5375,7 @@ namespace System.Windows.Controls
             // Many commands use IsEnabled to determine if they are enabled or not
             CommandManager.InvalidateRequerySuggested();
 
-            ((DataGridX)d).UpdateVisualState();
+            ((DataGrid)d).UpdateVisualState();
         }
 
         /// <summary>
@@ -5381,7 +5385,7 @@ namespace System.Windows.Controls
         /// <param name="e"></param>
         private static void OnIsKeyboardFocusWithinChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Rows | DataGridNotificationTarget.RowHeaders | DataGridNotificationTarget.Cells);
+            ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.Rows | DataGridNotificationTarget.RowHeaders | DataGridNotificationTarget.Cells);
         }
 
         /// <summary>
@@ -6148,7 +6152,7 @@ namespace System.Windows.Controls
 
                             if (startingRow != null)
                             {
-                                DataGridX focusedDataGrid = ItemsControl.ItemsControlFromItemContainer(startingRow) as DataGridX;
+                                DataGrid focusedDataGrid = ItemsControl.ItemsControlFromItemContainer(startingRow) as DataGrid;
                                 if (focusedDataGrid == this)
                                 {
                                     startingInfo = ItemInfoFromContainer(startingRow);
@@ -6301,7 +6305,7 @@ namespace System.Windows.Controls
 
         private static void OnAnyMouseUpThunk(object sender, MouseButtonEventArgs e)
         {
-            ((DataGridX)sender).OnAnyMouseUp(e);
+            ((DataGrid)sender).OnAnyMouseUp(e);
         }
 
         /// <summary>
@@ -6938,7 +6942,7 @@ namespace System.Windows.Controls
             }
 
             // set the value (used when setting value via automation)
-            public void SetValue(DataGridX dataGrid, object value, bool clipboard)
+            public void SetValue(DataGrid dataGrid, object value, bool clipboard)
             {
                 if (_column.ClipboardContentBinding == null)
                     return;
@@ -7027,7 +7031,7 @@ namespace System.Windows.Controls
             DependencyProperty.Register(
                 "CanUserSortColumns",
                 typeof(bool),
-                typeof(DataGridX),
+                typeof(DataGrid),
                 new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnCanUserSortColumnsPropertyChanged), new CoerceValueCallback(OnCoerceCanUserSortColumns)));
 
         /// <summary>
@@ -7042,7 +7046,7 @@ namespace System.Windows.Controls
 
         private static object OnCoerceCanUserSortColumns(DependencyObject d, object baseValue)
         {
-            DataGridX dataGrid = (DataGridX)d;
+            DataGrid dataGrid = (DataGrid)d;
             if( DataGridHelper.IsPropertyTransferEnabled(dataGrid, CanUserSortColumnsProperty) &&
                 DataGridHelper.IsDefaultValue(dataGrid, CanUserSortColumnsProperty) &&
                 dataGrid.Items.CanSort == false)
@@ -7054,7 +7058,7 @@ namespace System.Windows.Controls
 
         private static void OnCanUserSortColumnsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            DataGridX dataGrid = (DataGridX)d;
+            DataGrid dataGrid = (DataGrid)d;
             DataGridHelper.TransferProperty(dataGrid, CanUserSortColumnsProperty);
             OnNotifyColumnPropertyChanged(d, e);
         }
@@ -7442,7 +7446,7 @@ namespace System.Windows.Controls
         ///     The DependencyProperty that represents the AutoGenerateColumns property.
         /// </summary>
         public static readonly DependencyProperty AutoGenerateColumnsProperty =
-            DependencyProperty.Register("AutoGenerateColumns", typeof(bool), typeof(DataGridX), new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnAutoGenerateColumnsPropertyChanged)));
+            DependencyProperty.Register("AutoGenerateColumns", typeof(bool), typeof(DataGrid), new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnAutoGenerateColumnsPropertyChanged)));
 
         /// <summary>
         /// The property which determines whether the columns are to be auto generated or not.
@@ -7574,7 +7578,7 @@ namespace System.Windows.Controls
         /// </remarks>
         private static object OnCoerceItemsSourceProperty(DependencyObject d, object baseValue)
         {
-            DataGridX dataGrid = (DataGridX)d;
+            DataGrid dataGrid = (DataGrid)d;
             if (baseValue != dataGrid._cachedItemsSource && dataGrid._cachedItemsSource != null)
             {
                 dataGrid.ClearSortDescriptionsOnItemsSourceChange();
@@ -7763,7 +7767,7 @@ namespace System.Windows.Controls
             }
             else if (!_measureNeverInvoked)
             {
-                DataGridX.GenerateColumns(
+                DataGrid.GenerateColumns(
                     itemProperties,
                     this,
                     null);
@@ -7817,7 +7821,7 @@ namespace System.Windows.Controls
             }
 
             Collection<DataGridColumn> columnCollection = new Collection<DataGridColumn>();
-            DataGridX.GenerateColumns(
+            DataGrid.GenerateColumns(
                 itemProperties.ItemProperties,
                 null,
                 columnCollection);
@@ -7833,7 +7837,7 @@ namespace System.Windows.Controls
         /// <param name="columnCollection"></param>
         private static void GenerateColumns(
             ReadOnlyCollection<ItemPropertyInfo> itemProperties,
-            DataGridX dataGrid,
+            DataGrid dataGrid,
             Collection<DataGridColumn> columnCollection)
         {
             Debug.Assert(dataGrid != null || columnCollection != null, "Both dataGrid and columnCollection cannot not be null at the same time");
@@ -7875,7 +7879,7 @@ namespace System.Windows.Controls
         {
             bool newValue = (bool)e.NewValue;
 
-            DataGridX dataGrid = (DataGridX)d;
+            DataGrid dataGrid = (DataGrid)d;
 
             if (newValue)
             {
@@ -7898,7 +7902,7 @@ namespace System.Windows.Controls
             DependencyProperty.Register(
                 "FrozenColumnCount",
                 typeof(int),
-                typeof(DataGridX),
+                typeof(DataGrid),
                 new FrameworkPropertyMetadata(0, new PropertyChangedCallback(OnFrozenColumnCountPropertyChanged), new CoerceValueCallback(OnCoerceFrozenColumnCount)),
                 new ValidateValueCallback(ValidateFrozenColumnCount));
 
@@ -7919,7 +7923,7 @@ namespace System.Windows.Controls
         /// <returns></returns>
         private static object OnCoerceFrozenColumnCount(DependencyObject d, object baseValue)
         {
-            DataGridX dataGrid = (DataGridX)d;
+            DataGrid dataGrid = (DataGrid)d;
             int frozenColumnCount = (int)baseValue;
 
             if (frozenColumnCount > dataGrid.Columns.Count)
@@ -7937,7 +7941,7 @@ namespace System.Windows.Controls
         /// <param name="e"></param>
         private static void OnFrozenColumnCountPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.ColumnCollection | DataGridNotificationTarget.ColumnHeadersPresenter | DataGridNotificationTarget.CellsPresenter);
+            ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.ColumnCollection | DataGridNotificationTarget.ColumnHeadersPresenter | DataGridNotificationTarget.CellsPresenter);
         }
 
         /// <summary>
@@ -7958,7 +7962,7 @@ namespace System.Windows.Controls
                 DependencyProperty.RegisterReadOnly(
                         "NonFrozenColumnsViewportHorizontalOffset",
                         typeof(double),
-                        typeof(DataGridX),
+                        typeof(DataGrid),
                         new FrameworkPropertyMetadata(0.0));
 
         /// <summary>
@@ -8017,7 +8021,7 @@ namespace System.Windows.Controls
         public static readonly DependencyProperty EnableRowVirtualizationProperty = DependencyProperty.Register(
             "EnableRowVirtualization",
             typeof(bool),
-            typeof(DataGridX),
+            typeof(DataGrid),
             new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnEnableRowVirtualizationChanged)));
 
         /// <summary>
@@ -8026,7 +8030,7 @@ namespace System.Windows.Controls
         /// </summary>
         private static void OnEnableRowVirtualizationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            DataGridX dataGrid = (DataGridX)d;
+            DataGrid dataGrid = (DataGrid)d;
             dataGrid.CoerceValue(VirtualizingPanel.IsVirtualizingProperty);
 
             Panel itemsHost = dataGrid.InternalItemsHost;
@@ -8042,9 +8046,9 @@ namespace System.Windows.Controls
         /// </summary>
         private static object OnCoerceIsVirtualizingProperty(DependencyObject d, object baseValue)
         {
-            if (!DataGridHelper.IsDefaultValue(d, DataGridX.EnableRowVirtualizationProperty))
+            if (!DataGridHelper.IsDefaultValue(d, DataGrid.EnableRowVirtualizationProperty))
             {
-                return d.GetValue(DataGridX.EnableRowVirtualizationProperty);
+                return d.GetValue(DataGrid.EnableRowVirtualizationProperty);
             }
 
             return baseValue;
@@ -8065,7 +8069,7 @@ namespace System.Windows.Controls
         public static readonly DependencyProperty EnableColumnVirtualizationProperty = DependencyProperty.Register(
             "EnableColumnVirtualization",
             typeof(bool),
-            typeof(DataGridX),
+            typeof(DataGrid),
             new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnEnableColumnVirtualizationChanged)));
 
         /// <summary>
@@ -8075,7 +8079,7 @@ namespace System.Windows.Controls
         /// </summary>
         private static void OnEnableColumnVirtualizationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.CellsPresenter | DataGridNotificationTarget.ColumnHeadersPresenter | DataGridNotificationTarget.ColumnCollection);
+            ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.CellsPresenter | DataGridNotificationTarget.ColumnHeadersPresenter | DataGridNotificationTarget.ColumnCollection);
         }
 
         #endregion
@@ -8086,7 +8090,7 @@ namespace System.Windows.Controls
         /// Dependency Property for CanUserReorderColumns Property
         /// </summary>
         public static readonly DependencyProperty CanUserReorderColumnsProperty =
-            DependencyProperty.Register("CanUserReorderColumns", typeof(bool), typeof(DataGridX), new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnNotifyColumnPropertyChanged)));
+            DependencyProperty.Register("CanUserReorderColumns", typeof(bool), typeof(DataGrid), new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnNotifyColumnPropertyChanged)));
 
         /// <summary>
         /// The property which determines if an end user can re-order columns or not.
@@ -8101,7 +8105,7 @@ namespace System.Windows.Controls
         /// Dependency Property for DragIndicatorStyle property
         /// </summary>
         public static readonly DependencyProperty DragIndicatorStyleProperty =
-            DependencyProperty.Register("DragIndicatorStyle", typeof(Style), typeof(DataGridX), new FrameworkPropertyMetadata(null, OnNotifyColumnPropertyChanged));
+            DependencyProperty.Register("DragIndicatorStyle", typeof(Style), typeof(DataGrid), new FrameworkPropertyMetadata(null, OnNotifyColumnPropertyChanged));
 
         /// <summary>
         /// The style property which would be applied on the column header drag indicator
@@ -8116,7 +8120,7 @@ namespace System.Windows.Controls
         /// Dependency Property for DropLocationIndicatorStyle property
         /// </summary>
         public static readonly DependencyProperty DropLocationIndicatorStyleProperty =
-            DependencyProperty.Register("DropLocationIndicatorStyle", typeof(Style), typeof(DataGridX), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register("DropLocationIndicatorStyle", typeof(Style), typeof(DataGrid), new FrameworkPropertyMetadata(null));
 
         /// <summary>
         /// The style property which would be applied on the column header drop location indicator.
@@ -8185,7 +8189,7 @@ namespace System.Windows.Controls
         ///     The DependencyProperty that represents the ClipboardCopyMode property.
         /// </summary>
         public static readonly DependencyProperty ClipboardCopyModeProperty =
-            DependencyProperty.Register("ClipboardCopyMode", typeof(DataGridClipboardCopyMode), typeof(DataGridX), new FrameworkPropertyMetadata(DataGridClipboardCopyMode.ExcludeHeader, new PropertyChangedCallback(OnClipboardCopyModeChanged)));
+            DependencyProperty.Register("ClipboardCopyMode", typeof(DataGridClipboardCopyMode), typeof(DataGrid), new FrameworkPropertyMetadata(DataGridClipboardCopyMode.ExcludeHeader, new PropertyChangedCallback(OnClipboardCopyModeChanged)));
 
         private static void OnClipboardCopyModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -8204,7 +8208,7 @@ namespace System.Windows.Controls
 
         private static void OnCanExecuteCopy(object target, CanExecuteRoutedEventArgs args)
         {
-            ((DataGridX)target).OnCanExecuteCopy(args);
+            ((DataGrid)target).OnCanExecuteCopy(args);
         }
 
         /// <summary>
@@ -8219,7 +8223,7 @@ namespace System.Windows.Controls
 
         private static void OnExecutedCopy(object target, ExecutedRoutedEventArgs args)
         {
-            ((DataGridX)target).OnExecutedCopy(args);
+            ((DataGrid)target).OnExecutedCopy(args);
         }
 
         /// <summary>
@@ -8399,7 +8403,7 @@ namespace System.Windows.Controls
             DependencyProperty.Register(
                         "CellsPanelActualWidth",
                         typeof(double),
-                        typeof(DataGridX),
+                        typeof(DataGrid),
                         new FrameworkPropertyMetadata(0.0, new PropertyChangedCallback(CellsPanelActualWidthChanged)));
 
         /// <summary>
@@ -8430,7 +8434,7 @@ namespace System.Windows.Controls
             double newValue = (double)e.NewValue;
             if (!DoubleUtil.AreClose(oldValue, newValue))
             {
-                ((DataGridX)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.ColumnHeadersPresenter);
+                ((DataGrid)d).NotifyPropertyChanged(d, e, DataGridNotificationTarget.ColumnHeadersPresenter);
             }
         }
 
@@ -8445,7 +8449,7 @@ namespace System.Windows.Controls
             DependencyProperty.RegisterReadOnly(
                 "CellsPanelHorizontalOffset",
                 typeof(double),
-                typeof(DataGridX),
+                typeof(DataGrid),
                 new FrameworkPropertyMetadata(0d, OnNotifyHorizontalOffsetPropertyChanged));
 
         /// <summary>

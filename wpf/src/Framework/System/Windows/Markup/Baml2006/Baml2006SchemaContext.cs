@@ -563,7 +563,7 @@ namespace System.Windows.Baml2006
             Type type = ResolveBamlTypeToType(bamlType);
 
             if (type == null && typeId == 13)
-                type = typeof(System.Windows.Controls.DataGridX);
+                type = typeof(System.Windows.Controls.DataGrid);
 
             if (type != null)
             {

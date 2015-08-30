@@ -15,7 +15,9 @@ namespace MS.Win32
     /// <summary>
     ///     Wrapper class for loading UxTheme system theme data
     /// </summary>
-    internal static class UxThemeWrapper
+    
+        // internal
+        public static class UxThemeWrapper
     {
         static UxThemeWrapper()
         {
@@ -80,8 +82,10 @@ namespace MS.Win32
         ///                      all the info stored is the currrent theme name and current color - e.g. "Luna", "NormalColor"
         ///                      Does not contain a path - considered safe. 
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
-        private static void EnsureThemeName()
+
+        // [SecurityCritical, SecurityTreatAsSafe]
+        // private
+        static void EnsureThemeName()
         {
             StringBuilder themeName = new StringBuilder(Win32.NativeMethods.MAX_PATH);
             StringBuilder themeColor = new StringBuilder(Win32.NativeMethods.MAX_PATH);

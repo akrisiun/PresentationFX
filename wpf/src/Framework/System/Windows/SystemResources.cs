@@ -495,9 +495,9 @@ namespace System.Windows
 
                     // Themed dictionaries are all external
                     // .Aero2
-                    _themedLocation = ResourceDictionaryLocation.ExternalAssembly;
+                     _themedLocation = ResourceDictionaryLocation.ExternalAssembly;
 
-                    // _themedLocation = ResourceDictionaryLocation.None;
+                    _themedLocation = ResourceDictionaryLocation.SourceAssembly;
                     _locationsLoaded = true;
                 }
                 else
@@ -703,6 +703,7 @@ namespace System.Windows
                 string fullName = SafeSecurityHelper.GetFullAssemblyNameFromPartialName(_assembly, assemblyName);
 
                 assembly = null;
+                assembly = Assembly.GetExecutingAssembly();
                 try
                 {
                     assembly = Assembly.Load(fullName);
@@ -724,7 +725,8 @@ namespace System.Windows
                     Exception error = null;
                     try
                     {
-                        Type knownTypeHelper = assembly.GetType("Microsoft.Windows.Themes.KnownTypeHelper");
+                        // Type knownTypeHelper = assembly.GetType("Microsoft.Windows.Themes.KnownTypeHelper");
+                        Type knownTypeHelper = typeof(Microsoft.Windows.Themes.KnownTypeHelper);
                         if (knownTypeHelper != null)
                         {
                             MS.Internal.WindowsBase.SecurityHelper.RunClassConstructor(knownTypeHelper);
@@ -734,7 +736,7 @@ namespace System.Windows
 
                     if (error != null && !assembly.FullName.Contains("PresentationFramework.Aero"))
                         throw error;
-                    else
+                    else if (error != null)
                         Console.WriteLine(error.Message);
 
                 }

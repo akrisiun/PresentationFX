@@ -48,7 +48,7 @@ namespace System.Windows.Controls
         /// <summary>
         ///     Test if either the vertical or horizontal gridlines are visible.
         /// </summary>
-        public static bool IsGridLineVisible(DataGridX dataGrid, bool isHorizontal)
+        public static bool IsGridLineVisible(DataGrid dataGrid, bool isHorizontal)
         {
             if (dataGrid != null)
             {

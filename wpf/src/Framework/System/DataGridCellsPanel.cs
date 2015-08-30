@@ -164,7 +164,7 @@ namespace System.Windows.Controls
         {
             double measureWidth = 0.0;
             double measureHeight = 0.0;
-            DataGridX parentDataGrid = ParentDataGrid;
+            DataGrid parentDataGrid = ParentDataGrid;
             double averageColumnWidth = parentDataGrid.InternalColumns.AverageColumnWidth;
             IItemContainerGenerator generator = ItemContainerGenerator;
 
@@ -227,7 +227,7 @@ namespace System.Windows.Controls
             List<int> realizedColumnDisplayIndices = new List<int>();
             Size measureSize = new Size();
 
-            DataGridX parentDataGrid = ParentDataGrid;
+            DataGrid parentDataGrid = ParentDataGrid;
             if (parentDataGrid == null)
             {
                 return measureSize;
@@ -598,7 +598,7 @@ namespace System.Windows.Controls
             double measureHeight = 0.0;
             int childIndex;
             GeneratorPosition startPos = IndexToGeneratorPositionForStart(generator, startIndex, out childIndex);
-            DataGridX parentDataGrid = ParentDataGrid;
+            DataGrid parentDataGrid = ParentDataGrid;
             using (generator.StartAt(startPos, GeneratorDirection.Forward, true))
             {
                 Size childSize;
@@ -830,7 +830,7 @@ namespace System.Windows.Controls
             List<int> realizedColumnIndices,
             List<int> realizedColumnDisplayIndices)
         {
-            DataGridX parentDataGrid = ParentDataGrid;
+            DataGrid parentDataGrid = ParentDataGrid;
             int columnCount = parentDataGrid.Columns.Count;
             Size childSize = new Size();
             if (RealizedChildren.Count == 0 && columnCount > 0)
@@ -962,7 +962,7 @@ namespace System.Windows.Controls
             int displayIndex,
             ref int displayIndexListIterator)
         {
-            DataGridX dataGrid = ParentDataGrid;
+            DataGrid dataGrid = ParentDataGrid;
             DataGridColumn column = dataGrid.ColumnFromDisplayIndex(displayIndex);
             if (column.IsVisible)
             {
@@ -1033,7 +1033,7 @@ namespace System.Windows.Controls
         /// </summary>
         private void VirtualizeChildren(List<RealizedColumnsBlock> blockList, IItemContainerGenerator generator)
         {
-            DataGridX parentDataGrid = ParentDataGrid;
+            DataGrid parentDataGrid = ParentDataGrid;
             ObservableCollection<DataGridColumn> columns = parentDataGrid.Columns;
             int columnCount = columns.Count;
             int columnIterator = 0;
@@ -1289,7 +1289,7 @@ namespace System.Windows.Controls
         /// <param name="arrangeState"></param>
         private void InitializeArrangeState(ArrangeState arrangeState)
         {
-            DataGridX parentDataGrid = ParentDataGrid;
+            DataGrid parentDataGrid = ParentDataGrid;
             double horizontalOffset = parentDataGrid.HorizontalScrollOffset;
             double cellsPanelOffset = parentDataGrid.CellsPanelHorizontalOffset;
             arrangeState.NextFrozenCellStart = horizontalOffset;
@@ -1305,7 +1305,7 @@ namespace System.Windows.Controls
         /// <param name="arrangeState"></param>
         private void FinishArrange(ArrangeState arrangeState)
         {
-            DataGridX parentDataGrid = ParentDataGrid;
+            DataGrid parentDataGrid = ParentDataGrid;
 
             // Update the NonFrozenColumnsViewportHorizontalOffset property of datagrid
             if (parentDataGrid != null)
@@ -1364,7 +1364,7 @@ namespace System.Windows.Controls
 
             ArrangeState arrangeState = new ArrangeState();
             arrangeState.ChildHeight = arrangeSize.Height;
-            DataGridX parentDataGrid = ParentDataGrid;
+            DataGrid parentDataGrid = ParentDataGrid;
 
             /*
              * determine the horizontal offset, cells panel offset and other coordinates used for arrange of children
@@ -1570,7 +1570,7 @@ namespace System.Windows.Controls
         /// </summary>
         private List<int> GetRealizedChildrenNotInBlockList(List<RealizedColumnsBlock> blockList, IList children)
         {
-            DataGridX parentDataGrid = ParentDataGrid;
+            DataGrid parentDataGrid = ParentDataGrid;
             RealizedColumnsBlock lastBlock = blockList[blockList.Count - 1];
             int blockElementCount = lastBlock.StartIndexOffset + lastBlock.EndIndex - lastBlock.StartIndex + 1;
             if (children.Count == blockElementCount)
@@ -1685,7 +1685,7 @@ namespace System.Windows.Controls
         {
             get
             {
-                DataGridX dataGrid = ParentDataGrid;
+                DataGrid dataGrid = ParentDataGrid;
                 if (dataGrid != null)
                 {
                     DataGridColumnCollection columns = dataGrid.InternalColumns;
@@ -1697,7 +1697,7 @@ namespace System.Windows.Controls
 
             set
             {
-                DataGridX dataGrid = ParentDataGrid;
+                DataGrid dataGrid = ParentDataGrid;
                 if (dataGrid != null)
                 {
                     if (IsVirtualizing)
@@ -1716,7 +1716,7 @@ namespace System.Windows.Controls
         {
             get
             {
-                DataGridX dataGrid = ParentDataGrid;
+                DataGrid dataGrid = ParentDataGrid;
                 if (dataGrid != null)
                 {
                     DataGridColumnCollection columns = dataGrid.InternalColumns;
@@ -1728,7 +1728,7 @@ namespace System.Windows.Controls
 
             set
             {
-                DataGridX dataGrid = ParentDataGrid;
+                DataGrid dataGrid = ParentDataGrid;
                 if (dataGrid != null)
                 {
                     if (IsVirtualizing)
@@ -1747,7 +1747,7 @@ namespace System.Windows.Controls
         {
             get
             {
-                DataGridX dataGrid = ParentDataGrid;
+                DataGrid dataGrid = ParentDataGrid;
                 if (dataGrid != null)
                 {
                     DataGridColumnCollection columns = dataGrid.InternalColumns;
@@ -1759,7 +1759,7 @@ namespace System.Windows.Controls
 
             set
             {
-                DataGridX dataGrid = ParentDataGrid;
+                DataGrid dataGrid = ParentDataGrid;
                 if (dataGrid != null)
                 {
                     if (IsVirtualizing)
@@ -1839,7 +1839,7 @@ namespace System.Windows.Controls
         {
             get
             {
-                DataGridX parentDataGrid = ParentDataGrid;
+                DataGrid parentDataGrid = ParentDataGrid;
                 if (parentDataGrid == null)
                 {
                     return null;
@@ -1919,7 +1919,7 @@ namespace System.Windows.Controls
         private double GetColumnEstimatedMeasureWidthSum(int startIndex, int endIndex, double averageColumnWidth)
         {
             double measureWidth = 0.0;
-            DataGridX parentDataGrid = ParentDataGrid;
+            DataGrid parentDataGrid = ParentDataGrid;
             for (int i = startIndex; i <= endIndex; i++)
             {
                 measureWidth += GetColumnEstimatedMeasureWidth(parentDataGrid.Columns[i], averageColumnWidth);
@@ -1983,7 +1983,7 @@ namespace System.Windows.Controls
             Debug.Assert(ParentDataGrid != null, "ParentDataGrid should not be null");
 
             double cellsPanelOffset = 0.0;
-            DataGridX dataGrid = ParentDataGrid;
+            DataGrid dataGrid = ParentDataGrid;
             double horizontalOffset = dataGrid.HorizontalScrollOffset;
             ScrollViewer scrollViewer = dataGrid.InternalScrollHost;
             if (scrollViewer != null)
@@ -2000,7 +2000,7 @@ namespace System.Windows.Controls
         private double GetViewportWidth()
         {
             double availableViewportWidth = 0.0;
-            DataGridX parentDataGrid = ParentDataGrid;
+            DataGrid parentDataGrid = ParentDataGrid;
             if (parentDataGrid != null)
             {
                 ScrollContentPresenter scrollContentPresenter = parentDataGrid.InternalScrollContentPresenter;
@@ -2142,7 +2142,7 @@ namespace System.Windows.Controls
         /// </exception>
         protected internal override void BringIndexIntoView(int index)
         {
-            DataGridX parentDataGrid = ParentDataGrid;
+            DataGrid parentDataGrid = ParentDataGrid;
 
             if (parentDataGrid == null)
             {
@@ -2195,7 +2195,7 @@ namespace System.Windows.Controls
         /// </summary>
         private bool IsChildInView(int index, out double newHorizontalOffset)
         {
-            DataGridX parentDataGrid = ParentDataGrid;
+            DataGrid parentDataGrid = ParentDataGrid;
             double horizontalOffset = parentDataGrid.HorizontalScrollOffset;
             newHorizontalOffset = horizontalOffset;
 
@@ -2338,7 +2338,7 @@ namespace System.Windows.Controls
         {
             get
             {
-                DataGridX parentDataGrid = ParentDataGrid;
+                DataGrid parentDataGrid = ParentDataGrid;
                 if (parentDataGrid != null)
                 {
                     return parentDataGrid.Columns;
@@ -2351,7 +2351,7 @@ namespace System.Windows.Controls
         /// <summary>
         ///     The row that this panel presents belongs to the DataGrid returned from this property.
         /// </summary>
-        private DataGridX ParentDataGrid
+        private DataGrid ParentDataGrid
         {
             get
             {
@@ -2401,7 +2401,7 @@ namespace System.Windows.Controls
 
         #region Data
 
-        private DataGridX _parentDataGrid;
+        private DataGrid _parentDataGrid;
 
         private UIElement _clippedChildForFrozenBehaviour;
         private RectangleGeometry _childClipForFrozenBehavior = new RectangleGeometry();

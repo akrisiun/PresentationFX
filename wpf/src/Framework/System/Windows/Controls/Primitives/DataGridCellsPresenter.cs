@@ -112,7 +112,7 @@ namespace System.Windows.Controls.Primitives
             DataGridHelper.TransferProperty(this, VirtualizingPanel.IsVirtualizingProperty);
 
             // This is a convenient way to walk through all cells and force them to call CoerceValue(StyleProperty)
-            NotifyPropertyChanged(this, new DependencyPropertyChangedEventArgs(DataGridX.CellStyleProperty, null, null), DataGridNotificationTarget.Cells);
+            NotifyPropertyChanged(this, new DependencyPropertyChangedEventArgs(DataGrid.CellStyleProperty, null, null), DataGridNotificationTarget.Cells);
 
             // We may have missed an Add / Remove of a column from the grid (DataGridRow.OnColumnsChanged)
             // [....] the MultipleCopiesCollection count and update the Column on changed cells
@@ -204,7 +204,7 @@ namespace System.Windows.Controls.Primitives
                 baseValue,
                 HeightProperty,
                 cellsPresenter.DataGridOwner,
-                DataGridX.RowHeightProperty);
+                DataGrid.RowHeightProperty);
         }
 
         private static object OnCoerceMinHeight(DependencyObject d, object baseValue)
@@ -215,7 +215,7 @@ namespace System.Windows.Controls.Primitives
                 baseValue,
                 MinHeightProperty,
                 cellsPresenter.DataGridOwner,
-                DataGridX.MinRowHeightProperty);
+                DataGrid.MinRowHeightProperty);
         }
 
         #endregion
@@ -392,10 +392,10 @@ namespace System.Windows.Controls.Primitives
                         InvalidateDataGridCellsPanelMeasureAndArrangeImpl((e.Property == DataGridColumn.WidthProperty)/*invalidateMeasureUptoRowsPresenter*/);
                     }
                 }
-                else if (e.Property == DataGridX.FrozenColumnCountProperty ||
+                else if (e.Property == DataGrid.FrozenColumnCountProperty ||
                     e.Property == DataGridColumn.VisibilityProperty ||
-                    e.Property == DataGridX.CellsPanelHorizontalOffsetProperty ||
-                    e.Property == DataGridX.HorizontalScrollOffsetProperty ||
+                    e.Property == DataGrid.CellsPanelHorizontalOffsetProperty ||
+                    e.Property == DataGrid.HorizontalScrollOffsetProperty ||
                     string.Compare(propertyName, "ViewportWidth", StringComparison.Ordinal) == 0 ||
                     string.Compare(propertyName, "DelayedColumnWidthComputation", StringComparison.Ordinal) == 0)
                 {
@@ -409,15 +409,15 @@ namespace System.Windows.Controls.Primitives
                 {
                     InvalidateDataGridCellsPanelMeasureAndArrange(/* withColumnVirtualization */ true);
                 }
-                else if (e.Property == DataGridX.RowHeightProperty || e.Property == HeightProperty)
+                else if (e.Property == DataGrid.RowHeightProperty || e.Property == HeightProperty)
                 {
                     DataGridHelper.TransferProperty(this, HeightProperty);
                 }
-                else if (e.Property == DataGridX.MinRowHeightProperty || e.Property == MinHeightProperty)
+                else if (e.Property == DataGrid.MinRowHeightProperty || e.Property == MinHeightProperty)
                 {
                     DataGridHelper.TransferProperty(this, MinHeightProperty);
                 }
-                else if (e.Property == DataGridX.EnableColumnVirtualizationProperty)
+                else if (e.Property == DataGrid.EnableColumnVirtualizationProperty)
                 {
                     DataGridHelper.TransferProperty(this, VirtualizingPanel.IsVirtualizingProperty);
                 }
@@ -519,7 +519,7 @@ namespace System.Windows.Controls.Primitives
                 baseValue,
                 VirtualizingPanel.IsVirtualizingProperty,
                 cellsPresenter.DataGridOwner,
-                DataGridX.EnableColumnVirtualizationProperty);
+                DataGrid.EnableColumnVirtualizationProperty);
         }
 
         /// <summary>
@@ -542,7 +542,7 @@ namespace System.Windows.Controls.Primitives
 
                 if(invalidateMeasureUptoRowsPresenter)
                 {
-                    DataGridX dataGrid = DataGridOwner;
+                    DataGrid dataGrid = DataGridOwner;
                     if(dataGrid != null && dataGrid.InternalItemsHost != null)
                     {
                         Helper.InvalidateMeasureOnPath(_internalItemsHost, dataGrid.InternalItemsHost, false/*duringMeasure*/, true/*includePathEnd*/);
@@ -599,7 +599,7 @@ namespace System.Windows.Controls.Primitives
         /// <summary>
         ///     The DataGrid that owns this control
         /// </summary>
-        internal DataGridX DataGridOwner
+        internal DataGrid DataGridOwner
         {
             get
             {
@@ -626,7 +626,7 @@ namespace System.Windows.Controls.Primitives
             get
             {
                 DataGridRow owningRow = DataGridRowOwner;
-                DataGridX owningDataGrid = (owningRow != null) ? owningRow.DataGridOwner : null;
+                DataGrid owningDataGrid = (owningRow != null) ? owningRow.DataGridOwner : null;
                 return (owningDataGrid != null) ? owningDataGrid.Columns : null;
             }
         }

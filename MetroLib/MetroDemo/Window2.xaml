@@ -4,16 +4,59 @@
         
         xmlns:cw="clr-namespace:System.Windows;assembly=PresentationFramework"
         xmlns:c="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
-        xmlns:local="clr-namespace:MetroDemo"
+        xmlns:MetroDemo="clr-namespace:MetroDemo"
         Title="Window2" Height="300" Width="300">
+
+    <cw:Window.Resources>
+        <cw:ResourceDictionary>
+            <cw:Style x:Key="DataGridColumnHeadersPresenterStyle" TargetType="{x:Type DataGridColumnHeadersPresenter}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridColumnHeadersPresenter}">
+                        <Grid>
+                            <DataGridColumnHeader x:Name="PART_FillerColumnHeader" IsHitTestVisible="False" />
+                            <ItemsPresenter />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </cw:Style>
+
+            <cw:Style x:Key="Data1" TargetType="{x:Type MetroDemo:DataGridX}">
+            <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type MetroDemo:DataGridX}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter" 
+                        Style="{StaticResource DataGridColumnHeaderStyle}"/>
+                    <ScrollContentPresenter Grid.Row="1" x:Name="PART_ScrollContentPresenter" />
+                </Grid>
+                </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </cw:Style>
+
+        </cw:ResourceDictionary>
+    </cw:Window.Resources>
+    
+    
     <c:StackPanel Orientation="Vertical">
         <c:TextBlock>
             Hello world
         </c:TextBlock>
-        <c:DataGridX AutoGenerateColumns="False">
-            <c:DataGridX.Columns>
+        <c:TextBlock>
+            Line2
+        </c:TextBlock>
+
+        <MetroDemo:DataGridX AutoGenerateColumns="False" Style="{StaticResource Data1}">
+            <MetroDemo:DataGridX.Columns>
                 <c:DataGridTextColumn Header="Name1" />
-            </c:DataGridX.Columns>
-        </c:DataGridX>
+            </MetroDemo:DataGridX.Columns>
+        </MetroDemo:DataGridX>
     </c:StackPanel>
 </cw:Window>

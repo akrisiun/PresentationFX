@@ -25,7 +25,7 @@ namespace System.Windows.Controls.Primitives
     ///     SourceScrollViewerName property.
     /// </summary>
 
-    // [TemplatePart(Name = "PART_FillerColumnHeader", Type = typeof(DataGridColumnHeader))]
+    [TemplatePart(Name = "PART_FillerColumnHeader", Type = typeof(DataGridColumnHeader))]
     // Aero2
     public class DataGridColumnHeadersPresenter : ItemsControl
     {
@@ -71,7 +71,7 @@ namespace System.Windows.Controls.Primitives
             base.OnApplyTemplate();
 
             // Find the columns collection and set the ItemsSource.
-            DataGridX grid = ParentDataGrid;
+            DataGrid grid = ParentDataGrid;
 
             if (grid != null)
             {
@@ -149,7 +149,7 @@ namespace System.Windows.Controls.Primitives
             if (child != null)
             {
                 Rect childRect = new Rect(finalSize);
-                DataGridX dataGrid = ParentDataGrid;
+                DataGrid dataGrid = ParentDataGrid;
                 if (dataGrid != null)
                 {
                     childRect.X = -dataGrid.HorizontalScrollOffset;
@@ -301,15 +301,15 @@ namespace System.Windows.Controls.Primitives
                         InvalidateDataGridCellsPanelMeasureAndArrange();
                     }
                 }
-                else if (e.Property == DataGridX.FrozenColumnCountProperty ||
+                else if (e.Property == DataGrid.FrozenColumnCountProperty ||
                     e.Property == DataGridColumn.VisibilityProperty ||
-                    e.Property == DataGridX.CellsPanelHorizontalOffsetProperty ||
+                    e.Property == DataGrid.CellsPanelHorizontalOffsetProperty ||
                     string.Compare(propertyName, "ViewportWidth", StringComparison.Ordinal) == 0 ||
                     string.Compare(propertyName, "DelayedColumnWidthComputation", StringComparison.Ordinal) == 0)
                 {
                     InvalidateDataGridCellsPanelMeasureAndArrange();
                 }
-                else if (e.Property == DataGridX.HorizontalScrollOffsetProperty)
+                else if (e.Property == DataGrid.HorizontalScrollOffsetProperty)
                 {
                     InvalidateArrange();
                     InvalidateDataGridCellsPanelMeasureAndArrange();
@@ -322,11 +322,11 @@ namespace System.Windows.Controls.Primitives
                 {
                     InvalidateDataGridCellsPanelMeasureAndArrange(/* withColumnVirtualization */ true);
                 }
-                else if (e.Property == DataGridX.CellsPanelActualWidthProperty)
+                else if (e.Property == DataGrid.CellsPanelActualWidthProperty)
                 {
                     InvalidateArrange();
                 }
-                else if (e.Property == DataGridX.EnableColumnVirtualizationProperty)
+                else if (e.Property == DataGrid.EnableColumnVirtualizationProperty)
                 {
                     DataGridHelper.TransferProperty(this, VirtualizingPanel.IsVirtualizingProperty);
                 }
@@ -353,8 +353,8 @@ namespace System.Windows.Controls.Primitives
                     }
 
                     // Handle Style & Height change notification for PART_FillerColumnHeader.
-                    if (d is DataGridX &&
-                        (e.Property == DataGridX.ColumnHeaderStyleProperty || e.Property == DataGridX.ColumnHeaderHeightProperty) )
+                    if (d is DataGrid &&
+                        (e.Property == DataGrid.ColumnHeaderStyleProperty || e.Property == DataGrid.ColumnHeaderHeightProperty) )
                     {
                         DataGridColumnHeader fillerColumnHeader = GetTemplateChild(ElementFillerColumnHeader) as DataGridColumnHeader;
                         if (fillerColumnHeader != null)
@@ -394,7 +394,7 @@ namespace System.Windows.Controls.Primitives
                 baseValue,
                 VirtualizingPanel.IsVirtualizingProperty,
                 headersPresenter.ParentDataGrid,
-                DataGridX.EnableColumnVirtualizationProperty);
+                DataGrid.EnableColumnVirtualizationProperty);
         }
 
         /// <summary>
@@ -953,7 +953,7 @@ namespace System.Windows.Controls.Primitives
             double headerStartX = 0.0;
             double headerEndX = 0.0;
             int i = 0;
-            DataGridX dataGrid = ParentDataGrid;
+            DataGrid dataGrid = ParentDataGrid;
             double averageColumnWidth = dataGrid.InternalColumns.AverageColumnWidth;
             bool firstVisibleNonFrozenColumnHandled = false;
             for (i = 0; i < dataGrid.Columns.Count; i++)
@@ -1040,13 +1040,13 @@ namespace System.Windows.Controls.Primitives
             }
         }
 
-        internal DataGridX ParentDataGrid
+        internal DataGrid ParentDataGrid
         {
             get
             {
                 if (_parentDataGrid == null)
                 {
-                    _parentDataGrid = DataGridHelper.FindParent<DataGridX>(this);
+                    _parentDataGrid = DataGridHelper.FindParent<DataGrid>(this);
                 }
 
                 return _parentDataGrid;
@@ -1067,7 +1067,7 @@ namespace System.Windows.Controls.Primitives
 
         private ContainerTracking<DataGridColumnHeader> _headerTrackingRoot;
 
-        private DataGridX _parentDataGrid = null;
+        private DataGrid _parentDataGrid = null;
 
         private bool _prepareColumnHeaderDragging;
         private bool _isColumnHeaderDragging;
