@@ -14591,7 +14591,6 @@
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore >= 5.0.0",
-      "Microsoft.NETCore.Portable.Compatibility >= 1.0.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0"
     ],
     ".NETPlatform,Version=v5.0": [],

@@ -238,9 +238,9 @@
     <Compile Include="Targets\Wrappers\WrapperTargetBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Windows.Adapters\Windows.Adapters.csproj">
-      <Project>{f6423c3d-9e6c-4471-a484-fd2723ed1fb1}</Project>
-      <Name>Windows.Adapters</Name>
+    <ProjectReference Include="..\..\..\Windows.Adapters\Windows.Adapters.Portable.csproj">
+      <Project>{3b78edba-6592-4c9c-b594-61b0c6d0d445}</Project>
+      <Name>Windows.Adapters.Portable</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">

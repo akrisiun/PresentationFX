@@ -238,12 +238,6 @@
     <Compile Include="Targets\Wrappers\CompoundTargetBase.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBase.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Windows.Adapters\Windows.Adapters.csproj">
-      <Project>{f6423c3d-9e6c-4471-a484-fd2723ed1fb1}</Project>
-      <Name>Windows.Adapters</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

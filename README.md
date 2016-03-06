@@ -1,4 +1,29 @@
+### Windows7APICodePack
+
+```
+git submodule add -f https://github.com/akrisiun/Windows7APICodePack.git Windows7APICodePack
+git fetch --all
+git submodule update --init --recursive
+```
+
+VS 2015 build (14.0 tools)
+<!-- $(MSBuildToolsVersion) -->
+<Import Project="$(MSBuildExtensionsPath)\14.0\Microsoft.Common.props" />
+<PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>35MSSharedLib1024.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>true</DelaySign>
+</PropertyGroup>
+
 ### PresentationFramework test build v 4.0.0.1
+
+Severity	Code	Description	Project	File	Line
+Error		Key file '35MSSharedLib1024.snk' is missing the private key needed for signing
+
+HKEY_CURRENT_USER\SOFTWARE\Classes
+HKCU\Software\Classes\Wow6432Node is correct: it's the redirected location that's accessed by 32-bit 
+
+https://msdn.microsoft.com/en-gb/library/aa384253(v=VS.85).aspx  Registry Keys Affected by WOW64
 
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>

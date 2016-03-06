@@ -1,6 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!-- $(MSBuildToolsVersion) -->
+  <Import Project="$(MSBuildExtensionsPath)\14.0\Microsoft.Common.props" />
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
     <Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
@@ -26,27 +27,19 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
     <AssemblyOriginatorKeyFile>35MSSharedLib1024.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>true</DelaySign>
   </PropertyGroup>
   <PropertyGroup>
     <RootNamespace>System.Windows</RootNamespace>
   </PropertyGroup>
-  <PropertyGroup>
-    <DelaySign>true</DelaySign>
-  </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MscorLib\mscorlib.csproj">
-      <Project>{a72657be-225c-4239-956e-ee2a30893b41}</Project>
-      <Name>mscorlib</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationUI" />
     <Reference Include="ReachFramework" />
+    <!--C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll-->
+    <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -1348,6 +1341,9 @@
     <Compile Include="src\Framework\System\Windows\VisualTransition.cs" />
     <Compile Include="src\Framework\System\Windows\Window.cs" />
     <Compile Include="src\Framework\System\Windows\WindowCollection.cs" />
+    <Compile Include="src\Win32.Unsafe\UnsafeNativeMethodsCLR.cs" />
+    <Compile Include="src\Win32.Unsafe\unsafenativemethodsother.cs" />
+    <Compile Include="src\Win32.Unsafe\UnsafeNativeMethodsTextServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="35MSSharedLib1024.snk" />

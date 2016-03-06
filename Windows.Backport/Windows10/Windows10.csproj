@@ -117,12 +117,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\Windows10.rd.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Windows\WindowsUAP.csproj">
-      <Project>{0ab28769-5f5f-4748-9a74-cd6be9a53f50}</Project>
-      <Name>WindowsUAP</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

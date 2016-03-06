@@ -145,7 +145,7 @@ namespace NLog.Common
 #if NETFX_CORE
             return type.GetTypeInfo().DeclaredFields.FirstOrDefault(c => c.Name.Equals(fieldName, StringComparison.OrdinalIgnoreCase));
 #else
-            return type.GetField(fieldName, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public)
+            return type.GetField(fieldName, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
 #endif
         }
 

@@ -20,11 +20,15 @@ First off, puppy with a warning. This could be nothing, or people might be inter
 I was skimming over some old Win8 posts today, and got to thinking "What other crazy things could I start up?"
 So I tweeted something:
 
-<blockquote class="twitter-tweet"><p>an experiment in crowd-sourcing - what problems would you like to see me tackle for WinRT dev? add your ideas here <a href="https://t.co/d0kwKJbf" title="https://github.com/shiftkey/winrt-blogsamples/blob/master/README.md">github.com/shiftkey/winrt…</a></p>&mdash; Brendan Forster (@shiftkey) <a href="https://twitter.com/shiftkey/status/220014393159712772" data-datetime="2012-07-03T04:41:33+00:00">July 3, 2012</a></blockquote>
+<blockquote class="twitter-tweet"><p>an experiment in crowd-sourcing - what problems would you like to see me tackle for WinRT dev? add your ideas here 
+	<a href="https://t.co/d0kwKJbf" title="https://github.com/shiftkey/winrt-blogsamples/blob/master/README.md"
+	   >github.com/shiftkey/winrt…</a></p>&mdash; Brendan Forster (@shiftkey) <a href="https://twitter.com/shiftkey/status/220014393159712772" data-datetime="2012-07-03T04:41:33+00:00">July 3, 2012</a></blockquote>
 
 And this reply came back:
 
-<blockquote class="twitter-tweet" data-in-reply-to="220014393159712772"><p>@<a href="https://twitter.com/shiftkey">shiftkey</a> Port Windows.Foundation to Desktop CLR. And errrr, blog about it I guess.</p>&mdash; Paul Betts (@xpaulbettsx) <a href="https://twitter.com/xpaulbettsx/status/220025531087855616" data-datetime="2012-07-03T05:25:49+00:00">July 3, 2012</a></blockquote>
+<blockquote class="twitter-tweet" data-in-reply-to="220014393159712772"><p>@<a href="https://twitter.com/shiftkey">shiftkey</a> 
+	Port Windows.Foundation to Desktop CLR. And errrr, blog about it I guess.</p>&mdash; Paul Betts (@xpaulbettsx) 
+	<a href="https://twitter.com/xpaulbettsx/status/220025531087855616" data-datetime="2012-07-03T05:25:49+00:00">July 3, 2012</a></blockquote>
 <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 So I've taken Paul's suggestion and gone a bit further:

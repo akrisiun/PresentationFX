@@ -40,3 +40,6 @@ Thumbs.db
 
 
 lib/
+srcweb/
+winforms/
+packages/

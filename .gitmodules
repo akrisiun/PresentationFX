@@ -1,0 +1,3 @@
+[submodule "Windows7APICodePack"]
+	path = Windows7APICodePack
+	url = https://github.com/akrisiun/Windows7APICodePack.git
