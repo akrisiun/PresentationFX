@@ -19,7 +19,15 @@ namespace Microsoft.Windows.Themes
     ///     When Background or BorderBrush are set, the rendering will
     ///     revert back to the default Border implementation.
     /// </summary>
-    public sealed partial class DataGridHeaderBorder : Border
+    /// 
+    
+    // DataGridHeaderBorder TODO:
+    // Additional information: Inheritance security rules violated by type: 'Microsoft.Windows.Themes.DataGridHeaderBorder'.
+    //    Derived types must either match the security accessibility of the base type or be less accessible.
+
+    public 
+        // sealed 
+        partial class DataGridHeaderBorder : Border
     {
         static DataGridHeaderBorder()
         {

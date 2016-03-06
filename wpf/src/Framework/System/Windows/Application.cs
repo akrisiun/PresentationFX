@@ -99,7 +99,10 @@ namespace System.Windows
         public static void Check() { }
 
         public ApplicationX() : base()
-        { 
+        {
+            //{"Attempt by security transparent method 'System.Windows.Application.ApplicationInit()' to 
+            //    access security critical method 'MS.Internal.IO.Packaging.PreloadedPackages.AddPackage(
+            //    System.Uri, System.IO.Packaging.Package, Boolean)' failed."}
         }
     }
 

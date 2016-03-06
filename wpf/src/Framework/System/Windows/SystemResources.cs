@@ -726,6 +726,9 @@ namespace System.Windows
                     try
                     {
                         // Type knownTypeHelper = assembly.GetType("Microsoft.Windows.Themes.KnownTypeHelper");
+
+                        //{ "Inheritance security rules violated by type: 'Microsoft.Windows.Themes.KnownTypeHelper'. 
+                        //        Derived types must either match the security accessibility of the base type or be less accessible.":"Microsoft.Windows.Themes.KnownTypeHelper"}
                         Type knownTypeHelper = typeof(Microsoft.Windows.Themes.KnownTypeHelper);
                         if (knownTypeHelper != null)
                         {

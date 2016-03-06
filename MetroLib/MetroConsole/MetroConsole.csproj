@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ConsoleApplication1</RootNamespace>
-    <AssemblyName>ConsoleApplication1</AssemblyName>
+    <AssemblyName>MetroConsole</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -22,7 +22,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>MetroConsole.Class</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFrameworkX, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\PresentationFrameworkX.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
@@ -42,10 +49,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Wpf\PresentationFrameworkX.csproj">
-      <Project>{b5b08386-66f4-42ed-8387-304cf7980fb7}</Project>
-      <Name>PresentationFrameworkX</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MetroDemo\WpfMetro.csproj">
       <Project>{7accee78-7003-47ac-8c07-10ff1f927dab}</Project>
       <Name>WpfMetro</Name>

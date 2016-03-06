@@ -551,6 +551,13 @@ namespace System.Windows.Baml2006
                     Assembly assembly = ResolveAssembly(bamlAssembly);
                     if (assembly != null)
                     {
+                        // Microsoft.Windows.Themes.DataGridHeaderBorder failed
+                        // Baml2006Reader / ResolveBamlTypeToType
+
+                        // Additional information: Inheritance security rules violated by type: 'Microsoft.Windows.Themes.DataGridHeaderBorder'.
+                        //    Derived types must either match the security accessibility of the base type or be less accessible.
+                        // [assembly: SecurityRules(SecurityRuleSet.Level1)]
+
                         return assembly.GetType(bamlType.Name, false);
                     }
                 }

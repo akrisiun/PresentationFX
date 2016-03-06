@@ -17,8 +17,8 @@ using System.Windows;
 using System.Security;
 using System.Security.Permissions;
 
-using SR=MS.Internal.PresentationCore.SR;
-using SRID=MS.Internal.PresentationCore.SRID;
+//using SR=MS.Internal.PresentationCore.SR;
+//using SRID=MS.Internal.PresentationCore.SRID;
 
 namespace System.Windows.Input
 {

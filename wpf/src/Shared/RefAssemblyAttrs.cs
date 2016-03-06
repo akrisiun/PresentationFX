@@ -4,6 +4,17 @@
 
 using System;
 using System.Text;
+using BuildInfo = MS.Internal.PresentationFramework.BuildInfo;
+
+namespace System
+{
+    public static class Presentation_BuildInfo
+    {
+        // TOKEN uppercase!!!
+        public static string WCP_PUBLIC_KEY_TOKEN { get { return BuildInfo.WCP_PUBLIC_KEY_TOKEN.ToUpper(); } }
+        public static string WCP_PUBLIC_KEY_STRING {  get { return BuildInfo.WCP_PUBLIC_KEY_STRING; } }
+    }
+}
 
 #if WINDOWS_BASE
 namespace MS.Internal.WindowsBase
@@ -22,9 +33,17 @@ namespace Microsoft.Internal
         internal const string WCP_PUBLIC_KEY_TOKEN = "31bf3856ad364e35";
         internal const string WCP_VERSION = "4.0.0.0";
         internal const string WCP_PUBLIC_KEY_STRING = "0024000004800000940000000602000000240000525341310004000001000100b5fc90e7027f67871e773a8fde8938c81dd402ba65b9201d60593e96c492651e889cc13f1415ebb53fac1131ae0bd333c5ee6021672d9718ea31a8aebd0da0072f25d87dba6fc90ffd598ed4da35e44c398c454307e8e33b8426143daec9f596836f97c8f74750e5975c64e2189f45def46b2a2b1247adc3652bf5c308055da9";
+
+        // 35MSSharedLib1024.snk
+        //                                               0024000004800000940000000602000000240000525341310004000001000100b5fc90e7027f67871e773a8fde8938c81dd402ba65b9201d60593e96c492651e889cc13f1415ebb53fac1131ae0bd333c5ee6021672d9718ea31a8aebd0da0072f25d87dba6fc90ffd598ed4da35e44c398c454307e8e33b8426143daec9f596836f97c8f74750e5975c64e2189f45def46b2a2b1247adc3652bf5c308055da9
+
+        //                          Public key token is 31bf3856ad364e35
+        // Error Key file '35MSSharedLib1024.snk' "is missing the private key needed for signing"
+
+
         internal const string WCP_VERSION_SUFFIX = "_v0400";
         internal const string MIL_VERSION_SUFFIX = "";
-        internal const string DEVDIV_PUBLIC_KEY_STRING = "00000000000000000400000000000000";
+        //internal const string DEVDIV_PUBLIC_KEY_STRING = "00000000000000000400000000000000";
         internal const string DEVDIV_PUBLIC_KEY_TOKEN = "b77a5c561934e089";
 
         // Constants to prevent hardcoding in InternalsVisibleTo attribute
@@ -40,20 +59,21 @@ namespace Microsoft.Internal
 
         internal const string PresentationFrameworkAeroLite = "PresentationFramework.AeroLite, PublicKey="+ WCP_PUBLIC_KEY_STRING;
         internal const string PresentationFrameworkClassic = "PresentationFramework.Classic, PublicKey="+ WCP_PUBLIC_KEY_STRING;
-        internal const string PresentationFrameworkSystemCore = "PresentationFramework-SystemCore, PublicKey="+ DEVDIV_PUBLIC_KEY_STRING;
-        internal const string PresentationFrameworkSystemData = "PresentationFramework-SystemData, PublicKey="+ DEVDIV_PUBLIC_KEY_STRING;
-        internal const string PresentationFrameworkSystemDrawing = "PresentationFramework-SystemDrawing, PublicKey="+ DEVDIV_PUBLIC_KEY_STRING;
-        internal const string PresentationFrameworkSystemXml = "PresentationFramework-SystemXml, PublicKey="+ DEVDIV_PUBLIC_KEY_STRING;
-        internal const string PresentationFrameworkSystemXmlLinq = "PresentationFramework-SystemXmlLinq, PublicKey="+ DEVDIV_PUBLIC_KEY_STRING;
+        //internal const string PresentationFrameworkSystemCore = "PresentationFramework-SystemCore, PublicKey="+ DEVDIV_PUBLIC_KEY_STRING;
+        //internal const string PresentationFrameworkSystemData = "PresentationFramework-SystemData, PublicKey="+ DEVDIV_PUBLIC_KEY_STRING;
+        //internal const string PresentationFrameworkSystemDrawing = "PresentationFramework-SystemDrawing, PublicKey="+ DEVDIV_PUBLIC_KEY_STRING;
+        //internal const string PresentationFrameworkSystemXml = "PresentationFramework-SystemXml, PublicKey="+ DEVDIV_PUBLIC_KEY_STRING;
+        //internal const string PresentationFrameworkSystemXmlLinq = "PresentationFramework-SystemXmlLinq, PublicKey="+ DEVDIV_PUBLIC_KEY_STRING;
+
         internal const string ReachFramework = "ReachFramework, PublicKey="+ WCP_PUBLIC_KEY_STRING;
         internal const string SystemPrinting = "System.Printing, PublicKey="+ WCP_PUBLIC_KEY_STRING;
-        internal const string SystemXaml = "System.Xaml, PublicKey=" + DEVDIV_PUBLIC_KEY_STRING;
+        //internal const string SystemXaml = "System.Xaml, PublicKey=" + DEVDIV_PUBLIC_KEY_STRING;
         internal const string WindowsFormsIntegration = "WindowsFormsIntegration, PublicKey="+ WCP_PUBLIC_KEY_STRING;
 
         // Make internal visible to the 3.5 dll, System.Windows.Presentation.dll.
         // we hard code the key here because the 3.5 dll is built in the devdiv depot using the CLR key.
-        internal const string SystemWindowsPresentation = "System.Windows.Presentation, PublicKey=" + DEVDIV_PUBLIC_KEY_STRING;
-        internal const string SystemWindowsControlsRibbon = "System.Windows.Controls.Ribbon, PublicKey=" + DEVDIV_PUBLIC_KEY_STRING;
+        //internal const string SystemWindowsPresentation = "System.Windows.Presentation, PublicKey=" + DEVDIV_PUBLIC_KEY_STRING;
+        //internal const string SystemWindowsControlsRibbon = "System.Windows.Controls.Ribbon, PublicKey=" + DEVDIV_PUBLIC_KEY_STRING;
 
         // Constants to prevent the need to update AsmMeta files with WCP version changes.
         private const string OLD_WCP_VERSION = "3.0.0.0";

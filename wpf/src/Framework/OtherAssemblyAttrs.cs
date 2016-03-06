@@ -25,10 +25,11 @@ using System.Windows.Markup;
 [assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkAero2)]
 [assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkAeroLite)]
 [assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkClassic)]
-[assembly:InternalsVisibleTo(BuildInfo.SystemWindowsPresentation)]
-[assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkSystemCore)]
-[assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkSystemXml)]
-[assembly:InternalsVisibleTo(BuildInfo.SystemWindowsControlsRibbon)]
+
+//[assembly:InternalsVisibleTo(BuildInfo.SystemWindowsPresentation)]
+//[assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkSystemCore)]
+//[assembly:InternalsVisibleTo(BuildInfo.PresentationFrameworkSystemXml)]
+//[assembly:InternalsVisibleTo(BuildInfo.SystemWindowsControlsRibbon)]
 
 [assembly:DependencyAttribute("mscorlib,", LoadHint.Always)]
 [assembly:DependencyAttribute("System,", LoadHint.Always)]

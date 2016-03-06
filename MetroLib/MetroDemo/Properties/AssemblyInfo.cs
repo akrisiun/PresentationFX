@@ -2,6 +2,7 @@
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Security;
 using System.Windows;
 
 // General Information about an assembly is controlled through the following 
@@ -15,6 +16,10 @@ using System.Windows;
 [assembly: AssemblyCopyright("MIT")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+
+//[assembly: SecurityTransparent]
+//[assembly: AllowPartiallyTrustedCallers]
+[assembly: SecurityRules(System.Security.SecurityRuleSet.Level1, SkipVerificationInFullTrust = true)]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
