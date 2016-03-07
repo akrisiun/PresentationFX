@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- $(MSBuildToolsVersion) -->
+  <Import Project="$(MSBuildExtensionsPath)\14.0\Microsoft.Common.props" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -31,6 +33,7 @@
     <BootstrapperEnabled>false</BootstrapperEnabled>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>false</RestorePackages>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>mahapps.metro.logo2.ico</ApplicationIcon>
@@ -48,7 +51,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>MetroDemo.WpfApp</StartupObject>
+    <StartupObject>MetroDemo.Startup</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -177,11 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="mahapps.metro.logo2.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\placeholder_person.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\blank-cd.png" />
   </ItemGroup>
   <ItemGroup>

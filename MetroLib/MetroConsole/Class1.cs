@@ -27,12 +27,6 @@ namespace MetroConsole
                 // asm = Assembly.LoadFile(bin + @"PresentationFramework.dll");
                       // .Load("PresentationFramework, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31BF3856AD364E35");
                 var token2 = System.Presentation_BuildInfo.WCP_PUBLIC_KEY_TOKEN;
-
-                // < Reference Include="System.Management.Automation" />
-                //SecureString securePwd = new SecureString(); pass.ToCharArray().ToList().ForEach(p => securePwd.AppendChar(p)); 
-                //PSCredential credentials = new PSCredential(username, securePwd); string shellUri = "http://schemas.microsoft.com/powershell/Microsoft.PowerShell"; 
-                //WSManConnectionInfo connectionInfo = new WSManConnectionInfo(false, host, 5985, "/wsman", shellUri, credentials, 100000);// timeout is in miliseconds
-                // 32-bit computer:  "<path_to_sn>\sn.exe" -Vr "%ProgramFiles%\Microsoft Visual Studio 9.0\Common7\IDE\iisresolver.dll" 
             }
             catch (Exception ex)
             {

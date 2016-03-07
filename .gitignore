@@ -43,3 +43,6 @@ lib/
 srcweb/
 winforms/
 packages/
+Perspex/
+Wpf/*.dll
+MscorLib/*.dll
