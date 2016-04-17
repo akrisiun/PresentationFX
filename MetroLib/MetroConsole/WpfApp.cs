@@ -8,7 +8,6 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
-using System.Reflection;
 
 namespace MetroDemo
 {
@@ -51,16 +50,16 @@ namespace MetroDemo
         {
         }
 
-        internal MetroDemo.WpfApp App;
-        private bool _contentLoaded;
+        // internal MetroDemo.WpfApp App;
+        // private bool _contentLoaded;
 
-        public static string[] Resources { get { return Assembly.GetExecutingAssembly().GetManifestResourceNames(); } }
+        public static string[] ResourceNames { get { return Assembly.GetExecutingAssembly().GetManifestResourceNames(); } }
 
         public WpfApp()
         {
             _contentLoaded = true;
             // ConsoleApplication1.Window2.xaml
-            System.Uri resourceLocater = new System.Uri("/ConsoleApplication1;component/wpfapp.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MetroConsole;component/wpfapp.xaml", System.UriKind.Relative);
             System.Windows.ApplicationX.LoadComponent(this, resourceLocater);
 
             this.MainWindow = new Window2();
@@ -83,17 +82,17 @@ namespace MetroDemo
             this.MainWindow.Show();
         }
 
-        public void InitializeComponent() { }
-        void IComponentConnector.Connect(int connectionId, object target)
-        {
-            switch (connectionId)
-            {
-                case 1:
-                    this.App = ((MetroDemo.WpfApp)(target));
-                    return;
-            }
-            this._contentLoaded = true;
-        }
+        //public void InitializeComponent() { }
+        //void IComponentConnector.Connect(int connectionId, object target)
+        //{
+        //    switch (connectionId)
+        //    {
+        //        case 1:
+        //            this.App = ((MetroDemo.WpfApp)(target));
+        //            return;
+        //    }
+        //    this._contentLoaded = true;
+        //}
 
     }
 }

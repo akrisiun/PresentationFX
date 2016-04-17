@@ -4,7 +4,7 @@
         
         xmlns:cw="clr-namespace:System.Windows;assembly=PresentationFramework"
         xmlns:c="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
-        xmlns:MetroDemo="clr-namespace:MetroDemo"
+        xmlns:MetroDemo="clr-namespace:MetroConsole"
         Title="Window2" Height="300" Width="300">
 
     <cw:Window.Resources>
@@ -22,10 +22,10 @@
                 </Setter>
             </cw:Style>
 
-            <cw:Style x:Key="Data1" TargetType="{x:Type MetroDemo:DataGridX}">
+            <cw:Style x:Key="Data1" TargetType="{x:Type MetroDemo:MetroDataGrid}">
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type MetroDemo:DataGridX}">
+                        <ControlTemplate TargetType="{x:Type MetroDemo:MetroDataGrid}">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -33,7 +33,7 @@
                                 </Grid.RowDefinitions>
 
                                 <!--<DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter" 
-                        Style="{StaticResource DataGridColumnHeaderStyle}"/>-->
+                                     Style="{StaticResource DataGridColumnHeaderStyle}"/>-->
 
                                 <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter"
                         Grid.Column="1"
@@ -71,11 +71,11 @@
                 Here is DataGridX
             </Label>
 
-            <MetroDemo:DataGridX AutoGenerateColumns="False" Style="{StaticResource Data1}">
-                <MetroDemo:DataGridX.Columns>
+            <MetroDemo:MetroDataGrid AutoGenerateColumns="False" Style="{StaticResource Data1}">
+                <MetroDemo:MetroDataGrid.Columns>
                     <c:DataGridTextColumn Header="Name1" />
-                </MetroDemo:DataGridX.Columns>
-            </MetroDemo:DataGridX>
+                </MetroDemo:MetroDataGrid.Columns>
+            </MetroDemo:MetroDataGrid>
         </c:StackPanel>
     </c:StackPanel>
 </cw:Window>

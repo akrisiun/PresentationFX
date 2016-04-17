@@ -12,13 +12,16 @@ namespace MetroDemo
     {
         Button _button1;
         Button _button2;
-        bool _contentLoaded;
+        // bool _contentLoaded;
 
         public Window2()
         {
-            InitializeComponent();
+            _InitializeComponent();
             if (!_contentLoaded)
                 return;
+
+            _button1 = this.button1;
+            _button2 = this.button2;
 
             //_button1.Click += (s, e) =>
             //{
@@ -42,14 +45,15 @@ namespace MetroDemo
 
         }
 
-        public void InitializeComponent()
+        public void _InitializeComponent()
         {
             _contentLoaded = false;
             System.Uri resourceLocater = new System.Uri("/MetroConsole;component/window2.xaml", System.UriKind.Relative);
             System.Windows.Application.LoadComponent(this, resourceLocater);
         }
 
-        void IComponentConnector.Connect(int connectionId, object target)
+        // void IComponentConnector.Connect(int connectionId, object target)
+        void _Connect(int connectionId, object target)
         {
             switch (connectionId)
             {
@@ -63,4 +67,14 @@ namespace MetroDemo
             this._contentLoaded = true;
         }
     }
+
 }
+
+namespace MetroConsole
+{
+    public class MetroDataGrid : DataGridX
+    {
+    }
+
+}
+

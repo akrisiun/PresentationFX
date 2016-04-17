@@ -1,6 +1,6 @@
-"c:\Program Files\MSBuild\14.0\Bin\MSBuild.exe" PresentationCore.sln /verbosity:m
 
-"c:\Program Files\MSBuild\14.0\Bin\MSBuild.exe" MetroLib\WpfMetro.sln /v:m
+set msbuild="c:\Program Files\MSBuild\14.0\Bin\MSBuild.exe"
+%msbuild% PresentationFx.sln /verbosity:m
 
 set dir=%~dp0
 rmdir /s/q %dir%\lib\en 

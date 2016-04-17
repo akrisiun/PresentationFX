@@ -25,6 +25,8 @@ namespace MetroConsole
                 // Strong name validation failed. (Exception from HRESULT: 0x8013141A) TOKEN uppercase!!!
                 asm = Assembly.Load("PresentationFramework, Version=4.0.0.1, Culture=neutral, PublicKeyToken=" + keyToken); // 31BF3856AD364E35");
 
+                Console.Write("Assembly=");
+                Console.WriteLine(asm.FullName);
             }
             catch (Exception ex)
             {
@@ -44,11 +46,10 @@ namespace MetroConsole
 //  </runtime>
 //</configuration>
 
-
         [STAThread]
         public static void Main()
         {
-            Console.WriteLine("Hello world");
+            Console.WriteLine("Hello world with WPF Framework debug build");
             System.Windows.ApplicationX.Check();
 
             var token2 = System.Presentation_BuildInfo.WCP_PUBLIC_KEY_TOKEN;

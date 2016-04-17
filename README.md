@@ -1,20 +1,3 @@
-### Windows7APICodePack
-
-```
-git submodule add -f https://github.com/akrisiun/Windows7APICodePack.git Windows7APICodePack
-git fetch --all
-git submodule update --init --recursive
-```
-
-VS 2015 build (14.0 tools)
-<!-- $(MSBuildToolsVersion) -->
-<Import Project="$(MSBuildExtensionsPath)\14.0\Microsoft.Common.props" />
-<PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>35MSSharedLib1024.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>true</DelaySign>
-</PropertyGroup>
-
 ### PresentationFramework test build v 4.0.0.1
 
 Severity	Code	Description	Project	File	Line

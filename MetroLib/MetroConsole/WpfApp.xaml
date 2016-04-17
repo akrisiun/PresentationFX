@@ -3,20 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:cw="clr-namespace:System.Windows;assembly=PresentationFramework"
              xmlns:c="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
-             
              >
-    <!--
-    StartupUri="Wpf.MainWindow.xaml"
-    -->
-
     <cw:ApplicationX.Resources>
         <cw:ResourceDictionary>
             <cw:ResourceDictionary.MergedDictionaries>
-                <cw:ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Controls.xaml" />
+                <!--<cw:ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Controls.xaml" />
                 <cw:ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Fonts.xaml" />
                 <cw:ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Colors.xaml" />
                 <cw:ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Accents/Green.xaml" />
                 <cw:ResourceDictionary Source="pack://application:,,,/Wpf.MetroLib;component/Wpf.Styles/Accents/BaseLight.xaml" />
+                -->
             </cw:ResourceDictionary.MergedDictionaries>
 
             <cw:Style x:Key="DescriptionHeaderStyle"
