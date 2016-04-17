@@ -5,9 +5,10 @@ Error		Key file '35MSSharedLib1024.snk' is missing the private key needed for si
 
 HKEY_CURRENT_USER\SOFTWARE\Classes
 HKCU\Software\Classes\Wow6432Node is correct: it's the redirected location that's accessed by 32-bit 
-
 https://msdn.microsoft.com/en-gb/library/aa384253(v=VS.85).aspx  Registry Keys Affected by WOW64
 
+.config assemblyBinding
+```
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <runtime>
@@ -19,6 +20,7 @@ https://msdn.microsoft.com/en-gb/library/aa384253(v=VS.85).aspx  Registry Keys A
       </assemblyBinding>
   </runtime>
 </configuration>
+```
 
 # .NET Reference Source
 
