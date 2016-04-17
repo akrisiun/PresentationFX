@@ -182,11 +182,15 @@ namespace System.Windows.Interop
             if (srcUri != null)
             {
                 Evidence evidence = new Evidence();
-                evidence.AddHost(new Url(BindUriHelper.UriToString(srcUri))); // important: the parameter must be a UrL object not a UrI object
+                // TODO
+                evidence // .AddHostEvidence<object>(new Url(BindUriHelper.UriToString(srcUri)));
+                        .AddHost(new Url(BindUriHelper.UriToString(srcUri))); // important: the parameter must be a UrL object not a UrI object
+
                 IMembershipCondition membership = new UrlMembershipCondition(BindUriHelper.UriToString(srcUri));
                 CodeGroup group = (srcUri.IsFile) ?
                     (CodeGroup)new FileCodeGroup(membership, FileIOPermissionAccess.Read | FileIOPermissionAccess.PathDiscovery)
                     :(CodeGroup)new NetCodeGroup(membership);
+
                 PolicyStatement policy = group.Resolve(evidence);
                 if (!policy.PermissionSet.IsEmpty())
                 {

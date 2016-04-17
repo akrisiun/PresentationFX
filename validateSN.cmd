@@ -1,8 +1,6 @@
 @ECHO run as Admin
 
-D:
-@REM CD d:\Beta\refSrc\referencesource\lib
-CD d:\Beta\corefx\refsource\presentation\lib\
-c:\bin\net46\sn.exe -Vr PresentationFramework.dll
+set dir=%~dp0lib
+c:\bin\net46\sn.exe -Vr %dir%\PresentationFramework.dll
 
 @PAUSE

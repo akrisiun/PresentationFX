@@ -87,7 +87,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -108,7 +108,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -124,7 +124,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -147,7 +147,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -176,7 +176,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -274,7 +274,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -301,7 +301,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -371,7 +371,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -401,7 +401,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown),
@@ -432,7 +432,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -465,7 +465,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -480,7 +480,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -544,7 +544,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -594,7 +594,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -652,7 +652,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -678,7 +678,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -709,7 +709,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -745,7 +745,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -764,7 +764,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -780,7 +780,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -821,7 +821,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -861,7 +861,7 @@ namespace MS.Internal.AppModel
     /// to the desktop window, but if explorer is not running or currently busy then we get back
     /// error codes that must be handled by the caller.
     /// </remarks>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -924,7 +924,7 @@ namespace MS.Internal.AppModel
     /// <SecurityNote>
     /// Critical: Suppresses unmanaged code security.
     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     [
         ComImport,
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown),

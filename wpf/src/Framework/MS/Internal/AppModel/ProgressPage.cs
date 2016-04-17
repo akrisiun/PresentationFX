@@ -30,7 +30,7 @@ namespace MS.Internal.AppModel
     /// </SecurityNote>
     [ComImport, Guid("1f681651-1024-4798-af36-119bbe5e5665")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     interface INativeProgressPage
     {
         [PreserveSig]

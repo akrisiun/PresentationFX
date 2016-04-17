@@ -68,7 +68,7 @@ namespace System.Windows.Baml2006
                     }
                     else
                     {
-                        _assembly = Assembly.LoadWithPartialName(assemblyName.Name);
+                        _assembly = Assembly.Load(assemblyName.Name); // obsolete: .LoadWithPartialName(assemblyName.Name);
                     }
                 }
                 return _assembly;

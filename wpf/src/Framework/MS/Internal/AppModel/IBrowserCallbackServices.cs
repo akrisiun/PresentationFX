@@ -259,7 +259,7 @@ namespace MS.Internal.AppModel
     /// from SecurityCritical ones.
     /// </SecurityNote>
     [ComImport, Guid("AD5D6F02-5F4E-4D77-9FC0-381981317144"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     interface IHostBrowser
     {
         /// <summary>
@@ -306,7 +306,7 @@ namespace MS.Internal.AppModel
     };
 
     [ComImport, Guid("AD5D6F03-0002-4D77-9FC0-381981317144"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
+    // // [SecurityCritical(SecurityCriticalScope.Everything), SuppressUnmanagedCodeSecurity]
     interface IHostBrowser2
     {
         // Use IBCS.TabOut() instead. The implementation of TabOut is not fully factored out yet.
