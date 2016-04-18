@@ -39,6 +39,8 @@ namespace System.Windows.Baml2006
         private const sbyte ReaderFlags_AddedToTree = 0x02;
         private object _root;
 
+        public object Root { get { return _root; } }
+        public Baml2006ReaderContext Context { get { return _context; } } 
 
         #region Constructors
 

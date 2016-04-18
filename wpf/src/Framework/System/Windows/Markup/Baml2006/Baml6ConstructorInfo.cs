@@ -4,7 +4,8 @@ using System.Text;
 
 namespace System.Windows.Baml2006
 {
-    struct Baml6ConstructorInfo
+    public 
+        struct Baml6ConstructorInfo
     {
         public Baml6ConstructorInfo(List<Type> types, Func<Object[], object> ctor)
         {

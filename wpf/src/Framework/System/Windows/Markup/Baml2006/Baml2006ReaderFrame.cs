@@ -6,7 +6,8 @@ using MS.Internal.Xaml.Context;
 
 namespace System.Windows.Baml2006
 {
-    internal class Baml2006ReaderFrame : XamlFrame
+    //internal 
+        public class Baml2006ReaderFrame : XamlFrame
     {
         protected Dictionary<string, string> _namespaces;
 
@@ -102,7 +103,8 @@ namespace System.Windows.Baml2006
         public bool IsDeferredContent { get; set; }
     }
 
-    internal enum Baml2006ReaderFrameFlags:byte
+    // internal 
+    public enum Baml2006ReaderFrameFlags:byte
     {
         None,
         IsImplict,

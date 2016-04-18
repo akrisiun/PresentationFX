@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Security;
 using System.Security.Permissions;
+using System.ComponentModel;
 
 namespace MS.Internal.Commands
 {
@@ -86,15 +87,31 @@ namespace MS.Internal.Commands
                                                     string srid1, string srid2)
         {
             PrivateRegisterCommandHandler(controlType, command, executedRoutedEventHandler, null,
-                                                  KeyGesture.CreateFromResourceStrings(SR.Get(srid1), SR.Get(srid2)));
+                                                  // KeyGesture.
+                                                  CommandHelpers.CreateFromResourceStrings(SR.Get(srid1), SR.Get(srid2)));
         }
 
         internal static void RegisterCommandHandler(Type controlType, RoutedCommand command, ExecutedRoutedEventHandler executedRoutedEventHandler,
                                                     CanExecuteRoutedEventHandler canExecuteRoutedEventHandler, string srid1, string srid2)
         {
             PrivateRegisterCommandHandler(controlType, command, executedRoutedEventHandler, canExecuteRoutedEventHandler,
-                                                  KeyGesture.CreateFromResourceStrings(SR.Get(srid1), SR.Get(srid2)));
+                                                 // KeyGesture.
+                                                 CommandHelpers.CreateFromResourceStrings(SR.Get(srid1), SR.Get(srid2)));
         }
+
+        internal static KeyGesture CreateFromResourceStrings(string keyGestureToken, string keyDisplayString)
+        {
+            // combine the gesture and the display string, producing a string
+            // that the type converter will recognize
+            if (!String.IsNullOrEmpty(keyDisplayString))
+            {
+                keyGestureToken += KeyGestureConverter.DISPLAYSTRING_SEPARATOR + keyDisplayString;
+            }
+
+            return _keyGestureConverter.ConvertFromInvariantString(keyGestureToken) as KeyGesture;
+        }
+
+        private static TypeConverter _keyGestureConverter = new KeyGestureConverter();
 
         // 'params' based method is private.  Call sites that use this bloat unwittingly due to implicit construction of the params array that goes into IL.
         private static void PrivateRegisterCommandHandler(Type controlType, RoutedCommand command, ExecutedRoutedEventHandler executedRoutedEventHandler,

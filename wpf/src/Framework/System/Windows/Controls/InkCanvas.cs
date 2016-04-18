@@ -2606,7 +2606,8 @@ namespace System.Windows.Controls
             // Use temp variables to reduce code under elevation
             ExecutedRoutedEventHandler pasteExecuteEventHandler = new ExecutedRoutedEventHandler(_OnCommandExecuted);
             CanExecuteRoutedEventHandler pasteQueryEnabledEventHandler = new CanExecuteRoutedEventHandler(_OnQueryCommandEnabled);
-            InputGesture pasteInputGesture = KeyGesture.CreateFromResourceStrings(
+            InputGesture pasteInputGesture = // KeyGesture.
+                CommandHelpers.CreateFromResourceStrings(
                 SR.Get("SRID.KeyShiftInsert"), SR.Get("SRID.KeyShiftInsertDisplayString"));
 
             new UIPermission(UIPermissionClipboard.AllClipboard).Assert(); // BlessedAssert:

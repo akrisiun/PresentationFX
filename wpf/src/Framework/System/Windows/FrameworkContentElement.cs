@@ -2159,7 +2159,8 @@ namespace System.Windows
 
         // Sets or Unsets the required flag based on
         // the bool argument
-        internal void WriteInternalFlag(InternalFlags reqFlag, bool set)
+        // internal 
+        public void WriteInternalFlag(InternalFlags reqFlag, bool set)
         {
             if (set)
             {

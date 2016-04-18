@@ -32,11 +32,69 @@ namespace System.Windows
 {
     internal static partial class SR {
 
-        public static string Get(object parm, params object[] rest) { return parm as string; }
+        public static string Get(object parm, params object[] rest)
+        {
+            if (parm is string)
+            {
+                var str = parm as string;
+                if (str.StartsWith("SRID."))
+                    return str.Substring(5);
+                
+                return str;
+            }
+            return null;
+        }
     }
 
-    internal static partial class SRID { 
-    
+    internal static partial class SRID {
+
+        // TextEditorTyping
+        public static string KeyCorrectionList { get { return "KeyCorrectionList"; } }
+
+        public static string KeyCorrectionListDisplayString { get { return "List"; } }
+            public static string KeyToggleInsert { get { return "KeyCorrectionList"; } }
+            public static string KeyToggleInsertDisplayString { get { return "Insert"; } }
+
+            public static string KeyDelete { get { return "KeyCorrectionList"; } }
+        public static string KeyDeleteDisplayString { get { return "Delete"; } }
+            public static string KeyDeleteNextWord { get { return "KeyCorrectionList"; } }
+        public static string KeyDeleteNextWordDisplayString { get { return "Next word"; } }
+
+            public static string KeyDeletePreviousWord { get { return "KeyCorrectionList"; } }
+        public static string KeyDeletePreviousWordDisplayString { get { return "KeyCorrectionList"; } }
+            public static string KeyEnterParagraphBreak { get { return "KeyCorrectionList"; } }
+        public static string KeyEnterParagraphBreakDisplayString { get { return "KeyCorrectionList"; } }
+            public static string KeyEnterLineBreak { get { return "KeyCorrectionList"; } }
+        public static string KeyEnterLineBreakDisplayString { get { return "KeyCorrectionList"; } }
+            public static string KeyTabForward { get { return "KeyCorrectionList"; } }
+        public static string KeyTabForwardDisplayString { get { return "KeyCorrectionList"; } }
+            public static string KeyTabBackward { get { return "KeyCorrectionList"; } }
+        public static string KeyTabBackwardDisplayString { get { return "KeyCorrectionList"; } }
+            public static string KeySpace { get { return "KeyCorrectionList"; } }
+        public static string KeySpaceDisplayString { get { return "KeyCorrectionList"; } }
+            public static string KeyShiftSpace { get { return "KeyCorrectionList"; } }
+        public static string KeyShiftSpaceDisplayString { get { return "KeyCorrectionList"; } }
+
+            public static string KeyBackspace { get { return "KeyCorrectionList"; } }        
+        public static string KeyBackspaceDisplayString { get { return "KeyCorrectionList"; } }
+            public static string KeyShiftBackspace { get { return "KeyCorrectionList"; } }
+        public static string KeyShiftBackspaceDisplayString  { get { return "KeyCorrectionList"; } }
+
+         //SRID.KeyCorrectionList",   "SRID.KeyCorrectionListDisplayString");
+         //   SRID.KeyToggleInsert",     "SRID.KeyToggleInsertDisplayString" );
+         //   SRID.KeyDelete",           "SRID.KeyDeleteDisplayString" );
+         //   SRID.KeyDeleteNextWord",   "SRID.KeyDeleteNextWordDisplayString" );
+         //   SRID.KeyDeletePreviousWord", "SRID.KeyDeletePreviousWordDisplayString" );
+         //   SRID.KeyEnterParagraphBreak", "SRID.KeyEnterParagraphBreakDisplayString" );
+         //   SRID.KeyEnterLineBreak",   "SRID.KeyEnterLineBreakDisplayString" );
+         //   SRID.KeyTabForward",       "SRID.KeyTabForwardDisplayString" );
+         //   SRID.KeyTabBackward",      "SRID.KeyTabBackwardDisplayString" );
+         //   SRID.KeySpace",            "SRID.KeySpaceDisplayString" );
+         //   SRID.KeyShiftSpace",       "SRID.KeyShiftSpaceDisplayString" );
+
+         //   SRID.KeyBackspace"),        SR.Get("SRID.KeyBackspaceDisplayString")),   
+         //   SRID.KeyShiftBackspace"), SR.Get("SRID.KeyShiftBackspaceDisplayString")) );
+
     }
 
     [RuntimeNamePropertyAttribute("Name")]

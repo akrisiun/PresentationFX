@@ -5,7 +5,8 @@ using MS.Internal.Xaml.Context;
 
 namespace System.Windows.Baml2006
 {
-    internal class Baml2006ReaderContext
+    // internal 
+        public class Baml2006ReaderContext
     {
         public Baml2006ReaderContext(Baml2006SchemaContext schemaContext)
         {

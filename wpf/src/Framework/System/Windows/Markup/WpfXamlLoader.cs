@@ -140,9 +140,18 @@ namespace System.Windows.Markup
                     shouldPassLineNumberInfo, xamlLineInfo, xamlLineInfoConsumer,
                     stack, styleConnector);
                 xamlWriter.Close();
+#if DEBUG
+                if (xamlWriter.Result == null)
+                { 
+                    Console.Write("xamlWriter.Result == null of ");
+                    Console.WriteLine((xamlLineInfo as System.Windows.Baml2006.Baml2006Reader).ToString());
+                }
+#endif
+
+
                 return xamlWriter.Result;
             }
-            catch (Exception e)
+            catch (Exception e)   // SRID.NestedBeginInitNotSupported
             {
                 // Don't wrap critical exceptions or already-wrapped exceptions.
                 if(MS.Internal.CriticalExceptions.IsCriticalException(e) || !XamlReader.ShouldReWrapException(e, baseUri))
@@ -150,6 +159,20 @@ namespace System.Windows.Markup
                     throw;
                 }
                 XamlReader.RewrapException(e, xamlLineInfo, baseUri);
+
+#if DEBUG && TRACE
+                if (xamlLineInfo is System.Windows.Baml2006.Baml2006Reader)
+                { 
+                    //'The invocation of the constructor on type 'System.Windows.Controls.TextBox'
+                    //that matches the specified binding constraints threw an exception
+                    //Requested value 'SRID.KEYCORRECTIONLIST' was not found.
+                    // TextEditorCopyPaste._RegisterClassHandlers
+
+                    Console.Write("xamlWriter.Result == null of ");
+                    Console.WriteLine((xamlLineInfo as System.Windows.Baml2006.Baml2006Reader).Root.ToString());
+                }
+#endif
+
                 return null;    // this should never be executed
             }
         }

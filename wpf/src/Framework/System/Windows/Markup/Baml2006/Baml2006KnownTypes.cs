@@ -23,7 +23,8 @@ using System;
 
 namespace System.Windows.Baml2006
 {
-    internal partial class Baml2006SchemaContext : XamlSchemaContext
+    // internal
+        public partial class Baml2006SchemaContext : XamlSchemaContext
     {
         private delegate Type LazyTypeOf();
 

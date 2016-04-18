@@ -6224,7 +6224,8 @@ namespace System.Windows
 
         // Sets or Unsets the required flag based on
         // the bool argument
-        internal void WriteInternalFlag(InternalFlags reqFlag, bool set)
+        // internal 
+           public void WriteInternalFlag(InternalFlags reqFlag, bool set)
         {
             if (set)
             {
@@ -6402,7 +6403,8 @@ namespace System.Windows
         }
     }
 
-    internal enum InternalFlags : uint
+    // internal 
+    public enum InternalFlags : uint
     {
         // Does the instance have ResourceReference properties
         HasResourceReferences       = 0x00000001,

@@ -381,34 +381,41 @@ namespace System.Windows.Documents
             }
             // Drag-and-drop
             TextEditorDragDrop._RegisterClassHandlers(controlType, readOnly, registerEventListeners);
-            // Cut-Copy-Paste
-            TextEditorCopyPaste._RegisterClassHandlers(controlType, acceptsRichContent, readOnly, registerEventListeners);
-            // Selection Commands
-            TextEditorSelection._RegisterClassHandlers(controlType, registerEventListeners);
-            if (!readOnly)
-            {
-                // Paragraph Formatting
-                TextEditorParagraphs._RegisterClassHandlers(controlType, acceptsRichContent, registerEventListeners);
-            }
-            // ContextMenu
-            TextEditorContextMenu._RegisterClassHandlers(controlType, registerEventListeners);
-            if (!readOnly)
-            {
-                // Spelling
-                TextEditorSpelling._RegisterClassHandlers(controlType, registerEventListeners);
-            }
 
-            if (acceptsRichContent && !readOnly)
+            try
             {
-                // Character Formatting
-                TextEditorCharacters._RegisterClassHandlers(controlType, registerEventListeners);
-                // Editing Commands: List Editing
-                TextEditorLists._RegisterClassHandlers(controlType, registerEventListeners);
-                // Editing Commands: Table Editing
-                if (_isTableEditingEnabled)
+                // Cut-Copy-Paste
+                TextEditorCopyPaste._RegisterClassHandlers(controlType, acceptsRichContent, readOnly, registerEventListeners);
+                // Selection Commands
+                TextEditorSelection._RegisterClassHandlers(controlType, registerEventListeners);
+                if (!readOnly)
                 {
-                    TextEditorTables._RegisterClassHandlers(controlType, registerEventListeners);
+                    // Paragraph Formatting
+                    TextEditorParagraphs._RegisterClassHandlers(controlType, acceptsRichContent, registerEventListeners);
                 }
+                // ContextMenu
+                TextEditorContextMenu._RegisterClassHandlers(controlType, registerEventListeners);
+                if (!readOnly)
+                {
+                    // Spelling
+                    TextEditorSpelling._RegisterClassHandlers(controlType, registerEventListeners);
+                }
+
+                if (acceptsRichContent && !readOnly)
+                {
+                    // Character Formatting
+                    TextEditorCharacters._RegisterClassHandlers(controlType, registerEventListeners);
+                    // Editing Commands: List Editing
+                    TextEditorLists._RegisterClassHandlers(controlType, registerEventListeners);
+                    // Editing Commands: Table Editing
+                    if (_isTableEditingEnabled)
+                    {
+                        TextEditorTables._RegisterClassHandlers(controlType, registerEventListeners);
+                    }
+                }
+            }
+            catch {
+                // TODO: SRID.*
             }
 
             // Focus
@@ -424,11 +431,23 @@ namespace System.Windows.Documents
             // ---------
             if (!readOnly)
             {
-                CommandHelpers.RegisterCommandHandler(controlType, ApplicationCommands.Undo, new ExecutedRoutedEventHandler(OnUndo), new CanExecuteRoutedEventHandler(OnQueryStatusUndo), KeyGesture.CreateFromResourceStrings(
-                     SR.Get("SRID.KeyUndo"), SR.Get("SRID.KeyUndoDisplayString")), KeyGesture.CreateFromResourceStrings(SR.Get("SRID.KeyAltUndo"
-                     ), SR.Get("SRID.KeyAltUndoDisplayString")));
-                CommandHelpers.RegisterCommandHandler(controlType, ApplicationCommands.Redo, new ExecutedRoutedEventHandler(OnRedo), new CanExecuteRoutedEventHandler(OnQueryStatusRedo), 
-                    "SRID.KeyRedo", "SRID.KeyRedoDisplayString");
+                try
+                {
+
+                    CommandHelpers.RegisterCommandHandler(controlType, ApplicationCommands.Undo, new ExecutedRoutedEventHandler(OnUndo), new CanExecuteRoutedEventHandler(OnQueryStatusUndo)
+                        , // KeyGesture.
+                          CommandHelpers.CreateFromResourceStrings(
+                         SR.Get("SRID.KeyUndo"), SR.Get("SRID.KeyUndoDisplayString")),
+                        // KeyGesture.
+                          CommandHelpers.CreateFromResourceStrings(SR.Get("SRID.KeyAltUndo"
+                         ), SR.Get("SRID.KeyAltUndoDisplayString")));
+
+                    CommandHelpers.RegisterCommandHandler(controlType, ApplicationCommands.Redo, new ExecutedRoutedEventHandler(OnRedo), new CanExecuteRoutedEventHandler(OnQueryStatusRedo),
+                        "SRID.KeyRedo", "SRID.KeyRedoDisplayString");
+                }
+                catch {
+                    // TODO: Requested value 'KEYUNDO' was not found.
+                }
             }
         }
 

@@ -11,7 +11,8 @@ namespace System.Windows.Baml2006
 {
     // XamlType for New types defined in the BAML stream.
     //
-    internal class WpfXamlType : XamlType
+    // internal 
+        public class WpfXamlType : XamlType
     {
         [Flags]
         private enum BoolTypeBits

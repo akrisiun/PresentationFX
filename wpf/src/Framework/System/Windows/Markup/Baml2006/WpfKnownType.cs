@@ -11,7 +11,7 @@ namespace System.Windows.Baml2006
 {
     // XamlType for WPF Known BAML types.
     //
-    class WpfKnownType : WpfXamlType, ICustomAttributeProvider
+    public class WpfKnownType : WpfXamlType, ICustomAttributeProvider
     {
         // We use the same bitField as in WpfXamlType.  If we change WpfXamlType, we need to update the enum here
         [Flags]

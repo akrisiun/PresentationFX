@@ -17,7 +17,8 @@ using MS.Internal.WindowsBase;
 
 namespace System.Windows.Baml2006
 {
-    internal partial class Baml2006SchemaContext : XamlSchemaContext
+    // internal
+        public partial class Baml2006SchemaContext : XamlSchemaContext
     {
         public Baml2006SchemaContext(Assembly localAssembly):
             this(localAssembly, System.Windows.Markup.XamlReader.BamlSharedSchemaContext)

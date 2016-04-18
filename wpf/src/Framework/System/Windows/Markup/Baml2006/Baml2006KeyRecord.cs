@@ -8,7 +8,8 @@ using System.Diagnostics;
 namespace System.Windows.Baml2006
 {
     [DebuggerDisplay("{DebuggerString}")]
-    internal class KeyRecord
+    // internal 
+        public class KeyRecord
     {
         public KeyRecord(bool shared, bool sharedSet, int valuePosition, Type keyType) :
             this(shared, sharedSet, valuePosition)
@@ -94,7 +95,8 @@ namespace System.Windows.Baml2006
         bool _sharedSet;
     }
 
-    internal class StaticResource
+    // internal 
+        public class StaticResource
     {
 
         public StaticResource(XamlType type, XamlSchemaContext schemaContext)
