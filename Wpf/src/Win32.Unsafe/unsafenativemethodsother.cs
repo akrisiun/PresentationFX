@@ -574,7 +574,7 @@ namespace MS.Win32
             ///     Critical - as this function does an elevation to close a handle.
             ///     TreatAsSafe - as this can at best be used to destabilize one's own app.
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             protected override bool ReleaseHandle()
             {
                 new SecurityPermission(SecurityPermissionFlag.UnmanagedCode).Assert();
@@ -614,7 +614,7 @@ namespace MS.Win32
             ///     Critical - as this function does an elevation to close a handle.
             ///     TreatAsSafe - as this can at best be used to destabilize one's own app.
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             override protected bool ReleaseHandle()
             {
                 new SecurityPermission(SecurityPermissionFlag.UnmanagedCode).Assert();
@@ -652,7 +652,7 @@ namespace MS.Win32
         /// TreatAsSafe: Getting an error code isn't unsafe
         /// Note: If a SupressUnmanagedCodeSecurity attribute is ever added to IntsetWindowLong(Ptr), we'd need to be Critical
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static IntPtr SetWindowLong(HandleRef hWnd, int nIndex, IntPtr dwNewLong)
         {
             IntPtr result = IntPtr.Zero;
@@ -913,7 +913,7 @@ namespace MS.Win32
         /// TreatAsSafe: Throwing an exception isn't unsafe
         /// Note: If a SupressUnmanagedCodeSecurity attribute is ever added to IntSetWindowText, we'd need to be Critical
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static void SetWindowText(HandleRef hWnd, string text)
         {
             if (IntSetWindowText(hWnd, text) == false)
@@ -1003,7 +1003,7 @@ namespace MS.Win32
         /// TreatAsSafe: Throwing an exception isn't unsafe
         /// Note: If a SupressUnmanagedCodeSecurity attribute is ever added to IntGetWindowPlacement, we'd need to be Critical
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static void GetWindowPlacement(HandleRef hWnd, ref NativeMethods.WINDOWPLACEMENT placement)
         {
             if (IntGetWindowPlacement(hWnd, ref placement) == false)
@@ -1022,7 +1022,7 @@ namespace MS.Win32
         /// Note: If a SupressUnmanagedCodeSecurity attribute is ever added to IntSetWindowPlacement, we'd need to be Critical
         /// TreatAsSafe: Throwing an exception isn't unsafe
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static void SetWindowPlacement(HandleRef hWnd, [In] ref NativeMethods.WINDOWPLACEMENT placement)
         {
             if (IntSetWindowPlacement(hWnd, ref placement) == false)
@@ -1417,7 +1417,7 @@ namespace MS.Win32
         /// Critical: LinkDemand on Win32Exception constructor
         /// TreatAsSafe: Throwing an exception isn't unsafe
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static void NtCheck(int err)
         {
             if (!NtSuccess(err))

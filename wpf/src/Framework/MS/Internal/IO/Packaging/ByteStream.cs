@@ -117,7 +117,7 @@ namespace MS.Internal.IO.Packaging
         /// </SecurityNote>
         public override long Length
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 CheckDisposedStatus();
@@ -152,7 +152,7 @@ namespace MS.Internal.IO.Packaging
         /// </SecurityNote>
         public override long Position
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 CheckDisposedStatus();
@@ -166,7 +166,7 @@ namespace MS.Internal.IO.Packaging
                 return seekPos;
             }
 
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             set
             {
                 CheckDisposedStatus();
@@ -221,7 +221,7 @@ namespace MS.Internal.IO.Packaging
         ///                   have created this class the caller would have had to have had
         ///                   permission to create the unmanaged code stream already.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         public override long Seek(long offset, SeekOrigin origin)
         {
             CheckDisposedStatus();
@@ -288,7 +288,7 @@ namespace MS.Internal.IO.Packaging
         ///                   have created this class the caller would have had to have had
         ///                   permission to create the unmanaged code stream already.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         public override int Read(byte[] buffer, int offset, int count)
         {
             CheckDisposedStatus();
@@ -458,7 +458,7 @@ namespace MS.Internal.IO.Packaging
         [InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
         [ComImport]
         [System.Security.SuppressUnmanagedCodeSecurity]
-        [SecurityCritical(SecurityCriticalScope.Everything)]
+        // [SecurityCritical(SecurityCriticalScope.Everything)]
         public interface SecuritySuppressedIStream
         {
             // ISequentialStream portion

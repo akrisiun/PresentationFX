@@ -56,7 +56,7 @@ namespace MS.Internal.AppModel
         /// Critical - as the constructor initializes the Critical member _subStreams.
         /// Safe - as the initialization is to a safe value.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal DataStreams()
         {
             // Dummy constructor to keep FxCop Critical rules happy.
@@ -68,7 +68,7 @@ namespace MS.Internal.AppModel
         /// </SecurityNote>
         internal bool HasAnyData
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get 
             {
                 return _subStreams != null && _subStreams.Count > 0
@@ -81,7 +81,7 @@ namespace MS.Internal.AppModel
         /// Safe - as this doesn't expose the data.  Returning if a stream exists
         ///        is not Critical information, the content of the stream is.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private bool HasSubStreams(object key)
         {
             return _subStreams != null && _subStreams.Contains(key);
@@ -190,7 +190,7 @@ namespace MS.Internal.AppModel
         /// Safe - as this doesn't return the Critical data, so any private members that
         ///        are saved from Serializing the object are protected.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void SaveState(object node)
         {
             UIElement element = node as UIElement;
@@ -312,7 +312,7 @@ namespace MS.Internal.AppModel
         ///        cause deserializaton of data returned by GetSubStreams which returns an
         ///        object from _subStreams array which is Critical and thus is tracked.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void LoadState(object node)
         {
             UIElement element = node as UIElement;
@@ -398,7 +398,7 @@ namespace MS.Internal.AppModel
         /// Critical - as this modifies Critical data member _subStreams.
         /// Safe - as this just initializes it to a safe value.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void Save(Object root)
         {
             if (_subStreams == null)
@@ -424,7 +424,7 @@ namespace MS.Internal.AppModel
         /// Critical - as this refers to Critical member _subStreams.
         /// Safe - as this doesn't expose the data
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void Clear()
         {
             _subStreams = null;

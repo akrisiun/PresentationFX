@@ -41,7 +41,7 @@ namespace System.Windows.Documents
         ///     Critical: This code calls into NlLoad, which elevates unmanaged code permission.
         ///     TreatAsSafe: This function call takes no input parameters
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal SpellerInterop()
         {
             // Start the lifetime of Natural Language library
@@ -128,7 +128,7 @@ namespace System.Windows.Documents
         ///     Critical: This code calls into NlLoad, which elevates unmanaged code permission.
         ///     TreatAsSafe: This function call sets the current speller locale, which is harmless.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void SetLocale(Int32 lcid)
         {
             _textChunk.put_Locale(lcid);
@@ -292,7 +292,7 @@ namespace System.Windows.Documents
         /// Critical - accesses ITextChunk.
         /// TreatAsSafe: Does not set any state.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static void EnumSubsegments(object textSegmentHandle, EnumTextSegmentsCallback segmentCallback, object data)
         {
             ITextSegment textSegment = (ITextSegment)textSegmentHandle;
@@ -323,7 +323,7 @@ namespace System.Windows.Documents
         ///     Critical: This code calls into NlLoad, which elevates unmanaged code permission.
         ///     TreatAsSafe: This function is readonly, and returns safe data.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static int GetSentenceEndOffset(object sentenceHandle)
         {
             ISentence sentence = (ISentence)sentenceHandle;
@@ -359,7 +359,7 @@ namespace System.Windows.Documents
         ///     Critical: This code calls into NlLoad, which elevates unmanaged code permission.
         ///     TreatAsSafe: This function is readonly, and returns safe data.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static int GetSegmentCount(object textSegmentHandle)
         {
             ITextSegment textSegment = (ITextSegment)textSegmentHandle;
@@ -375,7 +375,7 @@ namespace System.Windows.Documents
         ///     Critical: This code calls into NlLoad, which elevates unmanaged code permission.
         ///     TreatAsSafe: This function is readonly, and returns safe data.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static STextRange GetSegmentRange(object textSegmentHandle)
         {
             ITextSegment textSegment = (ITextSegment)textSegmentHandle;
@@ -391,7 +391,7 @@ namespace System.Windows.Documents
         ///     Critical: This code calls into NlLoad, which elevates unmanaged code permission.
         ///     TreatAsSafe: This function is readonly, and returns safe data.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static RangeRole GetSegmentRole(object textSegmentHandle)
         {
             ITextSegment textSegment = (ITextSegment)textSegmentHandle;
@@ -412,7 +412,7 @@ namespace System.Windows.Documents
         /// with trusted params.
         /// TreatAsSafe - it calls it with a trusted variant out param.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static bool GetSuggestions(object textSegmentHandle, ArrayList suggestions)
         {
             ITextSegment textSegment = (ITextSegment)textSegmentHandle;
@@ -751,7 +751,7 @@ namespace System.Windows.Documents
         ///     Critical: This code calls into NlUnload, which elevates unmanaged code permission.
         ///     TreatAsSafe: This function call takes no input memory block
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void Dispose(bool disposing)
         {
             if (_isDisposed)

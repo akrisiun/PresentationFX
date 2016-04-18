@@ -792,7 +792,7 @@ namespace System.Windows.Controls
         /// Critical - as this gets PresentationSource.
         /// Safe - as the value is not returned but is only checked for null.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static bool IsPresentationSourceNull(DependencyObject uie)
         {
             return PresentationSource.CriticalFromVisual(uie) == null;

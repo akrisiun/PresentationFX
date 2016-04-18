@@ -2248,7 +2248,7 @@ namespace System.Windows.Controls
         ///                 calling SetDataObject.
         ///     TreatAsSafe: There is no input here. The ISF data are safe to being put in the clipboard.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private InkCanvasClipboardDataFormats CopyToDataObject()
         {
              DataObject dataObj;
@@ -2590,7 +2590,7 @@ namespace System.Windows.Controls
         ///     TreatAsSafe: We don't take user input here. Shift+Insert is the correct key binding,
         ///                  and therefore is expected by the user.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static void _RegisterClipboardHandlers()
         {
             Type ownerType = typeof(InkCanvas);
@@ -2914,7 +2914,7 @@ namespace System.Windows.Controls
         ///     TreatAsSafe -   We check whether QueryCanPaste is initiated by user or not
         ///                     before invoking the critical method.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static void _OnQueryCommandEnabled(object sender, CanExecuteRoutedEventArgs args)
         {
             RoutedCommand command = (RoutedCommand)(args.Command);

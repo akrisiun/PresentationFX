@@ -94,7 +94,7 @@ namespace MS.Internal.Controls
         ///</SecurityNote>                 
         public static int LogPixelsX
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 if (logPixelsX == -1)
@@ -122,7 +122,7 @@ namespace MS.Internal.Controls
         ///</SecurityNote>                 
         public static int LogPixelsY
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 if (logPixelsY == -1)

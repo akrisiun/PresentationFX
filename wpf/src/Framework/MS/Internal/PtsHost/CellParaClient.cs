@@ -86,7 +86,7 @@ namespace MS.Internal.PtsHost
         ///     b) calls Critical function PTS.FsTransformRectangle
         /// Safe - as the parameters passed in are Critical for set.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void Arrange(int du, int dv, PTS.FSRECT rcTable, FlowDirection tableFlowDirection, PageContext pageContext)
         {
             //
@@ -236,7 +236,7 @@ namespace MS.Internal.PtsHost
         /// Critical - as this calls the Critical setter on _paraHandle.Value.
         /// Safe - as pfspara which it is set to is generated in the function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void FormatCellBottomless(uint fswdir, double width, out PTS.FSFMTRBL fmtrbl, out int dvrUsed)
         {
             IntPtr pfspara;
@@ -293,7 +293,7 @@ namespace MS.Internal.PtsHost
         /// Critical - as this calls Critical function SubpageParagraph.UpdateBottomlessPara.
         /// Safe - as the pointer parameter passed in is Critical for set.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void UpdateBottomlessCell(uint fswdir, double width, out PTS.FSFMTRBL fmtrbl, out int dvrUsed)
         {
             IntPtr pmcsclientOut;

@@ -246,7 +246,7 @@ namespace System.Windows.Controls
         ///     Critical: accesses ShowSystemMenu & CriticalFromVisual
         ///     TreatAsSafe: limited to only UserInitiated input.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         protected override void OnTextInput(TextCompositionEventArgs e)
         {
             base.OnTextInput(e);
@@ -357,7 +357,7 @@ namespace System.Windows.Controls
         /// Critical - as this calls PresentationSource.CriticalFromVisual() .
         /// Safe - as this doesn't return PresentationSource thus obtained.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private bool OnEnterMenuMode(object sender, EventArgs e)
         {
             // Don't enter menu mode if someone has capture

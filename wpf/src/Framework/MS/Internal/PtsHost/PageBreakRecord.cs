@@ -135,7 +135,7 @@ namespace MS.Internal.PtsHost
         /// Critical, because sets SecurityCriticalDataForSet.
         /// Safe, because sets SecurityCriticalDataForSet to IntPtr.Zero, which is safe.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void Dispose(bool disposing)
         {
             PtsContext ptsContext = null;

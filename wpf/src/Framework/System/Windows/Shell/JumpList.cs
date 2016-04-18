@@ -129,7 +129,7 @@ namespace System.Windows.Shell
         /// Critical: Calls critical native methods.  Class-level LinkDemand doesn't apply to static ctor.
         /// TreatAsSafe: Added explicit demand for AllWindows to the static ctor.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         [UIPermission(SecurityAction.Demand, Window=UIPermissionWindow.AllWindows)]
         static JumpList()
         {
@@ -435,7 +435,7 @@ namespace System.Windows.Shell
         /// Critical: Class-level LinkDemand\SecurityCritical doesn't always apply to interface methods.
         /// TreatAsSafe: Added explicit demand for AllWindows.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         [UIPermission(SecurityAction.Demand, Window=UIPermissionWindow.AllWindows)]
         public void BeginInit()
         {
@@ -457,7 +457,7 @@ namespace System.Windows.Shell
         /// Critical: Class-level LinkDemand\SecurityCritical doesn't always apply to interface methods.
         /// TreatAsSafe: Added explicit demand for AllWindows.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         [UIPermission(SecurityAction.Demand, Window=UIPermissionWindow.AllWindows)]
         public void EndInit()
         {

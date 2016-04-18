@@ -73,7 +73,7 @@ namespace MS.Internal.AppModel
         /// TreatAsSafe: No concern about "spoofing" progress messages. A web site could just render an HTML 
         ///     page that looks like our progress page.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         public void ShowProgressMessage(string message)
         {
             // Ignore the error code.  This page is transient and it's not the end of the world if this doesn't show up.
@@ -115,7 +115,7 @@ namespace MS.Internal.AppModel
         /// </SecurityNote>
         public string ApplicationName
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             set
             {
                 // Ignore the error code.  This page is transient and it's not the end of the world if this doesn't show up.
@@ -134,7 +134,7 @@ namespace MS.Internal.AppModel
         /// </SecurityNote>
         public string PublisherName
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             set
             { 
                 // Ignore the error code.  This page is transient and it's not the end of the world if this doesn't show up.
@@ -148,7 +148,7 @@ namespace MS.Internal.AppModel
         /// Critical: Calls a SUC'd COM interface method.
         /// TreatAsSafe: Sending even arbitrary progress updates not considered harmful.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         public void UpdateProgress(long bytesDownloaded, long bytesTotal)
         {
             // Ignore the error code.  This page is transient and it's not the end of the world if this doesn't show up.

@@ -571,7 +571,7 @@ namespace System.Windows.Controls
         ///                    not leave the scope of this method.  It is only used to calculate
         ///                    non-critical values.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private
         void
         UpdatePrintableAreaSize(
@@ -646,7 +646,7 @@ namespace System.Windows.Controls
         ///                    or the user chose to print.  It is okay for the application
         ///                    to use the XpsDocumentWriter to print at this point.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private
         XpsDocumentWriter
         CreateWriter(
@@ -825,7 +825,7 @@ namespace System.Windows.Controls
             ///     Critical    -   PrintTicket argument is critical because it is defined in the none APTCA assembly ReachFramework.dll
             ///     TreatAsSafe -   PrintTicket type is safe
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             public
             PrintDlgPrintTicketEventHandler(
                 object // Reach : PrintTicket

@@ -888,7 +888,7 @@ namespace System.Windows.Controls
         /// Critical: set_DocumentLoaded is defined in a non-APTCA assembly.
         /// TreatAsSafe: call to set_DocumentLoaded does not entail any risk.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         protected override void OnDocumentChanged()
         {
             // Validate the new document type
@@ -1764,7 +1764,7 @@ namespace System.Windows.Controls
         /// </summary>
         /// <param name="target">The target of this Command, expected to be DocumentViewer</param>
         /// <param name="args">The event arguments for this event.</param>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static void QueryEnabledHandler(object target, CanExecuteRoutedEventArgs args)
         {
             DocumentViewer dv = target as DocumentViewer;
@@ -2187,7 +2187,7 @@ namespace System.Windows.Controls
         /// Critical: FindToolBar..ctor is defined in a non-APTCA assembly.
         /// TreatAsSafe: call to FindToolBar..ctor does not entail any risk.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void InstantiateFindToolBar()
         {
             //First, find the correct place to insert toolbar.
@@ -2231,7 +2231,7 @@ namespace System.Windows.Controls
         /// Critical: get_SearchUp is defined in a non-APTCA assembly.
         /// TreatAsSafe: call to get_SearchUp does not entail any risk.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void OnFindInvoked(object sender, EventArgs e)
         {
             EventTrace.EasyTraceEvent(EventTrace.Keyword.KeywordXPS, EventTrace.Event.WClientDRXFindBegin);
@@ -2299,7 +2299,7 @@ namespace System.Windows.Controls
         /// Critical: GoToTextBox is defined in a non-APTCA assembly.
         /// TreatAsSafe: call to GoToTextBox does not entail any risk.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void GoToFind()
         {
             if (_findToolbar != null)
@@ -2318,7 +2318,7 @@ namespace System.Windows.Controls
         /// Critical: get_SearchUp is defined in a non-APTCA assembly.
         /// TreatAsSafe: call to get_SearchUp does not entail any risk.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private KeyEventArgs ProcessFindKeys(KeyEventArgs e)
         {
             if (_findToolbar == null || Document == null)

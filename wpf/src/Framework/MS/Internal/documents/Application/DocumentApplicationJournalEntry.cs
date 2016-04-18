@@ -72,7 +72,7 @@ namespace MS.Internal.Documents.Application
         /// Critical: set_StoredDocumentApplicationState is defined in a non-APTCA assembly.
         /// TreatAsSafe: call to set_StoredDocumentApplicationState does not entail any risk.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]        
+        [SecurityCritical] //, SecurityTreatAsSafe]        
         public override void Replay(NavigationService navigationService, NavigationMode mode)
         {
             ContentControl navigator = (ContentControl)navigationService.INavigatorHost;

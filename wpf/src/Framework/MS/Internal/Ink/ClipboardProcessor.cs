@@ -338,7 +338,7 @@ namespace MS.Internal.Ink
         /// 
         ///     TreatAsSafe: We only execute this code if the application has UnmanagedCode permission 
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private bool CopySelectionInXAML(IDataObject dataObject, StrokeCollection strokes, List<UIElement> elements, Matrix transform, Size size)
         {
             //NOTE: after meeting with the partial trust team, we have 

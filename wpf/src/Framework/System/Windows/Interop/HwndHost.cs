@@ -151,7 +151,7 @@ namespace System.Windows.Interop
         /// Critical - Calls ComponentDispatcher.UnsecureCurrentKeyboardMessage.
         /// TreatAsSafe - Only calls for trusted controls
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         protected override void OnKeyUp(KeyEventArgs e)
         {
             MSG msg;
@@ -181,7 +181,7 @@ namespace System.Windows.Interop
         /// Critical - Calls ComponentDispatcher.UnsecureCurrentKeyboardMessage.
         /// TreatAsSafe - Only calls for trusted controls
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         protected override void OnKeyDown(KeyEventArgs e)
         {
             MSG msg;
@@ -383,7 +383,7 @@ namespace System.Windows.Interop
         ///     TreatAsSafe: No critical information exposed.
         ///                  It's ok to return whether hwndHost has focus within itself in PT.
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         protected virtual bool HasFocusWithinCore()
         {
             HandleRef hwndFocus = new HandleRef(this, UnsafeNativeMethods.GetFocus());
@@ -487,7 +487,7 @@ namespace System.Windows.Interop
         ///     TAS : Calculate the new position of the activeX control is ok.
         ///                Net effect is to make window location consistent with what layout calculated.
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private NativeMethods.RECT CalculateAssignedRC(PresentationSource source)
         {
             Rect rectElement = new Rect(RenderSize);
@@ -809,7 +809,7 @@ namespace System.Windows.Interop
         ///     Critical - calls many native methods, accesses critical data
         ///     TreatAsSafe - Demands UIWindow permission before giving out a bitmap of this window.
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private DrawingGroup GetDrawingHelper()
         {
             // Printing an HWND requires UIPermissionWindow.AllWindows to give out its pixels.
@@ -1010,7 +1010,7 @@ namespace System.Windows.Interop
         ///     Critical: This code calls into critical method EnableWindow
         ///     TreatAsSafe: Changing window to being enabled is safe.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void OnEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (_isDisposed)
@@ -1058,7 +1058,7 @@ namespace System.Windows.Interop
         /// TreatAsSafe - it doesn't disclose GetParent returned information. also
         ///               as a defense in depth measure - we demand if not trusted. Setting trusted is critical
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void BuildOrReparentWindow()
         {
             DemandIfUntrusted();

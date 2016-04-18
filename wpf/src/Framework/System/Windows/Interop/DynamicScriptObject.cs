@@ -314,7 +314,7 @@ namespace System.Windows.Interop
         /// </SecurityNote>
         internal UnsafeNativeMethods.IDispatch ScriptObject
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 return _scriptObject;
@@ -345,7 +345,7 @@ namespace System.Windows.Interop
         ///     Critical - Unpacks the critical _scriptObject field on DynamicScriptObject arguments.
         ///     TreatAsSafe - Objects returned from script are considered safe for scripting.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal unsafe bool TryFindMemberAndInvokeNonWrapped(string memberName, int flags, bool cacheDispId, object[] args, out object result)
         {
             result = null;
@@ -571,7 +571,7 @@ namespace System.Windows.Interop
         ///     Critical - Calls the DynamicScriptObject constructor.
         ///     TreatAsSafe - Objects promoted into DynamicScriptObject are considered safe for scripting.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private bool TryFindMemberAndInvoke(string memberName, int flags, bool cacheDispId, object[] args, out object result)
         {
             if (!TryFindMemberAndInvokeNonWrapped(memberName, flags, cacheDispId, args, out result))
@@ -600,7 +600,7 @@ namespace System.Windows.Interop
         ///     Critical - Invokes code on the critical _scriptObject field.
         ///     TreatAsSafe - Objects promoted into DynamicScriptObject are considered safe for scripting.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private bool TryGetDispIdForMember(string memberName, bool cacheDispId, out int dispid)
         {
             dispid = NativeMethods.DISPID_VALUE;
@@ -641,7 +641,7 @@ namespace System.Windows.Interop
         ///     Critical - Invokes code on the critical _scriptObject field.
         ///     TreatAsSafe - Objects promoted into DynamicScriptObject are considered safe for scripting.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private HRESULT InvokeOnScriptObject(int dispid, int flags, NativeMethods.DISPPARAMS dp, NativeMethods.EXCEPINFO exInfo, out object result)
         {
             // If we use reflection to call script code, we need to Assert for the UnmanagedCode permission. 

@@ -53,7 +53,7 @@ namespace MS.Internal.PtsHost
         ///            and some PtsHelper functions.
         /// Safe - operation is safe and method doesn't disclose any information got through critical calls
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]        
+        [SecurityCritical] //, SecurityTreatAsSafe]        
         internal override void ValidateVisual(PTS.FSKUPDATE fskupdInherited)
         {
             // Query paragraph details

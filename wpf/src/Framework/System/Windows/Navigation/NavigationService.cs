@@ -581,7 +581,7 @@ namespace System.Windows.Navigation
         ///     another from the same site. This is equivalent to using a frame that occupies the entire
         ///     content area...)
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         void UpdateAddressBarForLooseXaml()
         {
             if (BrowserInteropHelper.IsViewer && !BrowserInteropHelper.IsInitialViewerNavigation &&
@@ -1224,7 +1224,7 @@ namespace System.Windows.Navigation
         /// Critical - calls back to browser to get the browser top.
         /// TreatAsSafe - this value isn't returned or stored.
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void DispatchPendingCallFromBrowser()
         {
             BrowserInteropHelper.HostBrowser.GetTop();
@@ -2435,7 +2435,7 @@ namespace System.Windows.Navigation
         /// Consider: Do we really need IsInitialViewerNavigation to be Critical? No security decision is done
         /// based on that.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void HandleNavigated(object navState, bool navigatedToNewContent)
         {
             Debug.Assert(_navStatus == NavigationStatus.Navigated);
@@ -3338,7 +3338,7 @@ namespace System.Windows.Navigation
         /// No journal entry is created for certain types of Content or when there is no
         /// NavigationWindow [which is where the Journal is].
         /// </remarks>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private JournalEntry UpdateJournal(
             NavigationMode navigationMode, JournalReason journalReason, JournalEntry destinationJournalEntry)
         {
@@ -3643,7 +3643,7 @@ namespace System.Windows.Navigation
         ///                      Net effect is creation of a new journal entry. Considered safe as the information stored in the journal is derived from what's been navigated to.
         ///                      We could have the same effect via programmatically allowing a navigate OR calling NavigationWindow.GoBack().
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void CallUpdateTravelLog(bool addNewEntry)
         {
             // Not explicitly checking IsSerializable here because we will be called back
@@ -3751,7 +3751,7 @@ namespace System.Windows.Navigation
         /// </SecurityNote>
         private bool HasTravelLogIntegration
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 return IsParentedByBrowserWindow() &&

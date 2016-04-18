@@ -184,7 +184,7 @@ namespace MS.Internal.AppModel
         ///    Critical:This API accesses the commandmapping table and returns it
         ///    TreatAsSafe: It returns a copy which is safe
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private IDictionary GetOleCmdMappingTable(Guid guidCmdGroup)
         {
             IDictionary mappingTable = null;
@@ -241,7 +241,7 @@ namespace MS.Internal.AppModel
         ///     TreatAsSafe: All the values that it adds are predefined handlers in this class
         ///     no external values
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void EnsureApplicationCommandsTable()
         {
             if (_applicationCommandsMappingTable.Value == null)
@@ -290,7 +290,7 @@ namespace MS.Internal.AppModel
         /// Critical: Initializes _editingCommandsMappingTable, which is a critical for set.
         /// TreatAsSafe: Only predefined commands are used. EditingCommands are enabled in partial trust.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void EnsureEditingCommandsTable()
         {
             if (_editingCommandsMappingTable.Value == null)

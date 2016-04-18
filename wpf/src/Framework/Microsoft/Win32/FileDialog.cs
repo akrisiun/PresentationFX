@@ -76,7 +76,7 @@ namespace Microsoft.Win32
         ///     TreatAsSafe: It is okay to set the options to their defaults.  The
         ///             ctor does not show the dialog.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         protected FileDialog()
         {
             // Call Initialize to set defaults for fields
@@ -1610,7 +1610,7 @@ namespace Microsoft.Win32
         /// TreatAsSafe: This method does not take external input for the call for 
         ///             PromptUserIfAppropriate.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private bool ProcessFileNames()
         {
             // Only process the filenames if OFN_NOVALIDATE is not set.
@@ -1943,7 +1943,7 @@ namespace Microsoft.Win32
             ///     TreatAsSafe: This object was created in a critical context.
             ///                  This doesn't return any critical information, just immediately returns an appropriate HRESULT.
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             HRESULT IFileDialogEvents.OnFolderChanging(IFileDialog pfd, IShellItem psiFolder)
             {
                 return HRESULT.E_NOTIMPL;
@@ -1954,7 +1954,7 @@ namespace Microsoft.Win32
             ///     TreatAsSafe: This object was created in a critical context.
             ///                  This doesn't return any critical information, just immediately returns an appropriate HRESULT.
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             HRESULT IFileDialogEvents.OnFolderChange(IFileDialog pfd)
             {
                 return HRESULT.S_OK;
@@ -1965,7 +1965,7 @@ namespace Microsoft.Win32
             ///     TreatAsSafe: This object was created in a critical context.
             ///                  This doesn't return any critical information, just immediately returns an appropriate HRESULT.
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             HRESULT IFileDialogEvents.OnSelectionChange(IFileDialog pfd)
             {
                 return HRESULT.S_OK;
@@ -1976,7 +1976,7 @@ namespace Microsoft.Win32
             ///     TreatAsSafe: This object was created in a critical context.
             ///                  This doesn't return any critical information, just immediately returns an appropriate HRESULT.
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             HRESULT IFileDialogEvents.OnShareViolation(IFileDialog pfd, IShellItem psi, out FDESVR pResponse)
             {
                 pResponse = FDESVR.DEFAULT;
@@ -1988,7 +1988,7 @@ namespace Microsoft.Win32
             ///     TreatAsSafe: This object was created in a critical context.
             ///                  This doesn't return any critical information, just immediately returns an appropriate HRESULT.
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             HRESULT IFileDialogEvents.OnTypeChange(IFileDialog pfd)
             {
                 return HRESULT.S_OK;
@@ -1999,7 +1999,7 @@ namespace Microsoft.Win32
             ///     TreatAsSafe: This object was created in a critical context.
             ///                  This doesn't return any critical information, just immediately returns an appropriate HRESULT.
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             HRESULT IFileDialogEvents.OnOverwrite(IFileDialog pfd, IShellItem psi, out FDEOR pResponse)
             {
                 pResponse = FDEOR.DEFAULT;
@@ -2025,7 +2025,7 @@ namespace Microsoft.Win32
         ///     Derived callers have similar attributes.  See their declarations for a fuller explanation.
         ///     TreatAsSafe as this returns a COM interface, not a handle, which has Security attributes on it as well.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal abstract IFileDialog CreateVistaDialog();
 
         /// <SecurityNote>
@@ -2133,7 +2133,7 @@ namespace Microsoft.Win32
         ///          Specifically it modifies _fileNames by way of ProcessVistaFiles.
         ///          This field is not exposed to PT.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private bool HandleVistaFileOk(IFileDialog dialog)
         {
             // When this callback occurs, the HWND is visible and we need to

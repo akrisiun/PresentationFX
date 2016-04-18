@@ -39,7 +39,7 @@ namespace MS.Internal
         ///     Critical: This code sets the allowed assemblies on AssemblyList 
         ///     TreatAsSafe: Initializing the data is ok since it does not expose anything
         /// </SecurityNote>
-        [SecurityCritical,SecurityTreatAsSafe]
+        [SecurityCritical] //,SecurityTreatAsSafe]
         static  AssemblyFilter()
         {
             _disallowedListExtracted = new SecurityCriticalDataForSet<bool>(false);

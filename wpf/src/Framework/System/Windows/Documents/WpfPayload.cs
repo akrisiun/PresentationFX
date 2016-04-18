@@ -453,7 +453,7 @@ namespace System.Windows.Documents
         /// Critical - calls Critical CreateImagePart, which is Critical.
         /// TreatAsSafe - images passed to CreateImagePart are part of the payload.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void CreateComponentParts(PackagePart sourcePart)
         {
             if (_images != null)
@@ -659,7 +659,7 @@ namespace System.Windows.Documents
         /// Critical - calls BitsPerPixel, which LinkDemand's and returns info that's not supposed to be disclosed in partial trust scenarios.
         /// TreatAsSafe - BitsPerPixel's returned information is not disclosed, just used for comparing images. 
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static bool ImagesAreIdentical(BitmapSource imageSource1, BitmapSource imageSource2)
         {
             // First compare images as objects - the luckiest case is when it's the same object

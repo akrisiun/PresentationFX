@@ -127,7 +127,7 @@ namespace MS.Internal.IO.Packaging
         /// TreatAsSafe - There is a demand in this code. This code is not intended to be called from PT code.
         ///   Not designed to be exposed to public surface at all. Invoked (indirectly) by unmanaged client code.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal ManagedPropSpec(PROPSPEC propSpec)
         {
             SecurityHelper.DemandUnmanagedCode();

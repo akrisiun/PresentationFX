@@ -68,7 +68,7 @@ namespace System.Windows.Documents
         /// Critical - this code resets the _textChunk member which is critical
         /// TreatAsSafe - the operation is safe to expose
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void Detach()
         {
             Invariant.Assert(_textEditor != null);
@@ -183,7 +183,7 @@ namespace System.Windows.Documents
         /// Critical - It calls SetContextOption() which is Critical.
         /// TreatAsSafe - it calls them with trusted parameters.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal IList GetSuggestionsForError(SpellingError error)
         {
             ITextPointer contextStart;
@@ -348,7 +348,7 @@ namespace System.Windows.Documents
         /// to every local file path passed to this function. For more details <see cref="SpellerInterop.AddLexicon"/>
         /// and <see cref="SpellerInterop.LoadDictionary(string)"/>
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void OnDictionaryUriAdded(Uri uri)
         {
             if (!EnsureInitialized())
@@ -388,7 +388,7 @@ namespace System.Windows.Documents
         /// 1. Does not disclose paht related information to caller, except the one which was passed in by user.
         /// 2. Unloading dictionary has no security effect.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void OnDictionaryUriRemoved(Uri uri)
         {
             if (!EnsureInitialized())
@@ -424,7 +424,7 @@ namespace System.Windows.Documents
         /// critical - works with critical _spellerInterop.
         /// safe - does not expose critical member, does not return any data to the caller.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void OnDictionaryUriCollectionCleared()
         {
             if (!EnsureInitialized())
@@ -500,7 +500,7 @@ namespace System.Windows.Documents
         /// Critical - This code calls into _textchunk and other unmanaged COM api.
         /// TreatAsSafe - critical operations are not based on untrusted input. multiple calls don't involve any risk.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private bool EnsureInitialized()
         {
             if (_spellerInterop != null)
@@ -752,7 +752,7 @@ namespace System.Windows.Documents
         /// Critical - It calls SetContextOption(), which is Critical.
         /// TreatAsSafe - it calls it with a well known option.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void AdjustScanRangeAroundComposition(ITextPointer rawStart, ITextPointer rawEnd,
             out ITextPointer start, out ITextPointer end)
         {
@@ -843,7 +843,7 @@ namespace System.Windows.Documents
         /// Critical - It calls SetContextOption(), which is Critical.
         /// TreatAsSafe - it calls it with a well known option.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private ScanStatus ScanRange(ITextPointer start, ITextPointer end, long timeLimit)
         {
             ITextPointer contextStart;
@@ -1143,7 +1143,7 @@ namespace System.Windows.Documents
         /// Critical - it calls SetContextOption(), which is Critical.
         /// TreatAsSafe - it calls it with a trusted parameter, that doesn't come from untrusted sources.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void ExpandToWordBreakAndContext(ITextPointer position, LogicalDirection direction, XmlLanguage language,
             out ITextPointer contentPosition, out ITextPointer contextPosition)
         {
@@ -1368,7 +1368,7 @@ namespace System.Windows.Documents
         /// Critical - it calls EnumTextSegments(), which is Critical.
         /// TreatAsSafe - it calls it passing a TextMap object constructed appropriately in this method.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private ITextPointer SearchForWordBreaks(ITextPointer position, LogicalDirection direction, XmlLanguage language, int minWordCount, bool stopOnError)
         {
             ITextPointer closestErrorPosition;
@@ -1517,7 +1517,7 @@ namespace System.Windows.Documents
         /// Critical - It calls SetContextOption(), which is Critical.
         /// TreatAsSafe - it calls it with a well known option.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void SetCulture(CultureInfo culture)
         {
             //

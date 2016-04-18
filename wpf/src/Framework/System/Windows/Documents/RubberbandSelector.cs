@@ -206,7 +206,7 @@ namespace System.Windows.Documents
         ///              selection.  Because we generate the bitmap from what the user sees, this is no more
         ///              dangerous than a screen capture.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void OnCopy(object sender, ExecutedRoutedEventArgs e)
         {
             if (HasSelection && _selectionRect.Width > 0 && _selectionRect.Height > 0)

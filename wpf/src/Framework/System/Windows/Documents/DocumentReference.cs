@@ -283,7 +283,7 @@ namespace System.Windows.Documents
        /// Critical as it access the base uri through _resolveUri
        /// TreatAsSafe since it does not disclose this
        ///</SecurityNote>
-       [SecurityCritical, SecurityTreatAsSafe]
+       [SecurityCritical] //, SecurityTreatAsSafe]
         private FixedDocument _LoadDocument()
         {
             FixedDocument idp = null;

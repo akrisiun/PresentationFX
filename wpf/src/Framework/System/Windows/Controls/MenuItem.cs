@@ -1349,7 +1349,7 @@ namespace System.Windows.Controls
         ///            for security purposes later.
         /// TreatAsSafe - passes false for userInitiated
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         protected virtual void OnClick()
         {
             OnClickImpl(false);
@@ -2320,7 +2320,7 @@ namespace System.Windows.Controls
         ///             bit, which is used for security purposes later.
         /// TreatAsSafe - passes false.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void ClickItem()
         {
             ClickItem(false);

@@ -782,7 +782,7 @@ namespace System.Windows
             /// Safe: BAML inside an assembly is allowed to access internals in that assembly.
             ///       We are loading the BAML directly from an assembly, so we know the source.
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             private ResourceDictionary LoadDictionary(Assembly assembly, string assemblyName, string resourceName, bool isTraceEnabled)
             {
                 ResourceDictionary dictionary = null;
@@ -916,7 +916,7 @@ namespace System.Windows
         ///     Critical - Calls dispose on the critical hwnd wrapper.
         ///     TreatAsSafe: It is safe to dispose the wrapper
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static void OnShutdownFinished(object sender, EventArgs args)
         {
             if (_hwndNotify != null)

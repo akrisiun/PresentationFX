@@ -52,7 +52,7 @@ namespace MS.Internal.PtsHost
 
 
 
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal PtsHost()
         {
             _context = new SecurityCriticalDataForSet<IntPtr>(IntPtr.Zero);

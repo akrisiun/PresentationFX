@@ -409,7 +409,7 @@ namespace Microsoft.Win32
         //     TreatAsSafe, as it returns the managed COM interface, and not a handle.
         //     Calls on the interface will still be treated with security scrutiny.
         // </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] // ] // , SecurityTreatAsSafe]
         internal override IFileDialog CreateVistaDialog()
         { 
             SecurityHelper.DemandUIWindowPermission();

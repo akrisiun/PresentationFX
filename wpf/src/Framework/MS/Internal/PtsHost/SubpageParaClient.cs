@@ -55,7 +55,7 @@ namespace MS.Internal.PtsHost
         /// Safe - as the parameters passed in, PtsContext.Context and _paraHandle are
         ///        both marked Critical for set.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         public override void Dispose()
         {
             _visual = null;
@@ -81,7 +81,7 @@ namespace MS.Internal.PtsHost
         ///        is marked Critical for set and _paraHandle is readonly data for this
         ///        function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         protected override void OnArrange()
         {
             base.OnArrange();
@@ -178,7 +178,7 @@ namespace MS.Internal.PtsHost
         ///        is marked Critical for set and _paraHandle is readonly data for this
         ///        function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal override IInputElement InputHitTest(PTS.FSPOINT pt)
         {
             IInputElement ie = null;
@@ -255,7 +255,7 @@ namespace MS.Internal.PtsHost
         ///        is marked Critical for set and _paraHandle is readonly data for this
         ///        function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal override List<Rect> GetRectangles(ContentElement e, int start, int length)
         {
             List<Rect> rectangles = new List<Rect>();
@@ -323,7 +323,7 @@ namespace MS.Internal.PtsHost
         ///        is marked Critical for set and _paraHandle is readonly data for this
         ///        function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal override void ValidateVisual(PTS.FSKUPDATE fskupdInherited)
         {
             // Query subpage details
@@ -467,7 +467,7 @@ namespace MS.Internal.PtsHost
         ///        which ensures that partial trust code won't be able to set it to a random value.
         ///        The subpageDetails parameter passed to other methods is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal override void UpdateViewport(ref PTS.FSRECT viewport)
         {
             // Query subpage details
@@ -530,7 +530,7 @@ namespace MS.Internal.PtsHost
         ///        is marked Critical for set and _paraHandle is readonly data for this
         ///        function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal override TextContentRange GetTextContentRange()
         {
             TextContentRange textContentRange;
@@ -604,7 +604,7 @@ namespace MS.Internal.PtsHost
         ///        is marked Critical for set and _paraHandle is readonly data for this
         ///        function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal ReadOnlyCollection<ColumnResult> GetColumnResults(out bool hasTextContent)
         {
             List<ColumnResult> columnResults = new List<ColumnResult>(0);

@@ -40,7 +40,7 @@ namespace System.Windows.Interop
         /// Critical because it sets critical data.
         /// Safe because it is the static ctor, and the data doesn't go anywhere.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         static BrowserInteropHelper()
         {
             SetBrowserHosted(false);
@@ -84,7 +84,7 @@ namespace System.Windows.Interop
         /// </SecurityNote>
         public static dynamic HostScript
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 // Allows to disable script interop through the registry in partial trust code.
@@ -360,7 +360,7 @@ namespace System.Windows.Interop
         ///     Critical: this attaches an event to ThreadFilterMessage, which requires an assert
         ///     Safe: doesn't expose anything, just does some internal plumbing stuff
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static void InitializeHostFilterInput()
         {
             (new UIPermission(PermissionState.Unrestricted)).Assert(); // Blessed assert
@@ -380,7 +380,7 @@ namespace System.Windows.Interop
         ///     Critical: setting critical _isScriptInteropDisabled flag.
         ///     Safe: _isScriptInteropDisabled is set from a trusted source.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static void EnsureScriptInteropAllowed()
         {
             if (_isScriptInteropDisabled.Value == null)

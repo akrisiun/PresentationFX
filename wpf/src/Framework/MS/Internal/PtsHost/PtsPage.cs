@@ -58,7 +58,7 @@ namespace MS.Internal.PtsHost
         /// Critical - as this calls Critical constructor for SecurityCriticalDataForSet.
         /// Safe - as this just initializes it to IntPtr.Zero.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private PtsPage()
         {
             _ptsPage = new SecurityCriticalDataForSet<IntPtr>(IntPtr.Zero);
@@ -300,7 +300,7 @@ namespace MS.Internal.PtsHost
         ///        is Critical for set and _section.Handle is a handle to managed object that'll
         ///        be validated on callbacks.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void CreateBottomlessPage()
         {
             OnBeforeFormatPage(false, false);
@@ -354,7 +354,7 @@ namespace MS.Internal.PtsHost
         /// Safe - as this function can't be used to pass arbitrary parameters and all
         ///        parameters passed in are Critical for set or opaque handles to PTS.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void UpdateBottomlessPage()
         {
             if (IsEmpty)
@@ -412,7 +412,7 @@ namespace MS.Internal.PtsHost
         ///     a) the parameters passed in are Critical for set
         ///     b) Critical objects (PTS Page and BreakRecord) are generated within the function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void CreateFinitePage(PageBreakRecord breakRecord)
         {
             OnBeforeFormatPage(true, false);
@@ -477,7 +477,7 @@ namespace MS.Internal.PtsHost
         ///     a) the parameters passed in are Critical for set
         ///     b) Critical objects (PTS Page and BreakRecord) are generated within the function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void UpdateFinitePage(PageBreakRecord breakRecord)
         {
             if (IsEmpty)
@@ -543,7 +543,7 @@ namespace MS.Internal.PtsHost
         /// Safe - as this can't be be used to pass arbitrary parameters.  All parameters passed
         ///        in are either Critical for set or are generated within the function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void ArrangePage()
         {
             if (IsEmpty)
@@ -606,7 +606,7 @@ namespace MS.Internal.PtsHost
         /// Safe - as this can't be be used to pass arbitrary parameters.  All parameters passed
         ///        in are either Critical for set or are generated within the function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void UpdateViewport(ref PTS.FSRECT viewport)
         {
             if (!IsEmpty)
@@ -658,7 +658,7 @@ namespace MS.Internal.PtsHost
         /// Safe - as this can't be used to pass arbitrary parameters and the parameters
         ///        passed in are Critical for set.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void ClearUpdateInfo()
         {
             if (!IsEmpty)
@@ -775,7 +775,7 @@ namespace MS.Internal.PtsHost
         /// Critical, because sets value of Critical data for set.
         /// Safe, because resets the value to IntPtr.Zero.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void Dispose(bool disposing)
         {
             if (Interlocked.CompareExchange(ref _disposed, 1, 0) == 0)
@@ -835,7 +835,7 @@ namespace MS.Internal.PtsHost
         /// Critical - as this calls Critical function PtsContext.OnPageCreated.
         /// Safe - as the parameter it passes it is Critical for set.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void OnAfterFormatPage(bool setSize, bool incremental)
         {
             // Update page size if necessary
@@ -897,7 +897,7 @@ namespace MS.Internal.PtsHost
         /// Safe - as this can't be be used to pass arbitrary parameters.  All parameters passed
         ///        in are either Critical for set or are generated within the function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private PTS.FSRECT GetRect()
         {
             PTS.FSRECT rect;
@@ -948,7 +948,7 @@ namespace MS.Internal.PtsHost
         /// Safe - as this can't be be used to pass arbitrary parameters.  All parameters passed
         ///        in are either Critical for set or are generated within the function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private PTS.FSBBOX GetBoundingBox()
         { 
             PTS.FSBBOX bbox = new PTS.FSBBOX();
@@ -1101,7 +1101,7 @@ namespace MS.Internal.PtsHost
         /// Safe - as this can't be be used to pass arbitrary parameters.  All parameters passed
         ///        in are either Critical for set or are generated within the function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void UpdatePageVisuals(Size arrangeSize)
         {
             Invariant.Assert(!IsEmpty);
@@ -1302,7 +1302,7 @@ namespace MS.Internal.PtsHost
         /// Safe - as this can't be be used to pass arbitrary parameters.  All parameters passed
         ///        in are either Critical for set or are generated within the function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private IInputElement InputHitTestPage(PTS.FSPOINT pt)
         {
             IInputElement ie = null;
@@ -1378,7 +1378,7 @@ namespace MS.Internal.PtsHost
         /// Safe - as this can't be be used to pass arbitrary parameters.  All parameters passed
         ///        in are either Critical for set or are generated within the function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private List<Rect> GetRectanglesInPage(ContentElement e, int start, int length)
         {            
             // Rectangles to be returned
@@ -1577,7 +1577,7 @@ namespace MS.Internal.PtsHost
         /// Critical - as this calls Critical setter _ptsPage.Value.
         /// Safe - as this just sets it to IntPtr.Zero which is safe.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void DestroyPage()
         {
             if (_ptsPage.Value != IntPtr.Zero)

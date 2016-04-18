@@ -37,7 +37,7 @@ namespace MS.Internal.Printing
         ///     Critical:    - Sets critical data.
         ///     TreatAsSafe: - Sets the critical data to null for initialization.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         public
         Win32PrintDialog()
         {
@@ -74,7 +74,7 @@ namespace MS.Internal.Printing
         ///                    care if these are exposed since the data means nothing except to
         ///                    the code that is doing the printing.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal
         UInt32
         ShowDialog()

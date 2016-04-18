@@ -669,7 +669,7 @@ namespace System.Windows.Documents
             /// Safe - This doesn't expose the information. The SetForegroundWindow call will only
             ///        set the drop window as the foreground without exposing the information. 
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             private void Win32SetForegroundWindow()
             {
                 PresentationSource source = null;

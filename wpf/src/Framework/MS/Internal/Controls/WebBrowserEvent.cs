@@ -216,7 +216,7 @@ namespace MS.Internal.Controls
         ///     TreatAsSafe: Does not perform privileged operations; also usable for non-security related stuff.
         /// </SecurityNote>
         /// </summary>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static bool IsAllowedScriptScheme(Uri uri)
         {
             return uri != null && (uri.Scheme == "javascript" || uri.Scheme == "vbscript");
@@ -226,7 +226,7 @@ namespace MS.Internal.Controls
         ///     Critical: This code extracts the IWebBrowser2, IHTMLDocument interface.
         ///     TreatAsSafe: This does not expose the interface.
         /// </summary>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         public void NavigateComplete2(object pDisp, ref object url)
         {
             Debug.Assert(url == null || url is string, "invalid url type");
@@ -282,7 +282,7 @@ namespace MS.Internal.Controls
         ///     Critical: This code accesses the IWebBrowser2, IHTMLDocument interface.
         ///     TreatAsSafe: This does not expose the interface.
         /// </summary>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         public void DocumentComplete(object pDisp, ref object url)
         {
             Debug.Assert(url == null || url is string, "invalid url type");

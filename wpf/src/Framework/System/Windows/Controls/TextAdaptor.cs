@@ -358,7 +358,7 @@ namespace MS.Internal.Automation
         ///     Critical: This code calls into PresentationSource to get HwndSource 
         ///     TreatAsSafe: This code is not exposing any critical information, at the same time
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private Point ClientToScreen(Point point, Visual visual)
         {
             PresentationSource presentationSource = PresentationSource.CriticalFromVisual(visual);
@@ -381,7 +381,7 @@ namespace MS.Internal.Automation
         ///     Critical: This code calls into PresentationSource to get HwndSource 
         ///     TreatAsSafe: This code is not exposing any critical information, at the same time
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private Point ScreenToClient(Point point, Visual visual)
         {
             PresentationSource presentationSource = PresentationSource.CriticalFromVisual(visual);

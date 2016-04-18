@@ -1004,7 +1004,7 @@ namespace System.Windows.Documents
         /// SecurityTreatAsSafe: No package instance or package related objects being handed out
         ///             from this method
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         static private Uri GetStructureUriFromRelationship(Uri contentUri, string relationshipName)
         {
             Uri absTargetUri = null;

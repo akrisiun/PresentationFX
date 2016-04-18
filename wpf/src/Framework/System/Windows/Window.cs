@@ -71,7 +71,7 @@ namespace System.Windows
         /// Critical: Calls critical native method RegisterWindowMessage
         /// TreatAsSafe: The class has inheritance demand and constructor is blocked in partial trust
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         static Window()
         {
             HeightProperty.OverrideMetadata(typeof(Window), new FrameworkPropertyMetadata(new PropertyChangedCallback(_OnHeightChanged)));
@@ -659,7 +659,7 @@ namespace System.Windows
         ///                It's unsafe to set this value in partial trust.
         /// TreatAsSafe - The VerifyAccessCoercion on the DP for this should have already verified this demand.
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void OnTaskbarItemInfoChanged(DependencyPropertyChangedEventArgs e)
         {
             var oldBar = (TaskbarItemInfo)e.OldValue;
@@ -738,7 +738,7 @@ namespace System.Windows
         ///                exposes this window in the taskbar.  It's unsafe to set this value in partial trust.
         /// TreatAsSafe - This is only called as an event handler set in a SecurityCritical context.
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void OnTaskbarItemInfoSubPropertyChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             // Don't propagate changes from other TaskbarItemInfos.
@@ -2110,7 +2110,7 @@ namespace System.Windows
         ///     Critical - calls a method that elevates - CompositionTarget
         ///     TreatAsSafe - We only use the CompositionTarget to do device to logical unit conversion.
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal Point DeviceToLogicalUnits(Point ptDeviceUnits)
         {
             Invariant.Assert(IsCompositionTargetInvalid == false, "IsCompositionTargetInvalid is supposed to be false here");
@@ -2122,7 +2122,7 @@ namespace System.Windows
         ///     Critical - calls a method that elevates - CompositionTarget
         ///     TreatAsSafe - We only use the CompositionTarget to do logical to device unit conversion.
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal Point LogicalToDeviceUnits(Point ptLogicalUnits)
         {
             Invariant.Assert(IsCompositionTargetInvalid == false, "IsCompositionTargetInvalid is supposed to be false here");
@@ -3017,7 +3017,7 @@ namespace System.Windows
         ///     TreatAsSafe: This code only works under RBW code path , this operation is ok since
         ///     RBW window is bound to the restrictions of its parent window which is the browser
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void UpdateHwndSizeOnWidthHeightChange(double widthLogicalUnits, double heightLogicalUnits)
         {
             if (!_inTrustedSubWindow)
@@ -3111,7 +3111,7 @@ namespace System.Windows
         /// Critical - This code is used to block off api in rbw
         /// TreatAsSafe - This is critical only because we want to track change
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal virtual void VerifyApiSupported()
         {
             // don't do anything here since we allow this API in Window.
@@ -3201,7 +3201,7 @@ namespace System.Windows
                 VerifyContextAndObjectState();
                 return _ownerHandle;
             }
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             set
             {
                 SecurityHelper.DemandUIWindowPermission();
@@ -3293,7 +3293,7 @@ namespace System.Windows
                     return _swh.StyleExFromHwnd;
                 }
                 }
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             set
             {
                 SecurityHelper.DemandUIWindowPermission();
@@ -3744,7 +3744,7 @@ namespace System.Windows
         ///     Critical - calls a method that elevates - GetCursorPos
         ///     TreatAsSafe - as there's a demand.
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         IntPtr GetCurrentMonitorFromMousePosition()
         {
             SecurityHelper.DemandUnmanagedCode();
@@ -4104,7 +4104,7 @@ namespace System.Windows
         ///</SecurityNote>
         // 
 
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void UpdateIcon()
         {
 
@@ -5532,7 +5532,7 @@ namespace System.Windows
         ///     TreatAsSafe: There is a demand for creating the hwnd unless it is under an RBW
         ///                 code path and if it has been called via the internal constructor chain
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void SafeCreateWindowDuringShow()
         {
             //this is true the first time the window is created
@@ -6852,7 +6852,7 @@ namespace System.Windows
         ///     TreatAsSafe: This function returns immediately if the ITaskbarList3 handle is invalid.  It would
         ///         only be created in a critical context.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private HRESULT UpdateTaskbarThumbnailClipping()
         {
             // If TaskbarItemInfo isn't attached and active then there's nothing to do here.
@@ -7150,7 +7150,7 @@ namespace System.Windows
         ///      Critical as this method accesses critical data.
         ///      TreatAsSafe - this method "eliminates" critical data - ergo considered safe.
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void ClearSourceWindow()
         {
             if (_swh != null)
@@ -7212,7 +7212,7 @@ namespace System.Windows
         /// Ciritical - accesses _inTrustedSubWindow.
         /// TreatAsSafe - doesn't reveal _inTrustedSubWindow.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void VerifyConsistencyWithShowActivated()
         {
             //
@@ -7340,7 +7340,7 @@ namespace System.Windows
         ///     TreatAsSafe - Does not expose protected values. Panning feedback does not translate
         ///         totalOverpanOffset 1:1 into a window offset. The value is scaled and clamped.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void UpdatePanningFeedback(Vector totalOverpanOffset, object originalSource)
         {
             if ((_currentPanningTarget != null) && !_currentPanningTarget.IsAlive)
@@ -7375,7 +7375,7 @@ namespace System.Windows
         ///     TreatAsSafe - Restores the window back to its original position, which is safe.
         ///                   Doesn't expose _swh.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void EndPanningFeedback(bool animateBack)
         {
             if (_swh != null)
@@ -7561,14 +7561,14 @@ namespace System.Windows
         /// Critical - as this data is obtained via an elevation.
         /// TreatAsSafe - as we've decided that Window position is not directly exploitable.
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private double              _actualTop = Double.NaN;
 
         ///<SecurityNote>
         /// Critical - as this data is obtained via an elevation.
         /// TreatAsSafe - as we've decided that Window position is not directly exploitable.
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private double              _actualLeft = Double.NaN;
 
         //Never expose this at any cost
@@ -7760,7 +7760,7 @@ namespace System.Windows
                 /// </SecurityNote>
                 internal NativeMethods.RECT WorkAreaBoundsForNearestMonitor
                 {
-                    [SecurityCritical, SecurityTreatAsSafe]
+                    [SecurityCritical] //, SecurityTreatAsSafe]
                     get
                     {
                         IntPtr monitor;
@@ -7784,7 +7784,7 @@ namespace System.Windows
                 ///</SecurityNote>
                 private NativeMethods.RECT ClientBounds
                 {
-                    [SecurityCritical, SecurityTreatAsSafe]
+                    [SecurityCritical] //, SecurityTreatAsSafe]
                     get
                     {
                         NativeMethods.RECT rc = new NativeMethods.RECT(0,0,0,0);
@@ -7800,7 +7800,7 @@ namespace System.Windows
                 ///</SecurityNote>
                 internal NativeMethods.RECT WindowBounds
                 {
-                    [SecurityCritical, SecurityTreatAsSafe]
+                    [SecurityCritical] //, SecurityTreatAsSafe]
                     get
                     {
                         NativeMethods.RECT rc = new NativeMethods.RECT(0,0,0,0);
@@ -7840,13 +7840,13 @@ namespace System.Windows
                 ///</SecurityNote>
                 internal SizeToContent HwndSourceSizeToContent
                 {
-                    [SecurityCritical, SecurityTreatAsSafe]
+                    [SecurityCritical] //, SecurityTreatAsSafe]
                     get
                     {
                         return _sourceWindow.SizeToContent;
                     }
 
-                    [SecurityCritical, SecurityTreatAsSafe]
+                    [SecurityCritical] //, SecurityTreatAsSafe]
                     set
                     {
                         _sourceWindow.SizeToContent = value;
@@ -7873,7 +7873,7 @@ namespace System.Windows
                 ///</SecurityNote>
                 internal bool IsActiveWindow
                 {
-                    [ SecurityCritical, SecurityTreatAsSafe]
+                    [ SecurityCritical] //, SecurityTreatAsSafe]
                     get
                     {
                         return (_sourceWindow.CriticalHandle == UnsafeNativeMethods.GetActiveWindow());
@@ -7994,7 +7994,7 @@ namespace System.Windows
                 /// Critical as this method accesses critical data.
                 /// TreatAsSafe - as this method returns the Window's current size. Considered safe.
                 ///</SecurityNote>
-                [SecurityCritical, SecurityTreatAsSafe]
+                [SecurityCritical] //, SecurityTreatAsSafe]
                 internal Size GetSizeFromHwndInMeasureUnits()
                 {
                     Debug.Assert( IsSourceWindowNull == false , "IsSourceWindowNull can't be true here");
@@ -8018,7 +8018,7 @@ namespace System.Windows
                 ///     Critical as this method accesses critical data and performs an elevation
                 ///     TreatAsSafe - as this method returns the Window's current non client area size. Considered safe.
                 ///</SecurityNote>
-                [SecurityCritical, SecurityTreatAsSafe]
+                [SecurityCritical] //, SecurityTreatAsSafe]
                 internal Size GetHwndNonClientAreaSizeInMeasureUnits()
                 {
                     Debug.Assert( IsSourceWindowNull == false , "IsSourceWindowNull can't be true here");
@@ -8045,7 +8045,7 @@ namespace System.Windows
                 ///     TreatAsSafe - as this function eliminates the top visual of the window if there is one. Considered safe this is
                 ///                          equivalent to making the window have no content.
                 ///</SecurityNote>
-                [SecurityCritical, SecurityTreatAsSafe]
+                [SecurityCritical] //, SecurityTreatAsSafe]
                 internal void ClearRootVisual()
                 {
                     if ( _sourceWindow.RootVisual != null )
@@ -8090,7 +8090,7 @@ namespace System.Windows
                 ///     TreatAsSafe - Does not expose protected values. Panning feedback does not translate
                 ///         totalOverpanOffset 1:1 into a window offset. The value is scaled and clamped.
                 /// </SecurityNote>
-                [SecurityCritical, SecurityTreatAsSafe]
+                [SecurityCritical] //, SecurityTreatAsSafe]
                 internal void UpdatePanningFeedback(Vector totalOverpanOffset, bool animate)
                 {
                     if ((_panningFeedback == null) && (_sourceWindow != null))
@@ -8113,7 +8113,7 @@ namespace System.Windows
                 ///     Critical - Accesses _panningFeedback.
                 ///     TreatAsSafe - Does not expose _panningFeedback. Restores the window to its original position, which is safe.
                 /// </SecurityNote>
-                [SecurityCritical, SecurityTreatAsSafe]
+                [SecurityCritical] //, SecurityTreatAsSafe]
                 internal void EndPanningFeedback(bool animateBack)
                 {
                     if (_panningFeedback != null)

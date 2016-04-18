@@ -45,7 +45,7 @@ namespace System.Windows.Documents
         ///     Critical: This code calls into NlCreateHyphenator, which elevates unmanaged code permission.
         ///     TreatAsSafe: This function call takes no input parameters
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal NaturalLanguageHyphenator()
         {
             try
@@ -87,7 +87,7 @@ namespace System.Windows.Documents
         ///     Critical: This code calls into NlDestroyHyphenator, which elevates unmanaged code permission.
         ///     TreatAsSafe: This function call takes no input memory block
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void CleanupInternal(bool finalizing)
         {
             if (!_disposed && _hyphenatorResource != IntPtr.Zero)
@@ -124,7 +124,7 @@ namespace System.Windows.Documents
         ///     TreatAsSafe: This code accepts a buffer that is length checked and returns
         ///     data that is ok to return.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         public override TextLexicalBreaks AnalyzeText(
             char[]          characterSource,
             int             length,

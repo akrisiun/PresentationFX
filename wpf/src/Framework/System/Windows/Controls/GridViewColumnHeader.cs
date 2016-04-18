@@ -754,7 +754,7 @@ namespace System.Windows.Controls
         /// The Unmanaged code permission is safe because it is used for a safe p-invoke to load a cursor from a file 
         /// (the bytes read are never exposed to the caller)
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private Cursor GetCursor(int cursorID)
         {
             Invariant.Assert(cursorID == c_SPLIT || cursorID == c_SPLITOPEN, "incorrect cursor type");

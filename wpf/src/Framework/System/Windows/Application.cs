@@ -587,7 +587,7 @@ namespace System.Windows
         ///           from a markup file or is implemented from a xaml file.
         ///
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static object LoadComponent(Uri resourceLocator, bool bSkipJournaledProperties)
         {
             //
@@ -1623,7 +1623,7 @@ namespace System.Windows
         /// Critical: Calls IBrowserCallbackServices.UpdateCommands which is critical because it has a SUC
         /// TreatAsSafe: Calling this method is safe because it merely asks IE to synchronize data with us.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void UpdateBrowserCommands()
         {
             EventTrace.EasyTraceEvent(EventTrace.Keyword.KeywordHosting | EventTrace.Keyword.KeywordPerf, EventTrace.Level.Verbose, EventTrace.Event.WpfHost_UpdateBrowserCommandsStart);
@@ -2113,7 +2113,7 @@ namespace System.Windows
         ///</SecurityNote>
         internal static bool IsShuttingDown
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
 
@@ -2224,7 +2224,7 @@ namespace System.Windows
         //          to PreloadedPackages. Also, the package is not going to be handed out from this
         //          API surface and as such will be protected
         // </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static void ApplicationInit()
         {
             _globalLock = new object();
@@ -2315,7 +2315,7 @@ namespace System.Windows
         ///
         ///                  Note: that this event is not currently enabled for browser hosted case ( work that we won't do for v1)
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void EnsureHwndSource()
         {
             // We don't support Activate, Deactivate, and SessionEnding
@@ -2530,7 +2530,7 @@ namespace System.Windows
         ///     Critical:This code calls into GetAppWindow to get RBW
         ///     TreatAsSafe: The window is not exposed.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void ConfigAppWindowAndRootElement(object root, Uri uri)
         {
             Window w = root as Window;
@@ -2570,7 +2570,7 @@ namespace System.Windows
         /// Critical: Calls IBrowserCallbackServices.ChangeDownloadState which is critical
         /// TreatAsSafe: Changing the download state is safe
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void ChangeBrowserDownloadState(bool newState)
         {
             IBrowserCallbackServices ibcs = (IBrowserCallbackServices)this.GetService(typeof(IBrowserCallbackServices));
@@ -2591,7 +2591,7 @@ namespace System.Windows
         /// Critical - Calls critical dllimport methdod PlaySound() and critical method GetSystemSound()
         /// TreatAsSafe - The input string must already exist as a system sound in the registry.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void PlaySound(string soundName)
         {
             string soundFile = GetSystemSound(soundName);

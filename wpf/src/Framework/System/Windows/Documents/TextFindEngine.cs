@@ -588,7 +588,7 @@ namespace System.Windows.Documents
         /// TreatAsSafe - data exposed (user using bidi text) is safe with well known options
         /// </SecurityNote>
         // Dev10:452840 - Fixing method signature to meet TAS security requirements.
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static int FindNLSString(int locale, uint flags, string sourceString, string findString, out int found)
         {
             int matchIndex = UnsafeNativeMethods.FindNLSString(locale, flags,

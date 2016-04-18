@@ -365,7 +365,7 @@ namespace MS.Internal.AppModel
         ///     the previously focused window.
         /// Safe: The handle is not disclosed, and focusing the application's own window (RBW) is okay.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private object _FocusDelegate(object unused)
         {
             if (_rbw.Value != null)
@@ -887,7 +887,7 @@ namespace MS.Internal.AppModel
         ///  1) Doesn't disclose _storageRoot, _container, _packageStream,
         ///     _unmanagedStream
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void Cleanup()
         {
             if (Application.Current != null)
@@ -1133,7 +1133,7 @@ namespace MS.Internal.AppModel
         ///     Critical as this accesses critical data.
         ///     TreatAsSafe - as clearing the RBW is eliminating critical data - and considered safe.
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void ClearRootBrowserWindow()
         {
             RootBrowserWindow = null;

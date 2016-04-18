@@ -120,7 +120,7 @@ namespace MS.Internal.PtsHost
         /// Safe - as the parameters passed in are either generated in this function
         ///        or they are Critical for set.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void GetFigureProperties(
             FigureParaClient paraClient,        // IN:
             int fInTextLine,                    // IN:  it is attached to text line

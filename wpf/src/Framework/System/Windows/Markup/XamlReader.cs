@@ -315,7 +315,7 @@ namespace System.Windows.Markup
                     shouldPassLineNumberInfo = true;
                 }
 
-                bool async = false;
+                bool _async = false;
                 bool lastPropWasSyncMode = false;
                 bool lastPropWasSyncRecords = false;
 
@@ -340,7 +340,7 @@ namespace System.Windows.Markup
                         {
                             if (xamlReader.Value as String == "Async")
                             {
-                                async = true;
+                                _async = true;
                             }
                         }
                         else if (lastPropWasSyncRecords == true)
@@ -361,7 +361,7 @@ namespace System.Windows.Markup
                         lastPropWasSyncRecords = false;
                     }
 
-                    if (async && rootObject != null)
+                    if (_async && rootObject != null)
                         break;
                 }
             }
@@ -896,7 +896,7 @@ namespace System.Windows.Markup
         ///            interface and IStreamInfo.Assembly is set by the ResourceContainer code that is
         ///            SecurityCritical, but treated as safe.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         //[CodeAnalysis("AptcaMethodsShouldOnlyCallAptcaMethods")] //Tracking Bug: 29647
         internal static object LoadBaml(
             Stream stream,

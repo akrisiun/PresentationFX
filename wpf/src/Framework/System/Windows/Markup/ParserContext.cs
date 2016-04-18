@@ -643,7 +643,7 @@ namespace System.Windows.Markup
         ///            implements an internal IStreamInfo interface and IStreamInfo.Assembly is set\
         ///            by the ResourceContainer code that is SecurityCritical, but treated as safe.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal ParserContext ScopedCopy(bool copyNameScopeStack)
         {
             ParserContext context = new ParserContext();

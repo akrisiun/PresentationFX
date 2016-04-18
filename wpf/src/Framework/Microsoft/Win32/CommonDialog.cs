@@ -293,7 +293,7 @@ namespace Microsoft.Win32
         /// <summary>
         ///  Demands permissions appropriate to the dialog to be shown.
         /// </summary>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] // ] // , SecurityTreatAsSafe]
         protected virtual void CheckPermissionsToShowDialog()
         {
             // Verify we're on the right thread.  

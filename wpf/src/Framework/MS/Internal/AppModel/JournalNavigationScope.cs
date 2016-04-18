@@ -191,7 +191,7 @@ namespace MS.Internal.AppModel
         ///   (INavigator is internal). It says 'public' because C# requires methods implementing
         ///   interfaces to be public.
         ///</SecurityNote> 
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         public void GoForward()
         {
             // CanGoForward checks the calling thread and InAppShutdown as well
@@ -218,7 +218,7 @@ namespace MS.Internal.AppModel
         /// Critical - calls RBW.GoBackOverride, which is critical. 
         /// Safe: We validate that you can only go back within your application. 
         ///</SecurityNote> 
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         public void GoBack()
         {
             // CanGoBack checks the calling thread and InAppShutdown as well
@@ -315,7 +315,7 @@ namespace MS.Internal.AppModel
         /// Critical:  causes a navigate
         /// TreatAsSafe:  but only navigates to an existing entry in our journal, which is limited to the app.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal bool NavigateToEntry(int index)
         {
             JournalEntry entry = Journal[index];

@@ -59,7 +59,7 @@ namespace System.Windows.Interop
         ///        has to be.
         ///     2) The additional permission added is to the "fake" site-of-origin used for debugging.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         public override ApplicationTrust DetermineApplicationTrust(Evidence applicationEvidence, Evidence activatorEvidence, TrustManagerContext context)
         {
             EventTrace.EasyTraceEvent(EventTrace.Keyword.KeywordHosting | EventTrace.Keyword.KeywordPerf, EventTrace.Level.Verbose, EventTrace.Event.WpfHost_DetermineApplicationTrustStart);
@@ -204,7 +204,7 @@ namespace System.Windows.Interop
         ///     Critical - because this accesses critical data AppDomain.CurrentDomain.SetupInformation.ActivationArguments.
         ///     Safe - because this does not expose that string.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private bool GetBoolFromActivationData(int index)
         {
             bool flag = false; // default
@@ -225,7 +225,7 @@ namespace System.Windows.Interop
         ///     Critical - because this accesses critical data AppDomain.CurrentDomain.SetupInformation.ActivationArguments.
         ///     Safe - because this does not expose that string.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private Uri GetUriFromActivationData(int index)
         {
             Uri uri = null;
@@ -254,7 +254,7 @@ namespace System.Windows.Interop
         ///     Critical - because this does an elevation to get the ID string.
         ///     Safe - because this does not expose that string.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         public override ObjectHandle CreateInstance(ActivationContext actCtx)
         {
             if (EventTrace.IsEnabled(EventTrace.Keyword.KeywordHosting | EventTrace.Keyword.KeywordPerf, EventTrace.Level.Verbose))
@@ -319,7 +319,7 @@ namespace System.Windows.Interop
         /// <SecurityNote>
         ///    Critical: Initializes Critical data
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         static PresentationAppDomainManager()
         {
             EventTrace.EasyTraceEvent(EventTrace.Keyword.KeywordHosting | EventTrace.Keyword.KeywordPerf, EventTrace.Level.Verbose, EventTrace.Event.WpfHost_AppDomainManagerCctor);

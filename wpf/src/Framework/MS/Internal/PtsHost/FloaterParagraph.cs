@@ -382,7 +382,7 @@ namespace MS.Internal.PtsHost
         /// Safe - as the parameters passed in are either generated in this function
         ///        or they are Critical for set.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal override void FormatFloaterContentBottomless(
             FloaterBaseParaClient paraClient,       // IN:
             int fSuppressTopSpace,              // IN:  suppress empty space at the top of the page

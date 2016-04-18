@@ -51,35 +51,35 @@ namespace MS.Internal.Documents
         [SecurityCritical] // , SecurityTreatAsSafe]        
         internal static void ToggleFindToolBar(Decorator findToolBarHost, EventHandler handlerFindClicked, bool enable)
         {
-        
+
             //    if (enable)
-        //    {
-        //        // Create FindToolBar and attach it to the host.
-        //        //FindToolBar findToolBar = new FindToolBar();
-        //        findToolBarHost.Child = findToolBar;
-        //        findToolBarHost.Visibility = Visibility.Visible;
-        //        KeyboardNavigation.SetTabNavigation(findToolBarHost, KeyboardNavigationMode.Continue);
-        //        FocusManager.SetIsFocusScope(findToolBarHost, true);
+            //    {
+            //        // Create FindToolBar and attach it to the host.
+            //        //FindToolBar findToolBar = new FindToolBar();
+            //        findToolBarHost.Child = findToolBar;
+            //        findToolBarHost.Visibility = Visibility.Visible;
+            //        KeyboardNavigation.SetTabNavigation(findToolBarHost, KeyboardNavigationMode.Continue);
+            //        FocusManager.SetIsFocusScope(findToolBarHost, true);
 
-        //        // Initialize FindToolBar
-        //        findToolBar.SetResourceReference(Control.StyleProperty, FindToolBarStyleKey);
-        //        findToolBar.FindClicked += handlerFindClicked;
-        //        findToolBar.DocumentLoaded = true;
-        //        findToolBar.GoToTextBox();
-        //    }
-        //    else
-        //    {
-        //        // Reset FindToolBar state to its initial state.
-        //        FindToolBar findToolBar = findToolBarHost.Child as FindToolBar;
-        //        findToolBar.FindClicked -= handlerFindClicked;
-        //        findToolBar.DocumentLoaded = false;
+            //        // Initialize FindToolBar
+            //        findToolBar.SetResourceReference(Control.StyleProperty, FindToolBarStyleKey);
+            //        findToolBar.FindClicked += handlerFindClicked;
+            //        findToolBar.DocumentLoaded = true;
+            //        findToolBar.GoToTextBox();
+            //    }
+            //    else
+            //    {
+            //        // Reset FindToolBar state to its initial state.
+            //        FindToolBar findToolBar = findToolBarHost.Child as FindToolBar;
+            //        findToolBar.FindClicked -= handlerFindClicked;
+            //        findToolBar.DocumentLoaded = false;
 
-        //        // Remov FindToolBar form its host.
-        //        findToolBarHost.Child = null;
-        //        findToolBarHost.Visibility = Visibility.Collapsed;
-        //        KeyboardNavigation.SetTabNavigation(findToolBarHost, KeyboardNavigationMode.None);
-        //        findToolBarHost.ClearValue(FocusManager.IsFocusScopeProperty);
-        //    }
+            //        // Remov FindToolBar form its host.
+            //        findToolBarHost.Child = null;
+            //        findToolBarHost.Visibility = Visibility.Collapsed;
+            //        KeyboardNavigation.SetTabNavigation(findToolBarHost, KeyboardNavigationMode.None);
+            //        findToolBarHost.ClearValue(FocusManager.IsFocusScopeProperty);
+            //    }
         }
 
         /// <summary>
@@ -90,18 +90,21 @@ namespace MS.Internal.Documents
         /// Critical: get_SearchUp is defined in a non-APTCA assembly.
         /// TreatAsSafe: method is not intrinsically unsafe; it's safe to call it.
         /// </SecurityNote>
-        
+
         [SecurityCritical] // , SecurityTreatAsSafe]        
         internal static ITextRange Find(object // FindToolBar 
             findToolBar, TextEditor textEditor, ITextView textView, ITextView masterPageTextView)
         {
-            string searchText;
+            return null;
+
+        /*
+            // string searchText;
             FindFlags findFlags;
-            ITextContainer textContainer = null;
-            ITextRange textSelection;
-            ITextPointer contentStart;
-            ITextPointer contentEnd;
-            ITextPointer startPointer = null;
+            //ITextContainer textContainer = null;
+            //ITextRange textSelection;
+            //ITextPointer contentStart;
+            //ITextPointer contentEnd;
+            //ITextPointer startPointer = null;
             ITextRange findResult = null;
 
             Invariant.Assert(findToolBar != null);
@@ -109,6 +112,7 @@ namespace MS.Internal.Documents
 
             // Set up our FindOptions from the options in the Find Toolbar.
             findFlags = FindFlags.None;
+
             //findFlags |= (findToolBar.SearchUp ? FindFlags.FindInReverse : FindFlags.None);
             //findFlags |= (findToolBar.MatchCase ? FindFlags.MatchCase : FindFlags.None);
             //findFlags |= (findToolBar.MatchWholeWord ? FindFlags.FindWholeWordsOnly : FindFlags.None);
@@ -123,7 +127,7 @@ namespace MS.Internal.Documents
             //// Initialize other Find parameters
             //searchText = findToolBar.SearchText;
             CultureInfo cultureInfo = CultureInfo.CurrentCulture;
-                //GetDocumentCultureInfo(textContainer);
+            //GetDocumentCultureInfo(textContainer);
 
             // The find behavior below is defined in section 2.2.3 of this spec:
             // http://d2/DRX/Development%20Documents/02.01.00%20-%20UI%20Design.DocumentViewer.mht
@@ -253,6 +257,7 @@ namespace MS.Internal.Documents
             //}
 
             return null; // findResult;
+            */
         }
 
         /// <summary>
@@ -295,7 +300,7 @@ namespace MS.Internal.Documents
         /// Critical: get_SearchUp is defined in a non-APTCA assembly.
         /// TreatAsSafe: method is not intrinsically unsafe; it's safe to call it.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]        
+        [SecurityCritical] //, SecurityTreatAsSafe]        
         internal static void ShowFindUnsuccessfulMessage(object // FindToolBar 
             findToolBar)
         {
@@ -417,7 +422,7 @@ namespace MS.Internal.Documents
                         ITextPointer contextMenuPosition = null;
                         if (textContainer.TextSelection != null)
                         {
-                            if ((textContainer.TextSelection.IsEmpty || !textContainer.TextSelection.TextEditor.UiScope.IsFocused) && 
+                            if ((textContainer.TextSelection.IsEmpty || !textContainer.TextSelection.TextEditor.UiScope.IsFocused) &&
                                 e.TargetElement is TextElement)
                             {
                                 contextMenuPosition = ((TextElement)e.TargetElement).ContentStart;

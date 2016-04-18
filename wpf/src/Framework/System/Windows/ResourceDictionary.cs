@@ -1306,7 +1306,7 @@ namespace System.Windows
         /// Critical: accesses critical field _reader
         /// Safe: field is safe to read (only critical to write)
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private Type GetTypeOfFirstObject(KeyRecord keyRecord)
         {
             Type rootType = _reader.GetTypeOfFirstStartObject(keyRecord);
@@ -1319,7 +1319,7 @@ namespace System.Windows
         /// Safe: _xamlLoadPermission was set critically, and was demanded when the reader was received
         ///       in DeferrableContent.ctor
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private object CreateObject(KeyRecord key)
         {
             System.Xaml.XamlReader xamlReader = _reader.ReadObject(key);
@@ -2373,7 +2373,7 @@ namespace System.Windows
         /// Critical: accesses critical field _reader
         /// Safe: keeps LoadPermission in [....] by nulling it out as well
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void CloseReader()
         {
             _reader.Close();
@@ -2385,7 +2385,7 @@ namespace System.Windows
         /// Critical: sets critical fields _reader and _xamlLoadPermission.
         /// Safe: copies them from another ResourceDictionary instance, where they were set critically.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void CopyDeferredContentFrom(ResourceDictionary loadedRD)
         {
             _buffer = loadedRD._buffer;

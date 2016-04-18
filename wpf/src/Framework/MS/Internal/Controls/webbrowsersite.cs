@@ -103,7 +103,7 @@ namespace MS.Internal.Controls
         ///     TreatAsSafe - information returned from this method is innocous.
         ///                   lists the set of browser features/options we've enabled. 
         ///</SecurityNote> 
-        [ SecurityCritical, SecurityTreatAsSafe ] 
+        [ SecurityCritical] //, SecurityTreatAsSafe ] 
         int UnsafeNativeMethods.IDocHostUIHandler.GetHostInfo(NativeMethods.DOCHOSTUIINFO info) 
         {
             WebBrowser wb = (WebBrowser) Host;
@@ -197,7 +197,7 @@ namespace MS.Internal.Controls
         ///    Critical: This code access critical member Host.
         ///    TreatAsSafe: The object returned is sandboxed in the managed environment.
         /// </summary>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         int UnsafeNativeMethods.IDocHostUIHandler.GetExternal(out object ppDispatch) 
         {
             WebBrowser wb = (WebBrowser) Host;
@@ -259,7 +259,7 @@ namespace MS.Internal.Controls
         /// WebOCHostedInBrowserProcess: Potential for input spoofing. Currently we handle only the Tab key, 
         ///     which is safe.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         int UnsafeNativeMethods.IOleControlSite.TranslateAccelerator(ref MSG msg, int grfModifiers)
         {
             // Handle tabbing out of the WebOC
@@ -280,7 +280,7 @@ namespace MS.Internal.Controls
         /// Critical: Access the critical Host property.
         /// TAS: Host is not exposed.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void MoveFocusCallback(object direction)
         {
             Host.MoveFocus(new TraversalRequest((FocusNavigationDirection)direction));

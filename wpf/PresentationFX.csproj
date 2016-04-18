@@ -1370,8 +1370,6 @@
     <None Include="35MSSharedLib1024.snk" />
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Test\Common\FxCop\Suppression\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

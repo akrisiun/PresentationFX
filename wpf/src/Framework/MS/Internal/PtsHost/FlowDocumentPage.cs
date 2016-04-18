@@ -424,7 +424,7 @@ namespace MS.Internal.PtsHost
         /// Safe - as this can't be be used to pass arbitrary parameters.  All parameters passed
         ///        in are either Critical for set or are generated within the function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal ReadOnlyCollection<ColumnResult> GetColumnResults(out bool hasTextContent)
         {
             Invariant.Assert(!IsDisposed);

@@ -331,7 +331,7 @@ namespace System.Windows
         ///     Critical - Accesses the PresentationSource
         ///     TreatAsSafe - Does not expose any part of the PresentationSource to user input.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static bool ShouldRunStateStoryboard(FrameworkElement control, FrameworkElement stateGroupsRoot, VisualState state, VisualStateGroup group)
         {
             bool controlInTree = true;

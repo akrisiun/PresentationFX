@@ -52,7 +52,7 @@ namespace MS.Internal.Ink
         ///     TreatAsSafe: The method is safe because only safe arguments are passed to CreateCursorFromDrawing
         ///                  Also the size of the cursor will be limited to the half size of the current primary screen.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static Cursor GetPenCursor(DrawingAttributes drawingAttributes, bool isHollow, bool isRightToLeft)
         {
             // Create pen Drawing.
@@ -115,7 +115,7 @@ namespace MS.Internal.Ink
         ///     TreatAsSafe: The method is safe because there is no input parameter.
         ///                  The erase cursor is created internally which is safe.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static Cursor GetStrokeEraserCursor()
         {
             if ( s_StrokeEraserCursor == null )

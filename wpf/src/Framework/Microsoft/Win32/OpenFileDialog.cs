@@ -336,7 +336,7 @@ namespace Microsoft.Win32
         ///     The alternative would be to not call the base method, but it currently
         ///     does additional validation we don't want to bypass.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //] // , SecurityTreatAsSafe]
         protected override void CheckPermissionsToShowDialog()
         {
             SecurityHelper.DemandFileDialogOpenPermission();
@@ -469,7 +469,7 @@ namespace Microsoft.Win32
         ///     TreatAsSafe, as it returns the managed COM interface, and not a handle.
         ///     Calls on the interface will still be treated with security scrutiny.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] // ] // , SecurityTreatAsSafe]
         internal override IFileDialog CreateVistaDialog()
         {
             new SecurityPermission(PermissionState.Unrestricted).Assert();

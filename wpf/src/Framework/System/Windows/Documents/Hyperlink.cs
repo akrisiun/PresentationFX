@@ -348,7 +348,7 @@ namespace System.Windows.Documents
         /// Critical: Implements part of the anti-spoofing feature.
         /// TreatAsSafe: This method changes no state and returns no protected info.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static object CoerceNavigateUri(DependencyObject d, object value)
         {
             //
@@ -582,7 +582,7 @@ namespace System.Windows.Documents
         ///     TreatAsSafe - Navigation is considered safe; if the target is a browser window the UserInitiatedNavigationPermission will be demanded.
         ///                   Only if navigation took place, the anti-spoofing cache will be cleared.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static void NavigateToUri(IInputElement sourceElement, Uri targetUri, string targetWindow)
         {
             Debug.Assert(targetUri != null);
@@ -976,7 +976,7 @@ namespace System.Windows.Documents
         ///                and event handlers that are critical because of the risk for replay attacks.
         ///     TreatAsSafe - We're hooking up event handlers for trusted events from the input system.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static void SetUpNavigationEventHandlers(IInputElement element)
         {
             //
@@ -1182,7 +1182,7 @@ namespace System.Windows.Documents
         ///     Critical - Sets the cached URI that prevents spoofing attacks.
         ///     TreatAsSafe - We don't prevent spoofing in non user-initiated scenarios.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static void DoNonUserInitiatedNavigation(object sender)
         {
             CacheNavigateUri((DependencyObject)sender, null);

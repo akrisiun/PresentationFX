@@ -53,7 +53,7 @@ namespace System.Windows.Documents
         /// TreatAsSafe - Shift+Insert is the correct key binding, and therefore is
         ///               expected by the user.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static void _RegisterClassHandlers(Type controlType, bool acceptsRichContent, bool readOnly, bool registerEventListeners)
         {
             CommandHelpers.RegisterCommandHandler(controlType, ApplicationCommands.Copy, new ExecutedRoutedEventHandler(OnCopy), new CanExecuteRoutedEventHandler(OnQueryStatusCopy), KeyGesture.CreateFromResourceStrings(
@@ -474,7 +474,7 @@ namespace System.Windows.Documents
         /// Critical:To disable paste in partial trust case,
         /// TreatAsSafe: this function checks if the current call stack has the all clipboard permission.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static void Paste(TextEditor This)
         {
             // Don't try anything if the caller doesn't have the rights to read from the clipboard...
@@ -635,7 +635,7 @@ namespace System.Windows.Documents
         /// TreatAsSafe - The bit is protected by the UserIniatedRoutedEvent permission and
         ///               the content being set is based on the active selection.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static void OnCut(object target, ExecutedRoutedEventArgs args)
         {
             TextEditor This = TextEditor._GetTextEditor(target);
@@ -688,7 +688,7 @@ namespace System.Windows.Documents
         /// TreatAsSafe - The bit is protected by the UserIniatedRoutedEvent permission and
         ///               the content being set is based on the active selection.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static void OnCopy(object target, ExecutedRoutedEventArgs args)
         {
             TextEditor This = TextEditor._GetTextEditor(target);
@@ -846,7 +846,7 @@ namespace System.Windows.Documents
         /// TreatAsSafe: In partial trust we revert to DataFormats.UnicodeText or DataFormats.Text
         ///              format and hence the risk is mitigated of having Rtf paste enabled
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static bool PasteContentData(TextEditor This, IDataObject dataObject, IDataObject dataObjectToApply, string formatToApply)
         {
             // CF_BITMAP - pasting a single image.

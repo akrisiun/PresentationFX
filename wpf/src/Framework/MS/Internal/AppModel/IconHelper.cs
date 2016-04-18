@@ -43,7 +43,7 @@ namespace MS.Internal.AppModel
         ///     Critical:       Calls GetDC, ReleaseDC and GetDeviceCaps that are marked SecurityCritical
         ///     TreatAsSafe:    These set local static fields that aren't directly exposed outside this class.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static void EnsureSystemMetrics()
         {
             if (s_systemBitDepth == 0)
@@ -87,7 +87,7 @@ namespace MS.Internal.AppModel
         /// TreatAsSafe: There is a demand here
         /// </SecurityNote>
         /// <returns></returns>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         public static void GetDefaultIconHandles(out NativeMethods.IconHandle largeIconHandle, out NativeMethods.IconHandle smallIconHandle)
         {
             largeIconHandle = null;
@@ -106,7 +106,7 @@ namespace MS.Internal.AppModel
         ///     Critical: Since it calls CreateIconHandleFromImageSource
         ///     TAS:      Since it creates icons with known h/w i.e. IconWidth/Height or SmallIconWidth/Height
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         public static void GetIconHandlesFromImageSource(ImageSource image, out NativeMethods.IconHandle largeIconHandle, out NativeMethods.IconHandle smallIconHandle)
         {
             EnsureSystemMetrics();

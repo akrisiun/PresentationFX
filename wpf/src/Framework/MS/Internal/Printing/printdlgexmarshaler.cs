@@ -212,7 +212,7 @@ namespace MS.Internal.Printing
             ///     Critical     - Accesses unmanaged critical pointer
             ///     TreatAsSafe  - Its only freeing the memory and nothing leaves this method.
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             private
             void
             Dispose(
@@ -790,7 +790,7 @@ namespace MS.Internal.Printing
             ///     Critical:    - Marshal.SizeOf LinkDemands
             ///     TreatAsSafe: - This method returns nothing that is unsafe.
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             private
             bool
             Is64Bit()

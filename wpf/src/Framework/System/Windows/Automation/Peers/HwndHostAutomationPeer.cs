@@ -34,7 +34,7 @@ namespace System.Windows.Automation.Peers
         ///     Critical    - Calls critical HwndHost.CriticalHandle.
         ///     TreatAsSafe - Critical data is used internally and not explosed
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         override internal InteropAutomationProvider GetInteropChild()
         {
             if (_interopProvider == null)

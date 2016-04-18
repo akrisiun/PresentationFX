@@ -966,7 +966,7 @@ namespace System.Windows.Documents
         ///        and show it for Win32 caret to handle the accesibility event well without 
         ///        exposing the information. 
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void Win32CreateCaret()
         {
             if (!_isSelectionActive)
@@ -1075,7 +1075,7 @@ namespace System.Windows.Documents
         /// Safe - as doesn't expose the data obtained and it uses the data to render the
         ///        caret.  This is safe as the caller can't render it on a random location.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void Win32SetCaretPos()
         {
             if (!_isSelectionActive)

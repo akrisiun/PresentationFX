@@ -83,7 +83,7 @@ namespace MS.Win32
         ///                      Does not contain a path - considered safe. 
         ///</SecurityNote>
 
-        // [SecurityCritical, SecurityTreatAsSafe]
+        // [SecurityCritical] //, SecurityTreatAsSafe]
         // private
         static void EnsureThemeName()
         {

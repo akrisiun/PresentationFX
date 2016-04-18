@@ -162,7 +162,7 @@ using MS.Internal.Permissions;
         /// Critical: This code throws an exception if someone sets value to be true and we are in partial trust
         /// TreatAsSafe: The only reason we mark this as critical is to track code
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static void ThrowExceptionIfSettingTrueInPartialTrust(ref bool value)
         {
             if (value == true && !SecurityHelper.CheckUnmanagedCodePermission())
@@ -1163,7 +1163,7 @@ using MS.Internal.Permissions;
         ///     TreatAsSafe - The MessageBox API takes a static strings and known enums as input.  There is nothing
         ///                   unsafe with the dialog and it is not spoofable from Avalon as it is a Win32 window.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal
         static
         void
@@ -1203,7 +1203,7 @@ using MS.Internal.Permissions;
         ///     TreatAsSafe - The MessageBox API takes a static strings and known enums as input.  There is nothing
         ///                   unsafe with the dialog and it is not spoofable from Avalon as it is a Win32 window.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal
         static
         void

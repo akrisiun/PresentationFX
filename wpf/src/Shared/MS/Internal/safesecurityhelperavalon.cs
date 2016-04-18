@@ -49,7 +49,7 @@ namespace MS.Internal.Drt
         /// Critical - extracts presentationsource
         /// TreatAsSafe - Knowing whether you're connected to presentation source is ok. 
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe] 
+        [SecurityCritical] //, SecurityTreatAsSafe] 
         internal static bool IsConnectedToPresentationSource( Visual visual ) 
         {
             bool isConnected = false; 

@@ -67,7 +67,7 @@ namespace MS.Internal.PtsHost
         ///        The textdetails parameter passed to RenderSimpleLines and RenderCompositeLines
         ///        is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal override void ValidateVisual(PTS.FSKUPDATE fskupdInherited)
         {
             // Query paragraph details and render its content
@@ -170,7 +170,7 @@ namespace MS.Internal.PtsHost
         ///        The textdetails parameter passed to UpdateViewportSimpleLines, PtsHelper.FloaterListFromParagraph,
         ///        PtsHelper.FigureListFromParagraph and IsDeferredVisualCreationSupported is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal override void UpdateViewport(ref PTS.FSRECT viewport)
         {
             // Here's where the magic happens.
@@ -222,7 +222,7 @@ namespace MS.Internal.PtsHost
         ///        which ensures that partial trust code won't be able to set it to a random value.
         ///        The textdetails parameter passed to other methods is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal override IInputElement InputHitTest(PTS.FSPOINT pt)
         {
             IInputElement ie = null;
@@ -291,7 +291,7 @@ namespace MS.Internal.PtsHost
         ///        which ensures that partial trust code won't be able to set it to a random value.
         ///        The textdetails parameter passed to other methods is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal override List<Rect> GetRectangles(ContentElement e, int start, int length)
         {
             List<Rect> rectangles = new List<Rect>();
@@ -390,7 +390,7 @@ namespace MS.Internal.PtsHost
         ///        The textdetails parameter passed to LineResultsFromSimpleLines and
         ///        LineResultsFromCompositeLines is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal ReadOnlyCollection<LineResult> GetLineResults()
         {
 #if TEXTPANELLAYOUTDEBUG
@@ -442,7 +442,7 @@ namespace MS.Internal.PtsHost
         ///        which ensures that partial trust code won't be able to set it to a random value.
         ///        The textdetails parameter passed to other methods is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal ReadOnlyCollection<ParagraphResult> GetFloaters()
         {
             List<ParagraphResult> floaters = null;
@@ -487,7 +487,7 @@ namespace MS.Internal.PtsHost
         ///        which ensures that partial trust code won't be able to set it to a random value.
         ///        The textdetails parameter passed to other methods is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal ReadOnlyCollection<ParagraphResult> GetFigures()
         {
             List<ParagraphResult> figures = null;
@@ -531,7 +531,7 @@ namespace MS.Internal.PtsHost
         ///        which ensures that partial trust code won't be able to set it to a random value.
         ///        The textdetails parameter passed to other methods is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal override TextContentRange GetTextContentRange()
         {
             PTS.FSTEXTDETAILS textDetails;
@@ -598,7 +598,7 @@ namespace MS.Internal.PtsHost
         ///        which ensures that partial trust code won't be able to set it to a random value.
         ///        The textdetails parameter passed to other methods is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void GetLineDetails(int dcpLine, out int cchContent, out int cchEllipses)
         {
             // Query paragraph details
@@ -721,7 +721,7 @@ namespace MS.Internal.PtsHost
         ///        which ensures that partial trust code won't be able to set it to a random value.
         ///        The textdetails parameter passed to other methods is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal override int GetFirstTextLineBaseline()
         {
             // Query paragraph details
@@ -774,7 +774,7 @@ namespace MS.Internal.PtsHost
         ///        The textdetails parameter passed to RectFromDcpSimpleLines and
         ///        RectFromDcpCompositeLines is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal Rect GetRectangleFromTextPosition(ITextPointer position)
         {
             Rect rect = System.Windows.Rect.Empty;
@@ -843,7 +843,7 @@ namespace MS.Internal.PtsHost
         ///        The textdetails parameter passed to RectFromDcpSimpleLines and
         ///        RectFromDcpCompositeLines is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal Geometry GetTightBoundingGeometryFromTextPositions(ITextPointer startPosition, ITextPointer endPosition, double paragraphTopSpace, Rect visibleRect)
         {
             Geometry geometry = null;
@@ -942,7 +942,7 @@ namespace MS.Internal.PtsHost
         ///        The textdetails parameter passed to IsAtCaretUnitBoundaryFromDcpSimpleLines and
         ///        IsAtCaretUnitBoundaryFromDcpCompositeLines is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal bool IsAtCaretUnitBoundary(ITextPointer position)
         {
             bool isAtCaretUnitBoundary = false;
@@ -1002,7 +1002,7 @@ namespace MS.Internal.PtsHost
         ///        The textdetails parameter passed to the other two Critical functions is
         ///        generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal ITextPointer GetNextCaretUnitPosition(ITextPointer position, LogicalDirection direction)
         {
             ITextPointer nextCaretPosition = position;
@@ -1055,7 +1055,7 @@ namespace MS.Internal.PtsHost
         ///        The textdetails parameter passed to BackspaceCaretUnitPositionFromDcpSimpleLines and
         ///        BackspaceCaretUnitPositionFromDcpCompositeLines is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal ITextPointer GetBackspaceCaretUnitPosition(ITextPointer position)
         {
             ITextPointer backspaceCaretPosition = position;
@@ -1117,7 +1117,7 @@ namespace MS.Internal.PtsHost
         ///        which ensures that partial trust code won't be able to set it to a random value.
         ///        The textdetails parameter passed to other methods is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal ITextPointer GetTextPositionFromDistance(int dcpLine, double distance)
         {
             // Query paragraph details
@@ -1264,7 +1264,7 @@ namespace MS.Internal.PtsHost
         ///        The textdetails parameter passed to GetGlyphRunsFromSimpleLines and
         ///        GetGlyphRunsFromCompositeLines is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void GetGlyphRuns(List<GlyphRun> glyphRuns, ITextPointer start, ITextPointer end)
         {
             // Query paragraph details
@@ -1336,7 +1336,7 @@ namespace MS.Internal.PtsHost
         /// </SecurityNote>
         internal override bool IsFirstChunk
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 // Query paragraph details
@@ -1358,7 +1358,7 @@ namespace MS.Internal.PtsHost
         /// </SecurityNote>
         internal override bool IsLastChunk
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 bool lastChunk = false;
@@ -1407,7 +1407,7 @@ namespace MS.Internal.PtsHost
         ///        which ensures that partial trust code won't be able to set it to a random value.
         ///        The textdetails parameter passed to other methods is generated securely in this function.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         protected override void OnArrange()
         {
             base.OnArrange();
@@ -3808,7 +3808,7 @@ namespace MS.Internal.PtsHost
         ///        because of the way it's used inside PtsHelper.LineListSimpleFromTextPara. It's only
         //         used to create an array of size textDetails.cLines.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void VerifyVisuals(ref PTS.FSTEXTDETAILSFULL textDetails)
         {
             ContainerVisual lineContainerVisual = _visual;
@@ -4015,7 +4015,7 @@ namespace MS.Internal.PtsHost
         /// Critical - as this calls some Critical PtsHelper functions.
         /// Safe - as the IntPtr parameters passed in are Critical for set.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void ValidateVisualFloatersAndFigures(
             PTS.FSKUPDATE fskupdInherited,
             int cAttachedObjects)

@@ -50,7 +50,7 @@ namespace MS.Internal.PtsHost
         /// Critical - as this invokes the constructor for SecurityCriticalDataForSet.
         /// Safe - as this just initializes to zero.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         protected BaseParaClient(BaseParagraph paragraph) : base(paragraph.PtsContext)
         {
             _paraHandle = new SecurityCriticalDataForSet<IntPtr>(IntPtr.Zero);

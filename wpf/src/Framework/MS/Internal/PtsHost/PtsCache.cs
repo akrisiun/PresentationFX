@@ -158,7 +158,7 @@ namespace MS.Internal.PtsHost
 
 
 
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private PtsCache(Dispatcher dispatcher)
         {
 
@@ -205,7 +205,7 @@ namespace MS.Internal.PtsHost
 
 
 
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private PtsHost AcquireContextCore(PtsContext ptsContext, TextFormattingMode textFormattingMode)
         {
             int index;
@@ -357,7 +357,7 @@ namespace MS.Internal.PtsHost
 
 
 
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void DestroyPTSContexts()
         {
 
@@ -423,7 +423,7 @@ namespace MS.Internal.PtsHost
 
 
 
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void OnPtsContextReleased(bool cleanContextPool)
         {
             int index;
@@ -925,7 +925,7 @@ namespace MS.Internal.PtsHost
 
 
 
-            [SecurityCritical,SecurityTreatAsSafe]
+            [SecurityCritical] //,SecurityTreatAsSafe]
             public PtsCacheShutDownListener(PtsCache target) : base(target)
             {
             }

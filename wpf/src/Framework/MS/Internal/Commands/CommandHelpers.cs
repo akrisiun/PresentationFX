@@ -153,7 +153,7 @@ namespace MS.Internal.Commands
         ///     Critical - calls critical function (ExecuteCommandSource)
         ///     TreatAsSafe - always passes in false for userInitiated, which is safe
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static void ExecuteCommandSource(ICommandSource commandSource)
         {
             CriticalExecuteCommandSource(commandSource, false);

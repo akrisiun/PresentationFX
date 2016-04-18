@@ -68,7 +68,7 @@ namespace System.Windows.Documents
         /// percolating
         /// TreatAsSafe: Ok to expose
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         static ImmComposition()
         {
         }
@@ -132,7 +132,7 @@ namespace System.Windows.Documents
         ///   Critical: This code removes the handler for OnSourceChanged which is critical
         ///   TreatAsSafe:Removing the handler is a safe operation
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void OnDetach()
         {
             if (_editor != null)
@@ -152,7 +152,7 @@ namespace System.Windows.Documents
         ///    TreatAsSafe: Calling this is safe. Since this does not expose the presentation source. Also the
         ///                 handler that is attached is private and critical
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void OnGotFocus(TextEditor editor)
         {
             if (editor == _editor)
@@ -223,7 +223,7 @@ namespace System.Windows.Documents
         ///               causes someone's current input to commit. No additional
         ///               spoofing or information disclosure could occur.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void CompleteComposition()
         {
             UnregisterMouseListeners();
@@ -816,7 +816,7 @@ namespace System.Windows.Documents
         /// Critical - elevates to access protected resources (hwnd)
         /// TreatAsSafe - positions the composition window, which is safe to do
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void UpdateNearCaretCompositionWindow()
         {
             ITextView view;
@@ -934,7 +934,7 @@ namespace System.Windows.Documents
         /// Critical - unparents the composition window visually
         /// TreatAsSafe - while a DOS, this doesn't present any specific security threat.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void OnHwndDisposed(object sender, EventArgs args)
         {
             UpdateSource(_source, null);
@@ -1104,7 +1104,7 @@ namespace System.Windows.Documents
         /// Critical - calls critical (TextCompositionManager) code.
         /// TreatAsSafe - doesn't accept or return critical information.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private bool RaiseTextInputStartEvent(FrameworkTextComposition composition, int resultLength, string compositionString)
         {
             composition.Stage = TextCompositionStage.None;
@@ -1139,7 +1139,7 @@ namespace System.Windows.Documents
         /// Critical - calls critical (TextCompositionManager) code.
         /// TreatAsSafe - doesn't accept or return critical information.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private bool RaiseTextInputUpdateEvent(FrameworkTextComposition composition, int resultLength, string compositionString)
         {
             composition.Stage = TextCompositionStage.Started;
@@ -1172,7 +1172,7 @@ namespace System.Windows.Documents
         /// Critical - calls critical (TextCompositionManager) code.
         /// TreatAsSafe - doesn't accept or return critical information.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private bool RaiseTextInputEvent(FrameworkTextComposition composition, string compositionString)
         {
             composition.Stage = TextCompositionStage.Started;
@@ -1746,7 +1746,7 @@ namespace System.Windows.Documents
         /// TreatAsSafe - the return value says only if IME is near caret Chinese IME.
         ///               exposing this information is safe.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private bool IsReadingWindowIme()
         {
             int prop = UnsafeNativeMethods.ImmGetProperty(new HandleRef(this, SafeNativeMethods.GetKeyboardLayout(0)), NativeMethods.IGP_PROPERTY);
@@ -1761,7 +1761,7 @@ namespace System.Windows.Documents
         /// TreatAsSafe - the mouse input here is ignored, but rather the mouse
         ///               is directly queried, so there is no spoofing possibility
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void OnMouseButtonEvent(object sender, MouseButtonEventArgs e)
         {
             e.Handled = InternalMouseEventHandler();
@@ -1775,7 +1775,7 @@ namespace System.Windows.Documents
         /// TreatAsSafe - the mouse input here is ignored, but rather the mouse
         ///               is directly queried, so there is no spoofing possibility
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void OnMouseEvent(object sender, MouseEventArgs e)
         {
             e.Handled = InternalMouseEventHandler();

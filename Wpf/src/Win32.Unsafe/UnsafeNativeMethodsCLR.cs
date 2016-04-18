@@ -20,13 +20,13 @@ namespace MS.Win32
     using System.ComponentModel;
     using MS.Internal.Interop;
 
- // DRTs cannot access MS.Internal
+    // DRTs cannot access MS.Internal
 #if !DRT
     using HR = MS.Internal.Interop.HRESULT;
 #endif
 
- //The SecurityHelper class differs between assemblies and could not actually be
- // shared, so it is duplicated across namespaces to prevent name collision.
+    //The SecurityHelper class differs between assemblies and could not actually be
+    // shared, so it is duplicated across namespaces to prevent name collision.
 #if WINDOWS_BASE
     using MS.Internal.WindowsBase;
 #elif PRESENTATION_CORE
@@ -44,13 +44,16 @@ namespace MS.Win32
     using NativeMethodsSetLastError = MS.Internal.WindowsBase.NativeMethodsSetLastError;
 
     // 
-    internal partial class UnsafeNativeMethodsX {
+    internal partial class UnsafeNativeMethodsX
+    {
 
-        private struct POINTSTRUCT {
+        private struct POINTSTRUCT
+        {
             public int x;
             public int y;
 
-            public POINTSTRUCT(int x, int y) {
+            public POINTSTRUCT(int x, int y)
+            {
                 this.x = x;
                 this.y = y;
             }
@@ -62,7 +65,8 @@ namespace MS.Win32
         ///               get to data that a pointer points to which can lead to easier data reading.
         /// </SecurityNote>
         [SecurityCritical]
-        public static object PtrToStructure(IntPtr lparam, Type cls) {
+        public static object PtrToStructure(IntPtr lparam, Type cls)
+        {
             return Marshal.PtrToStructure(lparam, cls);
         }
 
@@ -203,7 +207,7 @@ namespace MS.Win32
         /// <SecurityNote>
         ///     Critical: This code escalates to unmanaged code permission
         /// </SecurityNote>
-        [SecurityCritical,SuppressUnmanagedCodeSecurity]
+        [SecurityCritical, SuppressUnmanagedCodeSecurity]
         [DllImport(ExternDll.User32, ExactSpelling = true, CharSet = System.Runtime.InteropServices.CharSet.Auto)]
         public static extern bool ShowWindow(HandleRef hWnd, int nCmdShow);
 
@@ -232,7 +236,7 @@ namespace MS.Win32
             bool result = IntDeleteObject(hObject);
             int error = Marshal.GetLastWin32Error();
 
-            if(!result)
+            if (!result)
             {
                 Debug.WriteLine("DeleteObject failed.  Error = " + error);
             }
@@ -245,7 +249,7 @@ namespace MS.Win32
         ///     Critical: This code escalates to unmanaged code permission
         /// </SecurityNote>
         [SuppressUnmanagedCodeSecurity, SecurityCritical]
-        [DllImport(ExternDll.Gdi32, SetLastError=true, ExactSpelling = true, EntryPoint="DeleteObject", CharSet=System.Runtime.InteropServices.CharSet.Auto)]
+        [DllImport(ExternDll.Gdi32, SetLastError = true, ExactSpelling = true, EntryPoint = "DeleteObject", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
         public static extern bool IntDeleteObject(HandleRef hObject);
 
 
@@ -263,7 +267,7 @@ namespace MS.Win32
         ///     Critical: This code escalates to unmanaged code permission
         /// </SecurityNote>
         [SuppressUnmanagedCodeSecurity, SecurityCritical]
-        [DllImport(ExternDll.Gdi32, EntryPoint="SelectObject", SetLastError = true, ExactSpelling = true, CharSet = CharSet.Auto)]
+        [DllImport(ExternDll.Gdi32, EntryPoint = "SelectObject", SetLastError = true, ExactSpelling = true, CharSet = CharSet.Auto)]
         public static extern IntPtr CriticalSelectObject(HandleRef hdc, IntPtr obj);
 
         [DllImport(ExternDll.User32, CharSet = System.Runtime.InteropServices.CharSet.Auto, BestFitMapping = false, SetLastError = true)]
@@ -285,7 +289,7 @@ namespace MS.Win32
         /// </SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, EntryPoint="PrintWindow", SetLastError = true, ExactSpelling = true, CharSet = System.Runtime.InteropServices.CharSet.Auto)]
+        [DllImport(ExternDll.User32, EntryPoint = "PrintWindow", SetLastError = true, ExactSpelling = true, CharSet = System.Runtime.InteropServices.CharSet.Auto)]
         public static extern bool CriticalPrintWindow(HandleRef hWnd, HandleRef hDC, int flags);
 
         /// <SecurityNote>
@@ -293,20 +297,20 @@ namespace MS.Win32
         /// </SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, EntryPoint="RedrawWindow", ExactSpelling = true, CharSet = System.Runtime.InteropServices.CharSet.Auto)]
+        [DllImport(ExternDll.User32, EntryPoint = "RedrawWindow", ExactSpelling = true, CharSet = System.Runtime.InteropServices.CharSet.Auto)]
         public static extern bool CriticalRedrawWindow(HandleRef hWnd, IntPtr lprcUpdate, IntPtr hrgnUpdate, int flags);
 
-        [DllImport(ExternDll.Shell32, CharSet=CharSet.Auto, BestFitMapping = false)]
+        [DllImport(ExternDll.Shell32, CharSet = CharSet.Auto, BestFitMapping = false)]
         public static extern int DragQueryFile(HandleRef hDrop, int iFile, StringBuilder lpszFile, int cch);
 
         ///<SecurityNote>
         ///     Critical - elevates via a SUC.
         ///</SecurityNote>
         [SuppressUnmanagedCodeSecurity, SecurityCritical]
-        [DllImport(ExternDll.Shell32, CharSet=CharSet.Auto, BestFitMapping = false)]
+        [DllImport(ExternDll.Shell32, CharSet = CharSet.Auto, BestFitMapping = false)]
         public static extern IntPtr ShellExecute(HandleRef hwnd, string lpOperation, string lpFile, string lpParameters, string lpDirectory, int nShowCmd);
 
-	    [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
         internal class ShellExecuteInfo
         {
             public int cbSize;
@@ -330,7 +334,7 @@ namespace MS.Win32
         internal enum ShellExecuteFlags
         {
             SEE_MASK_CLASSNAME = 0x00000001,
-            SEE_MASK_CLASSKEY =  0x00000003,
+            SEE_MASK_CLASSKEY = 0x00000003,
             SEE_MASK_NOCLOSEPROCESS = 0x00000040,
             SEE_MASK_FLAG_DDEWAIT = 0x00000100,
             SEE_MASK_DOENVSUBST = 0x00000200,
@@ -351,29 +355,29 @@ namespace MS.Win32
         [DllImport(ExternDll.Shell32, CharSet = CharSet.Unicode, SetLastError = true)]
         internal static extern bool ShellExecuteEx([In, Out] ShellExecuteInfo lpExecInfo);
 
-        public const int MB_PRECOMPOSED            = 0x00000001;
-        public const int MB_COMPOSITE              = 0x00000002;
-        public const int MB_USEGLYPHCHARS          = 0x00000004;
-        public const int MB_ERR_INVALID_CHARS      = 0x00000008;
+        public const int MB_PRECOMPOSED = 0x00000001;
+        public const int MB_COMPOSITE = 0x00000002;
+        public const int MB_USEGLYPHCHARS = 0x00000004;
+        public const int MB_ERR_INVALID_CHARS = 0x00000008;
         ///<SecurityNote>
         ///     Critical - elevates via a SUC.
         ///</SecurityNote>
         [SuppressUnmanagedCodeSecurity, SecurityCritical]
-        [DllImport(ExternDll.Kernel32, ExactSpelling=true, CharSet=CharSet.Unicode, SetLastError=true)]
+        [DllImport(ExternDll.Kernel32, ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = true)]
         public static extern int MultiByteToWideChar(int CodePage, int dwFlags, byte[] lpMultiByteStr, int cchMultiByte, [Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpWideCharStr, int cchWideChar);
         ///<SecurityNote>
         ///     Critical - elevates (via SuppressUnmanagedCodeSecurity).
         ///</SecurityNote>
         [SuppressUnmanagedCodeSecurity, SecurityCritical]
         [DllImport(ExternDll.Kernel32, SetLastError = true, ExactSpelling = true, CharSet = CharSet.Unicode)]
-        public static extern int WideCharToMultiByte(int codePage, int flags, [MarshalAs(UnmanagedType.LPWStr)]string wideStr, int chars, [In,Out]byte[] pOutBytes, int bufferBytes, IntPtr defaultChar, IntPtr pDefaultUsed);
+        public static extern int WideCharToMultiByte(int codePage, int flags, [MarshalAs(UnmanagedType.LPWStr)]string wideStr, int chars, [In, Out]byte[] pOutBytes, int bufferBytes, IntPtr defaultChar, IntPtr pDefaultUsed);
 
         ///<SecurityNote>
         ///  Critical as this code performs an elevation.
         ///</SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.Kernel32, ExactSpelling=true, EntryPoint="RtlMoveMemory", CharSet=CharSet.Unicode)]
+        [DllImport(ExternDll.Kernel32, ExactSpelling = true, EntryPoint = "RtlMoveMemory", CharSet = CharSet.Unicode)]
         public static extern void CopyMemoryW(IntPtr pdst, string psrc, int cb);
         ///<SecurityNote>
         ///  Critical as this code performs an elevation.
@@ -387,7 +391,7 @@ namespace MS.Win32
         ///</SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.Kernel32, ExactSpelling=true, EntryPoint="RtlMoveMemory")]
+        [DllImport(ExternDll.Kernel32, ExactSpelling = true, EntryPoint = "RtlMoveMemory")]
         public static extern void CopyMemory(IntPtr pdst, byte[] psrc, int cb);
 
 #if BASE_NATIVEMETHODS
@@ -419,7 +423,7 @@ namespace MS.Win32
         ///     Critical: This code elevates to unmanaged code permission
         /// </SecurityNote>
         [SecurityCritical, SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.Kernel32, EntryPoint = "GetModuleFileName", CharSet=CharSet.Unicode, SetLastError = true)]
+        [DllImport(ExternDll.Kernel32, EntryPoint = "GetModuleFileName", CharSet = CharSet.Unicode, SetLastError = true)]
         private static extern int IntGetModuleFileName(HandleRef hModule, StringBuilder buffer, int length);
 
         /// <SecurityNote>
@@ -495,7 +499,7 @@ namespace MS.Win32
         }
 #endif
 
-	    ///<SecurityNote>
+        ///<SecurityNote>
         ///     Critical - This code elevates to unmanaged code.
         ///</SecurityNote>
         [SuppressUnmanagedCodeSecurity, SecurityCritical]
@@ -514,7 +518,7 @@ namespace MS.Win32
         ///</SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.Ole32, EntryPoint="OleInitialize")]
+        [DllImport(ExternDll.Ole32, EntryPoint = "OleInitialize")]
         private static extern int IntOleInitialize(IntPtr val);
 
         [SecurityCritical]
@@ -531,17 +535,17 @@ namespace MS.Win32
         public static extern int CoRegisterPSClsid(ref Guid riid, ref Guid rclsid);
 
 
-        [DllImport(ExternDll.User32, ExactSpelling=true, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.User32, ExactSpelling = true, CharSet = CharSet.Auto)]
         public extern static bool EnumThreadWindows(int dwThreadId, NativeMethods.EnumThreadWindowsCallback lpfn, HandleRef lParam);
 
         /// <SecurityNote>
         ///    Critical: This code calls into unmanaged code which elevates
         /// </SecurityNote>
         [SecurityCritical, SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.Ole32, ExactSpelling=true, CharSet=CharSet.Auto, SetLastError=true)]
+        [DllImport(ExternDll.Ole32, ExactSpelling = true, CharSet = CharSet.Auto, SetLastError = true)]
         public static extern int OleUninitialize();
 
-        [DllImport(ExternDll.Kernel32, EntryPoint="CloseHandle", CharSet=CharSet.Auto, SetLastError=true)]
+        [DllImport(ExternDll.Kernel32, EntryPoint = "CloseHandle", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern bool IntCloseHandle(HandleRef handle);
 
         ///<SecurityNote>
@@ -555,7 +559,7 @@ namespace MS.Win32
             bool result = IntCloseHandle(handle);
             int error = Marshal.GetLastWin32Error();
 
-            if(!result)
+            if (!result)
             {
                 Debug.WriteLine("CloseHandle failed.  Error = " + error);
             }
@@ -589,7 +593,7 @@ namespace MS.Win32
         /// TreatAsSafe: Throwing an exception isn't unsafe
         /// Note: If SupressUnmanagedCodeSecurity attribute is ever added to IntCreateCompatibleDC, we need to be Critical
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] // , SecurityTreatAsSafe]
         public static IntPtr CreateCompatibleDC(HandleRef hDC)
         {
             IntPtr h = IntCreateCompatibleDC(hDC);
@@ -602,7 +606,7 @@ namespace MS.Win32
         }
 #endif
 
-        [DllImport(ExternDll.Kernel32, EntryPoint="UnmapViewOfFile", CharSet=CharSet.Auto, SetLastError=true)]
+        [DllImport(ExternDll.Kernel32, EntryPoint = "UnmapViewOfFile", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern bool IntUnmapViewOfFile(HandleRef pvBaseAddress);
         /*
         ///<SecurityNote>
@@ -610,7 +614,7 @@ namespace MS.Win32
         /// TreatAsSafe: Throwing an exception isn't unsafe
         /// Note: If SupressUnmanagedCodeSecurity attribute is ever added to IntUnmapViewOfFile, we need to be Critical
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] // , SecurityTreatAsSafe]
         public static void UnmapViewOfFile(HandleRef pvBaseAddress)
         {
             HandleCollector.Remove((IntPtr)pvBaseAddress, NativeMethods.CommonHandles.Kernel);
@@ -631,7 +635,7 @@ namespace MS.Win32
             bool result = IntUnmapViewOfFile(pvBaseAddress);
             int error = Marshal.GetLastWin32Error();
 
-            if(!result)
+            if (!result)
             {
                 Debug.WriteLine("UnmapViewOfFile failed.  Error = " + error);
             }
@@ -647,10 +651,10 @@ namespace MS.Win32
         public static bool EnableWindow(HandleRef hWnd, bool enable)
         {
             bool result = NativeMethodsSetLastError.EnableWindow(hWnd, enable);
-            if(!result)
+            if (!result)
             {
                 int win32Err = Marshal.GetLastWin32Error();
-                if(win32Err != 0)
+                if (win32Err != 0)
                 {
                     throw new Win32Exception(win32Err);
                 }
@@ -671,7 +675,7 @@ namespace MS.Win32
         }
 
         // GetObject stuff
-        [DllImport(ExternDll.Gdi32, SetLastError=true, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.Gdi32, SetLastError = true, CharSet = CharSet.Auto)]
         public static extern int GetObject(HandleRef hObject, int nSize, [In, Out] NativeMethods.BITMAP bm);
 
         /// <SecurityNote>
@@ -679,7 +683,7 @@ namespace MS.Win32
         /// </SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, ExactSpelling=true, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.User32, ExactSpelling = true, CharSet = CharSet.Auto)]
         public static extern IntPtr GetFocus();
 
         ///<SecurityNote>
@@ -738,7 +742,7 @@ namespace MS.Win32
         /// </SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, ExactSpelling=true, CharSet=System.Runtime.InteropServices.CharSet.Auto)]
+        [DllImport(ExternDll.User32, ExactSpelling = true, CharSet = System.Runtime.InteropServices.CharSet.Auto)]
         public static extern int GetWindowThreadProcessId(HandleRef hWnd, out int lpdwProcessId);
 
         /// <SecurityNote>
@@ -747,7 +751,7 @@ namespace MS.Win32
         /// </SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, ExactSpelling=true, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.User32, ExactSpelling = true, CharSet = CharSet.Auto)]
         public static extern short GetKeyState(int keyCode);
 
         /// <SecurityNote>
@@ -763,7 +767,7 @@ namespace MS.Win32
         ///</SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.Ole32, ExactSpelling=true, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.Ole32, ExactSpelling = true, CharSet = CharSet.Auto)]
         internal static extern void ReleaseStgMedium(ref STGMEDIUM medium);
 
         /// <SecurityNote>
@@ -771,7 +775,7 @@ namespace MS.Win32
         /// </SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, ExactSpelling=true, CharSet=System.Runtime.InteropServices.CharSet.Auto)]
+        [DllImport(ExternDll.User32, ExactSpelling = true, CharSet = System.Runtime.InteropServices.CharSet.Auto)]
         public static extern bool InvalidateRect(HandleRef hWnd, IntPtr rect, bool erase);
 
 
@@ -868,7 +872,7 @@ namespace MS.Win32
         /// </SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.Imm32, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.Imm32, CharSet = CharSet.Auto)]
         public static extern bool ImmSetConversionStatus(HandleRef hIMC, int conversion, int sentence);
 
         /// <SecurityNote>
@@ -876,7 +880,7 @@ namespace MS.Win32
         /// </SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.Imm32, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.Imm32, CharSet = CharSet.Auto)]
         public static extern bool ImmGetConversionStatus(HandleRef hIMC, ref int conversion, ref int sentence);
 
         /// <SecurityNote>
@@ -900,7 +904,7 @@ namespace MS.Win32
         /// </SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.Imm32, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.Imm32, CharSet = CharSet.Auto)]
         public static extern IntPtr ImmAssociateContext(HandleRef hWnd, HandleRef hIMC);
 
 
@@ -933,7 +937,7 @@ namespace MS.Win32
         /// </SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.Imm32, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.Imm32, CharSet = CharSet.Auto)]
         public static extern int ImmGetProperty(HandleRef hkl, int flags);
 
         // ImmGetCompositionString for result and composition strings
@@ -1009,7 +1013,7 @@ namespace MS.Win32
         {
             IntPtr result = IntPtr.Zero;
 
-            if(!TrySetFocus(hWnd, ref result))
+            if (!TrySetFocus(hWnd, ref result))
             {
                 throw new Win32Exception();
             }
@@ -1073,7 +1077,7 @@ namespace MS.Win32
         /// Critical - This code causes unmanaged code elevation.
         /// </SecurityNote>
         [SuppressUnmanagedCodeSecurity, SecurityCritical]
-        [DllImport(ExternDll.User32, SetLastError = true, ExactSpelling=true, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.User32, SetLastError = true, ExactSpelling = true, CharSet = CharSet.Auto)]
         public static extern bool IsChild(HandleRef hWndParent, HandleRef hwnd);
 
 
@@ -1091,8 +1095,8 @@ namespace MS.Win32
         ///<SecurityNote>
         ///     Critical as this code performs an elevation.
         ///</SecurityNote>
-        [DllImport(ExternDll.User32, ExactSpelling=true, CharSet=CharSet.Auto)]
-        [ SecurityCritical, SuppressUnmanagedCodeSecurity]
+        [DllImport(ExternDll.User32, ExactSpelling = true, CharSet = CharSet.Auto)]
+        [SecurityCritical, SuppressUnmanagedCodeSecurity]
         public static extern IntPtr SetParent(HandleRef hWnd, HandleRef hWndParent);
 
 
@@ -1125,7 +1129,7 @@ namespace MS.Win32
         ///</SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.User32, CharSet = CharSet.Auto)]
         public static extern IntPtr CallWindowProc(IntPtr wndProc, IntPtr hWnd, int msg,
                                                 IntPtr wParam, IntPtr lParam);
 
@@ -1142,7 +1146,7 @@ namespace MS.Win32
         ///</SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.Kernel32, SetLastError=true, EntryPoint="GetProcAddress", CharSet=CharSet.Ansi, BestFitMapping=false)]
+        [DllImport(ExternDll.Kernel32, SetLastError = true, EntryPoint = "GetProcAddress", CharSet = CharSet.Ansi, BestFitMapping = false)]
         public static extern IntPtr IntGetProcAddress(HandleRef hModule, string lpProcName);
 
         ///<SecurityNote>
@@ -1152,7 +1156,7 @@ namespace MS.Win32
         public static IntPtr GetProcAddress(HandleRef hModule, string lpProcName)
         {
             IntPtr result = IntGetProcAddress(hModule, lpProcName);
-            if(result == IntPtr.Zero)
+            if (result == IntPtr.Zero)
             {
                 throw new Win32Exception();
             }
@@ -1160,19 +1164,19 @@ namespace MS.Win32
             return result;
         }
 
-     // GetProcAddress Note : The lpProcName parameter can identify the DLL function by specifying an ordinal value associated
-     // with the function in the EXPORTS statement. GetProcAddress verifies that the specified ordinal is in
-     // the range 1 through the highest ordinal value exported in the .def file. The function then uses the
-     // ordinal as an index to read the function's address from a function table. If the .def file does not number
-     // the functions consecutively from 1 to N (where N is the number of exported functions), an error can
-     // occur where GetProcAddress returns an invalid, non-NULL address, even though there is no function with the specified ordinal.
+        // GetProcAddress Note : The lpProcName parameter can identify the DLL function by specifying an ordinal value associated
+        // with the function in the EXPORTS statement. GetProcAddress verifies that the specified ordinal is in
+        // the range 1 through the highest ordinal value exported in the .def file. The function then uses the
+        // ordinal as an index to read the function's address from a function table. If the .def file does not number
+        // the functions consecutively from 1 to N (where N is the number of exported functions), an error can
+        // occur where GetProcAddress returns an invalid, non-NULL address, even though there is no function with the specified ordinal.
 
         ///<SecurityNote>
         /// Critical as this code performs an elevation.
         ///</SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.Kernel32, EntryPoint="GetProcAddress", CharSet=CharSet.Ansi, BestFitMapping=false)]
+        [DllImport(ExternDll.Kernel32, EntryPoint = "GetProcAddress", CharSet = CharSet.Ansi, BestFitMapping = false)]
         public static extern IntPtr GetProcAddressNoThrow(HandleRef hModule, string lpProcName);
 
         /// <SecurityNote>
@@ -1197,7 +1201,7 @@ namespace MS.Win32
         ///</SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, SetLastError = true, CharSet=CharSet.Auto, BestFitMapping = false)]
+        [DllImport(ExternDll.User32, SetLastError = true, CharSet = CharSet.Auto, BestFitMapping = false)]
         public static extern bool SystemParametersInfo(int nAction, int nParam, ref NativeMethods.RECT rc, int nUpdate);
 
         ///<SecurityNote>
@@ -1244,7 +1248,7 @@ namespace MS.Win32
         ///</SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, EntryPoint="ClientToScreen", SetLastError=true, ExactSpelling=true, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.User32, EntryPoint = "ClientToScreen", SetLastError = true, ExactSpelling = true, CharSet = CharSet.Auto)]
         private static extern int IntClientToScreen(HandleRef hWnd, [In, Out] NativeMethods.POINT pt);
 
         ///<SecurityNote>
@@ -1253,7 +1257,7 @@ namespace MS.Win32
         [SecurityCritical]
         public static void ClientToScreen(HandleRef hWnd, [In, Out] NativeMethods.POINT pt)
         {
-            if(IntClientToScreen(hWnd, pt) == 0)
+            if (IntClientToScreen(hWnd, pt) == 0)
             {
                 throw new Win32Exception();
             }
@@ -1263,7 +1267,7 @@ namespace MS.Win32
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
         [SecurityCritical, SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, ExactSpelling=true, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.User32, ExactSpelling = true, CharSet = CharSet.Auto)]
         public static extern IntPtr GetDesktopWindow();
 
         /// <SecurityNote>
@@ -1272,7 +1276,7 @@ namespace MS.Win32
         /// </SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, ExactSpelling=true, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.User32, ExactSpelling = true, CharSet = CharSet.Auto)]
         public static extern IntPtr GetForegroundWindow();
 
         /// <SecurityNote>
@@ -1280,7 +1284,7 @@ namespace MS.Win32
         /// </SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.Ole32, ExactSpelling=true, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.Ole32, ExactSpelling = true, CharSet = CharSet.Auto)]
         public static extern int RegisterDragDrop(HandleRef hwnd, UnsafeNativeMethods.IOleDropTarget target);
 
         /// <SecurityNote>
@@ -1288,7 +1292,7 @@ namespace MS.Win32
         /// </SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.Ole32, ExactSpelling=true, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.Ole32, ExactSpelling = true, CharSet = CharSet.Auto)]
         public static extern int RevokeDragDrop(HandleRef hwnd);
 
 #if !DRT
@@ -1298,7 +1302,7 @@ namespace MS.Win32
         /// </SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.User32, CharSet = CharSet.Auto)]
         public static extern bool PeekMessage([In, Out] ref System.Windows.Interop.MSG msg, HandleRef hwnd, WindowMessage msgMin, WindowMessage msgMax, int remove);
 
 #if BASE_NATIVEMETHODS
@@ -1357,7 +1361,8 @@ namespace MS.Win32
         /// Critical as this code performs an elevation. via the call to IntBeginPaint
         ///</SecurityNote>
         [SecurityCritical]
-        public static IntPtr BeginPaint(HandleRef hWnd, [In, Out, MarshalAs(UnmanagedType.LPStruct)] ref NativeMethods.PAINTSTRUCT lpPaint) {
+        public static IntPtr BeginPaint(HandleRef hWnd, [In, Out, MarshalAs(UnmanagedType.LPStruct)] ref NativeMethods.PAINTSTRUCT lpPaint)
+        {
             return HandleCollector.Add(IntBeginPaint(hWnd, ref lpPaint), NativeMethods.CommonHandles.HDC);
         }
 
@@ -1373,7 +1378,8 @@ namespace MS.Win32
         ///</SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        public static bool EndPaint(HandleRef hWnd, [In, MarshalAs(UnmanagedType.LPStruct)] ref NativeMethods.PAINTSTRUCT lpPaint) {
+        public static bool EndPaint(HandleRef hWnd, [In, MarshalAs(UnmanagedType.LPStruct)] ref NativeMethods.PAINTSTRUCT lpPaint)
+        {
             HandleCollector.Remove(lpPaint.hdc, NativeMethods.CommonHandles.HDC);
             return IntEndPaint(hWnd, ref lpPaint);
         }
@@ -1395,7 +1401,7 @@ namespace MS.Win32
         public static IntPtr GetDC(HandleRef hWnd)
         {
             IntPtr hDc = IntGetDC(hWnd);
-            if(hDc == IntPtr.Zero)
+            if (hDc == IntPtr.Zero)
             {
                 throw new Win32Exception();
             }
@@ -1416,7 +1422,8 @@ namespace MS.Win32
         /// Critical as this code performs an elevation.
         ///</SecurityNote>
         [SecurityCritical]
-        public static int ReleaseDC(HandleRef hWnd, HandleRef hDC) {
+        public static int ReleaseDC(HandleRef hWnd, HandleRef hDC)
+        {
             HandleCollector.Remove((IntPtr)hDC, NativeMethods.CommonHandles.HDC);
             return IntReleaseDC(hWnd, hDC);
         }
@@ -1435,7 +1442,7 @@ namespace MS.Win32
         ///</SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, ExactSpelling=true, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.User32, ExactSpelling = true, CharSet = CharSet.Auto)]
         public static extern IntPtr GetActiveWindow();
 
         ///<SecurityNote>
@@ -1443,7 +1450,7 @@ namespace MS.Win32
         ///</SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, ExactSpelling=true, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.User32, ExactSpelling = true, CharSet = CharSet.Auto)]
         public static extern bool SetForegroundWindow(HandleRef hWnd);
 
         // Begin API Additions to support common dialog controls
@@ -1477,8 +1484,8 @@ namespace MS.Win32
         ///</SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [return:MarshalAs(UnmanagedType.Bool)]
-        [DllImport(ExternDll.User32, ExactSpelling=true, CharSet=CharSet.Auto, SetLastError=true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        [DllImport(ExternDll.User32, ExactSpelling = true, CharSet = CharSet.Auto, SetLastError = true)]
         public static extern bool SetLayeredWindowAttributes(HandleRef hwnd, int crKey, byte bAlpha, int dwFlags);
 
         ///<SecurityNote>
@@ -1511,14 +1518,15 @@ namespace MS.Win32
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
 
-        [DllImport(ExternDll.User32, ExactSpelling=true, EntryPoint="DestroyCursor", CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.User32, ExactSpelling = true, EntryPoint = "DestroyCursor", CharSet = CharSet.Auto)]
         private static extern bool IntDestroyCursor(IntPtr hCurs);
 
         ///<SecurityNote>
         /// Critical calls IntDestroyCursor
         ///</SecurityNote>
         [SecurityCritical]
-        public static bool DestroyCursor(IntPtr hCurs) {
+        public static bool DestroyCursor(IntPtr hCurs)
+        {
             return IntDestroyCursor(hCurs);
         }
 
@@ -1527,7 +1535,7 @@ namespace MS.Win32
         ///</SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, EntryPoint="DestroyIcon", CharSet=System.Runtime.InteropServices.CharSet.Auto, SetLastError=true)]
+        [DllImport(ExternDll.User32, EntryPoint = "DestroyIcon", CharSet = System.Runtime.InteropServices.CharSet.Auto, SetLastError = true)]
         private static extern bool IntDestroyIcon(IntPtr hIcon);
 
         ///<SecurityNote>
@@ -1539,7 +1547,7 @@ namespace MS.Win32
             bool result = IntDestroyIcon(hIcon);
             int error = Marshal.GetLastWin32Error();
 
-            if(!result)
+            if (!result)
             {
                 // To be consistent with out other PInvoke wrappers
                 // we should "throw" here.  But we don't want to
@@ -1557,7 +1565,7 @@ namespace MS.Win32
         ///</SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.Gdi32, EntryPoint="DeleteObject", CharSet=System.Runtime.InteropServices.CharSet.Auto, SetLastError=true)]
+        [DllImport(ExternDll.Gdi32, EntryPoint = "DeleteObject", CharSet = System.Runtime.InteropServices.CharSet.Auto, SetLastError = true)]
         private static extern bool IntDeleteObject(IntPtr hObject);
 
         ///<SecurityNote>
@@ -1569,7 +1577,7 @@ namespace MS.Win32
             bool result = IntDeleteObject(hObject);
             int error = Marshal.GetLastWin32Error();
 
-            if(!result)
+            if (!result)
             {
                 // To be consistent with out other PInvoke wrappers
                 // we should "throw" here.  But we don't want to
@@ -1604,7 +1612,7 @@ namespace MS.Win32
             NativeMethods.BitmapHandle hBitmap = PrivateCreateDIBSection(hdc, ref bitmapInfo, iUsage, ref ppvBits, hSection, dwOffset);
             int error = Marshal.GetLastWin32Error();
 
-            if ( hBitmap.IsInvalid )
+            if (hBitmap.IsInvalid)
             {
                 Debug.WriteLine("CreateDIBSection failed. Error = " + error);
             }
@@ -1628,7 +1636,7 @@ namespace MS.Win32
             NativeMethods.BitmapHandle hBitmap = PrivateCreateBitmap(width, height, planes, bitsPerPixel, lpvBits);
             int error = Marshal.GetLastWin32Error();
 
-            if ( hBitmap.IsInvalid )
+            if (hBitmap.IsInvalid)
             {
                 Debug.WriteLine("CreateBitmap failed. Error = " + error);
             }
@@ -1653,7 +1661,7 @@ namespace MS.Win32
             bool result = PrivateDestroyIcon(handle);
             int error = Marshal.GetLastWin32Error();
 
-            if ( !result )
+            if (!result)
             {
                 Debug.WriteLine("DestroyIcon failed. Error = " + error);
             }
@@ -1676,7 +1684,7 @@ namespace MS.Win32
             NativeMethods.IconHandle hIcon = PrivateCreateIconIndirect(iconInfo);
             int error = Marshal.GetLastWin32Error();
 
-            if ( hIcon.IsInvalid )
+            if (hIcon.IsInvalid)
             {
                 Debug.WriteLine("CreateIconIndirect failed. Error = " + error);
             }
@@ -1687,8 +1695,8 @@ namespace MS.Win32
         /// <SecurityNote>
         ///     Critical: This code elevates to unmanaged code
         /// </SecurityNote>
-        [SecurityCritical,SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, ExactSpelling=true, CharSet=CharSet.Auto)]
+        [SecurityCritical, SuppressUnmanagedCodeSecurity]
+        [DllImport(ExternDll.User32, ExactSpelling = true, CharSet = CharSet.Auto)]
         public static extern bool IsWindow(HandleRef hWnd);
 
 #if BASE_NATIVEMETHODS
@@ -1699,7 +1707,7 @@ namespace MS.Win32
         /// TreatAsSafe: Throwing an exception isn't unsafe
         /// Note: If SupressUnmanagedCodeSecurity attribute is ever added to IntDeleteDC, we need to be Critical
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] // , SecurityTreatAsSafe]
         public static void DeleteDC(HandleRef hDC)
         {
             HandleCollector.Remove((IntPtr)hDC, NativeMethods.CommonHandles.HDC);
@@ -1790,9 +1798,9 @@ namespace MS.Win32
         /// <SecurityNote>
         ///     Critical: This code elevates to call into unmanaged Code
         /// </SecurityNote>
-        [SecurityCritical,SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, EntryPoint="CreateWindowEx", CharSet=CharSet.Auto, BestFitMapping = false, SetLastError=true)]
-        public static extern IntPtr IntCreateWindowEx(int  dwExStyle, string lpszClassName,
+        [SecurityCritical, SuppressUnmanagedCodeSecurity]
+        [DllImport(ExternDll.User32, EntryPoint = "CreateWindowEx", CharSet = CharSet.Auto, BestFitMapping = false, SetLastError = true)]
+        public static extern IntPtr IntCreateWindowEx(int dwExStyle, string lpszClassName,
                                                    string lpszWindowName, int style, int x, int y, int width, int height,
                                                    HandleRef hWndParent, HandleRef hMenu, HandleRef hInst, [MarshalAs(UnmanagedType.AsAny)] object pvParam);
 
@@ -1800,13 +1808,14 @@ namespace MS.Win32
         ///     Critical: This code elevates to call into unmanaged Code by calling IntCreateWindowEx
         /// </SecurityNote>
         [SecurityCritical]
-        public static IntPtr CreateWindowEx(int  dwExStyle, string lpszClassName,
+        public static IntPtr CreateWindowEx(int dwExStyle, string lpszClassName,
                                          string lpszWindowName, int style, int x, int y, int width, int height,
-                                         HandleRef hWndParent, HandleRef hMenu, HandleRef hInst, [MarshalAs(UnmanagedType.AsAny)]object pvParam) {
+                                         HandleRef hWndParent, HandleRef hMenu, HandleRef hInst, [MarshalAs(UnmanagedType.AsAny)]object pvParam)
+        {
             IntPtr retVal = IntCreateWindowEx(dwExStyle, lpszClassName,
                                          lpszWindowName, style, x, y, width, height, hWndParent, hMenu,
                                          hInst, pvParam);
-            if(retVal == IntPtr.Zero)
+            if (retVal == IntPtr.Zero)
             {
                 throw new Win32Exception();
             }
@@ -1818,7 +1827,7 @@ namespace MS.Win32
         ///</SecurityNote>
         [SecurityCritical]
         [SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, SetLastError = true, EntryPoint="DestroyWindow", CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.User32, SetLastError = true, EntryPoint = "DestroyWindow", CharSet = CharSet.Auto)]
         public static extern bool IntDestroyWindow(HandleRef hWnd);
 
         ///<SecurityNote>
@@ -1827,7 +1836,7 @@ namespace MS.Win32
         [SecurityCritical]
         public static void DestroyWindow(HandleRef hWnd)
         {
-            if(!IntDestroyWindow(hWnd))
+            if (!IntDestroyWindow(hWnd))
             {
                 throw new Win32Exception();
             }
@@ -1895,7 +1904,8 @@ namespace MS.Win32
         public static extern IntPtr CreateRectRgn(int x1, int y1, int x2, int y2);
 
         // for GetUserNameEx
-        public enum EXTENDED_NAME_FORMAT {
+        public enum EXTENDED_NAME_FORMAT
+        {
             NameUnknown = 0,
             NameFullyQualifiedDN = 1,
             NameSamCompatible = 2,
@@ -1910,10 +1920,11 @@ namespace MS.Win32
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        [SecurityCritical(SecurityCriticalScope.Everything)]
+        // // [SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
         [ComImport(), Guid("00000122-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IOleDropTarget {
+        public interface IOleDropTarget
+        {
 
             [PreserveSig]
             int OleDragEnter(
@@ -1953,10 +1964,11 @@ namespace MS.Win32
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        [SecurityCritical(SecurityCriticalScope.Everything)]
+        // [SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
         [ComImport(), Guid("00000121-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IOleDropSource {
+        public interface IOleDropSource
+        {
 
             [PreserveSig]
             int OleQueryContinueDrag(
@@ -1973,14 +1985,15 @@ namespace MS.Win32
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        [SecurityCritical(SecurityCriticalScope.Everything)]
+        // [SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
         [
         ComImport(),
         Guid("B196B289-BAB4-101A-B69C-00AA00341D07"),
         InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)
         ]
-        public interface IOleControlSite {
+        public interface IOleControlSite
+        {
 
             [PreserveSig]
             int OnControlInfoChanged();
@@ -2020,10 +2033,11 @@ namespace MS.Win32
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        [SecurityCritical(SecurityCriticalScope.Everything)]
+        // [SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
         [ComImport(), Guid("00000118-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IOleClientSite {
+        public interface IOleClientSite
+        {
 
             [PreserveSig]
             int SaveObject();
@@ -2053,10 +2067,11 @@ namespace MS.Win32
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        [SecurityCritical(SecurityCriticalScope.Everything)]
+        // [SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
         [ComImport(), Guid("00000119-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IOleInPlaceSite {
+        public interface IOleInPlaceSite
+        {
 
             IntPtr GetWindow();
 
@@ -2111,10 +2126,11 @@ namespace MS.Win32
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        [SecurityCritical(SecurityCriticalScope.Everything)]
+        // [SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
         [ComImport(), Guid("9BFBBC02-EFF1-101A-84ED-00AA00341D07"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IPropertyNotifySink {
+        public interface IPropertyNotifySink
+        {
             void OnChanged(int dispID);
 
             [PreserveSig]
@@ -2124,10 +2140,11 @@ namespace MS.Win32
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        [SecurityCritical(SecurityCriticalScope.Everything)]
+        // [SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
         [ComImport(), Guid("00000100-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IEnumUnknown {
+        public interface IEnumUnknown
+        {
 
             [PreserveSig]
             int Next(
@@ -2138,7 +2155,7 @@ namespace MS.Win32
                 IntPtr pceltFetched);
 
             [PreserveSig]
-                int Skip(
+            int Skip(
                 [In, MarshalAs(UnmanagedType.U4)]
                 int celt);
 
@@ -2152,10 +2169,11 @@ namespace MS.Win32
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        [SecurityCritical(SecurityCriticalScope.Everything)]
+        // [SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
         [ComImport(), Guid("0000011B-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IOleContainer {
+        public interface IOleContainer
+        {
 
             [PreserveSig]
             int ParseDisplayName(
@@ -2183,11 +2201,12 @@ namespace MS.Win32
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        
+
         // [SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
         [ComImport(), Guid("00000116-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IOleInPlaceFrame {
+        public interface IOleInPlaceFrame
+        {
 
             IntPtr GetWindow();
 
@@ -2210,7 +2229,7 @@ namespace MS.Win32
                 NativeMethods.COMRECT pborderwidths);
 
             [PreserveSig]
-            int  SetActiveObjectX(
+            int SetActiveObjectX(
                 [In, MarshalAs(UnmanagedType.Interface)]
                 UnsafeNativeMethods.IOleInPlaceActiveObject pActiveObject,
                 [In, MarshalAs(UnmanagedType.LPWStr)]
@@ -2247,43 +2266,46 @@ namespace MS.Win32
                 bool fEnable);
 
             [PreserveSig]
-                int TranslateAccelerator(
+            int TranslateAccelerator(
                 [In]
                 ref System.Windows.Interop.MSG lpmsg,
                 [In, MarshalAs(UnmanagedType.U2)]
                 short wID);
-            }
+        }
 
         //IMPORTANT: Do not try to optimize perf here by changing the enum size to byte
         //instead of int since this is used in COM Interop for browser hosting scenarios
         // Enum for OLECMDIDs used by IOleCommandTarget in browser hosted scenarios
         // Imported from the published header - docobj.h, If you need to support more
         // than these OLECMDS, add it from that header file
-        public enum OLECMDID {
-            OLECMDID_SAVE                   = 3,
-            OLECMDID_SAVEAS                 = 4,
-            OLECMDID_PRINT                  = 6,
-            OLECMDID_PRINTPREVIEW           = 7,
-            OLECMDID_PAGESETUP              = 8,
-            OLECMDID_PROPERTIES             = 10,
-            OLECMDID_CUT                    = 11,
-            OLECMDID_COPY                   = 12,
-            OLECMDID_PASTE                  = 13,
-            OLECMDID_SELECTALL              = 17,
-            OLECMDID_REFRESH                = 22,
-            OLECMDID_STOP                   = 23,
+        public enum OLECMDID
+        {
+            OLECMDID_SAVE = 3,
+            OLECMDID_SAVEAS = 4,
+            OLECMDID_PRINT = 6,
+            OLECMDID_PRINTPREVIEW = 7,
+            OLECMDID_PAGESETUP = 8,
+            OLECMDID_PROPERTIES = 10,
+            OLECMDID_CUT = 11,
+            OLECMDID_COPY = 12,
+            OLECMDID_PASTE = 13,
+            OLECMDID_SELECTALL = 17,
+            OLECMDID_REFRESH = 22,
+            OLECMDID_STOP = 23,
         }
 
-        public enum OLECMDEXECOPT {
-            OLECMDEXECOPT_DODEFAULT         = 0,
-            OLECMDEXECOPT_PROMPTUSER        = 1,
-            OLECMDEXECOPT_DONTPROMPTUSER    = 2,
-            OLECMDEXECOPT_SHOWHELP          = 3
+        public enum OLECMDEXECOPT
+        {
+            OLECMDEXECOPT_DODEFAULT = 0,
+            OLECMDEXECOPT_PROMPTUSER = 1,
+            OLECMDEXECOPT_DONTPROMPTUSER = 2,
+            OLECMDEXECOPT_SHOWHELP = 3
         }
 
         // OLECMDID Flags used by IOleCommandTarget to specify status of commands in browser hosted scenarios
         // Imported from the published header - docobj.h
-        public enum OLECMDF {
+        public enum OLECMDF
+        {
             /// <summary>
             /// The command is supported by this object
             /// </summary>
@@ -2313,136 +2335,141 @@ namespace MS.Win32
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        
+
         // [SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
         [ComImport(), Guid("00000115-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IOleInPlaceUIWindow {
-             IntPtr GetWindow();
+        public interface IOleInPlaceUIWindow
+        {
+            IntPtr GetWindow();
 
-             [PreserveSig]
-             int ContextSensitiveHelp(
-                    int fEnterMode);
+            [PreserveSig]
+            int ContextSensitiveHelp(
+                   int fEnterMode);
 
-             [PreserveSig]
-             int GetBorder(
-                    [Out]
+            [PreserveSig]
+            int GetBorder(
+                   [Out]
                     NativeMethods.RECT lprectBorder);
 
-             [PreserveSig]
-             int RequestBorderSpace(
-                    [In]
+            [PreserveSig]
+            int RequestBorderSpace(
+                   [In]
                     NativeMethods.RECT pborderwidths);
 
-             [PreserveSig]
-             int SetBorderSpace(
-                    [In]
+            [PreserveSig]
+            int SetBorderSpace(
+                   [In]
                     NativeMethods.RECT pborderwidths);
 
-             // [PreserveSig]
-             // not: SetActiveObjectX(
-             void SetActiveObject(
-                    [In, MarshalAs(UnmanagedType.Interface)]
+            // [PreserveSig]
+            // not: SetActiveObjectX(
+            void SetActiveObject(
+                   [In, MarshalAs(UnmanagedType.Interface)]
                     UnsafeNativeMethods.IOleInPlaceActiveObject pActiveObject,
-                    [In, MarshalAs(UnmanagedType.LPWStr)]
+                   [In, MarshalAs(UnmanagedType.LPWStr)]
                     string pszObjName);
         }
 
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        
+
         // [SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
         [ComImport(),
         Guid("00000117-0000-0000-C000-000000000046"),
         InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IOleInPlaceActiveObject {
-             /// <SecurityNote>
-             /// Critical: SUC. Exposes a native window handle.
-             /// </SecurityNote>
-             [SuppressUnmanagedCodeSecurity, SecurityCritical]
-             [PreserveSig]
-             int GetWindow(out IntPtr hwnd);
+        public interface IOleInPlaceActiveObject
+        {
+            /// <SecurityNote>
+            /// Critical: SUC. Exposes a native window handle.
+            /// </SecurityNote>
+            [SuppressUnmanagedCodeSecurity, SecurityCritical]
+            [PreserveSig]
+            int GetWindow(out IntPtr hwnd);
 
-             void ContextSensitiveHelp(
-                     int fEnterMode);
+            void ContextSensitiveHelp(
+                    int fEnterMode);
 
-             /// <SecurityNote>
-             ///     Critical: This code escalates to unmanaged code permission
-             /// </SecurityNote>
-             [SuppressUnmanagedCodeSecurity, SecurityCritical]
-             [PreserveSig]
-             int TranslateAccelerator(
-                    [In]
+            /// <SecurityNote>
+            ///     Critical: This code escalates to unmanaged code permission
+            /// </SecurityNote>
+            [SuppressUnmanagedCodeSecurity, SecurityCritical]
+            [PreserveSig]
+            int TranslateAccelerator(
+                   [In]
                     ref System.Windows.Interop.MSG lpmsg);
 
-             void OnFrameWindowActivate(
-                    int fActivate);
+            void OnFrameWindowActivate(
+                   int fActivate);
 
-             void OnDocWindowActivate(
-                    int fActivate);
+            void OnDocWindowActivate(
+                   int fActivate);
 
-             void ResizeBorder(
-                    [In]
+            void ResizeBorder(
+                   [In]
                     NativeMethods.RECT prcBorder,
-                    [In]
+                   [In]
                     UnsafeNativeMethods.IOleInPlaceUIWindow pUIWindow,
-                    bool fFrameWindow);
+                   bool fFrameWindow);
 
-             void EnableModeless(
-                    int fEnable);
+            void EnableModeless(
+                   int fEnable);
         }
 
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        [SecurityCritical(SecurityCriticalScope.Everything)]
+        // [SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
         [ComImport(), Guid("00000114-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IOleWindow {
+        public interface IOleWindow
+        {
 
-             [PreserveSig]
-             int GetWindow( [Out]out IntPtr hwnd );
+            [PreserveSig]
+            int GetWindow([Out]out IntPtr hwnd);
 
 
-             void ContextSensitiveHelp(
+            void ContextSensitiveHelp(
 
-                     int fEnterMode);
+                    int fEnterMode);
         }
 
         ///<SecurityNote>
         ///     Critical - elevates via a SUC.
         ///</SecurityNote>
-        [ SecurityCritical( SecurityCriticalScope.Everything ) , SuppressUnmanagedCodeSecurity ]
+        //[ SecurityCritical( SecurityCriticalScope.Everything ) , 
+        [SuppressUnmanagedCodeSecurity]
         [ComImport(),
         Guid("00000113-0000-0000-C000-000000000046"),
         InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IOleInPlaceObject {
+        public interface IOleInPlaceObject
+        {
 
-             [PreserveSig]
-             int GetWindow( [Out]out IntPtr hwnd );
-
-
-             void ContextSensitiveHelp(
-
-                     int fEnterMode);
+            [PreserveSig]
+            int GetWindow([Out]out IntPtr hwnd);
 
 
-             void InPlaceDeactivate();
+            void ContextSensitiveHelp(
+
+                    int fEnterMode);
 
 
-             [PreserveSig]
-             int UIDeactivate();
+            void InPlaceDeactivate();
 
 
-             void SetObjectRects(
-                    [In]
+            [PreserveSig]
+            int UIDeactivate();
+
+
+            void SetObjectRects(
+                   [In]
                       NativeMethods.COMRECT lprcPosRect,
-                    [In]
+                   [In]
                       NativeMethods.COMRECT lprcClipRect);
 
-             void ReactivateAndUndo();
+            void ReactivateAndUndo();
 
 
         }
@@ -2450,757 +2477,772 @@ namespace MS.Win32
         ///<SecurityNote>
         ///     Critical - elevates via a SUC.
         ///</SecurityNote>
-        [SecurityCritical( SecurityCriticalScope.Everything ) , SuppressUnmanagedCodeSecurity ]
+        // [SecurityCritical( SecurityCriticalScope.Everything ) , 
+        [SuppressUnmanagedCodeSecurity]
         [ComImport(),
         Guid("00000112-0000-0000-C000-000000000046"),
         InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IOleObject {
+        public interface IOleObject
+        {
 
-             [PreserveSig]
-             int SetClientSite(
-                    [In, MarshalAs(UnmanagedType.Interface)]
+            [PreserveSig]
+            int SetClientSite(
+                   [In, MarshalAs(UnmanagedType.Interface)]
                       UnsafeNativeMethods.IOleClientSite pClientSite);
 
 
-             UnsafeNativeMethods.IOleClientSite GetClientSite();
+            UnsafeNativeMethods.IOleClientSite GetClientSite();
 
-             [PreserveSig]
-             int SetHostNames(
-                    [In, MarshalAs(UnmanagedType.LPWStr)]
+            [PreserveSig]
+            int SetHostNames(
+                   [In, MarshalAs(UnmanagedType.LPWStr)]
                       string szContainerApp,
-                    [In, MarshalAs(UnmanagedType.LPWStr)]
+                   [In, MarshalAs(UnmanagedType.LPWStr)]
                       string szContainerObj);
 
-             [PreserveSig]
-             int Close(
+            [PreserveSig]
+            int Close(
 
-                     int dwSaveOption);
+                    int dwSaveOption);
 
-             [PreserveSig]
-             int SetMoniker(
-                    [In, MarshalAs(UnmanagedType.U4)]
+            [PreserveSig]
+            int SetMoniker(
+                   [In, MarshalAs(UnmanagedType.U4)]
                      int dwWhichMoniker,
-                    [In, MarshalAs(UnmanagedType.Interface)]
+                   [In, MarshalAs(UnmanagedType.Interface)]
                      object pmk);
 
-              [PreserveSig]
-              int GetMoniker(
-                    [In, MarshalAs(UnmanagedType.U4)]
+            [PreserveSig]
+            int GetMoniker(
+                  [In, MarshalAs(UnmanagedType.U4)]
                      int dwAssign,
-                    [In, MarshalAs(UnmanagedType.U4)]
+                  [In, MarshalAs(UnmanagedType.U4)]
                      int dwWhichMoniker,
-                    [Out, MarshalAs(UnmanagedType.Interface)]
+                  [Out, MarshalAs(UnmanagedType.Interface)]
                      out object moniker);
 
-             [PreserveSig]
-             int InitFromData(
-                    [In, MarshalAs(UnmanagedType.Interface)]
+            [PreserveSig]
+            int InitFromData(
+                   [In, MarshalAs(UnmanagedType.Interface)]
                      IComDataObject pDataObject,
 
-                     int fCreation,
-                    [In, MarshalAs(UnmanagedType.U4)]
+                    int fCreation,
+                   [In, MarshalAs(UnmanagedType.U4)]
                      int dwReserved);
 
-             [PreserveSig]
-             int GetClipboardData(
-                    [In, MarshalAs(UnmanagedType.U4)]
+            [PreserveSig]
+            int GetClipboardData(
+                   [In, MarshalAs(UnmanagedType.U4)]
                      int dwReserved,
-                     out IComDataObject data);
+                    out IComDataObject data);
 
-             [PreserveSig]
-             int DoVerb(
+            [PreserveSig]
+            int DoVerb(
 
-                     int iVerb,
-                    [In]
+                    int iVerb,
+                   [In]
                      IntPtr lpmsg,
-                    [In, MarshalAs(UnmanagedType.Interface)]
+                   [In, MarshalAs(UnmanagedType.Interface)]
                       UnsafeNativeMethods.IOleClientSite pActiveSite,
 
-                     int lindex,
+                    int lindex,
 
-                     IntPtr hwndParent,
-                    [In]
+                    IntPtr hwndParent,
+                   [In]
                      NativeMethods.COMRECT lprcPosRect);
 
-             [PreserveSig]
-             int EnumVerbs(out UnsafeNativeMethods.IEnumOLEVERB e);
+            [PreserveSig]
+            int EnumVerbs(out UnsafeNativeMethods.IEnumOLEVERB e);
 
-             [PreserveSig]
-             int OleUpdate();
+            [PreserveSig]
+            int OleUpdate();
 
-             [PreserveSig]
-             int IsUpToDate();
+            [PreserveSig]
+            int IsUpToDate();
 
-             [PreserveSig]
-             int GetUserClassID(
-                    [In, Out]
+            [PreserveSig]
+            int GetUserClassID(
+                   [In, Out]
                       ref Guid pClsid);
 
-             [PreserveSig]
-             int GetUserType(
-                    [In, MarshalAs(UnmanagedType.U4)]
+            [PreserveSig]
+            int GetUserType(
+                   [In, MarshalAs(UnmanagedType.U4)]
                      int dwFormOfType,
-                    [Out, MarshalAs(UnmanagedType.LPWStr)]
+                   [Out, MarshalAs(UnmanagedType.LPWStr)]
                      out string userType);
 
-             [PreserveSig]
-             int SetExtent(
-                    [In, MarshalAs(UnmanagedType.U4)]
+            [PreserveSig]
+            int SetExtent(
+                   [In, MarshalAs(UnmanagedType.U4)]
                      int dwDrawAspect,
-                    [In]
+                   [In]
                      NativeMethods.SIZE pSizel);
 
-             [PreserveSig]
-             int GetExtent(
-                    [In, MarshalAs(UnmanagedType.U4)]
+            [PreserveSig]
+            int GetExtent(
+                   [In, MarshalAs(UnmanagedType.U4)]
                      int dwDrawAspect,
-                    [Out]
+                   [Out]
                      NativeMethods.SIZE pSizel);
 
-             [PreserveSig]
-             int Advise(
-                     IAdviseSink pAdvSink,
-                     out int cookie);
+            [PreserveSig]
+            int Advise(
+                    IAdviseSink pAdvSink,
+                    out int cookie);
 
-             [PreserveSig]
-             int Unadvise(
-                    [In, MarshalAs(UnmanagedType.U4)]
+            [PreserveSig]
+            int Unadvise(
+                   [In, MarshalAs(UnmanagedType.U4)]
                      int dwConnection);
 
-              [PreserveSig]
-              int EnumAdvise(out IEnumSTATDATA e);
+            [PreserveSig]
+            int EnumAdvise(out IEnumSTATDATA e);
 
-             [PreserveSig]
-             int GetMiscStatus(
-                    [In, MarshalAs(UnmanagedType.U4)]
+            [PreserveSig]
+            int GetMiscStatus(
+                   [In, MarshalAs(UnmanagedType.U4)]
                      int dwAspect,
-                     out int misc);
+                    out int misc);
 
-             [PreserveSig]
-             int SetColorScheme(
-                    [In]
+            [PreserveSig]
+            int SetColorScheme(
+                   [In]
                       NativeMethods.tagLOGPALETTE pLogpal);
         }
 
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        [SecurityCritical(SecurityCriticalScope.Everything)]
+        // [SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
         [ComImport(), Guid("1C2056CC-5EF4-101B-8BC8-00AA003E3B29"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IOleInPlaceObjectWindowless {
+        public interface IOleInPlaceObjectWindowless
+        {
 
-             [PreserveSig]
-             int SetClientSite(
-                    [In, MarshalAs(UnmanagedType.Interface)]
+            [PreserveSig]
+            int SetClientSite(
+                   [In, MarshalAs(UnmanagedType.Interface)]
                       UnsafeNativeMethods.IOleClientSite pClientSite);
 
-             [PreserveSig]
-             int GetClientSite(out UnsafeNativeMethods.IOleClientSite site);
+            [PreserveSig]
+            int GetClientSite(out UnsafeNativeMethods.IOleClientSite site);
 
-             [PreserveSig]
-             int SetHostNames(
-                    [In, MarshalAs(UnmanagedType.LPWStr)]
+            [PreserveSig]
+            int SetHostNames(
+                   [In, MarshalAs(UnmanagedType.LPWStr)]
                       string szContainerApp,
-                    [In, MarshalAs(UnmanagedType.LPWStr)]
+                   [In, MarshalAs(UnmanagedType.LPWStr)]
                       string szContainerObj);
 
-             [PreserveSig]
-             int Close(
+            [PreserveSig]
+            int Close(
 
-                     int dwSaveOption);
+                    int dwSaveOption);
 
-             [PreserveSig]
-             int SetMoniker(
-                    [In, MarshalAs(UnmanagedType.U4)]
+            [PreserveSig]
+            int SetMoniker(
+                   [In, MarshalAs(UnmanagedType.U4)]
                      int dwWhichMoniker,
-                    [In, MarshalAs(UnmanagedType.Interface)]
+                   [In, MarshalAs(UnmanagedType.Interface)]
                      object pmk);
 
-              [PreserveSig]
-              int GetMoniker(
-                    [In, MarshalAs(UnmanagedType.U4)]
+            [PreserveSig]
+            int GetMoniker(
+                  [In, MarshalAs(UnmanagedType.U4)]
                      int dwAssign,
-                    [In, MarshalAs(UnmanagedType.U4)]
+                  [In, MarshalAs(UnmanagedType.U4)]
                      int dwWhichMoniker,
-                    [Out, MarshalAs(UnmanagedType.Interface)]
+                  [Out, MarshalAs(UnmanagedType.Interface)]
                      out object moniker);
 
-             [PreserveSig]
-             int InitFromData(
-                    [In, MarshalAs(UnmanagedType.Interface)]
+            [PreserveSig]
+            int InitFromData(
+                   [In, MarshalAs(UnmanagedType.Interface)]
                      IComDataObject pDataObject,
 
-                     int fCreation,
-                    [In, MarshalAs(UnmanagedType.U4)]
+                    int fCreation,
+                   [In, MarshalAs(UnmanagedType.U4)]
                      int dwReserved);
 
-             [PreserveSig]
-             int GetClipboardData(
-                    [In, MarshalAs(UnmanagedType.U4)]
+            [PreserveSig]
+            int GetClipboardData(
+                   [In, MarshalAs(UnmanagedType.U4)]
                      int dwReserved,
-                     out IComDataObject data);
+                    out IComDataObject data);
 
-             [PreserveSig]
-             int DoVerb(
+            [PreserveSig]
+            int DoVerb(
 
-                     int iVerb,
-                    [In]
+                    int iVerb,
+                   [In]
                      IntPtr lpmsg,
-                    [In, MarshalAs(UnmanagedType.Interface)]
+                   [In, MarshalAs(UnmanagedType.Interface)]
                       UnsafeNativeMethods.IOleClientSite pActiveSite,
 
-                     int lindex,
+                    int lindex,
 
-                     IntPtr hwndParent,
-                    [In]
+                    IntPtr hwndParent,
+                   [In]
                      NativeMethods.RECT lprcPosRect);
 
-             [PreserveSig]
-             int EnumVerbs(out UnsafeNativeMethods.IEnumOLEVERB e);
+            [PreserveSig]
+            int EnumVerbs(out UnsafeNativeMethods.IEnumOLEVERB e);
 
-             [PreserveSig]
-             int OleUpdate();
+            [PreserveSig]
+            int OleUpdate();
 
-             [PreserveSig]
-             int IsUpToDate();
+            [PreserveSig]
+            int IsUpToDate();
 
-             [PreserveSig]
-             int GetUserClassID(
-                    [In, Out]
+            [PreserveSig]
+            int GetUserClassID(
+                   [In, Out]
                       ref Guid pClsid);
 
-             [PreserveSig]
-             int GetUserType(
-                    [In, MarshalAs(UnmanagedType.U4)]
+            [PreserveSig]
+            int GetUserType(
+                   [In, MarshalAs(UnmanagedType.U4)]
                      int dwFormOfType,
-                    [Out, MarshalAs(UnmanagedType.LPWStr)]
+                   [Out, MarshalAs(UnmanagedType.LPWStr)]
                      out string userType);
 
-             [PreserveSig]
-             int SetExtent(
-                    [In, MarshalAs(UnmanagedType.U4)]
+            [PreserveSig]
+            int SetExtent(
+                   [In, MarshalAs(UnmanagedType.U4)]
                      int dwDrawAspect,
-                    [In]
+                   [In]
                      NativeMethods.SIZE pSizel);
 
-             [PreserveSig]
-             int GetExtent(
-                    [In, MarshalAs(UnmanagedType.U4)]
+            [PreserveSig]
+            int GetExtent(
+                   [In, MarshalAs(UnmanagedType.U4)]
                      int dwDrawAspect,
-                    [Out]
+                   [Out]
                      NativeMethods.SIZE pSizel);
 
-             [PreserveSig]
-             int Advise(
-                    [In, MarshalAs(UnmanagedType.Interface)]
+            [PreserveSig]
+            int Advise(
+                   [In, MarshalAs(UnmanagedType.Interface)]
                      IAdviseSink pAdvSink,
-                     out int cookie);
+                    out int cookie);
 
-             [PreserveSig]
-             int Unadvise(
-                    [In, MarshalAs(UnmanagedType.U4)]
+            [PreserveSig]
+            int Unadvise(
+                   [In, MarshalAs(UnmanagedType.U4)]
                      int dwConnection);
 
-              [PreserveSig]
-                  int EnumAdvise(out IEnumSTATDATA e);
+            [PreserveSig]
+            int EnumAdvise(out IEnumSTATDATA e);
 
-             [PreserveSig]
-             int GetMiscStatus(
-                    [In, MarshalAs(UnmanagedType.U4)]
+            [PreserveSig]
+            int GetMiscStatus(
+                   [In, MarshalAs(UnmanagedType.U4)]
                      int dwAspect,
-                     out int misc);
+                    out int misc);
 
-             [PreserveSig]
-             int SetColorScheme(
-                    [In]
+            [PreserveSig]
+            int SetColorScheme(
+                   [In]
                       NativeMethods.tagLOGPALETTE pLogpal);
 
-             [PreserveSig]
-             int OnWindowMessage(
-                [In, MarshalAs(UnmanagedType.U4)]  int msg,
-                [In, MarshalAs(UnmanagedType.U4)]  int wParam,
-                [In, MarshalAs(UnmanagedType.U4)]  int lParam,
-                [Out, MarshalAs(UnmanagedType.U4)] int plResult);
+            [PreserveSig]
+            int OnWindowMessage(
+               [In, MarshalAs(UnmanagedType.U4)]  int msg,
+               [In, MarshalAs(UnmanagedType.U4)]  int wParam,
+               [In, MarshalAs(UnmanagedType.U4)]  int lParam,
+               [Out, MarshalAs(UnmanagedType.U4)] int plResult);
 
-             [PreserveSig]
-             int GetDropTarget(
-                [Out, MarshalAs(UnmanagedType.Interface)] object ppDropTarget);
+            [PreserveSig]
+            int GetDropTarget(
+               [Out, MarshalAs(UnmanagedType.Interface)] object ppDropTarget);
 
         };
 
         ///<SecurityNote>
         ///     Critical - elevates via a SUC.
         ///</SecurityNote>
-        [SecurityCritical( SecurityCriticalScope.Everything ) , SuppressUnmanagedCodeSecurity ]
+        //[SecurityCritical( SecurityCriticalScope.Everything ) 
+        [SuppressUnmanagedCodeSecurity]
         [ComImport(),
         Guid("B196B288-BAB4-101A-B69C-00AA00341D07"),
         InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IOleControl {
+        public interface IOleControl
+        {
 
 
-             [PreserveSig]
-             int GetControlInfo(
-                    [Out]
+            [PreserveSig]
+            int GetControlInfo(
+                   [Out]
                       NativeMethods.tagCONTROLINFO pCI);
 
-             [PreserveSig]
-             int OnMnemonic(
-                    [In]
+            [PreserveSig]
+            int OnMnemonic(
+                   [In]
                       ref System.Windows.Interop.MSG pMsg);
 
-             [PreserveSig]
-             int OnAmbientPropertyChange(
+            [PreserveSig]
+            int OnAmbientPropertyChange(
 
-                     int dispID);
+                    int dispID);
 
-             [PreserveSig]
-             int FreezeEvents(
+            [PreserveSig]
+            int FreezeEvents(
 
-                     int bFreeze);
+                    int bFreeze);
 
         }
 
-    ///<SecurityNote>
-    ///     Critical - elevates via a SUC.
-    ///</SecurityNote>
-    [SecurityCritical( SecurityCriticalScope.Everything ) , SuppressUnmanagedCodeSecurity ]
-    [ComImport(),
-    Guid("B196B286-BAB4-101A-B69C-00AA00341D07"),
-    InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IConnectionPoint {
+        ///<SecurityNote>
+        ///     Critical - elevates via a SUC.
+        ///</SecurityNote>
+        // [SecurityCritical( SecurityCriticalScope.Everything ) 
+        [SuppressUnmanagedCodeSecurity]
+        [ComImport(),
+        Guid("B196B286-BAB4-101A-B69C-00AA00341D07"),
+        InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+        public interface IConnectionPoint
+        {
 
-        [PreserveSig]
-        int GetConnectionInterface(out Guid iid);
+            [PreserveSig]
+            int GetConnectionInterface(out Guid iid);
 
 
-        [PreserveSig]
-        int GetConnectionPointContainer(
-            [MarshalAs(UnmanagedType.Interface)]
+            [PreserveSig]
+            int GetConnectionPointContainer(
+                [MarshalAs(UnmanagedType.Interface)]
             ref IConnectionPointContainer pContainer);
 
 
-         [PreserveSig]
-         int Advise(
-                [In, MarshalAs(UnmanagedType.Interface)]
+            [PreserveSig]
+            int Advise(
+                   [In, MarshalAs(UnmanagedType.Interface)]
                   object pUnkSink,
-              ref int cookie);
+                 ref int cookie);
 
 
-        [PreserveSig]
-        int Unadvise(
+            [PreserveSig]
+            int Unadvise(
 
-                 int cookie);
+                     int cookie);
 
-        [PreserveSig]
-        int EnumConnections(out object pEnum);
+            [PreserveSig]
+            int EnumConnections(out object pEnum);
 
-    }
+        }
 
-     /// <SecurityNote>
-     ///     Critical:Elevates to Unmanaged code permission
-     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything)]
-    [SuppressUnmanagedCodeSecurity]
-    [ComImport(), Guid("00020404-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IEnumVariant {
-        /// <SecurityNote>
-        ///    Critical: This code elevates to call unmanaged code
-        /// </SecurityNote>
-        [SecurityCritical, SuppressUnmanagedCodeSecurity]
-        [PreserveSig]
-        int Next(
-                [In, MarshalAs(UnmanagedType.U4)]
-                 int celt,
-                [In, Out]
-                 IntPtr rgvar,
-                [Out, MarshalAs(UnmanagedType.LPArray)]
-                 int[] pceltFetched);
-
-         void Skip(
-                [In, MarshalAs(UnmanagedType.U4)]
-                 int celt);
-
-         /// <SecurityNote>
-         ///    Critical: This code elevates to call unmanaged code
-         /// </SecurityNote>
-        [SecurityCritical, SuppressUnmanagedCodeSecurity]
-         void Reset();
-
-         void Clone(
-                [Out, MarshalAs(UnmanagedType.LPArray)]
-                   UnsafeNativeMethods.IEnumVariant[] ppenum);
-    }
-
-     /// <SecurityNote>
-     ///     Critical:Elevates to Unmanaged code permission
-     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything)]
-    [SuppressUnmanagedCodeSecurity]
-    [ComImport(), Guid("00000104-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IEnumOLEVERB {
-
-
-         [PreserveSig]
-         int Next(
-                [MarshalAs(UnmanagedType.U4)]
-                int celt,
-                [Out]
-                NativeMethods.tagOLEVERB rgelt,
-                [Out, MarshalAs(UnmanagedType.LPArray)]
-                int[] pceltFetched);
-
-         [PreserveSig]
-         int Skip(
-                [In, MarshalAs(UnmanagedType.U4)]
-                 int celt);
-
-
-         void Reset();
-
-
-         void Clone(
-            out IEnumOLEVERB ppenum);
-
-
-     }
-
-     /// <SecurityNote>
-     ///     Critical:Elevates to Unmanaged code permission
-     /// </SecurityNote>
-     [SecurityCritical(SecurityCriticalScope.Everything)]
-    [SuppressUnmanagedCodeSecurity]
-     // This interface has different parameter marshaling from System.Runtime.InteropServices.ComTypes.IStream.
-     // They are incompatable. But type cast will succeed because they have the same guid.
-    [ComImport(), Guid("0000000C-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IStream {
-
-         int Read(
-
-                 IntPtr buf,
-
-                 int len);
-
-
-         int Write(
-
-                 IntPtr buf,
-
-                 int len);
-
-        [return: MarshalAs(UnmanagedType.I8)]
-         long Seek(
-                [In, MarshalAs(UnmanagedType.I8)]
-                 long dlibMove,
-
-                 int dwOrigin);
-
-
-         void SetSize(
-                [In, MarshalAs(UnmanagedType.I8)]
-                 long libNewSize);
-
-        [return: MarshalAs(UnmanagedType.I8)]
-         long CopyTo(
-                [In, MarshalAs(UnmanagedType.Interface)]
-                  UnsafeNativeMethods.IStream pstm,
-                [In, MarshalAs(UnmanagedType.I8)]
-                 long cb,
-                [Out, MarshalAs(UnmanagedType.LPArray)]
-                 long[] pcbRead);
-
-
-         void Commit(
-
-                 int grfCommitFlags);
-
-
-         void Revert();
-
-
-         void LockRegion(
-                [In, MarshalAs(UnmanagedType.I8)]
-                 long libOffset,
-                [In, MarshalAs(UnmanagedType.I8)]
-                 long cb,
-
-                 int dwLockType);
-
-
-         void UnlockRegion(
-                [In, MarshalAs(UnmanagedType.I8)]
-                 long libOffset,
-                [In, MarshalAs(UnmanagedType.I8)]
-                 long cb,
-
-                 int dwLockType);
-
-
-         void Stat(
-                 [Out]
-                 NativeMethods.STATSTG pStatstg,
-                 int grfStatFlag);
-
-        [return: MarshalAs(UnmanagedType.Interface)]
-          UnsafeNativeMethods.IStream Clone();
-    }
-
-
-    ///<SecurityNote>
-    ///     Critical - elevates via a SUC.
-    ///</SecurityNote>
-    [SecurityCritical( SecurityCriticalScope.Everything ) , SuppressUnmanagedCodeSecurity ]
-    [ComImport(),
-    Guid("B196B284-BAB4-101A-B69C-00AA00341D07"),
-    InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IConnectionPointContainer
-    {
-
-        [return: MarshalAs(UnmanagedType.Interface)]
-        object EnumConnectionPoints();
-
-        [PreserveSig]
-        int FindConnectionPoint([In] ref Guid guid, [Out, MarshalAs(UnmanagedType.Interface)]out IConnectionPoint ppCP);
-
-    }
-
-     /// <SecurityNote>
-     ///     Critical:Elevates to Unmanaged code permission
-     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything)]
-    [SuppressUnmanagedCodeSecurity]
-    [ComImport(), Guid("B196B285-BAB4-101A-B69C-00AA00341D07"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IEnumConnectionPoints {
-        [PreserveSig]
-        int Next(int cConnections, out IConnectionPoint pCp, out int pcFetched);
-
-        [PreserveSig]
-        int Skip(int cSkip);
-
-        void Reset();
-
-        IEnumConnectionPoints Clone();
-    }
-
-#if !DRT
-     /// <SecurityNote>
-     ///     Critical:Elevates to Unmanaged code permission
-     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything)]
-    [SuppressUnmanagedCodeSecurity]
-    [ComImport(), Guid("00020400-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IDispatch {
-
-    #region <KeepInSync With="IDispatchEx">
-
-         int GetTypeInfoCount();
-
-        [return: MarshalAs(UnmanagedType.Interface)]
-         ITypeInfo GetTypeInfo(
-                [In, MarshalAs(UnmanagedType.U4)]
-                 int iTInfo,
-                [In, MarshalAs(UnmanagedType.U4)]
-                 int lcid);
-
-         ///<SecurityNote>
-         /// Critical elevates via a SUC.
-         ///</SecurityNote>
-         [SuppressUnmanagedCodeSecurity, SecurityCritical]
-         [PreserveSig]
-         HR GetIDsOfNames(
-                [In]
-                 ref Guid riid,
-                [In, MarshalAs(UnmanagedType.LPArray)]
-                 string[] rgszNames,
-                [In, MarshalAs(UnmanagedType.U4)]
-                 int cNames,
-                [In, MarshalAs(UnmanagedType.U4)]
-                 int lcid,
-                [Out, MarshalAs(UnmanagedType.LPArray)]
-                 int[] rgDispId);
-
-
-         ///<SecurityNote>
-         /// Critical elevates via a SUC.
-         ///</SecurityNote>
-         [SuppressUnmanagedCodeSecurity, SecurityCritical]
-         [PreserveSig]
-         HR Invoke(
-
-                 int dispIdMember,
-                [In]
-                 ref Guid riid,
-                [In, MarshalAs(UnmanagedType.U4)]
-                 int lcid,
-                [In, MarshalAs(UnmanagedType.U4)]
-                 int dwFlags,
-                [Out, In]
-                  NativeMethods.DISPPARAMS pDispParams,
-                [Out]
-                  out object pVarResult,
-                [Out, In]
-                  NativeMethods.EXCEPINFO pExcepInfo,
-                [Out, MarshalAs(UnmanagedType.LPArray)]
-                  IntPtr [] pArgErr);
-
-    #endregion
-
-    }
-
-     /// <SecurityNote>
-     ///     Critical:Elevates to Unmanaged code permission
-     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything)]
-    [SuppressUnmanagedCodeSecurity]
-    [ComImport(), Guid("A6EF9860-C720-11D0-9337-00A0C90DCAA9"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IDispatchEx : IDispatch {
-
-    #region <KeepInSync With="IDispatch">
-
-         new int GetTypeInfoCount();
-
-        [return: MarshalAs(UnmanagedType.Interface)]
-         new ITypeInfo GetTypeInfo(
-                [In, MarshalAs(UnmanagedType.U4)]
-                 int iTInfo,
-                [In, MarshalAs(UnmanagedType.U4)]
-                 int lcid);
-
-         ///<SecurityNote>
-         /// Critical elevates via a SUC.
-         ///</SecurityNote>
-         [SuppressUnmanagedCodeSecurity, SecurityCritical]
-         [PreserveSig]
-         new HR GetIDsOfNames(
-                [In]
-                 ref Guid riid,
-                [In, MarshalAs(UnmanagedType.LPArray)]
-                 string[] rgszNames,
-                [In, MarshalAs(UnmanagedType.U4)]
-                 int cNames,
-                [In, MarshalAs(UnmanagedType.U4)]
-                 int lcid,
-                [Out, MarshalAs(UnmanagedType.LPArray)]
-                 int[] rgDispId);
-
-
-         ///<SecurityNote>
-         /// Critical elevates via a SUC.
-         ///</SecurityNote>
-         [SuppressUnmanagedCodeSecurity, SecurityCritical]
-         [PreserveSig]
-         new HR Invoke(
-                 int dispIdMember,
-                [In]
-                 ref Guid riid,
-                [In, MarshalAs(UnmanagedType.U4)]
-                 int lcid,
-                [In, MarshalAs(UnmanagedType.U4)]
-                 int dwFlags,
-                [Out, In]
-                  NativeMethods.DISPPARAMS pDispParams,
-                [Out]
-                  out object pVarResult,
-                [Out, In]
-                  NativeMethods.EXCEPINFO pExcepInfo,
-                [Out, MarshalAs(UnmanagedType.LPArray)]
-                  IntPtr [] pArgErr);
-
-    #endregion
-
-        ///<SecurityNote>
-        /// Critical elevates via a SUC.
-        ///</SecurityNote>
-        [SuppressUnmanagedCodeSecurity, SecurityCritical]
-        [PreserveSig]
-        HR GetDispID(
-            string name,
-            int nameProperties,
-            [Out] out int dispId);
-
-        ///<SecurityNote>
-        /// Critical elevates via a SUC.
-        ///</SecurityNote>
-        [SuppressUnmanagedCodeSecurity, SecurityCritical]
-        [PreserveSig]
-        HR InvokeEx(
-            int dispId,
-            [MarshalAs(UnmanagedType.U4)] int lcid,
-            [MarshalAs(UnmanagedType.U4)] int flags,
-            [In, Out] NativeMethods.DISPPARAMS dispParams,
-            [Out] out object result,
-            /* COM interop caveat: Declaring the following just as Out seems to cause
-               garbage being handed out for the native buffer (it's out anyway). Upon
-               returning from the COM call, CLR copies back to the managed object but
-               chokes on the garbage string pointers trying to do memcpy, causing AV.
-               See also Dev10 work item 730339 to fix this in the CLR, by zeroing out
-               the memory that's handed over to native code in this circumstance.  */
-            [In, Out] NativeMethods.EXCEPINFO exceptionInfo,
-            IServiceProvider serviceProvider);
-
-        ///<SecurityNote>
-        /// Critical elevates via a SUC.
-        ///</SecurityNote>
-        [SuppressUnmanagedCodeSecurity, SecurityCritical]
-        void DeleteMemberByName(string name, int flags);
-
-        ///<SecurityNote>
-        /// Critical elevates via a SUC.
-        ///</SecurityNote>
-        [SuppressUnmanagedCodeSecurity, SecurityCritical]
-        void DeleteMemberByDispID(int dispId);
-
-        ///<SecurityNote>
-        /// Critical elevates via a SUC.
-        ///</SecurityNote>
-        [SuppressUnmanagedCodeSecurity, SecurityCritical]
-        int GetMemberProperties(int dispId, int propFlags);
-
-        ///<SecurityNote>
-        /// Critical elevates via a SUC.
-        ///</SecurityNote>
-        [SuppressUnmanagedCodeSecurity, SecurityCritical]
-        string GetMemberName(int dispId);
-
-        ///<SecurityNote>
-        /// Critical elevates via a SUC.
-        ///</SecurityNote>
-        [SuppressUnmanagedCodeSecurity, SecurityCritical]
-        int GetNextDispID(int enumFlags, int dispId);
-
-        ///<SecurityNote>
-        /// Critical elevates via a SUC.
-        ///</SecurityNote>
-        [SuppressUnmanagedCodeSecurity, SecurityCritical]
-        [return: MarshalAs(UnmanagedType.IUnknown)]
-        object GetNameSpaceParent();
-
-    }
-
-     /// <SecurityNote>
-     ///     Critical:Elevates to Unmanaged code permission
-     /// </SecurityNote>
-    [SecurityCritical(SecurityCriticalScope.Everything)]
-    [SuppressUnmanagedCodeSecurity]
-    [ComImport(), Guid("6D5140C1-7436-11CE-8034-00AA006009FA"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IServiceProvider {
-
-        ///<SecurityNote>
-        /// Critical elevates via a SUC.
-        ///</SecurityNote>
-        [SuppressUnmanagedCodeSecurity, SecurityCritical]
-        [return: MarshalAs(UnmanagedType.IUnknown)]
-        object QueryService(ref Guid service, ref Guid riid);
-
-    }
-
-#endif
-
-    #region WebBrowser Related Definitions
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        [SecurityCritical(SecurityCriticalScope.Everything)]
+        //[SecurityCritical(SecurityCriticalScope.Everything)]
+        [SuppressUnmanagedCodeSecurity]
+        [ComImport(), Guid("00020404-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+        public interface IEnumVariant
+        {
+            /// <SecurityNote>
+            ///    Critical: This code elevates to call unmanaged code
+            /// </SecurityNote>
+            [SecurityCritical, SuppressUnmanagedCodeSecurity]
+            [PreserveSig]
+            int Next(
+                    [In, MarshalAs(UnmanagedType.U4)]
+                 int celt,
+                    [In, Out]
+                 IntPtr rgvar,
+                    [Out, MarshalAs(UnmanagedType.LPArray)]
+                 int[] pceltFetched);
+
+            void Skip(
+                   [In, MarshalAs(UnmanagedType.U4)]
+                 int celt);
+
+            /// <SecurityNote>
+            ///    Critical: This code elevates to call unmanaged code
+            /// </SecurityNote>
+            [SecurityCritical, SuppressUnmanagedCodeSecurity]
+            void Reset();
+
+            void Clone(
+                   [Out, MarshalAs(UnmanagedType.LPArray)]
+                   UnsafeNativeMethods.IEnumVariant[] ppenum);
+        }
+
+        /// <SecurityNote>
+        ///     Critical:Elevates to Unmanaged code permission
+        /// </SecurityNote>
+        //[SecurityCritical(SecurityCriticalScope.Everything)]
+        [SuppressUnmanagedCodeSecurity]
+        [ComImport(), Guid("00000104-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+        public interface IEnumOLEVERB
+        {
+
+
+            [PreserveSig]
+            int Next(
+                   [MarshalAs(UnmanagedType.U4)]
+                int celt,
+                   [Out]
+                NativeMethods.tagOLEVERB rgelt,
+                   [Out, MarshalAs(UnmanagedType.LPArray)]
+                int[] pceltFetched);
+
+            [PreserveSig]
+            int Skip(
+                   [In, MarshalAs(UnmanagedType.U4)]
+                 int celt);
+
+
+            void Reset();
+
+
+            void Clone(
+               out IEnumOLEVERB ppenum);
+
+
+        }
+
+        /// <SecurityNote>
+        ///     Critical:Elevates to Unmanaged code permission
+        /// </SecurityNote>
+        //[SecurityCritical(SecurityCriticalScope.Everything)]
+        [SuppressUnmanagedCodeSecurity]
+        // This interface has different parameter marshaling from System.Runtime.InteropServices.ComTypes.IStream.
+        // They are incompatable. But type cast will succeed because they have the same guid.
+        [ComImport(), Guid("0000000C-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+        public interface IStream
+        {
+
+            int Read(
+
+                    IntPtr buf,
+
+                    int len);
+
+
+            int Write(
+
+                    IntPtr buf,
+
+                    int len);
+
+            [return: MarshalAs(UnmanagedType.I8)]
+            long Seek(
+                    [In, MarshalAs(UnmanagedType.I8)]
+                 long dlibMove,
+
+                     int dwOrigin);
+
+
+            void SetSize(
+                   [In, MarshalAs(UnmanagedType.I8)]
+                 long libNewSize);
+
+            [return: MarshalAs(UnmanagedType.I8)]
+            long CopyTo(
+                    [In, MarshalAs(UnmanagedType.Interface)]
+                  UnsafeNativeMethods.IStream pstm,
+                    [In, MarshalAs(UnmanagedType.I8)]
+                 long cb,
+                    [Out, MarshalAs(UnmanagedType.LPArray)]
+                 long[] pcbRead);
+
+
+            void Commit(
+
+                    int grfCommitFlags);
+
+
+            void Revert();
+
+
+            void LockRegion(
+                   [In, MarshalAs(UnmanagedType.I8)]
+                 long libOffset,
+                   [In, MarshalAs(UnmanagedType.I8)]
+                 long cb,
+
+                    int dwLockType);
+
+
+            void UnlockRegion(
+                   [In, MarshalAs(UnmanagedType.I8)]
+                 long libOffset,
+                   [In, MarshalAs(UnmanagedType.I8)]
+                 long cb,
+
+                    int dwLockType);
+
+
+            void Stat(
+                    [Out]
+                 NativeMethods.STATSTG pStatstg,
+                    int grfStatFlag);
+
+            [return: MarshalAs(UnmanagedType.Interface)]
+            UnsafeNativeMethods.IStream Clone();
+        }
+
+
+        ///<SecurityNote>
+        ///     Critical - elevates via a SUC.
+        ///</SecurityNote>
+        //[SecurityCritical( SecurityCriticalScope.Everything ) 
+        [SuppressUnmanagedCodeSecurity]
+        [ComImport(),
+        Guid("B196B284-BAB4-101A-B69C-00AA00341D07"),
+        InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+        public interface IConnectionPointContainer
+        {
+
+            [return: MarshalAs(UnmanagedType.Interface)]
+            object EnumConnectionPoints();
+
+            [PreserveSig]
+            int FindConnectionPoint([In] ref Guid guid, [Out, MarshalAs(UnmanagedType.Interface)]out IConnectionPoint ppCP);
+
+        }
+
+        /// <SecurityNote>
+        ///     Critical:Elevates to Unmanaged code permission
+        /// </SecurityNote>
+        //[SecurityCritical(SecurityCriticalScope.Everything)]
+        [SuppressUnmanagedCodeSecurity]
+        [ComImport(), Guid("B196B285-BAB4-101A-B69C-00AA00341D07"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+        public interface IEnumConnectionPoints
+        {
+            [PreserveSig]
+            int Next(int cConnections, out IConnectionPoint pCp, out int pcFetched);
+
+            [PreserveSig]
+            int Skip(int cSkip);
+
+            void Reset();
+
+            IEnumConnectionPoints Clone();
+        }
+
+#if !DRT
+        /// <SecurityNote>
+        ///     Critical:Elevates to Unmanaged code permission
+        /// </SecurityNote>
+        //[SecurityCritical(SecurityCriticalScope.Everything)]
+        [SuppressUnmanagedCodeSecurity]
+        [ComImport(), Guid("00020400-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+        public interface IDispatch
+        {
+
+            #region <KeepInSync With="IDispatchEx">
+
+            int GetTypeInfoCount();
+
+            [return: MarshalAs(UnmanagedType.Interface)]
+            ITypeInfo GetTypeInfo(
+                    [In, MarshalAs(UnmanagedType.U4)]
+                 int iTInfo,
+                    [In, MarshalAs(UnmanagedType.U4)]
+                 int lcid);
+
+            ///<SecurityNote>
+            /// Critical elevates via a SUC.
+            ///</SecurityNote>
+            [SuppressUnmanagedCodeSecurity, SecurityCritical]
+            [PreserveSig]
+            HR GetIDsOfNames(
+                   [In]
+                 ref Guid riid,
+                   [In, MarshalAs(UnmanagedType.LPArray)]
+                 string[] rgszNames,
+                   [In, MarshalAs(UnmanagedType.U4)]
+                 int cNames,
+                   [In, MarshalAs(UnmanagedType.U4)]
+                 int lcid,
+                   [Out, MarshalAs(UnmanagedType.LPArray)]
+                 int[] rgDispId);
+
+
+            ///<SecurityNote>
+            /// Critical elevates via a SUC.
+            ///</SecurityNote>
+            [SuppressUnmanagedCodeSecurity, SecurityCritical]
+            [PreserveSig]
+            HR Invoke(
+
+                    int dispIdMember,
+                   [In]
+                 ref Guid riid,
+                   [In, MarshalAs(UnmanagedType.U4)]
+                 int lcid,
+                   [In, MarshalAs(UnmanagedType.U4)]
+                 int dwFlags,
+                   [Out, In]
+                  NativeMethods.DISPPARAMS pDispParams,
+                   [Out]
+                  out object pVarResult,
+                   [Out, In]
+                  NativeMethods.EXCEPINFO pExcepInfo,
+                   [Out, MarshalAs(UnmanagedType.LPArray)]
+                  IntPtr [] pArgErr);
+
+            #endregion
+
+        }
+
+        /// <SecurityNote>
+        ///     Critical:Elevates to Unmanaged code permission
+        /// </SecurityNote>
+        //[SecurityCritical(SecurityCriticalScope.Everything)]
+        [SuppressUnmanagedCodeSecurity]
+        [ComImport(), Guid("A6EF9860-C720-11D0-9337-00A0C90DCAA9"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+        public interface IDispatchEx : IDispatch
+        {
+
+            #region <KeepInSync With="IDispatch">
+
+            new int GetTypeInfoCount();
+
+            [return: MarshalAs(UnmanagedType.Interface)]
+            new ITypeInfo GetTypeInfo(
+                    [In, MarshalAs(UnmanagedType.U4)]
+                 int iTInfo,
+                    [In, MarshalAs(UnmanagedType.U4)]
+                 int lcid);
+
+            ///<SecurityNote>
+            /// Critical elevates via a SUC.
+            ///</SecurityNote>
+            [SuppressUnmanagedCodeSecurity, SecurityCritical]
+            [PreserveSig]
+            new HR GetIDsOfNames(
+                   [In]
+                 ref Guid riid,
+                   [In, MarshalAs(UnmanagedType.LPArray)]
+                 string[] rgszNames,
+                   [In, MarshalAs(UnmanagedType.U4)]
+                 int cNames,
+                   [In, MarshalAs(UnmanagedType.U4)]
+                 int lcid,
+                   [Out, MarshalAs(UnmanagedType.LPArray)]
+                 int[] rgDispId);
+
+
+            ///<SecurityNote>
+            /// Critical elevates via a SUC.
+            ///</SecurityNote>
+            [SuppressUnmanagedCodeSecurity, SecurityCritical]
+            [PreserveSig]
+            new HR Invoke(
+                    int dispIdMember,
+                   [In]
+                 ref Guid riid,
+                   [In, MarshalAs(UnmanagedType.U4)]
+                 int lcid,
+                   [In, MarshalAs(UnmanagedType.U4)]
+                 int dwFlags,
+                   [Out, In]
+                  NativeMethods.DISPPARAMS pDispParams,
+                   [Out]
+                  out object pVarResult,
+                   [Out, In]
+                  NativeMethods.EXCEPINFO pExcepInfo,
+                   [Out, MarshalAs(UnmanagedType.LPArray)]
+                  IntPtr [] pArgErr);
+
+            #endregion
+
+            ///<SecurityNote>
+            /// Critical elevates via a SUC.
+            ///</SecurityNote>
+            [SuppressUnmanagedCodeSecurity, SecurityCritical]
+            [PreserveSig]
+            HR GetDispID(
+                string name,
+                int nameProperties,
+                [Out] out int dispId);
+
+            ///<SecurityNote>
+            /// Critical elevates via a SUC.
+            ///</SecurityNote>
+            [SuppressUnmanagedCodeSecurity, SecurityCritical]
+            [PreserveSig]
+            HR InvokeEx(
+                int dispId,
+                [MarshalAs(UnmanagedType.U4)] int lcid,
+                [MarshalAs(UnmanagedType.U4)] int flags,
+                [In, Out] NativeMethods.DISPPARAMS dispParams,
+                [Out] out object result,
+                /* COM interop caveat: Declaring the following just as Out seems to cause
+                   garbage being handed out for the native buffer (it's out anyway). Upon
+                   returning from the COM call, CLR copies back to the managed object but
+                   chokes on the garbage string pointers trying to do memcpy, causing AV.
+                   See also Dev10 work item 730339 to fix this in the CLR, by zeroing out
+                   the memory that's handed over to native code in this circumstance.  */
+                [In, Out] NativeMethods.EXCEPINFO exceptionInfo,
+                IServiceProvider serviceProvider);
+
+            ///<SecurityNote>
+            /// Critical elevates via a SUC.
+            ///</SecurityNote>
+            [SuppressUnmanagedCodeSecurity, SecurityCritical]
+            void DeleteMemberByName(string name, int flags);
+
+            ///<SecurityNote>
+            /// Critical elevates via a SUC.
+            ///</SecurityNote>
+            [SuppressUnmanagedCodeSecurity, SecurityCritical]
+            void DeleteMemberByDispID(int dispId);
+
+            ///<SecurityNote>
+            /// Critical elevates via a SUC.
+            ///</SecurityNote>
+            [SuppressUnmanagedCodeSecurity, SecurityCritical]
+            int GetMemberProperties(int dispId, int propFlags);
+
+            ///<SecurityNote>
+            /// Critical elevates via a SUC.
+            ///</SecurityNote>
+            [SuppressUnmanagedCodeSecurity, SecurityCritical]
+            string GetMemberName(int dispId);
+
+            ///<SecurityNote>
+            /// Critical elevates via a SUC.
+            ///</SecurityNote>
+            [SuppressUnmanagedCodeSecurity, SecurityCritical]
+            int GetNextDispID(int enumFlags, int dispId);
+
+            ///<SecurityNote>
+            /// Critical elevates via a SUC.
+            ///</SecurityNote>
+            [SuppressUnmanagedCodeSecurity, SecurityCritical]
+            [return: MarshalAs(UnmanagedType.IUnknown)]
+            object GetNameSpaceParent();
+
+        }
+
+        /// <SecurityNote>
+        ///     Critical:Elevates to Unmanaged code permission
+        /// </SecurityNote>
+        //[SecurityCritical(SecurityCriticalScope.Everything)]
+        [SuppressUnmanagedCodeSecurity]
+        [ComImport(), Guid("6D5140C1-7436-11CE-8034-00AA006009FA"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+        public interface IServiceProvider
+        {
+
+            ///<SecurityNote>
+            /// Critical elevates via a SUC.
+            ///</SecurityNote>
+            [SuppressUnmanagedCodeSecurity, SecurityCritical]
+            [return: MarshalAs(UnmanagedType.IUnknown)]
+            object QueryService(ref Guid service, ref Guid riid);
+
+        }
+
+#endif
+
+        #region WebBrowser Related Definitions
+        /// <SecurityNote>
+        ///     Critical:Elevates to Unmanaged code permission
+        /// </SecurityNote>
+        //[SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
         [ComImport(), Guid("D30C1661-CDAF-11d0-8A3E-00C04FC9E26E"),
         TypeLibType(TypeLibTypeFlags.FHidden | TypeLibTypeFlags.FDual | TypeLibTypeFlags.FOleAutomation)]
@@ -3249,45 +3291,50 @@ namespace MS.Win32
             [DispId(106)]
             void Stop();
             [DispId(200)]
-            object Application { [return: MarshalAs(UnmanagedType.IDispatch)]get;}
+            object Application { [return: MarshalAs(UnmanagedType.IDispatch)]get; }
             [DispId(201)]
-            object Parent { [return: MarshalAs(UnmanagedType.IDispatch)]get;}
+            object Parent { [return: MarshalAs(UnmanagedType.IDispatch)]get; }
             [DispId(202)]
-            object Container { [return: MarshalAs(UnmanagedType.IDispatch)]get;}
+            object Container { [return: MarshalAs(UnmanagedType.IDispatch)]get; }
 
             ///<SecurityNote>
             /// Critical elevates via a SUC.
             ///</SecurityNote>
             [DispId(203)]
-            object Document { [return: MarshalAs(UnmanagedType.IDispatch)]
+            object Document
+            {
+                [return: MarshalAs(UnmanagedType.IDispatch)]
                 [SuppressUnmanagedCodeSecurity, SecurityCritical]
-                get;}
+                get;
+            }
 
             [DispId(204)]
-            bool TopLevelContainer { get;}
+            bool TopLevelContainer { get; }
             [DispId(205)]
-            string Type { get;}
+            string Type { get; }
             [DispId(206)]
-            int Left { get; set;}
+            int Left { get; set; }
             [DispId(207)]
-            int Top { get; set;}
+            int Top { get; set; }
             [DispId(208)]
-            int Width { get; set;}
+            int Width { get; set; }
             [DispId(209)]
-            int Height { get; set;}
+            int Height { get; set; }
             [DispId(210)]
-            string LocationName { get;}
+            string LocationName { get; }
 
             ///<SecurityNote>
             /// Critical elevates via a SUC.
             ///</SecurityNote>
             [DispId(211)]
-            string LocationURL {
+            string LocationURL
+            {
                 [SuppressUnmanagedCodeSecurity, SecurityCritical]
-                get;}
+                get;
+            }
 
             [DispId(212)]
-            bool Busy { get;}
+            bool Busy { get; }
             //
             // IWebBrowserApp members
             [DispId(300)]
@@ -3299,25 +3346,25 @@ namespace MS.Win32
             [DispId(303)]
             object GetProperty([In] string property);
             [DispId(0)]
-            string Name { get;}
+            string Name { get; }
             [DispId(-515)]
-            int HWND { get;}
+            int HWND { get; }
             [DispId(400)]
-            string FullName { get;}
+            string FullName { get; }
             [DispId(401)]
-            string Path { get;}
+            string Path { get; }
             [DispId(402)]
-            bool Visible { get; set;}
+            bool Visible { get; set; }
             [DispId(403)]
-            bool StatusBar { get; set;}
+            bool StatusBar { get; set; }
             [DispId(404)]
-            string StatusText { get; set;}
+            string StatusText { get; set; }
             [DispId(405)]
-            int ToolBar { get; set;}
+            int ToolBar { get; set; }
             [DispId(406)]
-            bool MenuBar { get; set;}
+            bool MenuBar { get; set; }
             [DispId(407)]
-            bool FullScreen { get; set;}
+            bool FullScreen { get; set; }
 
             //
             // IWebBrowser2 members
@@ -3325,7 +3372,7 @@ namespace MS.Win32
             /// Critical elevates via a SUC.
             ///</SecurityNote>
             [DispId(500)]
-            [SuppressUnmanagedCodeSecurity, SecurityCritical ]
+            [SuppressUnmanagedCodeSecurity, SecurityCritical]
             void Navigate2([In] ref object URL, [In] ref object flags,
               [In] ref object targetFrameName, [In] ref object postData,
               [In] ref object headers);
@@ -3341,21 +3388,21 @@ namespace MS.Win32
             void ShowBrowserBar([In] ref object pvaClsid, [In] ref object pvarShow,
       [In] ref object pvarSize);
             [DispId(-525)]
-            NativeMethods.WebBrowserReadyState ReadyState { get;}
+            NativeMethods.WebBrowserReadyState ReadyState { get; }
             [DispId(550)]
-            bool Offline { get; set;}
+            bool Offline { get; set; }
             [DispId(551)]
-            bool Silent { get; set;}
+            bool Silent { get; set; }
             [DispId(552)]
-            bool RegisterAsBrowser { get; set;}
+            bool RegisterAsBrowser { get; set; }
             [DispId(553)]
-            bool RegisterAsDropTarget { get; set;}
+            bool RegisterAsDropTarget { get; set; }
             [DispId(554)]
-            bool TheaterMode { get; set;}
+            bool TheaterMode { get; set; }
             [DispId(555)]
-            bool AddressBar { get; set;}
+            bool AddressBar { get; set; }
             [DispId(556)]
-            bool Resizable { get; set;}
+            bool Resizable { get; set; }
         }
 
         [ComImport(), Guid("34A715A0-6587-11D0-924A-0020AFC7AC4D"),
@@ -3446,9 +3493,9 @@ namespace MS.Win32
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        [SecurityCritical(SecurityCriticalScope.Everything)]
+        //[SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
-        [ ComImport(), Guid("BD3F23C0-D43E-11CF-893B-00AA00BDCE1A"),
+        [ComImport(), Guid("BD3F23C0-D43E-11CF-893B-00AA00BDCE1A"),
         InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
         internal interface IDocHostUIHandler
         {
@@ -3593,7 +3640,7 @@ namespace MS.Win32
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        [SecurityCritical(SecurityCriticalScope.Everything)]
+        //[SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
         [ComImport, Guid("626FC520-A41E-11CF-A731-00A0C9082637"), InterfaceType(ComInterfaceType.InterfaceIsDual)]
         internal interface IHTMLDocument
@@ -3614,7 +3661,7 @@ namespace MS.Win32
         ///</SecurityNote>
         [ComImport, Guid("332C4425-26CB-11D0-B483-00C04FD90119"), InterfaceType(ComInterfaceType.InterfaceIsDual)]
         [SuppressUnmanagedCodeSecurity] // , SecurityCritical(SecurityCriticalScope.Everything)]
-        internal interface IHTMLDocument2: IHTMLDocument
+        internal interface IHTMLDocument2 : IHTMLDocument
         {
             #region IHTMLDocument - base interface
             [return: MarshalAs(UnmanagedType.Interface)]
@@ -3622,9 +3669,11 @@ namespace MS.Win32
             #endregion
             IHTMLElementCollection GetAll();
             [return: MarshalAs(UnmanagedType.Interface)]
-            /*IHTMLElement*/object GetBody();
+            /*IHTMLElement*/
+            object GetBody();
             [return: MarshalAs(UnmanagedType.Interface)]
-            /*IHTMLElement*/object GetActiveElement();
+            /*IHTMLElement*/
+            object GetActiveElement();
             IHTMLElementCollection GetImages();
             IHTMLElementCollection GetApplets();
             IHTMLElementCollection GetLinks();
@@ -3690,7 +3739,8 @@ namespace MS.Win32
             bool ExecCommand(string cmdID, bool showUI, object value);
             bool ExecCommandShowHelp(string cmdID);
             [return: MarshalAs(UnmanagedType.Interface)]
-            /*IHTMLElement*/object CreateElement(string eTag);
+            /*IHTMLElement*/
+            object CreateElement(string eTag);
             void SetOnhelp(object p);
             object GetOnhelp();
             void SetOnclick(object p);
@@ -3726,9 +3776,11 @@ namespace MS.Win32
             void SetOnselectstart(object p);
             object GetOnselectstart();
             [return: MarshalAs(UnmanagedType.Interface)]
-            /*IHTMLElement*/object ElementFromPoint(int x, int y);
+            /*IHTMLElement*/
+            object ElementFromPoint(int x, int y);
             [return: MarshalAs(UnmanagedType.Interface)]
-            /*IHTMLWindow2*/object GetParentWindow();
+            /*IHTMLWindow2*/
+            object GetParentWindow();
             [return: MarshalAs(UnmanagedType.Interface)]
             object GetStyleSheets();
             void SetOnbeforeupdate(object p);
@@ -3776,8 +3828,10 @@ namespace MS.Win32
         [ComImport, Guid("3050f6cf-98b5-11cf-bb82-00aa00bdce0b"), InterfaceType(ComInterfaceType.InterfaceIsDual)]
         internal interface IHTMLWindow4
         {
-            [return: MarshalAs(UnmanagedType.IDispatch)] object CreatePopup([In] ref object reserved);
-            [return: MarshalAs(UnmanagedType.Interface)] object frameElement();
+            [return: MarshalAs(UnmanagedType.IDispatch)]
+            object CreatePopup([In] ref object reserved);
+            [return: MarshalAs(UnmanagedType.Interface)]
+            object frameElement();
         }
 
         internal static class ArrayToVARIANTHelper
@@ -3786,7 +3840,7 @@ namespace MS.Win32
             /// Critical - Calls Marshal.OffsetOf(), which has a LinkDemand for unmanaged code.
             /// TreatAsSafe - This is not exploitable.
             ///</SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] // , SecurityTreatAsSafe]
             static ArrayToVARIANTHelper()
             {
                 VariantSize = (int)Marshal.OffsetOf(typeof(FindSizeOfVariant), "b");
@@ -3874,13 +3928,13 @@ namespace MS.Win32
         /// Critical - This code causes unmanaged code elevation.
         /// </SecurityNote>
         [SuppressUnmanagedCodeSecurity, SecurityCritical]
-        [DllImport(ExternDll.Oleaut32, PreserveSig=true)]
+        [DllImport(ExternDll.Oleaut32, PreserveSig = true)]
         private static extern int VariantClear(IntPtr pObject);
 
         /// <SecurityNote>
         ///     Critical:Elevates to Unmanaged code permission
         /// </SecurityNote>
-        
+
         // [SecurityCritical(SecurityCriticalScope.Everything)]
         [SuppressUnmanagedCodeSecurity]
         [ComImport(), Guid("7FD52380-4E07-101B-AE2D-08002B2EC713"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
@@ -3956,13 +4010,13 @@ namespace MS.Win32
             [PreserveSig] int GetZoneMappings();
         }
 #endif
-    #endregion WebBrowser Related Definitions
+        #endregion WebBrowser Related Definitions
 
         /// <SecurityNote>
         ///     Critical: as suppressing UnmanagedCodeSecurity
         /// </SecurityNote>
         [SecurityCritical, SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, SetLastError=true, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.User32, SetLastError = true, CharSet = CharSet.Auto)]
         public static extern uint GetRawInputDeviceList(
                                                 [In, Out] NativeMethods.RAWINPUTDEVICELIST[] ridl,
                                                 [In, Out] ref uint numDevices,
@@ -3972,7 +4026,7 @@ namespace MS.Win32
         ///     Critical: as suppressing UnmanagedCodeSecurity
         /// </SecurityNote>
         [SecurityCritical, SuppressUnmanagedCodeSecurity]
-        [DllImport(ExternDll.User32, SetLastError=true, CharSet=CharSet.Auto)]
+        [DllImport(ExternDll.User32, SetLastError = true, CharSet = CharSet.Auto)]
         public static extern uint GetRawInputDeviceInfo(
                                                 IntPtr hDevice,
                                                 uint command,

@@ -713,7 +713,7 @@ namespace MS.Internal.Ink
         ///                 InkCanvas.RaiseGestureOrStrokeCollected and use it to decide if we should
         ///                 perform gesture recognition
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void OnInkCanvasDeviceDown(object sender, InputEventArgs args)
         {
             MouseButtonEventArgs mouseButtonEventArgs = args as MouseButtonEventArgs;
@@ -814,7 +814,7 @@ namespace MS.Internal.Ink
         ///                 InkCanvas.RaiseGestureOrStrokeCollected and use it to decide if we should
         ///                 perform gesture recognition
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void OnInkCanvasDeviceMove<TEventArgs>(object sender, TEventArgs args)
             where TEventArgs : InputEventArgs
         {

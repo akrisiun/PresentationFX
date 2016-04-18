@@ -192,7 +192,7 @@ namespace System.Windows
         // 
         internal static bool MouseVanish
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 lock (_cacheValid)
@@ -348,7 +348,7 @@ namespace System.Windows
         /// </SecurityNote>
         internal static NativeMethods.RECT WorkAreaInternal
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 lock (_cacheValid)
@@ -458,7 +458,7 @@ namespace System.Windows
         ///</SecurityNote>
         internal static NativeMethods.ICONMETRICS IconMetrics
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 lock (_cacheValid)
@@ -775,7 +775,7 @@ namespace System.Windows
         /// </SecurityNote>
         internal static int MouseHoverTimeMilliseconds
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 lock (_cacheValid)
@@ -2034,7 +2034,7 @@ namespace System.Windows
         /// </SecurityNote>
         internal static NativeMethods.NONCLIENTMETRICS NonClientMetrics
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 lock (_cacheValid)
@@ -6254,7 +6254,7 @@ namespace System.Windows
         ///</SecurityNote>
         internal static int DpiX
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 if (_setDpiX)

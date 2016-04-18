@@ -83,7 +83,7 @@ namespace MS.Internal.AppModel
         ///            So to the BamlRecordReader, this Assembly that it uses is always guaranteed to be 
         ///            the one from which the baml stream that it reads, was created from.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         protected override Stream GetStreamCore(FileMode mode, FileAccess access)
         {
             Stream stream = null;

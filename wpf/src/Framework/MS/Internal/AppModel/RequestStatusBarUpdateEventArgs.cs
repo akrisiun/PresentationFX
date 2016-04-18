@@ -78,7 +78,7 @@ namespace MS.Internal.AppModel
         /// </SecurityNote>
         internal static RequestSetStatusBarEventArgs Clear
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 return new RequestSetStatusBarEventArgs(String.Empty);

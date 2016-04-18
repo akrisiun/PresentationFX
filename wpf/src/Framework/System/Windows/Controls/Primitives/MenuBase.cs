@@ -614,7 +614,7 @@ namespace System.Windows.Controls.Primitives
         ///     Critical - Accesses HwndSource
         ///     TreatAsSafe - No information exposed. Simply decides whether or not to restore focus.
         ///</SecurityNote> 
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void RestorePreviousFocus()
         {
             // Only restore focus if focus is still within the menu.  If
@@ -909,7 +909,7 @@ namespace System.Windows.Controls.Primitives
         ///     TreatAsSafe - No information exposed. Simply notifies the
         ///                   PresentationSource to enter/leave menu mode.
         ///</SecurityNote> 
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void PushMenuMode(bool isAcquireFocusMenuMode)
         {
             Debug.Assert(_pushedMenuMode == null);
@@ -926,7 +926,7 @@ namespace System.Windows.Controls.Primitives
         ///     TreatAsSafe - No information exposed. Simply notifies the
         ///                   PresentationSource to enter/leave menu mode.
         ///</SecurityNote> 
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void PopMenuMode()
         {
             Debug.Assert(_pushedMenuMode != null);
@@ -946,7 +946,7 @@ namespace System.Windows.Controls.Primitives
         ///</SecurityNote>
         private bool HasPushedMenuMode
         {
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             get
             {
                 return _pushedMenuMode != null;

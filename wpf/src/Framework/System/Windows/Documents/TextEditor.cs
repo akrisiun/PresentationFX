@@ -160,7 +160,7 @@ namespace System.Windows.Documents
         /// Safe - as this just gets the ImmComposition for the current element and invokes
         ///        the OnDetach event.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void OnDetach()
         {
             Invariant.Assert(_textContainer != null);
@@ -343,7 +343,7 @@ namespace System.Windows.Documents
         ///    Critical:This code register command handlers for texteditor related events and commands (OnGotFocus)
         ///    TreatAsSafe: This just hooks up methods that are internal to this class
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static void RegisterCommandHandlers(Type controlType, bool acceptsRichContent, bool readOnly, bool registerEventListeners)
         {
             // Check if we already registered handlers for this type
@@ -589,7 +589,7 @@ namespace System.Windows.Documents
         ///     Critical:Calls Composition.Complete which has a link demand
         ///     TreatAsSafe: Does not expose the call
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void Undo()
         {
             TextEditorTyping._FlushPendingInputItems(this);
@@ -1553,7 +1553,7 @@ namespace System.Windows.Documents
         /// Critical: Calls critical code (TextServicesLoader.Load)
         /// TreatAsSafe: Queries for the TSF thread manager, a safe operation
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private object InitTextStore(object o)
         {
             // We might have been detached before this callback got dispatched.
@@ -1705,7 +1705,7 @@ namespace System.Windows.Documents
         ///            unmanaged IME about this)
         /// Safe - exposes no state, passes no state to the IME.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static void OnGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             // Ignore the event if the sender is not new focus element.
@@ -1760,7 +1760,7 @@ namespace System.Windows.Documents
         /// Critical - manipulates focus, including calling critical method (GetImmComposition)
         /// Safe - exposes no state, passes no state to the IME.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static void OnLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             // Ignore the event if the sender is not old focus element.

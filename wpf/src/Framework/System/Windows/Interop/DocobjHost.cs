@@ -1186,7 +1186,7 @@ namespace System.Windows.Interop
         /// TreatAsSafe - Showing the error page is not a privileged operation. An XBAP can always do that
         ///     by throwing some exception.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.Synchronized)]
         private void ProcessUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
@@ -1361,7 +1361,7 @@ namespace System.Windows.Interop
         /// This creates and manipulates protected resources, so it must be critical.
         /// It has a demand, so it is safe.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         public ApplicationProxyInternal Initialize()
         {
             SecurityHelper.DemandUIWindowPermission();

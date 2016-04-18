@@ -132,7 +132,7 @@ namespace System.Windows.Automation.Peers
         ///     TreatAsSafe - The returned PresenationSource object is not exposed and is only used for converting
         ///                   co-ordinates to screen space.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         protected override Rect GetBoundingRectangleCore()
         {
             UIElement uiScope;
@@ -158,7 +158,7 @@ namespace System.Windows.Automation.Peers
         ///     TreatAsSafe - The returned PresenationSource object is not exposed and is only used for converting
         ///                   co-ordinates to screen space.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         protected override Point GetClickablePointCore()
         {
             Point point = new Point();

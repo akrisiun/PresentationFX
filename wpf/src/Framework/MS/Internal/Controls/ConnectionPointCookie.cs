@@ -162,7 +162,7 @@ namespace MS.Internal.Controls
         /// Critical: calls the critical Disconnect().
         /// TAS: When the object is being finalized, there isn't much left to protect.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         ~ConnectionPointCookie()
         {
             Disconnect();

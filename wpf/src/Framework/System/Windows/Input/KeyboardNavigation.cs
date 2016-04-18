@@ -163,7 +163,7 @@ namespace System.Windows.Input
         ///     Critical: This code retrieves PresentationSource which is a protected resource
         ///     TreatAsSafe: It returns rootvisual which is ok and it does not expose the PresentationSource
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static Visual GetVisualRoot(DependencyObject d)
         {
             if (d is Visual || d is Visual3D)
@@ -869,7 +869,7 @@ namespace System.Windows.Input
         ///   Critical: This code accesses link demanded input manager
         ///   TreatAsSafe: This code is ok to expose as it simply return boolean weather Keyboard is the last used device
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal static bool IsKeyboardMostRecentInputDevice()
         {
             return InputManager.Current.MostRecentInputDevice is KeyboardDevice;
@@ -1145,7 +1145,7 @@ namespace System.Windows.Input
         ///     Critical: Asserting UnmanagedCode permission to obtain HwndSource.IKeyboardInputSink.KeyboardInputSite
         ///     TreatAsSafe: Not leaking the InputKeyboardSite obtained under elevation.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private bool NavigateOutsidePresentationSource(DependencyObject currentElement, TraversalRequest request)
         {
             Visual visual = currentElement as Visual;

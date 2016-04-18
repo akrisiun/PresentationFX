@@ -273,7 +273,7 @@ namespace System.Windows.Documents
         ///     SecurityCritical: This code asserts to get the containing HWND.
         ///     TreatAsSafe: The HWND is not exposed, only its RECT.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private static void GetClippedPositionOffsets(TextEditor This, ITextPointer position, LogicalDirection direction,
             out double horizontalOffset, out double verticalOffset)
         {
@@ -573,7 +573,7 @@ namespace System.Windows.Documents
             /// Critical - calls unmanaged code.
             /// TreatAsSafe - does not expose the unmanaged interface. retrieve the candidate list and add menu item.
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             private bool AddReconversionItems(TextEditor textEditor)
             {
                 MenuItem menuItem;
@@ -676,7 +676,7 @@ namespace System.Windows.Documents
             /// Critical - access CandidateList
             /// TreatAsSafe - does not do anything for the unmanaged interface. It's just a null check.
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             private void DelayReleaseCandidateList()
             {
                 if (CandidateList != null)
@@ -690,7 +690,7 @@ namespace System.Windows.Documents
             /// Critical - calls unmanaged code.
             /// TreatAsSafe - just release it.
             /// </SecurityNote>
-            [SecurityCritical, SecurityTreatAsSafe]
+            [SecurityCritical] //, SecurityTreatAsSafe]
             private object ReleaseCandidateList(object o)
             {
                 if (CandidateList != null)

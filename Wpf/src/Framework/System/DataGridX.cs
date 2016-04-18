@@ -8234,7 +8234,7 @@ namespace System.Windows.Controls
         /// Critical: Calls Secuirty Critical Clipboard operations in full and partial trust.
         /// TreatAsSafe: Only puts text on the clipboard in full trust or a userinitiated command in partial trust through secured critical functions.
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         protected virtual void OnExecutedCopy(ExecutedRoutedEventArgs args)
         {
             if (ClipboardCopyMode == DataGridClipboardCopyMode.None)

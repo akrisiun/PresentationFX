@@ -97,7 +97,7 @@ namespace MS.Internal.AppModel
         ///    Critical: This code calls into critical code GetAppWindow
         ///    TreatAsSafe: There exists a demand here
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         void XappLauncherApp_Navigated(object sender, NavigationEventArgs e)
         {
             EventTrace.EasyTraceEvent(EventTrace.Keyword.KeywordHosting | EventTrace.Keyword.KeywordPerf, EventTrace.Level.Verbose, EventTrace.Event.WpfHost_XappLauncherAppNavigated);
@@ -171,7 +171,7 @@ namespace MS.Internal.AppModel
         ///  Potentially, this could be a DOS attack FOR THE APP ONLY if refresh was called constantly, but that is
         ///  below the bar for critical code progagation, as the user can recover and the system is not destabilized.
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void HandleRefresh()
         {
             lock (_lockObject) // we do this in case the refresh button is getting clicked rapidly, before the navigation happens
@@ -188,7 +188,7 @@ namespace MS.Internal.AppModel
         /// Critical: Calls IBrowserCallbackServices.ChangeDownloadState which is critical
         /// TreatAsSafe: Changing the download state is safe
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void ChangeBrowserDownloadState(bool newState)
         {
             // start or stop waving the flag
@@ -253,7 +253,7 @@ namespace MS.Internal.AppModel
         ///     Critical: calls ApplicationTrustCollection.Item which LinkDemands
         ///     TreatAsSafe: Caller can't hand in an arbitrary item string
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private object DoDirectActivation(object unused)
         {
             if (IsCanceledOrShuttingDown)
@@ -299,7 +299,7 @@ namespace MS.Internal.AppModel
         ///    Critical: This code calls into critical code which has link demand (Activator.CreateInstance)
         ///    TreatAsSafe: There exists a demand here
         ///</SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private bool ExecuteDirectApplication()
         {
             SecurityHelper.DemandUnmanagedCode();
@@ -363,7 +363,7 @@ namespace MS.Internal.AppModel
         /// Critical: Calls the critical SetStatusText().
         /// TreatAsSafe: The status message is fixed, coming from a string table.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void DoGetManifestAsync()
         {
             if (IsCanceledOrShuttingDown)
@@ -514,7 +514,7 @@ namespace MS.Internal.AppModel
         /// Critical: Calls the critical SetStatusText().
         /// TreatAsSafe: The status message is fixed, coming from a string table.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         void ShowDownloadingStatusMessage()
         {
             SetStatusText(SR.Get("SRID.HostingStatusDownloadApp"));
@@ -524,7 +524,7 @@ namespace MS.Internal.AppModel
         /// Critical: Calls the critical SetStatusText().
         /// TreatAsSafe: The status message is fixed, coming from a string table.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         object AssertApplicationRequirementsAsync(object unused)
         {
             if (IsCanceledOrShuttingDown)
@@ -620,7 +620,7 @@ namespace MS.Internal.AppModel
         /// TreatAsSafe: Starting the font cache service is safe. An application can do that indirectly
         ///     by using text services.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         object StartFontCacheServiceAsync(object unused)
         {
             if (CheckAccess()) // initial call by Dispatcher?
@@ -648,7 +648,7 @@ namespace MS.Internal.AppModel
         /// <remarks> Nested message pumping should not be allowed within this method. See the synchronization
         /// issue with deployment manifest downloading explained in GetManifestCompleted().
         /// </remarks>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void DoDownloadUI()
         {
             SecurityHelper.DemandUIWindowPermission();
@@ -700,7 +700,7 @@ namespace MS.Internal.AppModel
         /// TAS: 1) We demand permission
         ///     2) The status message is fixed, coming from a string table. ((1) is sufficient for TAS.)
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void HandleError(Exception exception, string logFilePath, Uri supportUri, string requiredWpfVersion)
         {
             SecurityHelper.DemandUIWindowPermission();
@@ -807,7 +807,7 @@ namespace MS.Internal.AppModel
         ///     Also calls the critical SetStatusText().
         /// TreatAsSafe - demands appropriate permissions.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void HandleCancel()
         {
             SecurityHelper.DemandUIWindowPermission();
@@ -923,7 +923,7 @@ namespace MS.Internal.AppModel
         /// Critical: Calls the critical SetStatusText().
         /// TreatAsSafe: The status message is fixed, coming from a string table.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private object DoDownloadApplicationCompleted(object e)
         {
             EventTrace.EasyTraceEvent(EventTrace.Keyword.KeywordHosting | EventTrace.Keyword.KeywordPerf, EventTrace.Event.WpfHost_DownloadApplicationEnd);
@@ -1134,7 +1134,7 @@ namespace MS.Internal.AppModel
         ///             is launched with a known safe argument (NetFx3)
         ///             is launched by providing a full path                        
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private object GetWinFX(object unused)
         {
             bool frameworkActivated = false;

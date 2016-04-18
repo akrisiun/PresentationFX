@@ -192,7 +192,7 @@ namespace System.Windows
         /// Safe: Demands the requested permission before setting the fields. Sets both fields together
         ///       so they stay in [....].
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal TemplateContent(System.Xaml.XamlReader xamlReader, IXamlObjectWriterFactory factory,
             IServiceProvider context)
         {
@@ -303,7 +303,7 @@ namespace System.Windows
         /// Safe: _xamlNodeList integrity is guarded by SecurityCritical.
         ///       Doesn't leak _xamlNodeList.Writer, just provides a reader.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal System.Xaml.XamlReader PlayXaml()
         {
             return _xamlNodeList.GetReader();
@@ -328,7 +328,7 @@ namespace System.Windows
         /// Safe: It is ok to cause this object to be GCable, to preserve memory, as the data
         ///       from Reader has been transferred to the critical _xamlNodeList.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal void ResetTemplateLoadData()
         {
             TemplateLoadData = null;
@@ -384,7 +384,7 @@ namespace System.Windows
         ///       comes from _reader, and we demanded LoadPermission when that was passed in
         ///       (in the constructor).
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void ParseTree(
             StackOfFrames stack,
             List<PropertyValue> sharedProperties,
@@ -413,7 +413,7 @@ namespace System.Windows
         /// Safe: The node stream that we copy into critical _xamlNodeList comes from the critical Reader.
         ///       At this point, it is ok to null out the reader, to release the memory.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         private void ParseNodes(
             StackOfFrames stack,
             List<PropertyValue> sharedProperties,

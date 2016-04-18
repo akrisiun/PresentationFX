@@ -56,7 +56,7 @@ namespace MS.Internal.Ink
         ///     TreatAsSafe: only initializes _stylusPoints to null, _userInitialize to false
         /// 
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         internal InkCollectionBehavior(EditingCoordinator editingCoordinator, InkCanvas inkCanvas)
             : base(editingCoordinator, inkCanvas)
         {
@@ -132,7 +132,7 @@ namespace MS.Internal.Ink
         ///     TreatAsSafe: This method simply clones critical member _stylusPoints and passes that to transparent code
         ///         _stylusPoints is only critical when passed to InkCanvas.RaiseGestureOrStrokeCollected.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         protected override void OnSwitchToMode(InkCanvasEditingMode mode)
         {
             Debug.Assert(EditingCoordinator.IsInMidStroke, "SwitchToMode should only be called in a mid-stroke");
@@ -336,7 +336,7 @@ namespace MS.Internal.Ink
         ///         is passed to critical method InkCanvas.RaiseGestureOrStrokeCollected are already marked
         ///         critical.  No critical data is passed in this method.
         /// </SecurityNote>
-        [SecurityCritical, SecurityTreatAsSafe]
+        [SecurityCritical] //, SecurityTreatAsSafe]
         protected override void StylusInputEnd(bool commit)
         {
             // The follow code raises Gesture and/or StrokeCollected event
